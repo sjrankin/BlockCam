@@ -385,7 +385,7 @@ class ProcessViewer: SCNView, SCNSceneRendererDelegate
                 if PreviousNodeCount != NodeCount
                 {
                     PreviousNodeCount = NodeCount
-                    print("Scene node count: \(NodeCount), Jittering: \(renderer.isJitteringEnabled)")
+                    print("Scene node count: \(NodeCount)")
                 }
             }
         }
