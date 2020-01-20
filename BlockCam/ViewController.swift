@@ -78,6 +78,10 @@ class ViewController: UIViewController,
         ShowStatusLayer()
         ShowSplashScreen()
         GetPermissions()
+        
+        let Gradient = Colors.GetGradientFor(CurrentViewMode, Container: MainBottomBar.bounds)
+        MainBottomBar.layer.addSublayer(Gradient)
+        ImageBottomBar.layer.addSublayer(Colors.GetProcessingGradient(Container: ImageBottomBar.bounds))
     }
     
     /// Show the splash screen (if settings allow).
@@ -457,45 +461,42 @@ class ViewController: UIViewController,
             CurrentView = 0
         }
         CurrentViewMode = ViewOrder[CurrentView]
+        MainBottomBar.layer.sublayers?.forEach
+            {
+                if $0.name == "GradientBackground"
+                {
+                    $0.removeFromSuperlayer()
+                }
+        }
+        let Gradient = Colors.GetGradientFor(CurrentViewMode, Container: MainBottomBar.bounds)
+        MainBottomBar.layer.addSublayer(Gradient)
         switch CurrentViewMode
         {
             case .LiveView:
                 CameraButton.setImage(UIImage(systemName: "camera"), for: UIControl.State.normal)
-                #if true
                 CameraButton.setTitle(NSLocalizedString("UIPhotoButton", comment: ""), for: .normal)
-                #else
-                CameraButton.setTitle("Photo", for: UIControl.State.normal)
-                #endif
                 SwitchCameraButton.isHidden = false
                 SwitchCameraButton.isUserInteractionEnabled = true
                 ImageFromLibrary = false
-                LiveViewBottomToolView.backgroundColor = UIColor.systemYellow
+//                MainBottomBar.backgroundColor = UIColor.systemYellow
                 SwitchToLiveViewMode()
             
             case .MakeVideo:
                 CameraButton.setImage(UIImage(systemName: "tv.fill"), for: UIControl.State.normal)
-                #if true
                 CameraButton.setTitle(NSLocalizedString("UIVideoButton", comment: ""), for: .normal)
-                #else
-                CameraButton.setTitle("Video", for: UIControl.State.normal)
-                #endif
                 SwitchCameraButton.isHidden = false
                 SwitchCameraButton.isUserInteractionEnabled = true
                 ImageFromLibrary = false
-                LiveViewBottomToolView.backgroundColor = UIColor.systemGreen
+//                MainBottomBar.backgroundColor = UIColor.systemGreen
                 SwitchToLiveViewMode()
             
             case .PhotoLibrary:
                 CameraButton.setImage(UIImage(systemName: "photo.on.rectangle"), for: UIControl.State.normal)
-                #if true
                 CameraButton.setTitle(NSLocalizedString("UIAlbumButton", comment: ""), for: .normal)
-                #else
-                CameraButton.setTitle("Album", for: UIControl.State.normal)
-                #endif
                 SwitchCameraButton.isHidden = true
                 SwitchCameraButton.isUserInteractionEnabled = false
                 ImageFromLibrary = true
-                LiveViewBottomToolView.backgroundColor = UIColor.systemOrange
+//                MainBottomBar.backgroundColor = UIColor.systemOrange
                 SwitchToPhotoPickerMode()
             
             default:
@@ -929,8 +930,8 @@ class ViewController: UIViewController,
     @IBOutlet weak var CloseSceneRecorderViewButton: UIButton!
     @IBOutlet weak var SceneMotionRecorderView: UIView!
     @IBOutlet weak var GearButton: UIButton!
-    @IBOutlet weak var LiveViewBottomToolView: UIView!
-    @IBOutlet weak var ImageBottomToolView: UIView!
+    @IBOutlet weak var MainBottomBar: UIView!
+    @IBOutlet weak var ImageBottomBar: UIView!
     @IBOutlet weak var SwitchCameraButton: UIButton!
     @IBOutlet weak var SwitchModeButton: UIButton!
     @IBOutlet weak var LiveView: UIView!
