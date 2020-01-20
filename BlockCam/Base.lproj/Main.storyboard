@@ -260,9 +260,9 @@
                         <outlet property="DoneButton" destination="AoZ-tZ-jN3" id="2SE-WC-D24"/>
                         <outlet property="GearButton" destination="3mQ-eD-UP3" id="iaW-ge-Nus"/>
                         <outlet property="HistogramView" destination="o3K-s3-jQX" id="ecj-wF-nGO"/>
-                        <outlet property="ImageBottomToolView" destination="tWN-6r-WSX" id="Ehi-Jn-RkL"/>
+                        <outlet property="ImageBottomBar" destination="tWN-6r-WSX" id="Ehi-Jn-RkL"/>
                         <outlet property="LiveView" destination="FVb-mH-eBn" id="G9l-IF-oUd"/>
-                        <outlet property="LiveViewBottomToolView" destination="2zr-iI-Emt" id="0VZ-sz-iEH"/>
+                        <outlet property="MainBottomBar" destination="2zr-iI-Emt" id="0VZ-sz-iEH"/>
                         <outlet property="OutputView" destination="J2Y-fa-EqT" id="yc6-PF-Lpl"/>
                         <outlet property="SaveButton" destination="Cnd-fA-brj" id="noY-SH-L67"/>
                         <outlet property="SceneMotionRecorderView" destination="9nb-T8-JHG" id="8jX-bY-I6B"/>
@@ -1100,7 +1100,7 @@
                                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1X6-KF-r9U">
                                                     <rect key="frame" x="20" y="11" width="374" height="99"/>
                                                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                                    <mutableString key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</mutableString>
+                                                    <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                                     <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
