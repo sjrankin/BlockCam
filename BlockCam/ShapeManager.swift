@@ -18,6 +18,26 @@ class ShapeManager
         //Right now, nothing to initialize.
     }
     
+    /// Returns the minimum allowable pixel size (smaller takes more time and energy) for a given shape.
+    /// - Parameter For: The shape whose minimum pixel size will be returned.
+    /// - Returns: Minimum pixel size for the passed shape.
+    public static func GetMinimumPixelSize(For Shape: NodeShapes) -> Int
+    {
+        if let Restriction = ShapeSizeRestrictions[Shape]
+        {
+            return Restriction
+        }
+        return 16
+    }
+    
+    /// Holds the dictionary of minimum pixel sizes for various shapes. This is to restrict complex
+    /// shapes from bogging down or freezing the program.
+    private static let ShapeSizeRestrictions =
+    [
+        NodeShapes.RadiatingLines: 32,
+        NodeShapes.Characters: 32,
+    ]
+    
     /// Table of shape categories and the shapes in them.
     private static let _ShapeCategories: [(CategoryName: String, List: [String])] =
         [
