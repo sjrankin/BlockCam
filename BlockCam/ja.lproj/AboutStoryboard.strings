@@ -1,0 +1,9 @@
+
+/* Class = "UINavigationItem"; title = "About BlockCam"; ObjectID = "cFH-Ud-4Vw"; */
+"cFH-Ud-4Vw.title" = "BlockCam 案内";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "k4z-hX-HwV"; */
+"k4z-hX-HwV.text" = "Label";
+
+/* Class = "UIBarButtonItem"; title = "Close"; ObjectID = "qjz-1H-Z4l"; */
+"qjz-1H-Z4l.title" = "閉じる";

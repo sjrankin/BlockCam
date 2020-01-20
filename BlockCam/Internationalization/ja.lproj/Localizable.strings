@@ -1,0 +1,290 @@
+/* 
+  ja_JP.strings
+  BlockCam
+
+  Created by Stuart Rankin on 1/19/20.
+  Copyright © 2020 Stuart Rankin. All rights reserved.
+*/
+
+"MainSettingsTitle" = "設定";
+"MainSettingsDone" = "閉じる";
+"MainSettingsAbout" = "案内";
+"MainSettingsPrivacy" = "プライバシー";
+"MainSettingsLanguage" = "言語";
+"MainSettingsImageSettings" = "画像設定";
+"MainSettingsPerformance" = "効率";
+"MainSettingsCameraOptions" = "カメラオプション";
+"MainSettingsImageProcessingOptions" = "画像処理オプション";
+"MainSettingsVideoProcessingOptions" = "ビデオ処理オプション";
+"MainSettingsOtherSettingsTitle" = "その他の設定";
+"MainSettingsViewSettings" = "設定を表示";
+"MainSettingsSounds" = "音";
+"MainSettingsMiscellaneous" = "雑多な";
+"MainSettingsAdvanced" = "高度な";
+"MainSettingsEnableLogging" = "ロギングを有効にします";
+"MainSettingsDebugLogs" = "デバッグログ";
+"MainSettingsSystemSettings" = "システム設定";
+"MainSettingsLogDescription" = "ロギングデータは内部操作とデータで構成され、個人を特定できるデータは含まれません。 ログは、明示的な同意なしにサーバーにアップロードされません。";
+
+"ImageSettingsOriginalImage" = "元画像";
+"ImageSettingsSaveOriginal" = "元の画像を保存";
+"ImageSettingsAlways" = "常に";
+"ImageSettingsIfProcessed" = "処理された場合";
+"ImageSettingsNever" = "決して";
+"ImageSettingsPhotoRollMessage" = "フォトアルバムの画像は再保存されません。";
+"ImageSettingsProcessedImage" = "処理画像";
+"ImageSettingsCropSavedImage" = "保存した画像を切り抜く";
+"ImageSettingsCropNever" = "決して";
+"ImageSettingsCropClose" = "近く";
+"ImageSettingsCropMedium" = "中";
+"ImageSettingsCropFar" = "遠い";
+"ImageSettingsAutoSave" = "処理された画像を自動的に保存する";
+"ImageSettingsAutoSaveMessage" = "最初の作成時に画像を保存しました。";
+
+"MiscTitle" = "雑多な";
+"MiscShowSplashScreen" = "スプラッシュ画面を表示";
+"MiscShowUIPrompts" = "UIプロンプトを表示する";
+
+"GeneratorPreparing" = "準備中の画像";
+"GeneratorParsing" = "画像の解析";
+"GeneratorPixellating" = "画像の分析";
+"GeneratorAddingNodes" = "画像に図形を追加する";
+"GeneratorMaking3D" = "3D形状の作成";
+"GeneratorCompleted" = "終";
+"GeneratorStartVideo" = "ビデオ処理を開始する";
+"GeneratorProcessingFrames" = "処理フレーム";
+"GeneratorGatheringFrames" = "収集フレーム";
+"GeneratorCreatingFrame" = "作成フレーム";
+
+"OnboardingLongPressViewForOptions" = "オプションの長押しビュー";
+
+"StatusLongPressLong" = "設定用の長押し画像";
+"StatusLongPressShort" = "設定用の長押し画像";
+"StatusAutoSaved" = "自動的に保存された画像";
+"StatusImageSaved" = "画像を保存しました";
+
+"UISettingsButton" = "設定";
+"UICameraButton" = "カメラ";
+"UIAlbumButton" = "アルバム";
+"UIModeButton" = "モード";
+"UIDoneButton" = "終えた";
+"UISaveButton" = "貯める";
+"UISwitchButton" = "転向";
+"UIPhotoButton" = "写真";
+"UIVideoButton" = "ビデオ";
+"UIRecordButton" = "記録";
+"UIStopButton" = "終止";
+
+"GenericYes" = "はい";
+"GenericNo" = "いいえ";
+"GenericDone" = "帰る";
+"GenericSlowest" = "最も遅い";
+"GenericFastest" = "最速";
+"GenericPleaseWait" = "お待ちください";
+
+"RecordAlertTitle" = "記録されたシーンを保存しますか？";
+"RecordAlertMessage" = "シーンの動きをビデオとして保存しますか？ 「いいえ」を選択すると、記録されたフレームが削除されます。記録されたシーンを保存しますか？";
+
+"ThermalStateCritical" = "危うい";
+"ThermalStateFair" = "まずまずの";
+"ThermalStateNominal" = "名目";
+"ThermalStateSerious" = "由々しい";
+
+"PerformanceSettingsTitle" = "パフォーマンス設定";
+"PerformanceText" = "BlockCamは、デバイスのCPUとGPUを多用します。 非常に大きな画像でデバイスを圧倒する可能性が非常に高くなります。 そのため、パフォーマンスは制限されます。 これらの設定を変更すると、深刻なパフォーマンスの問題が発生する場合があります。";
+"PerformanceResizingTitle" = "画像のサイズ変更";
+"PerformanceProcessingQuality" = "加工品質";
+"ImageSizeTitle" = "画像サイズ";
+"ImageSizeText" = "この設定は、処理される画像のサイズを変更します。 より小さな画像は、詳細を犠牲にしてより速く処理されます。 この設定は、静止画とビデオの処理に影響します。";
+"ImageSizeSegmentLabel" = "画像のサイズ変更";
+"ImageSizeSegmentSmallest" = "最小";
+"ImageSizeSegmentSmall" = "小さい";
+"ImageSizeSegmentLarge" = "大";
+"ImageSizeSegmentLargest" = "最大";
+"ImageSizeSegmentNone" = "なし";
+
+"LightSettingsTitle" = "照明設定";
+"LightTypeLabelText" = "ライトタイプ";
+"LightTypeSegmentOmni" = "オムニ";
+"LightTypeSegmentSpot" = "点光";
+"LightTypeSegmentDirectional" = "指向性";
+"LightTypeSegmentAmbient" = "アンビエント";
+"LightIntensityLabelText" = "光強度";
+"LightIntensitySegmentDarkest" = "最も暗い";
+"LightIntensitySegmentDim" = "闇";
+"LightIntensitySegmentNormal" = "正常";
+"LightIntensitySegmentBright" = "明るい";
+"LightIntensitySegmentBrightest" = "最も明るい";
+"LightIntensityAdvanced" = "高度な";
+"LightIntensitySample" = "サンプル";
+"AdvancedLightSettingsTitle" = "高度な照明設定";
+"LightModel" = "ライトモデル";
+"LightSettingsSample" = "サンプル";
+"LightModelSegmentBlinn" = "Blinn";
+"LightModelSegmentConstant" = "定数";
+"LightModelSegmentLambert" = "Lambert";
+"LightModelSegmentPhong" = "Phong";
+"LightModelSegmentPhysical" = "物的";
+
+"ShapeOptionsTitle" = "形状オプション";
+"ShapeOptionsShape" = "形状";
+"ShapeOptionsButtonText" = "形状オプションの編集";
+"ShapeOptionsSize" = "形状サイズ";
+"ShapeOptionsSizeText" = "サイズを変更すると、最初からイメージが再作成され、時間がかかります。";
+"ShapeOptionsOther" = "他の形状オプション";
+"ShapeOptionsColor" = "色";
+"ShapeOptionsHeight" = "形状の高さ/サイズを設定する";
+
+"CharacterSetNameFlowers" = "花";
+"CharacterSetNameSnowflakes" = "スノーフレーク";
+"CharacterSetNameArrows" = "矢";
+"CharacterSetNameGeometric" = "小さな幾何学";
+"CharacterSetNameStars" = "星";
+"CharacterSetNameOrnamental" = "観賞用";
+"CharacterSetNameThings" = "物";
+"CharacterSetNameComputerRelated" = "コンピューター関連";
+"CharacterSetNameHiragana" = "ひらがな";
+"CharacterSetNameKatakana" = "カタカナ";
+"CharacterSetNameKanji" = "学校漢字";
+"CharacterSetNameHangul" = "ハングル";
+"CharacterSetNameBodoni" = "Bondoniの装飾品";
+"CharacterSetNameLatin" = "ラテン文字";
+"CharacterSetNameGreek" = "ギリシャ文字";
+"CharacterSetNameCyrillic" = "キリル文字";
+"CharacterSetNameEmoji" = "絵文字";
+"CharacterSetNamePunctuation" = "ラテン語の句読点";
+"CharacterSetNameBoxSymbols" = "ボックス記号";
+
+"CharacterSeriesOptionsTitle" = "キャラクターシリーズのオプション";
+"CharacterSeriesSelectSet" = "文字セットを選択";
+"CharacterSeriesInSet" = "セット内の文字";
+
+"CharacterOptionTitle" = "キャラクターオプション";
+"CharacterOptionFont" = "フォント";
+"CharacterOptionRandomFont" = "文字ごとにランダムフォントを使用する";
+"CharacterOptionFontSize" = "フォントサイズ";
+"CharacterOptionRandomFontSize" = "ランダムなフォントサイズ";
+"CharacterOptionCharacter" = "キャラクター";
+"CharacterOptionSelectFrom" = "ランダムな文字を選択してください";
+"CharacterOptionDrawing" = "お絵かき";
+"CharacterOptionLocation" = "場所";
+"CharacterOptionRoughest" = "最も粗い";
+"CharacterOptionRough" = "粗い";
+"CharacterOptionMedium" = "中";
+"CharacterOptionSmooth" = "なめらか";
+"CharacterOptionSmoothest" = "最も滑らかな";
+"CharacterOptionExtrude" = "押し出す";
+"CharacterOptionFloat" = "浮く";
+
+"BlocksTitle" = "ブロック設定";
+"BlockEdgeSmoothing" = "ブロックエッジスムージング";
+"BlockEdgeNone" = "なし";
+"BlockEdgeSmall" = "小さい";
+"BlockEdgeMedium" = "中";
+"BlockEdgeLarge" = "大";
+
+"EllipseOptionsTitle" = "楕円オプション";
+
+"ConeSettingsTitle" = "コーン設定";
+"ConeSettingsTop" = "コーントップ";
+"ConeSettingsBottom" = "コーンボトム";
+"ConeSwapText" = "上下を入れ替える";
+
+"MeshTitle" = "メッシュ設定";
+"MeshThicknessLabel" = "メッシュ厚";
+"MeshThicknessThin" = "薄い";
+"MeshThicknessMedium" = "中";
+"MeshThicknessThick" = "厚い";
+"MeshDotSizeLabel" = "ドットサイズ";
+"MeshDotSizeNone" = "なし";
+"MeshDotSizeSmall" = "小さい";
+"MeshDotSizeMedium" = "中";
+"MeshDotSizeLarge" = "大";
+
+"StarOptionTitle" = "スターオプション";
+"StarApexCountLabel" = "頂点カウント";
+"StarIntensityText" = "強度は頂点数に影響します";
+"StarIntensityTestText" = "強度試験";
+
+"BackgroundOptionTitle" = "画像の背景";
+"BackgroundTypeText" = "背景タイプ";
+"BackgroundTypeColor" = "色";
+"BackgroundTypeImage" = "ソース画像";
+"BackgroundColorTitle" = "色";
+
+"ColorOptionTitle" = "色";
+"ColorOptionConditionalTitle" = "条件付き色";
+"ColorOptionsNone" = "なし";
+"ColorOptionsHue" = "色相";
+"ColorOptionsSaturation" = "飽和";
+"ColorOptionsBrightness" = "輝度";
+"ColorOptionsActionTitle" = "任務";
+"ColorOptionsGrayscale" = "グレースケール";
+"ColorOptionsIncreaseSaturation" = "彩度を上げる";
+"ColorOptionsDesaturate" = "彩度低下";
+"ColorOptionChangeColorText" = "色を変えるとき";
+"ColorOptionInvert" = "反転";
+
+"CappedLineOptionsTitle" = "キャップラインオプション";
+"CappedLineLocationsTop" = "上";
+"CappedLineLocationsMiddle" = "中間";
+"CappedLineLocationsBottom" = "底";
+
+"RadiatingLinesTitle" = "放射ライン設定";
+"RadiatingLinesThickness" = "放射ラインの厚さ";
+"RadiatingLinesCount" = "行数";
+
+"CompositeShapeTitle" = "複合形状";
+"CompositeShapeHintText" = "形状を長押しして変更します";
+
+"LanguagesTitle" = "言語";
+"SystemLanguageText" = "システム言語：";
+"SelectLanguageToUse" = "使用する言語を選択";
+
+"Color_Black" = "黒";
+"Color_White" = "白い";
+"Color_Gray" = "鼠色";
+"Color_Red" = "赤";
+"Color_Green" = "緑";
+"Color_Blue" = "青い";
+"Color_Cyan" = "シアン";
+"Color_Magenta" = "赤紫色";
+"Color_Yellow" = "黄色";
+"Color_Orange" = "オレンジ";
+"Color_Indigo" = "インディゴ";
+"Color_SysYellow" = "黄色2";
+"Color_SysGreen" = "緑2";
+"Color_SysBlue" = "青い2";
+"Color_SysOrange" = "オレンジ2";
+
+"ShapeNameBlocks" = "ブロック";
+"ShapeNamesTriangles" = "三角形";
+"ShapeNamesEllipses" = "楕円";
+"ShapeNamesDiamonds" = "ダイヤモンド";
+"ShapeNamesPentagons" = "五角形";
+"ShapeNamesHexagons" = "六角形";
+"ShapeNamesOctagons" = "オットコゴン";
+"ShapeNamesPyramids" = "ピラミッド";
+"ShapeNamesToroids" = "円環";
+"ShapeNamesCylinders" = "円筒";
+"ShapeNamesSpheres" = "球";
+"ShapeNamesCapsules" = "カプセル";
+"ShapeNamesCones" = "円錐形";
+"ShapeNamesTetrahedrons" = "四面体";
+"ShapeNamesStars" = "星";
+"ShapeNamesRGB" = "RGB";
+"ShapeNamesHSB" = "HSB";
+"ShapeNamesMesh" = "メッシュ";
+"ShapeNamesLetters" = "手紙";
+"ShapeNamesCharacters" = "文字";
+"ShapeNamesLines" = "ライン";
+"ShapeNamesCappedLines" = "キャップライン";
+"ShapeNamesRadiatingLines" = "放射線";
+"ShapeNamesHueVarying" = "色相が異なる";
+"ShapeNamesSaturationVarying" = "飽和変化";
+"ShapeNamesBrightnessVarying" = "明るさが変化する";
+"ShapeNamesPerpendicularSquares" = "垂直の正方形";
+"ShapeNamesPerpendicularCircles" = "垂直円";
+"ShapeNamesHueTriangles" = "色相の三角形";
+"ShapeNamesStylizedFlower" = "定型化された花";
+"ShapeNamesCharacterSets" = "文字セット";

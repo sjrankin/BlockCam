@@ -1,0 +1,555 @@
+
+/* Class = "UINavigationItem"; title = "Image Size"; ObjectID = "0F7-Ds-92W"; */
+"0F7-Ds-92W.title" = "Image Size";
+
+/* Class = "UILabel"; text = "Adds space around blocks."; ObjectID = "0hf-zq-vNT"; */
+"0hf-zq-vNT.text" = "Adds space around blocks.";
+
+/* Class = "UITextView"; text = "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda."; ObjectID = "1X6-KF-r9U"; */
+"1X6-KF-r9U.text" = "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.";
+
+/* Class = "UILabel"; text = "Quality"; ObjectID = "1b9-yi-D6b"; */
+"1b9-yi-D6b.text" = "Quality";
+
+/* Class = "UILabel"; text = "Fastest"; ObjectID = "1dX-Ci-RDa"; */
+"1dX-Ci-RDa.text" = "Fastest";
+
+/* Class = "UITableViewSection"; headerTitle = "Event sounds"; ObjectID = "1rd-yG-uCM"; */
+"1rd-yG-uCM.headerTitle" = "Event sounds";
+
+/* Class = "UILabel"; text = "If blank, nothing is saved for your name."; ObjectID = "21k-0w-qzU"; */
+"21k-0w-qzU.text" = "If blank, nothing is saved for your name.";
+
+/* Class = "UISegmentedControl"; 2CK-tk-sQM.segmentTitles[0] = "Smallest"; ObjectID = "2CK-tk-sQM"; */
+"2CK-tk-sQM.segmentTitles[0]" = "Smallest";
+
+/* Class = "UISegmentedControl"; 2CK-tk-sQM.segmentTitles[1] = "Small"; ObjectID = "2CK-tk-sQM"; */
+"2CK-tk-sQM.segmentTitles[1]" = "Small";
+
+/* Class = "UISegmentedControl"; 2CK-tk-sQM.segmentTitles[2] = "Large"; ObjectID = "2CK-tk-sQM"; */
+"2CK-tk-sQM.segmentTitles[2]" = "Large";
+
+/* Class = "UISegmentedControl"; 2CK-tk-sQM.segmentTitles[3] = "Largest"; ObjectID = "2CK-tk-sQM"; */
+"2CK-tk-sQM.segmentTitles[3]" = "Largest";
+
+/* Class = "UISegmentedControl"; 2CK-tk-sQM.segmentTitles[4] = "None"; ObjectID = "2CK-tk-sQM"; */
+"2CK-tk-sQM.segmentTitles[4]" = "None";
+
+/* Class = "UILabel"; text = "About BlockCam"; ObjectID = "3gq-oP-PXP"; */
+"3gq-oP-PXP.text" = "BlockCam 案内";
+
+/* Class = "UIButton"; normalTitle = "Settings"; ObjectID = "3mQ-eD-UP3"; */
+"3mQ-eD-UP3.normalTitle" = "オプション";
+
+/* Class = "UILabel"; text = "Debug Logs"; ObjectID = "41R-bn-alK"; */
+"41R-bn-alK.text" = "デバッグログ";
+
+/* Class = "UINavigationItem"; title = "System Settings"; ObjectID = "4I7-ie-a2h"; */
+"4I7-ie-a2h.title" = "System Settings";
+
+/* Class = "UILabel"; text = "Block size for video"; ObjectID = "4O1-b0-N6p"; */
+"4O1-b0-N6p.text" = "Block size for video";
+
+/* Class = "UIButton"; normalTitle = "Done"; ObjectID = "4qT-58-1L9"; */
+"4qT-58-1L9.normalTitle" = "帰る";
+
+/* Class = "UILabel"; text = "Close on thermal events"; ObjectID = "4vr-BB-TVS"; */
+"4vr-BB-TVS.text" = "Close on thermal events";
+
+/* Class = "UILabel"; text = "Languages"; ObjectID = "5Sb-ed-f3P"; */
+"5Sb-ed-f3P.text" = "言語";
+
+/* Class = "UILabel"; text = "Automatically save processed image"; ObjectID = "5W4-8o-AhZ"; */
+"5W4-8o-AhZ.text" = "処理された画像を自動的に保存する";
+
+/* Class = "UINavigationItem"; title = "Image Settings"; ObjectID = "5y4-Oc-R3x"; */
+"5y4-Oc-R3x.title" = "画像設定";
+
+/* Class = "UIButton"; normalTitle = "Record"; ObjectID = "6C1-o2-kbl"; */
+"6C1-o2-kbl.normalTitle" = "記録";
+
+/* Class = "UILabel"; text = "Close on power events"; ObjectID = "6SH-LL-zP0"; */
+"6SH-LL-zP0.text" = "Close on power events";
+
+/* Class = "UINavigationItem"; title = "Logs"; ObjectID = "6zn-SI-R40"; */
+"6zn-SI-R40.title" = "Logs";
+
+/* Class = "UILabel"; text = "Input size constraint"; ObjectID = "7AL-I0-0ZV"; */
+"7AL-I0-0ZV.text" = "Input size constraint";
+
+/* Class = "UILabel"; text = "Slowest"; ObjectID = "7AV-x2-4DT"; */
+"7AV-x2-4DT.text" = "最も遅い";
+
+/* Class = "UILabel"; text = "Fastest"; ObjectID = "8DN-CB-g50"; */
+"8DN-CB-g50.text" = "最速";
+
+/* Class = "UILabel"; text = "Fastest"; ObjectID = "8i3-19-qpA"; */
+"8i3-19-qpA.text" = "最速";
+
+/* Class = "UITableViewSection"; headerTitle = "Processed image"; ObjectID = "8mu-3H-J8O"; */
+"8mu-3H-J8O.headerTitle" = "処理画像";
+
+/* Class = "UILabel"; text = "BlockCam makes heavy use of your device's CPU and GPU. It is very possible to overwhelm your device with very large images. For that reason, performance is restricted. If you change these settings, you may experience severe performance issues."; ObjectID = "8w0-oF-eS5"; */
+"8w0-oF-eS5.text" = "BlockCam makes heavy use of your device's CPU and GPU. It is very possible to overwhelm your device with very large images. For that reason, performance is restricted. If you change these settings, you may experience severe performance issues.";
+
+/* Class = "UIBarButtonItem"; title = "Close"; ObjectID = "9CF-WT-SFN"; */
+"9CF-WT-SFN.title" = "閉じる";
+
+/* Class = "UISegmentedControl"; 9gF-U5-lhK.segmentTitles[0] = "Smallest"; ObjectID = "9gF-U5-lhK"; */
+"9gF-U5-lhK.segmentTitles[0]" = "Smallest";
+
+/* Class = "UISegmentedControl"; 9gF-U5-lhK.segmentTitles[1] = "Small"; ObjectID = "9gF-U5-lhK"; */
+"9gF-U5-lhK.segmentTitles[1]" = "Small";
+
+/* Class = "UISegmentedControl"; 9gF-U5-lhK.segmentTitles[2] = "Medium"; ObjectID = "9gF-U5-lhK"; */
+"9gF-U5-lhK.segmentTitles[2]" = "Medium";
+
+/* Class = "UISegmentedControl"; 9gF-U5-lhK.segmentTitles[3] = "Large"; ObjectID = "9gF-U5-lhK"; */
+"9gF-U5-lhK.segmentTitles[3]" = "Large";
+
+/* Class = "UISegmentedControl"; 9gF-U5-lhK.segmentTitles[4] = "Original"; ObjectID = "9gF-U5-lhK"; */
+"9gF-U5-lhK.segmentTitles[4]" = "Original";
+
+/* Class = "UILabel"; text = "Miscellaneous"; ObjectID = "9tj-A9-sBb"; */
+"9tj-A9-sBb.text" = "雑多な";
+
+/* Class = "UILabel"; text = "Best fit"; ObjectID = "Ae4-wb-bUA"; */
+"Ae4-wb-bUA.text" = "Best fit";
+
+/* Class = "UIButton"; normalTitle = "Done"; ObjectID = "AoZ-tZ-jN3"; */
+"AoZ-tZ-jN3.normalTitle" = "終えた";
+
+/* Class = "UINavigationItem"; title = "Languages"; ObjectID = "Atm-Sd-8p2"; */
+"Atm-Sd-8p2.title" = "Languages";
+
+/* Class = "UINavigationItem"; title = "Session Entries"; ObjectID = "B8c-O1-gvX"; */
+"B8c-O1-gvX.title" = "Session Entries";
+
+/* Class = "UITableViewSection"; headerTitle = "3D View"; ObjectID = "BLa-gS-gET"; */
+"BLa-gS-gET.headerTitle" = "3D View";
+
+/* Class = "UILabel"; text = "Performance"; ObjectID = "BVG-0S-KN7"; */
+"BVG-0S-KN7.text" = "効率";
+
+/* Class = "UISegmentedControl"; BvG-wy-k0c.segmentTitles[0] = "Never"; ObjectID = "BvG-wy-k0c"; */
+"BvG-wy-k0c.segmentTitles[0]" = "決して";
+
+/* Class = "UISegmentedControl"; BvG-wy-k0c.segmentTitles[1] = "Close"; ObjectID = "BvG-wy-k0c"; */
+"BvG-wy-k0c.segmentTitles[1]" = "近く";
+
+/* Class = "UISegmentedControl"; BvG-wy-k0c.segmentTitles[2] = "Medium"; ObjectID = "BvG-wy-k0c"; */
+"BvG-wy-k0c.segmentTitles[2]" = "中";
+
+/* Class = "UISegmentedControl"; BvG-wy-k0c.segmentTitles[3] = "Far"; ObjectID = "BvG-wy-k0c"; */
+"BvG-wy-k0c.segmentTitles[3]" = "遠い";
+
+/* Class = "UILabel"; text = "Copyright to save"; ObjectID = "C03-Jj-ktE"; */
+"C03-Jj-ktE.text" = "Copyright to save";
+
+/* Class = "UITableViewSection"; headerTitle = "Histogram"; ObjectID = "C2E-sA-5KM"; */
+"C2E-sA-5KM.headerTitle" = "Histogram";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "CIK-mM-HaH"; */
+"CIK-mM-HaH.text" = "Label";
+
+/* Class = "UILabel"; text = "Crop saved image"; ObjectID = "CNr-3v-gaw"; */
+"CNr-3v-gaw.text" = "保存した画像を切り抜く";
+
+/* Class = "UILabel"; text = "Fastest"; ObjectID = "CXY-5e-0bf"; */
+"CXY-5e-0bf.text" = "最速";
+
+/* Class = "UISegmentedControl"; Cfk-8R-hJb.segmentTitles[0] = "0"; ObjectID = "Cfk-8R-hJb"; */
+"Cfk-8R-hJb.segmentTitles[0]" = "0";
+
+/* Class = "UISegmentedControl"; Cfk-8R-hJb.segmentTitles[1] = "1"; ObjectID = "Cfk-8R-hJb"; */
+"Cfk-8R-hJb.segmentTitles[1]" = "1";
+
+/* Class = "UISegmentedControl"; Cfk-8R-hJb.segmentTitles[2] = "2"; ObjectID = "Cfk-8R-hJb"; */
+"Cfk-8R-hJb.segmentTitles[2]" = "2";
+
+/* Class = "UISegmentedControl"; Cfk-8R-hJb.segmentTitles[3] = "4"; ObjectID = "Cfk-8R-hJb"; */
+"Cfk-8R-hJb.segmentTitles[3]" = "4";
+
+/* Class = "UISegmentedControl"; Cfk-8R-hJb.segmentTitles[4] = "8"; ObjectID = "Cfk-8R-hJb"; */
+"Cfk-8R-hJb.segmentTitles[4]" = "8";
+
+/* Class = "UIButton"; normalTitle = "Save"; ObjectID = "Cnd-fA-brj"; */
+"Cnd-fA-brj.normalTitle" = "貯める";
+
+/* Class = "UINavigationItem"; title = "Quality Options"; ObjectID = "Cpf-MV-jVy"; */
+"Cpf-MV-jVy.title" = "Quality Options";
+
+/* Class = "UILabel"; text = "Frames per second"; ObjectID = "D8w-Vu-kfR"; */
+"D8w-Vu-kfR.text" = "Frames per second";
+
+/* Class = "UILabel"; text = "Video recording"; ObjectID = "DAy-pp-5ds"; */
+"DAy-pp-5ds.text" = "Video recording";
+
+/* Class = "UILabel"; text = "Slowest"; ObjectID = "DSL-oX-0LE"; */
+"DSL-oX-0LE.text" = "Slowest";
+
+/* Class = "UILabel"; text = "Start with"; ObjectID = "E3e-fv-qJV"; */
+"E3e-fv-qJV.text" = "Start with";
+
+/* Class = "UITableViewSection"; headerTitle = "View"; ObjectID = "EBb-Tt-pBM"; */
+"EBb-Tt-pBM.headerTitle" = "View";
+
+/* Class = "UILabel"; text = "All images you take, create, or save with BlockCam are your property and you retain all rights. You can add your name and copyright to your processed images to help enforce your rights."; ObjectID = "EpU-dA-iFx"; */
+"EpU-dA-iFx.text" = "All images you take, create, or save with BlockCam are your property and you retain all rights. You can add your name and copyright to your processed images to help enforce your rights.";
+
+/* Class = "UINavigationItem"; title = "Video Processing Options"; ObjectID = "FQt-ZQ-3DI"; */
+"FQt-ZQ-3DI.title" = "Video Processing Options";
+
+/* Class = "UINavigationItem"; title = "Settings"; ObjectID = "FY5-rt-3nw"; */
+"FY5-rt-3nw.title" = "設定";
+
+/* Class = "UISegmentedControl"; GVc-di-i4B.segmentTitles[0] = "Narrowest"; ObjectID = "GVc-di-i4B"; */
+"GVc-di-i4B.segmentTitles[0]" = "Narrowest";
+
+/* Class = "UISegmentedControl"; GVc-di-i4B.segmentTitles[1] = "Narrow"; ObjectID = "GVc-di-i4B"; */
+"GVc-di-i4B.segmentTitles[1]" = "Narrow";
+
+/* Class = "UISegmentedControl"; GVc-di-i4B.segmentTitles[2] = "Normal"; ObjectID = "GVc-di-i4B"; */
+"GVc-di-i4B.segmentTitles[2]" = "Normal";
+
+/* Class = "UISegmentedControl"; GVc-di-i4B.segmentTitles[3] = "Wide"; ObjectID = "GVc-di-i4B"; */
+"GVc-di-i4B.segmentTitles[3]" = "Wide";
+
+/* Class = "UISegmentedControl"; GVc-di-i4B.segmentTitles[4] = "Widest"; ObjectID = "GVc-di-i4B"; */
+"GVc-di-i4B.segmentTitles[4]" = "Widest";
+
+/* Class = "UITableViewSection"; headerTitle = "Image Settings"; ObjectID = "HBo-6n-gZr"; */
+"HBo-6n-gZr.headerTitle" = "画像設定";
+
+/* Class = "UILabel"; text = "Best fit offset"; ObjectID = "HO6-U9-VLV"; */
+"HO6-U9-VLV.text" = "Best fit offset";
+
+/* Class = "UINavigationItem"; title = "Program View Settings"; ObjectID = "HTS-Lk-tol"; */
+"HTS-Lk-tol.title" = "Program View Settings";
+
+/* Class = "UISegmentedControl"; HVb-qW-mR8.segmentTitles[0] = "OpenGL"; ObjectID = "HVb-qW-mR8"; */
+"HVb-qW-mR8.segmentTitles[0]" = "OpenGL";
+
+/* Class = "UISegmentedControl"; HVb-qW-mR8.segmentTitles[1] = "Metal"; ObjectID = "HVb-qW-mR8"; */
+"HVb-qW-mR8.segmentTitles[1]" = "Metal";
+
+/* Class = "UILabel"; text = "Save original image"; ObjectID = "Ivz-0j-iB7"; */
+"Ivz-0j-iB7.text" = "元の画像を保存";
+
+/* Class = "UINavigationItem"; title = "Privacy"; ObjectID = "J0g-KL-96M"; */
+"J0g-KL-96M.title" = "プライバシー";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "J8p-lU-sfy"; */
+"J8p-lU-sfy.text" = "Label";
+
+/* Class = "UIButton"; normalTitle = "Mode"; ObjectID = "Jj9-Ch-32Y"; */
+"Jj9-Ch-32Y.normalTitle" = "モード";
+
+/* Class = "UILabel"; text = "Show splash screen"; ObjectID = "JtH-O3-VQf"; */
+"JtH-O3-VQf.text" = "スプラッシュ画面を表示";
+
+/* Class = "UILabel"; text = "Slowest"; ObjectID = "LCr-uK-XqC"; */
+"LCr-uK-XqC.text" = "最も遅い";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "Lsn-MD-Vl9"; */
+"Lsn-MD-Vl9.text" = "Label";
+
+/* Class = "UITableViewSection"; headerTitle = "Other Settings"; ObjectID = "N54-lP-MWT"; */
+"N54-lP-MWT.headerTitle" = "その他の設定";
+
+/* Class = "UILabel"; text = "Enable logging"; ObjectID = "NKi-9S-UIm"; */
+"NKi-9S-UIm.text" = "ロギングを有効にします";
+
+/* Class = "UITableViewSection"; headerTitle = "Exif Information"; ObjectID = "OHb-Dq-nM1"; */
+"OHb-Dq-nM1.headerTitle" = "Exif Information";
+
+/* Class = "UILabel"; text = "Block size for videos. Larger is faster but has low resolution."; ObjectID = "P4e-T2-bt1"; */
+"P4e-T2-bt1.text" = "Block size for videos. Larger is faster but has low resolution.";
+
+/* Class = "UINavigationItem"; title = "Sound Settings"; ObjectID = "PBS-fg-POs"; */
+"PBS-fg-POs.title" = "Sound Settings";
+
+/* Class = "UILabel"; text = "Camera options"; ObjectID = "Plj-Rh-ato"; */
+"Plj-Rh-ato.text" = "カメラオプション";
+
+/* Class = "UILabel"; text = "Sounds"; ObjectID = "Q8e-kz-N9V"; */
+"Q8e-kz-N9V.text" = "音";
+
+/* Class = "UILabel"; text = "Slowest"; ObjectID = "QfF-aK-gFm"; */
+"QfF-aK-gFm.text" = "最も遅い";
+
+/* Class = "UILabel"; text = "System settings"; ObjectID = "RAz-ys-NhG"; */
+"RAz-ys-NhG.text" = "システム設定";
+
+/* Class = "UISegmentedControl"; RoI-ol-Cev.segmentTitles[0] = "Normal"; ObjectID = "RoI-ol-Cev"; */
+"RoI-ol-Cev.segmentTitles[0]" = "Normal";
+
+/* Class = "UISegmentedControl"; RoI-ol-Cev.segmentTitles[1] = "Library"; ObjectID = "RoI-ol-Cev"; */
+"RoI-ol-Cev.segmentTitles[1]" = "Library";
+
+/* Class = "UISegmentedControl"; RoI-ol-Cev.segmentTitles[2] = "Processed"; ObjectID = "RoI-ol-Cev"; */
+"RoI-ol-Cev.segmentTitles[2]" = "Processed";
+
+/* Class = "UILabel"; text = "Images from the photo roll are not resaved."; ObjectID = "SRR-Ld-csY"; */
+"SRR-Ld-csY.text" = "フォトアルバムの画像は再保存されません。";
+
+/* Class = "UILabel"; text = "May be overridden by the system."; ObjectID = "SVU-Mp-3eK"; */
+"SVU-Mp-3eK.text" = "May be overridden by the system.";
+
+/* Class = "UILabel"; text = "Close BlockCam when battery is low."; ObjectID = "TLG-0c-XF4"; */
+"TLG-0c-XF4.text" = "Close BlockCam when battery is low.";
+
+/* Class = "UITableViewSection"; headerTitle = "Select language to use"; ObjectID = "UV5-vg-Fzy"; */
+"UV5-vg-Fzy.headerTitle" = "使用する言語を選択";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "UWp-lL-FgV"; */
+"UWp-lL-FgV.text" = "Label";
+
+/* Class = "UILabel"; text = "Please Wait"; ObjectID = "Uje-Sq-qq3"; */
+"Uje-Sq-qq3.text" = "お待ちください";
+
+/* Class = "UILabel"; text = "Image processing"; ObjectID = "Vd0-21-89C"; */
+"Vd0-21-89C.text" = "画像処理オプション";
+
+/* Class = "UILabel"; text = "Enable sounds"; ObjectID = "Wvk-cv-9QM"; */
+"Wvk-cv-9QM.text" = "Enable sounds";
+
+/* Class = "UILabel"; text = "Name to save"; ObjectID = "XD2-sw-MDv"; */
+"XD2-sw-MDv.text" = "Name to save";
+
+/* Class = "UILabel"; text = "Video dimensions"; ObjectID = "YaE-1d-00b"; */
+"YaE-1d-00b.text" = "Video dimensions";
+
+/* Class = "UILabel"; text = "Slowest"; ObjectID = "aOp-J2-cU8"; */
+"aOp-J2-cU8.text" = "最も遅い";
+
+/* Class = "UISegmentedControl"; aiM-EL-Dtw.segmentTitles[0] = "64"; ObjectID = "aiM-EL-Dtw"; */
+"aiM-EL-Dtw.segmentTitles[0]" = "64";
+
+/* Class = "UISegmentedControl"; aiM-EL-Dtw.segmentTitles[1] = "128"; ObjectID = "aiM-EL-Dtw"; */
+"aiM-EL-Dtw.segmentTitles[1]" = "128";
+
+/* Class = "UISegmentedControl"; aiM-EL-Dtw.segmentTitles[2] = "196"; ObjectID = "aiM-EL-Dtw"; */
+"aiM-EL-Dtw.segmentTitles[2]" = "196";
+
+/* Class = "UISegmentedControl"; aiM-EL-Dtw.segmentTitles[3] = "256"; ObjectID = "aiM-EL-Dtw"; */
+"aiM-EL-Dtw.segmentTitles[3]" = "256";
+
+/* Class = "UILabel"; text = "Video processing options"; ObjectID = "bKR-jb-rz0"; */
+"bKR-jb-rz0.text" = "ビデオ処理オプション";
+
+/* Class = "UITextView"; text = "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda."; ObjectID = "bjr-lT-Feg"; */
+"bjr-lT-Feg.text" = "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.";
+
+/* Class = "UILabel"; text = "Show UI prompts"; ObjectID = "c6M-zq-uKT"; */
+"c6M-zq-uKT.text" = "UIプロンプトを表示する";
+
+/* Class = "UISegmentedControl"; cEy-82-djA.segmentTitles[0] = "16"; ObjectID = "cEy-82-djA"; */
+"cEy-82-djA.segmentTitles[0]" = "16";
+
+/* Class = "UISegmentedControl"; cEy-82-djA.segmentTitles[1] = "32"; ObjectID = "cEy-82-djA"; */
+"cEy-82-djA.segmentTitles[1]" = "32";
+
+/* Class = "UISegmentedControl"; cEy-82-djA.segmentTitles[2] = "48"; ObjectID = "cEy-82-djA"; */
+"cEy-82-djA.segmentTitles[2]" = "48";
+
+/* Class = "UISegmentedControl"; cEy-82-djA.segmentTitles[3] = "64"; ObjectID = "cEy-82-djA"; */
+"cEy-82-djA.segmentTitles[3]" = "64";
+
+/* Class = "UISegmentedControl"; cEy-82-djA.segmentTitles[4] = "96"; ObjectID = "cEy-82-djA"; */
+"cEy-82-djA.segmentTitles[4]" = "96";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "cU1-yN-eNu"; */
+"cU1-yN-eNu.text" = "Label";
+
+/* Class = "UITableViewSection"; headerTitle = "About"; ObjectID = "coC-wi-EYw"; */
+"coC-wi-EYw.headerTitle" = "案内";
+
+/* Class = "UILabel"; text = "Changing these settings may lead to temporarily degraged performance."; ObjectID = "dP0-jh-Gwh"; */
+"dP0-jh-Gwh.text" = "Changing these settings may lead to temporarily degraged performance.";
+
+/* Class = "UINavigationItem"; title = "Performance"; ObjectID = "dQ2-dX-aAT"; */
+"dQ2-dX-aAT.title" = "Performance";
+
+/* Class = "UILabel"; text = "Camera shutter"; ObjectID = "dYb-kM-CWH"; */
+"dYb-kM-CWH.text" = "Camera shutter";
+
+/* Class = "UISegmentedControl"; dsW-jx-bUh.segmentTitles[0] = "Lowest"; ObjectID = "dsW-jx-bUh"; */
+"dsW-jx-bUh.segmentTitles[0]" = "Lowest";
+
+/* Class = "UISegmentedControl"; dsW-jx-bUh.segmentTitles[1] = "Medium"; ObjectID = "dsW-jx-bUh"; */
+"dsW-jx-bUh.segmentTitles[1]" = "Medium";
+
+/* Class = "UISegmentedControl"; dsW-jx-bUh.segmentTitles[2] = "Highest"; ObjectID = "dsW-jx-bUh"; */
+"dsW-jx-bUh.segmentTitles[2]" = "Highest";
+
+/* Class = "UILabel"; text = "Save your identifiable information with processed images"; ObjectID = "dyk-DK-2R5"; */
+"dyk-DK-2R5.text" = "Save your identifiable information with processed images";
+
+/* Class = "UILabel"; text = "Buckets"; ObjectID = "fZR-V1-ChF"; */
+"fZR-V1-ChF.text" = "Buckets";
+
+/* Class = "UILabel"; text = "Option selection"; ObjectID = "far-DU-nWt"; */
+"far-DU-nWt.text" = "Option selection";
+
+/* Class = "UILabel"; text = "Fastest"; ObjectID = "fdN-ur-gF4"; */
+"fdN-ur-gF4.text" = "最速";
+
+/* Class = "UIBarButtonItem"; title = "Item"; ObjectID = "fow-Q2-TfC"; */
+"fow-Q2-TfC.title" = "Item";
+
+/* Class = "UISegmentedControl"; gOE-xv-4ud.segmentTitles[0] = "Small"; ObjectID = "gOE-xv-4ud"; */
+"gOE-xv-4ud.segmentTitles[0]" = "Small";
+
+/* Class = "UISegmentedControl"; gOE-xv-4ud.segmentTitles[1] = "Medium"; ObjectID = "gOE-xv-4ud"; */
+"gOE-xv-4ud.segmentTitles[1]" = "Medium";
+
+/* Class = "UISegmentedControl"; gOE-xv-4ud.segmentTitles[2] = "Large"; ObjectID = "gOE-xv-4ud"; */
+"gOE-xv-4ud.segmentTitles[2]" = "Large";
+
+/* Class = "UISegmentedControl"; gOE-xv-4ud.segmentTitles[3] = "None"; ObjectID = "gOE-xv-4ud"; */
+"gOE-xv-4ud.segmentTitles[3]" = "None";
+
+/* Class = "UIBarButtonItem"; title = "Item"; ObjectID = "gyD-Uh-qUX"; */
+"gyD-Uh-qUX.title" = "Item";
+
+/* Class = "UIButton"; normalTitle = "Photo"; ObjectID = "hCa-yb-gx8"; */
+"hCa-yb-gx8.normalTitle" = "写真";
+
+/* Class = "UINavigationItem"; title = "Miscellaneous"; ObjectID = "icb-PK-GGw"; */
+"icb-PK-GGw.title" = "雑多な";
+
+/* Class = "UILabel"; text = "Field of view"; ObjectID = "iiH-4a-VHq"; */
+"iiH-4a-VHq.text" = "Field of view";
+
+/* Class = "UISegmentedControl"; iqT-jN-2kj.segmentTitles[0] = "1"; ObjectID = "iqT-jN-2kj"; */
+"iqT-jN-2kj.segmentTitles[0]" = "1";
+
+/* Class = "UISegmentedControl"; iqT-jN-2kj.segmentTitles[1] = "5"; ObjectID = "iqT-jN-2kj"; */
+"iqT-jN-2kj.segmentTitles[1]" = "5";
+
+/* Class = "UISegmentedControl"; iqT-jN-2kj.segmentTitles[2] = "10"; ObjectID = "iqT-jN-2kj"; */
+"iqT-jN-2kj.segmentTitles[2]" = "10";
+
+/* Class = "UISegmentedControl"; iqT-jN-2kj.segmentTitles[3] = "15"; ObjectID = "iqT-jN-2kj"; */
+"iqT-jN-2kj.segmentTitles[3]" = "15";
+
+/* Class = "UISegmentedControl"; iqT-jN-2kj.segmentTitles[4] = "20"; ObjectID = "iqT-jN-2kj"; */
+"iqT-jN-2kj.segmentTitles[4]" = "20";
+
+/* Class = "UISegmentedControl"; iqT-jN-2kj.segmentTitles[5] = "30"; ObjectID = "iqT-jN-2kj"; */
+"iqT-jN-2kj.segmentTitles[5]" = "30";
+
+/* Class = "UILabel"; text = "Slowest"; ObjectID = "iw8-mn-yhh"; */
+"iw8-mn-yhh.text" = "最も遅い";
+
+/* Class = "UILabel"; text = "Show histogram"; ObjectID = "jBm-cA-uNs"; */
+"jBm-cA-uNs.text" = "Show histogram";
+
+/* Class = "UILabel"; text = "Long press view for options"; ObjectID = "jkE-aH-ESA"; */
+"jkE-aH-ESA.text" = "オプションの長押しビュー";
+
+/* Class = "UILabel"; text = "How many frames to use per second of video."; ObjectID = "kmT-Pi-B8i"; */
+"kmT-Pi-B8i.text" = "How many frames to use per second of video.";
+
+/* Class = "UITableViewSection"; headerTitle = "Advanced"; ObjectID = "ljx-PO-Zf8"; */
+"ljx-PO-Zf8.headerTitle" = "高度な";
+
+/* Class = "UILabel"; text = "Language"; ObjectID = "mhK-oV-LgO"; */
+"mhK-oV-LgO.text" = "言語";
+
+/* Class = "UILabel"; text = "Image processing options"; ObjectID = "oCT-Ta-Kid"; */
+"oCT-Ta-Kid.text" = "画像処理オプション";
+
+/* Class = "UIButton"; normalTitle = "Switch"; ObjectID = "oZy-o8-jf8"; */
+"oZy-o8-jf8.normalTitle" = "転向";
+
+/* Class = "UILabel"; text = "Rendering API"; ObjectID = "pYq-FH-BUO"; */
+"pYq-FH-BUO.text" = "Rendering API";
+
+/* Class = "UILabel"; text = "Image/video size"; ObjectID = "q9D-db-4Rn"; */
+"q9D-db-4Rn.text" = "Image/video size";
+
+/* Class = "UIBarButtonItem"; title = "Item"; ObjectID = "qGv-6z-g1X"; */
+"qGv-6z-g1X.title" = "Item";
+
+/* Class = "UILabel"; text = "Close BlockCam when device is too hot."; ObjectID = "r81-bR-P1j"; */
+"r81-bR-P1j.text" = "Close BlockCam when device is too hot.";
+
+/* Class = "UILabel"; text = "Resize image"; ObjectID = "rFv-dZ-QhU"; */
+"rFv-dZ-QhU.text" = "Resize image";
+
+/* Class = "UILabel"; text = "Privacy"; ObjectID = "rfz-o4-O4K"; */
+"rfz-o4-O4K.text" = "プライバシー";
+
+/* Class = "UIBarButtonItem"; title = "Copy"; ObjectID = "ruS-pq-ako"; */
+"ruS-pq-ako.title" = "Copy";
+
+/* Class = "UILabel"; text = "Fastest"; ObjectID = "sGy-ez-YBb"; */
+"sGy-ez-YBb.text" = "最速";
+
+/* Class = "UILabel"; text = "Button presses"; ObjectID = "sNh-Um-oht"; */
+"sNh-Um-oht.text" = "Button presses";
+
+/* Class = "UINavigationItem"; title = "Camera Settings"; ObjectID = "sRv-ut-0C0"; */
+"sRv-ut-0C0.title" = "Camera Settings";
+
+/* Class = "UILabel"; text = "Rendering quality"; ObjectID = "t6h-Sh-Iez"; */
+"t6h-Sh-Iez.text" = "Rendering quality";
+
+/* Class = "UILabel"; text = "If blank, nothing is saved for your copyright."; ObjectID = "tVX-b6-4Xg"; */
+"tVX-b6-4Xg.text" = "If blank, nothing is saved for your copyright.";
+
+/* Class = "UILabel"; text = "Show final image as fully as possible within the screen."; ObjectID = "uLR-3l-bfC"; */
+"uLR-3l-bfC.text" = "Show final image as fully as possible within the screen.";
+
+/* Class = "UILabel"; text = "Logging data consists of internal operations and data and does not include any personally identifiable data. Logs are not uploaded to any server without your explicit consent."; ObjectID = "uws-vq-ui3"; */
+"uws-vq-ui3.text" = "ロギングデータは内部操作とデータで構成され、個人を特定できるデータは含まれません。 ログは、明示的な同意なしにサーバーにアップロードされません。";
+
+/* Class = "UILabel"; text = "Saves the image when first created."; ObjectID = "vgK-Qh-5Mt"; */
+"vgK-Qh-5Mt.text" = "最初の作成時に画像を保存しました。";
+
+/* Class = "UISegmentedControl"; wHN-Jg-ZEs.segmentTitles[0] = "Always"; ObjectID = "wHN-Jg-ZEs"; */
+"wHN-Jg-ZEs.segmentTitles[0]" = "常に";
+
+/* Class = "UISegmentedControl"; wHN-Jg-ZEs.segmentTitles[1] = "When Processed"; ObjectID = "wHN-Jg-ZEs"; */
+"wHN-Jg-ZEs.segmentTitles[1]" = "元の画像を保存";
+
+/* Class = "UISegmentedControl"; wHN-Jg-ZEs.segmentTitles[2] = "Never"; ObjectID = "wHN-Jg-ZEs"; */
+"wHN-Jg-ZEs.segmentTitles[2]" = "決して";
+
+/* Class = "UITableViewSection"; headerTitle = "All sounds"; ObjectID = "wPJ-pN-vc9"; */
+"wPJ-pN-vc9.headerTitle" = "All sounds";
+
+/* Class = "UILabel"; text = "Abnormal events"; ObjectID = "wi6-a5-El8"; */
+"wi6-a5-El8.text" = "Abnormal events";
+
+/* Class = "UILabel"; text = "Ordinarily there is no need to change this value unless instructed by Customer Support."; ObjectID = "xsQ-IV-gon"; */
+"xsQ-IV-gon.text" = "Ordinarily there is no need to change this value unless instructed by Customer Support.";
+
+/* Class = "UILabel"; text = "View settings"; ObjectID = "y6y-EQ-ebe"; */
+"y6y-EQ-ebe.text" = "設定を表示";
+
+/* Class = "UISegmentedControl"; ypm-of-Yox.segmentTitles[0] = "Low"; ObjectID = "ypm-of-Yox"; */
+"ypm-of-Yox.segmentTitles[0]" = "Low";
+
+/* Class = "UISegmentedControl"; ypm-of-Yox.segmentTitles[1] = "Medium"; ObjectID = "ypm-of-Yox"; */
+"ypm-of-Yox.segmentTitles[1]" = "Medium";
+
+/* Class = "UISegmentedControl"; ypm-of-Yox.segmentTitles[2] = "High"; ObjectID = "ypm-of-Yox"; */
+"ypm-of-Yox.segmentTitles[2]" = "High";
+
+/* Class = "UISegmentedControl"; ypm-of-Yox.segmentTitles[3] = "Photo"; ObjectID = "ypm-of-Yox"; */
+"ypm-of-Yox.segmentTitles[3]" = "写真";
+
+/* Class = "UITableViewSection"; headerTitle = "Original image"; ObjectID = "z5b-az-vH9"; */
+"z5b-az-vH9.headerTitle" = "元画像";
+
+/* Class = "UILabel"; text = "Input quality"; ObjectID = "zG0-te-cOY"; */
+"zG0-te-cOY.text" = "Input quality";
+
+/* Class = "UILabel"; text = "BlockCam uses your personally identifiable information only if you allow and only for the use stated above. BlockCam does not use, sell, or give away your information, nor does it directly transmit your information except when you save or explicitly export your image."; ObjectID = "zaK-Ay-tyV"; */
+"zaK-Ay-tyV.text" = "BlockCam uses your personally identifiable information only if you allow and only for the use stated above. BlockCam does not use, sell, or give away your information, nor does it directly transmit your information except when you save or explicitly export your image.";
+
+/* Class = "UILabel"; text = "Video size is 600x800. This is the fastest option."; ObjectID = "zsR-R8-L7E"; */
+"zsR-R8-L7E.text" = "Video size is 600x800. This is the fastest option.";

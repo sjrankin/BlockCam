@@ -1,0 +1,609 @@
+
+/* Class = "UILabel"; text = "Characters in set"; ObjectID = "0Kb-0d-bIx"; */
+"0Kb-0d-bIx.text" = "セット内の文字";
+
+/* Class = "UILabel"; text = "Cone Bottom"; ObjectID = "0px-YZ-29S"; */
+"0px-YZ-29S.text" = "Cone Bottom";
+
+/* Class = "UITableViewSection"; headerTitle = "Height Determined By"; ObjectID = "1YA-SN-HIR"; */
+"1YA-SN-HIR.headerTitle" = "Height Determined By";
+
+/* Class = "UILabel"; text = "Fastest"; ObjectID = "22e-nS-nS4"; */
+"22e-nS-nS4.text" = "Fastest";
+
+/* Class = "UINavigationItem"; title = "Background"; ObjectID = "26R-W0-3fg"; */
+"26R-W0-3fg.title" = "Background";
+
+/* Class = "UINavigationItem"; title = "Cone Settings"; ObjectID = "2Vn-B3-9a5"; */
+"2Vn-B3-9a5.title" = "Cone Settings";
+
+/* Class = "UILabel"; text = "Sample"; ObjectID = "2tY-RI-TNt"; */
+"2tY-RI-TNt.text" = "Sample";
+
+/* Class = "UILabel"; text = "Fastest"; ObjectID = "3B5-a0-cxZ"; */
+"3B5-a0-cxZ.text" = "Fastest";
+
+/* Class = "UITableViewSection"; headerTitle = "Other shape options"; ObjectID = "3E0-La-lOb"; */
+"3E0-La-lOb.headerTitle" = "Other shape options";
+
+/* Class = "UILabel"; text = "Select font"; ObjectID = "3Tf-2a-b6f"; */
+"3Tf-2a-b6f.text" = "Select font";
+
+/* Class = "UIBarButtonItem"; title = "Item"; ObjectID = "3UR-4k-pQD"; */
+"3UR-4k-pQD.title" = "Item";
+
+/* Class = "UISegmentedControl"; 3ck-fL-DrZ.segmentTitles[0] = "None"; ObjectID = "3ck-fL-DrZ"; */
+"3ck-fL-DrZ.segmentTitles[0]" = "None";
+
+/* Class = "UISegmentedControl"; 3ck-fL-DrZ.segmentTitles[1] = "Small"; ObjectID = "3ck-fL-DrZ"; */
+"3ck-fL-DrZ.segmentTitles[1]" = "Small";
+
+/* Class = "UISegmentedControl"; 3ck-fL-DrZ.segmentTitles[2] = "Medium"; ObjectID = "3ck-fL-DrZ"; */
+"3ck-fL-DrZ.segmentTitles[2]" = "Medium";
+
+/* Class = "UISegmentedControl"; 3ck-fL-DrZ.segmentTitles[3] = "Large"; ObjectID = "3ck-fL-DrZ"; */
+"3ck-fL-DrZ.segmentTitles[3]" = "Large";
+
+/* Class = "UILabel"; text = "Conditional colors"; ObjectID = "3cu-N3-S3S"; */
+"3cu-N3-S3S.text" = "Conditional colors";
+
+/* Class = "UINavigationItem"; title = "Performance Settings"; ObjectID = "3nK-06-2zI"; */
+"3nK-06-2zI.title" = "Performance Settings";
+
+/* Class = "UILabel"; text = "Color"; ObjectID = "5GM-tA-gQI"; */
+"5GM-tA-gQI.text" = "Color";
+
+/* Class = "UILabel"; text = "Image resizing"; ObjectID = "6Xg-ft-n2Q"; */
+"6Xg-ft-n2Q.text" = "Image resizing";
+
+/* Class = "UILabel"; text = "Light intensity"; ObjectID = "7iu-8D-gO8"; */
+"7iu-8D-gO8.text" = "Light intensity";
+
+/* Class = "UITableViewSection"; headerTitle = "Characters"; ObjectID = "7vv-ex-aTO"; */
+"7vv-ex-aTO.headerTitle" = "Characters";
+
+/* Class = "UILabel"; text = "Changing the size will recreate the image from the beginning, taking more time."; ObjectID = "8gq-N9-7H9"; */
+"8gq-N9-7H9.text" = "Changing the size will recreate the image from the beginning, taking more time.";
+
+/* Class = "UILabel"; text = "Cap shape"; ObjectID = "9bp-kf-QhN"; */
+"9bp-kf-QhN.text" = "Cap shape";
+
+/* Class = "UITableViewController"; title = "Height Settings"; ObjectID = "9tk-02-G3h"; */
+"9tk-02-G3h.title" = "Height Settings";
+
+/* Class = "UISegmentedControl"; 9v9-1c-vgp.segmentTitles[0] = "4"; ObjectID = "9v9-1c-vgp"; */
+"9v9-1c-vgp.segmentTitles[0]" = "4";
+
+/* Class = "UISegmentedControl"; 9v9-1c-vgp.segmentTitles[1] = "8"; ObjectID = "9v9-1c-vgp"; */
+"9v9-1c-vgp.segmentTitles[1]" = "8";
+
+/* Class = "UISegmentedControl"; 9v9-1c-vgp.segmentTitles[2] = "16"; ObjectID = "9v9-1c-vgp"; */
+"9v9-1c-vgp.segmentTitles[2]" = "16";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "Auk-tz-Z6d"; */
+"Auk-tz-Z6d.text" = "Label";
+
+/* Class = "UILabel"; text = "Swap top and bottom"; ObjectID = "Bhc-II-foI"; */
+"Bhc-II-foI.text" = "Swap top and bottom";
+
+/* Class = "UISegmentedControl"; BnF-sZ-haQ.segmentTitles[0] = "Thin"; ObjectID = "BnF-sZ-haQ"; */
+"BnF-sZ-haQ.segmentTitles[0]" = "Thin";
+
+/* Class = "UISegmentedControl"; BnF-sZ-haQ.segmentTitles[1] = "Medium"; ObjectID = "BnF-sZ-haQ"; */
+"BnF-sZ-haQ.segmentTitles[1]" = "Medium";
+
+/* Class = "UISegmentedControl"; BnF-sZ-haQ.segmentTitles[2] = "Thick"; ObjectID = "BnF-sZ-haQ"; */
+"BnF-sZ-haQ.segmentTitles[2]" = "Thick";
+
+/* Class = "UITableViewSection"; headerTitle = "Character"; ObjectID = "CNj-lo-ncw"; */
+"CNj-lo-ncw.headerTitle" = "Character";
+
+/* Class = "UILabel"; text = "Apex count"; ObjectID = "CSY-T2-Pzl"; */
+"CSY-T2-Pzl.text" = "Apex count";
+
+/* Class = "UILabel"; text = "Advanced"; ObjectID = "CpA-Yq-tjv"; */
+"CpA-Yq-tjv.text" = "Advanced";
+
+/* Class = "UILabel"; text = "Image resize"; ObjectID = "EVs-zK-xbM"; */
+"EVs-zK-xbM.text" = "Image resize";
+
+/* Class = "UITableViewSection"; headerTitle = "Shape"; ObjectID = "FJ3-ZG-0jh"; */
+"FJ3-ZG-0jh.headerTitle" = "Shape";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "FhE-38-tp8"; */
+"FhE-38-tp8.text" = "Label";
+
+/* Class = "UISegmentedControl"; Fqa-1r-hBp.segmentTitles[0] = "Least"; ObjectID = "Fqa-1r-hBp"; */
+"Fqa-1r-hBp.segmentTitles[0]" = "Least";
+
+/* Class = "UISegmentedControl"; Fqa-1r-hBp.segmentTitles[1] = "OK"; ObjectID = "Fqa-1r-hBp"; */
+"Fqa-1r-hBp.segmentTitles[1]" = "OK";
+
+/* Class = "UISegmentedControl"; Fqa-1r-hBp.segmentTitles[2] = "Medium"; ObjectID = "Fqa-1r-hBp"; */
+"Fqa-1r-hBp.segmentTitles[2]" = "Medium";
+
+/* Class = "UISegmentedControl"; Fqa-1r-hBp.segmentTitles[3] = "Good"; ObjectID = "Fqa-1r-hBp"; */
+"Fqa-1r-hBp.segmentTitles[3]" = "Good";
+
+/* Class = "UISegmentedControl"; Fqa-1r-hBp.segmentTitles[4] = "Best"; ObjectID = "Fqa-1r-hBp"; */
+"Fqa-1r-hBp.segmentTitles[4]" = "Best";
+
+/* Class = "UISegmentedControl"; HeK-1b-VGV.segmentTitles[0] = "None"; ObjectID = "HeK-1b-VGV"; */
+"HeK-1b-VGV.segmentTitles[0]" = "None";
+
+/* Class = "UISegmentedControl"; HeK-1b-VGV.segmentTitles[1] = "Hue"; ObjectID = "HeK-1b-VGV"; */
+"HeK-1b-VGV.segmentTitles[1]" = "Hue";
+
+/* Class = "UISegmentedControl"; HeK-1b-VGV.segmentTitles[2] = "Saturation"; ObjectID = "HeK-1b-VGV"; */
+"HeK-1b-VGV.segmentTitles[2]" = "Saturation";
+
+/* Class = "UISegmentedControl"; HeK-1b-VGV.segmentTitles[3] = "Brightness"; ObjectID = "HeK-1b-VGV"; */
+"HeK-1b-VGV.segmentTitles[3]" = "Brightness";
+
+/* Class = "UISegmentedControl"; IUc-I9-FtS.segmentTitles[0] = "24"; ObjectID = "IUc-I9-FtS"; */
+"IUc-I9-FtS.segmentTitles[0]" = "24";
+
+/* Class = "UISegmentedControl"; IUc-I9-FtS.segmentTitles[1] = "36"; ObjectID = "IUc-I9-FtS"; */
+"IUc-I9-FtS.segmentTitles[1]" = "36";
+
+/* Class = "UISegmentedControl"; IUc-I9-FtS.segmentTitles[2] = "48"; ObjectID = "IUc-I9-FtS"; */
+"IUc-I9-FtS.segmentTitles[2]" = "48";
+
+/* Class = "UISegmentedControl"; IUc-I9-FtS.segmentTitles[3] = "72"; ObjectID = "IUc-I9-FtS"; */
+"IUc-I9-FtS.segmentTitles[3]" = "72";
+
+/* Class = "UISegmentedControl"; IUc-I9-FtS.segmentTitles[4] = "144"; ObjectID = "IUc-I9-FtS"; */
+"IUc-I9-FtS.segmentTitles[4]" = "144";
+
+/* Class = "UISegmentedControl"; IUc-I9-FtS.segmentTitles[5] = "288"; ObjectID = "IUc-I9-FtS"; */
+"IUc-I9-FtS.segmentTitles[5]" = "288";
+
+/* Class = "UINavigationItem"; title = "Ellipse Options"; ObjectID = "IVa-qo-fFT"; */
+"IVa-qo-fFT.title" = "Ellipse Options";
+
+/* Class = "UILabel"; text = "Slowest"; ObjectID = "IjF-EP-AlK"; */
+"IjF-EP-AlK.text" = "Slowest";
+
+/* Class = "UISegmentedControl"; KYb-zC-DT7.segmentTitles[0] = "Omni"; ObjectID = "KYb-zC-DT7"; */
+"KYb-zC-DT7.segmentTitles[0]" = "オムニ";
+
+/* Class = "UISegmentedControl"; KYb-zC-DT7.segmentTitles[1] = "Spot"; ObjectID = "KYb-zC-DT7"; */
+"KYb-zC-DT7.segmentTitles[1]" = "点光";
+
+/* Class = "UISegmentedControl"; KYb-zC-DT7.segmentTitles[2] = "Directional"; ObjectID = "KYb-zC-DT7"; */
+"KYb-zC-DT7.segmentTitles[2]" = "指向性";
+
+/* Class = "UISegmentedControl"; KYb-zC-DT7.segmentTitles[3] = "Ambient"; ObjectID = "KYb-zC-DT7"; */
+"KYb-zC-DT7.segmentTitles[3]" = "アンビエント";
+
+/* Class = "UILabel"; text = "Petal count"; ObjectID = "LHs-st-rLm"; */
+"LHs-st-rLm.text" = "Petal count";
+
+/* Class = "UISegmentedControl"; MgR-TO-Mwb.segmentTitles[0] = "Extrude"; ObjectID = "MgR-TO-Mwb"; */
+"MgR-TO-Mwb.segmentTitles[0]" = "Extrude";
+
+/* Class = "UISegmentedControl"; MgR-TO-Mwb.segmentTitles[1] = "Float"; ObjectID = "MgR-TO-Mwb"; */
+"MgR-TO-Mwb.segmentTitles[1]" = "Float";
+
+/* Class = "UILabel"; text = "Location"; ObjectID = "MzU-hD-DxT"; */
+"MzU-hD-DxT.text" = "Location";
+
+/* Class = "UISegmentedControl"; NA9-gt-Bco.segmentTitles[0] = "None"; ObjectID = "NA9-gt-Bco"; */
+"NA9-gt-Bco.segmentTitles[0]" = "None";
+
+/* Class = "UISegmentedControl"; NA9-gt-Bco.segmentTitles[1] = "Small"; ObjectID = "NA9-gt-Bco"; */
+"NA9-gt-Bco.segmentTitles[1]" = "Small";
+
+/* Class = "UISegmentedControl"; NA9-gt-Bco.segmentTitles[2] = "Medium"; ObjectID = "NA9-gt-Bco"; */
+"NA9-gt-Bco.segmentTitles[2]" = "Medium";
+
+/* Class = "UISegmentedControl"; NA9-gt-Bco.segmentTitles[3] = "Large"; ObjectID = "NA9-gt-Bco"; */
+"NA9-gt-Bco.segmentTitles[3]" = "Large";
+
+/* Class = "UITableViewSection"; headerTitle = "Font"; ObjectID = "OP5-xJ-aFT"; */
+"OP5-xJ-aFT.headerTitle" = "Font";
+
+/* Class = "UILabel"; text = "BlockCam makes heavy use of your device's CPU and GPU. It is very possible to overwhelm your device with very large images. For that reason, performance is restricted. If you change these settings, you may experience severe performance issues."; ObjectID = "Oi7-YI-PYq"; */
+"Oi7-YI-PYq.text" = "BlockCamは、デバイスのCPUとGPUを多用します。 非常に大きな画像でデバイスを圧倒する可能性が非常に高くなります。 そのため、パフォーマンスは制限されます。 これらの設定を変更すると、深刻なパフォーマンスの問題が発生する場合があります。";
+
+/* Class = "UILabel"; text = "Random font size"; ObjectID = "PKg-nc-9Gm"; */
+"PKg-nc-9Gm.text" = "Random font size";
+
+/* Class = "UINavigationItem"; title = "Character Options"; ObjectID = "Pcz-Lc-XaV"; */
+"Pcz-Lc-XaV.title" = "Character Options";
+
+/* Class = "UITableViewSection"; headerTitle = "Block edge smoothing"; ObjectID = "Pu4-xd-JMp"; */
+"Pu4-xd-JMp.headerTitle" = "Block edge smoothing";
+
+/* Class = "UISegmentedControl"; QDU-oX-JM1.segmentTitles[0] = "Darkest"; ObjectID = "QDU-oX-JM1"; */
+"QDU-oX-JM1.segmentTitles[0]" = "Darkest";
+
+/* Class = "UISegmentedControl"; QDU-oX-JM1.segmentTitles[1] = "Dim"; ObjectID = "QDU-oX-JM1"; */
+"QDU-oX-JM1.segmentTitles[1]" = "Dim";
+
+/* Class = "UISegmentedControl"; QDU-oX-JM1.segmentTitles[2] = "Normal"; ObjectID = "QDU-oX-JM1"; */
+"QDU-oX-JM1.segmentTitles[2]" = "Normal";
+
+/* Class = "UISegmentedControl"; QDU-oX-JM1.segmentTitles[3] = "Bright"; ObjectID = "QDU-oX-JM1"; */
+"QDU-oX-JM1.segmentTitles[3]" = "Bright";
+
+/* Class = "UISegmentedControl"; QDU-oX-JM1.segmentTitles[4] = "Brightest"; ObjectID = "QDU-oX-JM1"; */
+"QDU-oX-JM1.segmentTitles[4]" = "Brightest";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "QHf-89-JrW"; */
+"QHf-89-JrW.text" = "Label";
+
+/* Class = "UISegmentedControl"; R4T-2G-Qhp.segmentTitles[0] = "Blinn"; ObjectID = "R4T-2G-Qhp"; */
+"R4T-2G-Qhp.segmentTitles[0]" = "Blinn";
+
+/* Class = "UISegmentedControl"; R4T-2G-Qhp.segmentTitles[1] = "Constant"; ObjectID = "R4T-2G-Qhp"; */
+"R4T-2G-Qhp.segmentTitles[1]" = "定数";
+
+/* Class = "UISegmentedControl"; R4T-2G-Qhp.segmentTitles[2] = "Lambert"; ObjectID = "R4T-2G-Qhp"; */
+"R4T-2G-Qhp.segmentTitles[2]" = "Lambert";
+
+/* Class = "UISegmentedControl"; R4T-2G-Qhp.segmentTitles[3] = "Phong"; ObjectID = "R4T-2G-Qhp"; */
+"R4T-2G-Qhp.segmentTitles[3]" = "Phong";
+
+/* Class = "UISegmentedControl"; R4T-2G-Qhp.segmentTitles[4] = "Physical"; ObjectID = "R4T-2G-Qhp"; */
+"R4T-2G-Qhp.segmentTitles[4]" = "物的";
+
+/* Class = "UINavigationItem"; title = "Capped Line Options"; ObjectID = "RA9-ai-iNH"; */
+"RA9-ai-iNH.title" = "Capped Line Options";
+
+/* Class = "UILabel"; text = "Dot size"; ObjectID = "RSC-yA-A2D"; */
+"RSC-yA-A2D.text" = "Dot size";
+
+/* Class = "UISegmentedControl"; SU4-V4-U5t.segmentTitles[0] = "24"; ObjectID = "SU4-V4-U5t"; */
+"SU4-V4-U5t.segmentTitles[0]" = "24";
+
+/* Class = "UISegmentedControl"; SU4-V4-U5t.segmentTitles[1] = "36"; ObjectID = "SU4-V4-U5t"; */
+"SU4-V4-U5t.segmentTitles[1]" = "36";
+
+/* Class = "UISegmentedControl"; SU4-V4-U5t.segmentTitles[2] = "48"; ObjectID = "SU4-V4-U5t"; */
+"SU4-V4-U5t.segmentTitles[2]" = "48";
+
+/* Class = "UISegmentedControl"; SU4-V4-U5t.segmentTitles[3] = "72"; ObjectID = "SU4-V4-U5t"; */
+"SU4-V4-U5t.segmentTitles[3]" = "72";
+
+/* Class = "UISegmentedControl"; SU4-V4-U5t.segmentTitles[4] = "144"; ObjectID = "SU4-V4-U5t"; */
+"SU4-V4-U5t.segmentTitles[4]" = "144";
+
+/* Class = "UISegmentedControl"; SU4-V4-U5t.segmentTitles[5] = "288"; ObjectID = "SU4-V4-U5t"; */
+"SU4-V4-U5t.segmentTitles[5]" = "288";
+
+/* Class = "UITextView"; text = "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda."; ObjectID = "SYL-Jm-Xl6"; */
+"SYL-Jm-Xl6.text" = "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.";
+
+/* Class = "UINavigationItem"; title = "Light Settings"; ObjectID = "TAM-MK-fcy"; */
+"TAM-MK-fcy.title" = "Light Settings";
+
+/* Class = "UINavigationItem"; title = "Block Settings"; ObjectID = "TYN-dV-2fa"; */
+"TYN-dV-2fa.title" = "Block Settings";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "TyK-Eb-N6q"; */
+"TyK-Eb-N6q.text" = "Label";
+
+/* Class = "UIBarButtonItem"; title = "Done"; ObjectID = "Via-uR-RK7"; */
+"Via-uR-RK7.title" = "Done";
+
+/* Class = "UISegmentedControl"; WFb-Ma-eMF.segmentTitles[0] = "Grayscale"; ObjectID = "WFb-Ma-eMF"; */
+"WFb-Ma-eMF.segmentTitles[0]" = "Grayscale";
+
+/* Class = "UISegmentedControl"; WFb-Ma-eMF.segmentTitles[1] = "Saturation +"; ObjectID = "WFb-Ma-eMF"; */
+"WFb-Ma-eMF.segmentTitles[1]" = "Saturation +";
+
+/* Class = "UISegmentedControl"; WFb-Ma-eMF.segmentTitles[2] = "Desaturate"; ObjectID = "WFb-Ma-eMF"; */
+"WFb-Ma-eMF.segmentTitles[2]" = "Desaturate";
+
+/* Class = "UILabel"; text = "Slowest"; ObjectID = "XmU-JO-k7O"; */
+"XmU-JO-k7O.text" = "Slowest";
+
+/* Class = "UINavigationItem"; title = "Letter Settings"; ObjectID = "Xy3-2L-yE7"; */
+"Xy3-2L-yE7.title" = "Letter Settings";
+
+/* Class = "UILabel"; text = "Sample"; ObjectID = "XzL-Fk-hqM"; */
+"XzL-Fk-hqM.text" = "サンプル";
+
+/* Class = "UISegmentedControl"; Ytg-KT-J3u.segmentTitles[0] = "< 0.10"; ObjectID = "Ytg-KT-J3u"; */
+"Ytg-KT-J3u.segmentTitles[0]" = "< 0.10";
+
+/* Class = "UISegmentedControl"; Ytg-KT-J3u.segmentTitles[1] = "< 0.25"; ObjectID = "Ytg-KT-J3u"; */
+"Ytg-KT-J3u.segmentTitles[1]" = "< 0.25";
+
+/* Class = "UISegmentedControl"; Ytg-KT-J3u.segmentTitles[2] = "< 0.5"; ObjectID = "Ytg-KT-J3u"; */
+"Ytg-KT-J3u.segmentTitles[2]" = "< 0.5";
+
+/* Class = "UISegmentedControl"; Ytg-KT-J3u.segmentTitles[3] = "< 0.75"; ObjectID = "Ytg-KT-J3u"; */
+"Ytg-KT-J3u.segmentTitles[3]" = "< 0.75";
+
+/* Class = "UISegmentedControl"; Ytg-KT-J3u.segmentTitles[4] = "< 0.9"; ObjectID = "Ytg-KT-J3u"; */
+"Ytg-KT-J3u.segmentTitles[4]" = "< 0.9";
+
+/* Class = "UILabel"; text = "Drawing"; ObjectID = "ZUo-07-wsu"; */
+"ZUo-07-wsu.text" = "Drawing";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "a8a-OP-zyd"; */
+"a8a-OP-zyd.text" = "Label";
+
+/* Class = "UILabel"; text = "Select character set"; ObjectID = "acr-r9-vUZ"; */
+"acr-r9-vUZ.text" = "文字セットを選択";
+
+/* Class = "UILabel"; text = "Line thickness"; ObjectID = "awN-qf-RvN"; */
+"awN-qf-RvN.text" = "Line thickness";
+
+/* Class = "UISegmentedControl"; b9j-y7-kbN.segmentTitles[0] = "Extrude"; ObjectID = "b9j-y7-kbN"; */
+"b9j-y7-kbN.segmentTitles[0]" = "Extrude";
+
+/* Class = "UISegmentedControl"; b9j-y7-kbN.segmentTitles[1] = "Float"; ObjectID = "b9j-y7-kbN"; */
+"b9j-y7-kbN.segmentTitles[1]" = "Float";
+
+/* Class = "UILabel"; text = "Location"; ObjectID = "bAp-7b-8X7"; */
+"bAp-7b-8X7.text" = "Location";
+
+/* Class = "UITableViewSection"; headerTitle = "Height Modifiers"; ObjectID = "bC4-YT-erC"; */
+"bC4-YT-erC.headerTitle" = "Height Modifiers";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "bH3-uh-83y"; */
+"bH3-uh-83y.text" = "Label";
+
+/* Class = "UINavigationItem"; title = "Composite Shapes"; ObjectID = "bP0-It-Kmw"; */
+"bP0-It-Kmw.title" = "Composite Shapes";
+
+/* Class = "UILabel"; text = "Font size"; ObjectID = "bPA-QB-rjK"; */
+"bPA-QB-rjK.text" = "Font size";
+
+/* Class = "UITableViewSection"; headerTitle = "Shape size"; ObjectID = "bZC-Dl-mwS"; */
+"bZC-Dl-mwS.headerTitle" = "Shape size";
+
+/* Class = "UILabel"; text = "Line count"; ObjectID = "bcg-Cw-Cw4"; */
+"bcg-Cw-Cw4.text" = "Line count";
+
+/* Class = "UINavigationItem"; title = "Quality Settings"; ObjectID = "cfY-B1-Ylu"; */
+"cfY-B1-Ylu.title" = "Quality Settings";
+
+/* Class = "UILabel"; text = "Vertical exaggeration"; ObjectID = "djo-Ua-NYE"; */
+"djo-Ua-NYE.text" = "Vertical exaggeration";
+
+/* Class = "UILabel"; text = "Backround type"; ObjectID = "fjA-UX-dkQ"; */
+"fjA-UX-dkQ.text" = "Backround type";
+
+/* Class = "UILabel"; text = "Long-press the shape to change it."; ObjectID = "flZ-sv-3t2"; */
+"flZ-sv-3t2.text" = "Long-press the shape to change it.";
+
+/* Class = "UILabel"; text = "Intensity affects apex count"; ObjectID = "fyr-7w-w3b"; */
+"fyr-7w-w3b.text" = "Intensity affects apex count";
+
+/* Class = "UISegmentedControl"; g7A-bB-kXC.segmentTitles[0] = "4"; ObjectID = "g7A-bB-kXC"; */
+"g7A-bB-kXC.segmentTitles[0]" = "4";
+
+/* Class = "UISegmentedControl"; g7A-bB-kXC.segmentTitles[1] = "5"; ObjectID = "g7A-bB-kXC"; */
+"g7A-bB-kXC.segmentTitles[1]" = "5";
+
+/* Class = "UISegmentedControl"; g7A-bB-kXC.segmentTitles[2] = "6"; ObjectID = "g7A-bB-kXC"; */
+"g7A-bB-kXC.segmentTitles[2]" = "6";
+
+/* Class = "UISegmentedControl"; g7A-bB-kXC.segmentTitles[3] = "7"; ObjectID = "g7A-bB-kXC"; */
+"g7A-bB-kXC.segmentTitles[3]" = "7";
+
+/* Class = "UISegmentedControl"; g7A-bB-kXC.segmentTitles[4] = "8"; ObjectID = "g7A-bB-kXC"; */
+"g7A-bB-kXC.segmentTitles[4]" = "8";
+
+/* Class = "UISegmentedControl"; g7A-bB-kXC.segmentTitles[5] = "9"; ObjectID = "g7A-bB-kXC"; */
+"g7A-bB-kXC.segmentTitles[5]" = "9";
+
+/* Class = "UISegmentedControl"; g7A-bB-kXC.segmentTitles[6] = "10"; ObjectID = "g7A-bB-kXC"; */
+"g7A-bB-kXC.segmentTitles[6]" = "10";
+
+/* Class = "UILabel"; text = "Location of cap shape"; ObjectID = "gYB-Ho-T0M"; */
+"gYB-Ho-T0M.text" = "Location of cap shape";
+
+/* Class = "UINavigationItem"; title = "Character Series Options"; ObjectID = "gjF-na-CJx"; */
+"gjF-na-CJx.title" = "キャラクターシリーズのオプション";
+
+/* Class = "UISegmentedControl"; gpH-Vm-pz0.segmentTitles[0] = "Thin"; ObjectID = "gpH-Vm-pz0"; */
+"gpH-Vm-pz0.segmentTitles[0]" = "Thin";
+
+/* Class = "UISegmentedControl"; gpH-Vm-pz0.segmentTitles[1] = "Medium"; ObjectID = "gpH-Vm-pz0"; */
+"gpH-Vm-pz0.segmentTitles[1]" = "Medium";
+
+/* Class = "UISegmentedControl"; gpH-Vm-pz0.segmentTitles[2] = "Thick"; ObjectID = "gpH-Vm-pz0"; */
+"gpH-Vm-pz0.segmentTitles[2]" = "Thick";
+
+/* Class = "UILabel"; text = "Intensity affects petal count"; ObjectID = "hAb-S4-oYB"; */
+"hAb-S4-oYB.text" = "Intensity affects petal count";
+
+/* Class = "UIBarButtonItem"; title = "Done"; ObjectID = "hE9-O4-Zfs"; */
+"hE9-O4-Zfs.title" = "帰る";
+
+/* Class = "UILabel"; text = "Processing quality"; ObjectID = "hdL-U6-OkX"; */
+"hdL-U6-OkX.text" = "Processing quality";
+
+/* Class = "UINavigationItem"; title = "Radiating Lines Settings"; ObjectID = "hpK-vc-VgB"; */
+"hpK-vc-VgB.title" = "Radiating Lines Settings";
+
+/* Class = "UIButton"; normalTitle = "Edit Shape Options"; ObjectID = "huA-Rq-MY5"; */
+"huA-Rq-MY5.normalTitle" = "Edit Shape Options";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "hw2-t4-Gc9"; */
+"hw2-t4-Gc9.text" = "Label";
+
+/* Class = "UILabel"; text = "Background"; ObjectID = "iLJ-Rv-Xy8"; */
+"iLJ-Rv-Xy8.text" = "画像の背景";
+
+/* Class = "UISegmentedControl"; iju-KU-pcN.segmentTitles[0] = "Color"; ObjectID = "iju-KU-pcN"; */
+"iju-KU-pcN.segmentTitles[0]" = "色";
+
+/* Class = "UISegmentedControl"; iju-KU-pcN.segmentTitles[1] = "Source image"; ObjectID = "iju-KU-pcN"; */
+"iju-KU-pcN.segmentTitles[1]" = "ソース画像";
+
+/* Class = "UISegmentedControl"; j6F-pk-XhL.segmentTitles[0] = "16"; ObjectID = "j6F-pk-XhL"; */
+"j6F-pk-XhL.segmentTitles[0]" = "16";
+
+/* Class = "UISegmentedControl"; j6F-pk-XhL.segmentTitles[1] = "32"; ObjectID = "j6F-pk-XhL"; */
+"j6F-pk-XhL.segmentTitles[1]" = "32";
+
+/* Class = "UISegmentedControl"; j6F-pk-XhL.segmentTitles[2] = "48"; ObjectID = "j6F-pk-XhL"; */
+"j6F-pk-XhL.segmentTitles[2]" = "48";
+
+/* Class = "UISegmentedControl"; j6F-pk-XhL.segmentTitles[3] = "64"; ObjectID = "j6F-pk-XhL"; */
+"j6F-pk-XhL.segmentTitles[3]" = "64";
+
+/* Class = "UISegmentedControl"; j6F-pk-XhL.segmentTitles[4] = "96"; ObjectID = "j6F-pk-XhL"; */
+"j6F-pk-XhL.segmentTitles[4]" = "96";
+
+/* Class = "UILabel"; text = "Light model"; ObjectID = "jAN-5P-eT7"; */
+"jAN-5P-eT7.text" = "Light model";
+
+/* Class = "UILabel"; text = "Colors"; ObjectID = "js8-fo-Xkv"; */
+"js8-fo-Xkv.text" = "Colors";
+
+/* Class = "UILabel"; text = "Change color when"; ObjectID = "ken-su-zWW"; */
+"ken-su-zWW.text" = "Change color when";
+
+/* Class = "UINavigationItem"; title = "Advanced Light Settings"; ObjectID = "l0Y-FL-waB"; */
+"l0Y-FL-waB.title" = "Advanced Light Settings";
+
+/* Class = "UISegmentedControl"; lH2-l5-51B.segmentTitles[0] = "None"; ObjectID = "lH2-l5-51B"; */
+"lH2-l5-51B.segmentTitles[0]" = "None";
+
+/* Class = "UISegmentedControl"; lH2-l5-51B.segmentTitles[1] = "Low"; ObjectID = "lH2-l5-51B"; */
+"lH2-l5-51B.segmentTitles[1]" = "Low";
+
+/* Class = "UISegmentedControl"; lH2-l5-51B.segmentTitles[2] = "Medium"; ObjectID = "lH2-l5-51B"; */
+"lH2-l5-51B.segmentTitles[2]" = "Medium";
+
+/* Class = "UISegmentedControl"; lH2-l5-51B.segmentTitles[3] = "High"; ObjectID = "lH2-l5-51B"; */
+"lH2-l5-51B.segmentTitles[3]" = "High";
+
+/* Class = "UILabel"; text = "This setting changes the size of the image to be processed. Smaller images are processed faster at the expense of detail. This setting affects still and video processing."; ObjectID = "lbe-ok-tWq"; */
+"lbe-ok-tWq.text" = "This setting changes the size of the image to be processed. Smaller images are processed faster at the expense of detail. This setting affects still and video processing.";
+
+/* Class = "UILabel"; text = "Intensity test"; ObjectID = "nGB-Im-Grg"; */
+"nGB-Im-Grg.text" = "Intensity test";
+
+/* Class = "UINavigationItem"; title = "Height Settings"; ObjectID = "nL6-ty-PvE"; */
+"nL6-ty-PvE.title" = "Height Settings";
+
+/* Class = "UIBarButtonItem"; title = "Item"; ObjectID = "nsp-gQ-Qc0"; */
+"nsp-gQ-Qc0.title" = "Item";
+
+/* Class = "UINavigationItem"; title = "Star Options"; ObjectID = "nte-Kj-WSi"; */
+"nte-Kj-WSi.title" = "Star Options";
+
+/* Class = "UILabel"; text = "Mesh thickness"; ObjectID = "o72-yI-NKP"; */
+"o72-yI-NKP.text" = "Mesh thickness";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "pTG-yG-Duw"; */
+"pTG-yG-Duw.text" = "Label";
+
+/* Class = "UILabel"; text = "Set height/size of shapes"; ObjectID = "qLO-hb-AhB"; */
+"qLO-hb-AhB.text" = "Set height/size of shapes";
+
+/* Class = "UINavigationItem"; title = "Flower Options"; ObjectID = "rLq-FJ-XyO"; */
+"rLq-FJ-XyO.title" = "Flower Options";
+
+/* Class = "UITableViewSection"; headerTitle = "Quality"; ObjectID = "s5c-MQ-81a"; */
+"s5c-MQ-81a.headerTitle" = "Quality";
+
+/* Class = "UINavigationItem"; title = "Image Size"; ObjectID = "tR4-yx-eyL"; */
+"tR4-yx-eyL.title" = "Image Size";
+
+/* Class = "UILabel"; text = "Intensity test"; ObjectID = "tTN-Vy-EfR"; */
+"tTN-Vy-EfR.text" = "Intensity test";
+
+/* Class = "UINavigationItem"; title = "Shape Options"; ObjectID = "tpc-QY-Dpi"; */
+"tpc-QY-Dpi.title" = "Shape Options";
+
+/* Class = "UILabel"; text = "Light type"; ObjectID = "uKt-rG-0hg"; */
+"uKt-rG-0hg.text" = "Light type";
+
+/* Class = "UISegmentedControl"; uXA-i4-fFH.segmentTitles[0] = "Roughest"; ObjectID = "uXA-i4-fFH"; */
+"uXA-i4-fFH.segmentTitles[0]" = "最も粗い";
+
+/* Class = "UISegmentedControl"; uXA-i4-fFH.segmentTitles[1] = "Rough"; ObjectID = "uXA-i4-fFH"; */
+"uXA-i4-fFH.segmentTitles[1]" = "粗い";
+
+/* Class = "UISegmentedControl"; uXA-i4-fFH.segmentTitles[2] = "Medium"; ObjectID = "uXA-i4-fFH"; */
+"uXA-i4-fFH.segmentTitles[2]" = "中";
+
+/* Class = "UISegmentedControl"; uXA-i4-fFH.segmentTitles[3] = "Smooth"; ObjectID = "uXA-i4-fFH"; */
+"uXA-i4-fFH.segmentTitles[3]" = "なめらか";
+
+/* Class = "UISegmentedControl"; uXA-i4-fFH.segmentTitles[4] = "Smoothest"; ObjectID = "uXA-i4-fFH"; */
+"uXA-i4-fFH.segmentTitles[4]" = "最も滑らかな";
+
+/* Class = "UILabel"; text = "Use random font per character"; ObjectID = "uzn-57-l7F"; */
+"uzn-57-l7F.text" = "文字ごとにランダムフォントを使用する";
+
+/* Class = "UISegmentedControl"; vOY-Tn-7AL.segmentTitles[0] = "Smallest"; ObjectID = "vOY-Tn-7AL"; */
+"vOY-Tn-7AL.segmentTitles[0]" = "Smallest";
+
+/* Class = "UISegmentedControl"; vOY-Tn-7AL.segmentTitles[1] = "Small"; ObjectID = "vOY-Tn-7AL"; */
+"vOY-Tn-7AL.segmentTitles[1]" = "Small";
+
+/* Class = "UISegmentedControl"; vOY-Tn-7AL.segmentTitles[2] = "Large"; ObjectID = "vOY-Tn-7AL"; */
+"vOY-Tn-7AL.segmentTitles[2]" = "Large";
+
+/* Class = "UISegmentedControl"; vOY-Tn-7AL.segmentTitles[3] = "Largest"; ObjectID = "vOY-Tn-7AL"; */
+"vOY-Tn-7AL.segmentTitles[3]" = "Largest";
+
+/* Class = "UISegmentedControl"; vOY-Tn-7AL.segmentTitles[4] = "None"; ObjectID = "vOY-Tn-7AL"; */
+"vOY-Tn-7AL.segmentTitles[4]" = "None";
+
+/* Class = "UILabel"; text = "Saturation"; ObjectID = "vQ9-Hc-J1x"; */
+"vQ9-Hc-J1x.text" = "Saturation";
+
+/* Class = "UISegmentedControl"; vyk-Vp-2zu.segmentTitles[0] = "4"; ObjectID = "vyk-Vp-2zu"; */
+"vyk-Vp-2zu.segmentTitles[0]" = "4";
+
+/* Class = "UISegmentedControl"; vyk-Vp-2zu.segmentTitles[1] = "5"; ObjectID = "vyk-Vp-2zu"; */
+"vyk-Vp-2zu.segmentTitles[1]" = "5";
+
+/* Class = "UISegmentedControl"; vyk-Vp-2zu.segmentTitles[2] = "6"; ObjectID = "vyk-Vp-2zu"; */
+"vyk-Vp-2zu.segmentTitles[2]" = "6";
+
+/* Class = "UISegmentedControl"; vyk-Vp-2zu.segmentTitles[3] = "7"; ObjectID = "vyk-Vp-2zu"; */
+"vyk-Vp-2zu.segmentTitles[3]" = "7";
+
+/* Class = "UISegmentedControl"; vyk-Vp-2zu.segmentTitles[4] = "8"; ObjectID = "vyk-Vp-2zu"; */
+"vyk-Vp-2zu.segmentTitles[4]" = "8";
+
+/* Class = "UILabel"; text = "Cone Top"; ObjectID = "w8r-xk-M09"; */
+"w8r-xk-M09.text" = "Cone Top";
+
+/* Class = "UILabel"; text = "Invert height"; ObjectID = "wav-zC-Gnc"; */
+"wav-zC-Gnc.text" = "Invert height";
+
+/* Class = "UILabel"; text = "Action"; ObjectID = "x3j-fp-OqK"; */
+"x3j-fp-OqK.text" = "Action";
+
+/* Class = "UISegmentedControl"; x9w-4B-abQ.segmentTitles[0] = "Bottom"; ObjectID = "x9w-4B-abQ"; */
+"x9w-4B-abQ.segmentTitles[0]" = "底";
+
+/* Class = "UISegmentedControl"; x9w-4B-abQ.segmentTitles[1] = "Middle"; ObjectID = "x9w-4B-abQ"; */
+"x9w-4B-abQ.segmentTitles[1]" = "中間";
+
+/* Class = "UISegmentedControl"; x9w-4B-abQ.segmentTitles[2] = "Top"; ObjectID = "x9w-4B-abQ"; */
+"x9w-4B-abQ.segmentTitles[2]" = "上";
+
+/* Class = "UIBarButtonItem"; title = "Done"; ObjectID = "xOL-IK-NGe"; */
+"xOL-IK-NGe.title" = "帰る";
+
+/* Class = "UILabel"; text = "Select random character from"; ObjectID = "xkQ-IH-aYy"; */
+"xkQ-IH-aYy.text" = "ランダムな文字を選択してください";
+
+/* Class = "UILabel"; text = "Font size"; ObjectID = "yCa-uJ-yH5"; */
+"yCa-uJ-yH5.text" = "フォントサイズ";
+
+/* Class = "UILabel"; text = "Invert"; ObjectID = "yhL-8t-MVD"; */
+"yhL-8t-MVD.text" = "Invert";
+
+/* Class = "UINavigationItem"; title = "Colors"; ObjectID = "yzv-o8-cwn"; */
+"yzv-o8-cwn.title" = "Colors";
+
+/* Class = "UINavigationItem"; title = "Mesh Settngs"; ObjectID = "zVd-Yh-O8R"; */
+"zVd-Yh-O8R.title" = "Mesh Settngs";
+
+/* Class = "UILabel"; text = "Light color"; ObjectID = "zmf-0d-a4G"; */
+"zmf-0d-a4G.text" = "Light color";

@@ -1,0 +1,290 @@
+/* 
+  en_US.strings
+  BlockCam
+
+  Created by Stuart Rankin on 1/19/20.
+  Copyright © 2020 Stuart Rankin. All rights reserved.
+*/
+
+"MainSettingsTitle" = "Settings";
+"MainSettingsDone" = "Done";
+"MainSettingsAbout" = "About";
+"MainSettingsPrivacy" = "Privacy";
+"MainSettingsLanguage" = "Languages";
+"MainSettingsImageSettings" = "Image Settings";
+"MainSettingsPerformance" = "Performance";
+"MainSettingsCameraOptions" = "Camera options";
+"MainSettingsImageProcessingOptions" = "Image processing options";
+"MainSettingsVideoProcessingOptions" = "Video processing options";
+"MainSettingsOtherSettingsTitle" = "Other Settings";
+"MainSettingsViewSettings" = "View settings";
+"MainSettingsSounds" = "Sounds";
+"MainSettingsMiscellaneous" = "Miscellaneous";
+"MainSettingsAdvanced" = "Advanced";
+"MainSettingsEnableLogging" = "Enable logging";
+"MainSettingsDebugLogs" = "Debug logs";
+"MainSettingsSystemSettings" = "System settings";
+"MainSettingsLogDescription" = "Logging data consists of internal operations and data and does not include any personally identifiable data. Logs are not uploaded to any server without your explicit consent.";
+
+"ImageSettingsOriginalImage" = "Original image";
+"ImageSettingsSaveOriginal" = "Save original image";
+"ImageSettingsAlways" = "Always";
+"ImageSettingsIfProcessed" = "If Processed";
+"ImageSettingsNever" = "Never";
+"ImageSettingsPhotoRollMessage" = "Images from the photo roll are not resaved.";
+"ImageSettingsProcessedImage" = "Processed image";
+"ImageSettingsCropSavedImage" = "Crop saved image";
+"ImageSettingsCropNever" = "Never";
+"ImageSettingsCropClose" = "Close";
+"ImageSettingsCropMedium" = "Medium";
+"ImageSettingsCropFar" = "Far";
+"ImageSettingsAutoSave" = "Automatically save processed image";
+"ImageSettingsAutoSaveMessage" = "Saved the image when first created.";
+
+"MiscTitle" = "Miscellaneous";
+"MiscShowSplashScreen" = "Show splash screen";
+"MiscShowUIPrompts" = "Show UI prompts";
+
+"GeneratorPreparing" = "Preparing image";
+"GeneratorParsing" = "Parsing image";
+"GeneratorPixellating" = "Analyzing image";
+"GeneratorAddingNodes" = "Adding shapes to image";
+"GeneratorMaking3D" = "Creating 3D shapes";
+"GeneratorCompleted" = "Completed";
+"GeneratorStartVideo" = "Start video processing";
+"GeneratorProcessingFrames" = "Processing frames";
+"GeneratorGatheringFrames" = "Gathering frames";
+"GeneratorCreatingFrame" = "Creating frame";
+
+"OnboardingLongPressViewForOptions" = "Long press view for options";
+
+"StatusLongPressLong" = "Long press image for settings";
+"StatusLongPressShort" = "Press image for settings";
+"StatusAutoSaved" = "Image automatically saved";
+"StatusImageSaved" = "Image saved";
+
+"UISettingsButton" = "Settings";
+"UICameraButton" = "Camera";
+"UIAlbumButton" = "Album";
+"UIModeButton" = "Mode";
+"UIDoneButton" = "Done";
+"UISaveButton" = "Save";
+"UISwitchButton" = "Switch";
+"UIPhotoButton" = "Photo";
+"UIVideoButton" = "Video";
+"UIRecordButton" = "Record";
+"UIStopButton" = "Stop";
+
+"GenericYes" = "Yes";
+"GenericNo" = "No";
+"GenericDone" = "Done";
+"GenericSlowest" = "Slowest";
+"GenericFastest" = "Fastest";
+"GenericPleaseWait" = "Please Wait";
+
+"RecordAlertTitle" = "Save Recorded Scene?";
+"RecordAlertMessage" = "Do you want to save your scene motion as a video? Selecting No removes recorded frames.";
+
+"ThermalStateCritical" = "Critical";
+"ThermalStateFair" = "Fair";
+"ThermalStateNominal" = "Nominal";
+"ThermalStateSerious" = "Serious";
+
+"PerformanceSettingsTitle" = "Performance Settings";
+"PerformanceText" = "BlockCam makes heavy use of your device's CPU and GPU. It is very possible to overwhelm your device with very large images. For that reason, performance is restricted. If you change these settings, you may experience severe performance issues.";
+"PerformanceResizingTitle" = "Image resizing";
+"PerformanceProcessingQuality" = "Processing quality";
+"ImageSizeTitle" = "Image Size";
+"ImageSizeText" = "This setting changes the size of the image to be processed. Smaller images are processed faster at the expense of detail. This setting affects still and video processing.";
+"ImageSizeSegmentLabel" = "Image resize";
+"ImageSizeSegmentSmallest" = "Smallest";
+"ImageSizeSegmentSmall" = "Small";
+"ImageSizeSegmentLarge" = "Large";
+"ImageSizeSegmentLargest" = "Largest";
+"ImageSizeSegmentNone" = "None";
+
+"LightSettingsTitle" = "Light Settings";
+"LightTypeLabelText" = "Light type";
+"LightTypeSegmentOmni" = "Omni";
+"LightTypeSegmentSpot" = "Spot";
+"LightTypeSegmentDirectional" = "Directional";
+"LightTypeSegmentAmbient" = "Ambient";
+"LightIntensityLabelText" = "Light intensity";
+"LightIntensitySegmentDarkest" = "Darkest";
+"LightIntensitySegmentDim" = "Dim";
+"LightIntensitySegmentNormal" = "Normal";
+"LightIntensitySegmentBright" = "Bright";
+"LightIntensitySegmentBrightest" = "Brightest";
+"LightIntensityAdvanced" = "Advanced";
+"LightIntensitySample" = "Sample";
+"AdvancedLightSettingsTitle" = "Advanced Light Settings";
+"LightModel" = "Light Model";
+"LightSettingsSample" = "Sample";
+"LightModelSegmentBlinn" = "Blinn";
+"LightModelSegmentConstant" = "Constant";
+"LightModelSegmentLambert" = "Lambert";
+"LightModelSegmentPhong" = "Phong";
+"LightModelSegmentPhysical" = "Physical";
+
+"ShapeOptionsTitle" = "Shape Options";
+"ShapeOptionsShape" = "Shape";
+"ShapeOptionsButtonText" = "Edit Shape Options";
+"ShapeOptionsSize" = "Shape size";
+"ShapeOptionsSizeText" = "Changing the size will recreate the image from the beginning, taking more time.";
+"ShapeOptionsOther" = "Other shape options";
+"ShapeOptionsColor" = "Colors";
+"ShapeOptionsHeight" = "Set height/size of shapes";
+
+"CharacterSetNameFlowers" = "Flowers";
+"CharacterSetNameSnowflakes" = "Snowflakes";
+"CharacterSetNameArrows" = "Arrows";
+"CharacterSetNameGeometric" = "Small Geometry";
+"CharacterSetNameStars" = "Stars";
+"CharacterSetNameOrnamental" = "Ornamental";
+"CharacterSetNameThings" = "Things";
+"CharacterSetNameComputerRelated" = "Computer-Related";
+"CharacterSetNameHiragana" = "Hiragana";
+"CharacterSetNameKatakana" = "Katakana";
+"CharacterSetNameKanji" = "Grade School Kanji";
+"CharacterSetNameHangul" = "Hangul";
+"CharacterSetNameBodoni" = "Bondoni Ornaments";
+"CharacterSetNameLatin" = "Latin Letters";
+"CharacterSetNameGreek" = "Greek Letters";
+"CharacterSetNameCyrillic" = "Cyrillic Letters";
+"CharacterSetNameEmoji" = "Emoji";
+"CharacterSetNamePunctuation" = "Punctuation";
+"CharacterSetNameBoxSymbols" = "Box Symbols";
+
+"CharacterSeriesOptionsTitle" = "Character Series Options";
+"CharacterSeriesSelectSet" = "Select character set";
+"CharacterSeriesInSet" = "Characters in set";
+
+"CharacterOptionTitle" = "Character Options";
+"CharacterOptionFont" = "Font";
+"CharacterOptionRandomFont" = "Use random font per character";
+"CharacterOptionFontSize" = "Font size";
+"CharacterOptionRandomFontSize" = "Random font size";
+"CharacterOptionCharacter" = "Character";
+"CharacterOptionSelectFrom" = "Select random character from";
+"CharacterOptionDrawing" = "Drawing";
+"CharacterOptionLocation" = "Location";
+"CharacterOptionRoughest" = "Roughest";
+"CharacterOptionRough" = "Rough";
+"CharacterOptionMedium" = "Medium";
+"CharacterOptionSmooth" = "Smooth";
+"CharacterOptionSmoothest" = "Smoothest";
+"CharacterOptionExtrude" = "Extrude";
+"CharacterOptionFloat" = "Float";
+
+"BlocksTitle" = "Block Settings";
+"BlockEdgeSmoothing" = "Block edge smoothing";
+"BlockEdgeNone" = "None";
+"BlockEdgeSmall" = "Small";
+"BlockEdgeMedium" = "Medium";
+"BlockEdgeLarge" = "Large";
+
+"EllipseOptionsTitle" = "Ellipse Options";
+
+"ConeSettingsTitle" = "Cone Settings";
+"ConeSettingsTop" = "Cone Top";
+"ConeSettingsBottom" = "Cone Bottom";
+"ConeSwapText" = "Swap top and bottom";
+
+"MeshTitle" = "Mesh Settings";
+"MeshThicknessLabel" = "Mesh thickness";
+"MeshThicknessThin" = "Thin";
+"MeshThicknessMedium" = "Medium";
+"MeshThicknessThick" = "Thick";
+"MeshDotSizeLabel" = "Dot size";
+"MeshDotSizeNone" = "None";
+"MeshDotSizeSmall" = "Small";
+"MeshDotSizeMedium" = "Medium";
+"MeshDotSizeLarge" = "Large";
+
+"StarOptionTitle" = "Star Options";
+"StarApexCountLabel" = "Apex count";
+"StarIntensityText" = "Intensity affects apex count";
+"StarIntensityTestText" = "Intensity test";
+
+"BackgroundOptionTitle" = "Image Background";
+"BackgroundTypeText" = "Background type";
+"BackgroundTypeColor" = "Color";
+"BackgroundTypeImage" = "Source image";
+"BackgroundColorTitle" = "Color";
+
+"ColorOptionTitle" = "Colors";
+"ColorOptionConditionalTitle" = "Conditional colors";
+"ColorOptionsNone" = "None";
+"ColorOptionsHue" = "Hue";
+"ColorOptionsSaturation" = "Saturation";
+"ColorOptionsBrightness" = "Brightness";
+"ColorOptionsActionTitle" = "Action";
+"ColorOptionsGrayscale" = "Grayscale";
+"ColorOptionsIncreaseSaturation" = "Saturation+";
+"ColorOptionsDesaturate" = "Desaturate";
+"ColorOptionChangeColorText" = "Change color when";
+"ColorOptionInvert" = "Invert";
+
+"CappedLineOptionsTitle" = "Capped Line Options";
+"CappedLineLocationsTop" = "Top";
+"CappedLineLocationsMiddle" = "Middle";
+"CappedLineLocationsBottom" = "Bottom";
+
+"RadiatingLinesTitle" = "Radiating Lines Settings";
+"RadiatingLinesThickness" = "Radiating lines thickness";
+"RadiatingLinesCount" = "Line count";
+
+"CompositeShapeTitle" = "Composite Shapes";
+"CompositeShapeHintText" = "Long-press the shape to change it.";
+
+"LanguagesTitle" = "Languages";
+"SystemLanguageText" = "System language:";
+"SelectLanguageToUse" = "Select language to use";
+
+"Color_Black" = "Black";
+"Color_White" = "White";
+"Color_Gray" = "Gray";
+"Color_Red" = "Red";
+"Color_Green" = "Green";
+"Color_Blue" = "Blue";
+"Color_Cyan" = "Cyan";
+"Color_Magenta" = "Magenta";
+"Color_Yellow" = "Yellow";
+"Color_Orange" = "Orange";
+"Color_Indigo" = "System Indigo";
+"Color_SysYellow" = "System Yellow";
+"Color_SysGreen" = "System Green";
+"Color_SysBlue" = "System Blue";
+"Color_SysOrange" = "System Orange";
+
+"ShapeNameBlocks" = "Blocks";
+"ShapeNamesTriangles" = "Triangles";
+"ShapeNamesEllipses" = "Ellipses";
+"ShapeNamesDiamonds" = "Diamonds";
+"ShapeNamesPentagons" = "Pentagons";
+"ShapeNamesHexagons" = "Hexagons";
+"ShapeNamesOctagons" = "Octagons";
+"ShapeNamesPyramids" = "Pyramids";
+"ShapeNamesToroids" = "Toroids";
+"ShapeNamesCylinders" = "Cylinders";
+"ShapeNamesSpheres" = "Spheres";
+"ShapeNamesCapsules" = "Capsules";
+"ShapeNamesCones" = "Cones";
+"ShapeNamesTetrahedrons" = "Tetrahedrons";
+"ShapeNamesStars" = "Stars";
+"ShapeNamesRGB" = "RGB";
+"ShapeNamesHSB" = "HSB";
+"ShapeNamesMesh" = "Mesh";
+"ShapeNamesLetters" = "Letters";
+"ShapeNamesCharacters" = "Characters";
+"ShapeNamesLines" = "Lines";
+"ShapeNamesCappedLines" = "Capped Lines";
+"ShapeNamesRadiatingLines" = "Radiating Lines";
+"ShapeNamesHueVarying" = "Hue Varying";
+"ShapeNamesSaturationVarying" = "Saturation Varying";
+"ShapeNamesBrightnessVarying" = "Brightness Varying";
+"ShapeNamesPerpendicularSquares" = "Perpendicular Squares";
+"ShapeNamesPerpendicularCircles" = "Perpendicular Circles";
+"ShapeNamesHueTriangles" = "Hue Triangles";
+"ShapeNamesStylizedFlower" = "Stylized Flower";
+"ShapeNamesCharacterSets" = "Character Sets";
