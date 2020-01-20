@@ -985,18 +985,10 @@ class Generator
                 FileIO.ClearScratchDirectory()
                 let VBlocks = Pixels.count
                 let HBlocks = Pixels[0].count
-                #if true
-                                Delegate?.Status(0.6, UIColor.systemYellow, NSLocalizedString("GeneratorMaking3D", comment: ""))
-                #else
-                Delegate?.Status(0.6, UIColor.systemYellow, "Creating 3D shapes")
-                #endif
+                Delegate?.Status(0.6, UIColor.systemYellow, NSLocalizedString("GeneratorMaking3D", comment: ""))
                 let FinalNode = CreateSceneNodeSet(From: Pixels, HBlocks: HBlocks, VBlocks: VBlocks)
                 MasterNode = FinalNode
-                #if true
                 Delegate?.Status(0.8, UIColor.systemYellow, NSLocalizedString("GeneratingAddingNodes", comment: ""))
-                #else
-                Delegate?.Status(0.8, UIColor.systemYellow, "Adding nodes to scene")
-                #endif
                 Delegate?.ShowIndefiniteIndicator()
                 InView.prepare([FinalNode], completionHandler:
                     {
@@ -1017,11 +1009,7 @@ class Generator
                                 Sounds.PlaySound(.Confirm)
                             }
                             Delegate?.HideIndefiniteIndicator()
-                            #if true
                             Delegate?.Status(1.0, UIColor.systemYellow, NSLocalizedString("GeneratorCompleted", comment: ""))
-                            #else
-                            Delegate?.Status(1.0, UIColor.systemYellow, "Completed")
-                            #endif
                             Delegate?.Completed(true)
                         }
                         else
@@ -1262,11 +1250,7 @@ class Generator
         autoreleasepool
             {
                 Delegate?.ShowIndefiniteIndicator()
-                #if true
                 Delegate?.Status(0.0, UIColor.systemOrange, NSLocalizedString("GeneratorPreparing", comment: ""))
-                #else
-                Delegate?.Status(0.0, UIColor.systemOrange, "Preparing image")
-                #endif
                 if !ForVideo
                 {
                     //If we are working on an individual image (and not a series of images from a video), clear the
@@ -1280,36 +1264,20 @@ class Generator
                 Log.Message("Starting node count: \(Utility3D.NodeCount(InScene: InView.scene!))")
                 if let Prepared = PrepareImage(SomeImage)
                 {
-                    #if true
                     Delegate?.Status(0.2, UIColor.systemYellow, NSLocalizedString("GeneratorPixellating", comment: ""))
-                    #else
-                    Delegate?.Status(0.2, UIColor.systemYellow, "Pixellating image")
-                    #endif
                     let FrameIndex = Frame == nil ? 0 : Frame!
                     if let Pixellated = PixellateImage(Prepared, BlockSize: BlockSize, Frame: FrameIndex)
                     {
-                        #if true
                         Delegate?.Status(0.4, UIColor.systemYellow, NSLocalizedString("GeneratorParsing", comment: ""))
-                        #else
-                        Delegate?.Status(0.4, UIColor.systemYellow, "Parsing image")
-                        #endif
                         var HBlocks: Int = 0
                         var VBlocks: Int = 0
                         let Colors = ParseImage(Pixellated, BlockSize: BlockSize, HBlocks: &HBlocks, VBlocks: &VBlocks)
                         WritePixelsToFileSystem(Colors)
-                        #if true
                         Delegate?.Status(0.6, UIColor.systemYellow, NSLocalizedString("GeneratorMaking3D", comment: ""))
-                        #else
-                        Delegate?.Status(0.6, UIColor.systemYellow, "Creating 3D shapes")
-                        #endif
                         let FinalNode = CreateSceneNodeSet(From: Colors, HBlocks: HBlocks, VBlocks: VBlocks)
                         MasterNode = FinalNode
                         Delegate?.SubStatus(0.0, UIColor.clear)
-                        #if true
                         Delegate?.Status(0.8, UIColor.systemYellow, NSLocalizedString("GeneratorAddingNodes", comment: ""))
-                        #else
-                        Delegate?.Status(0.8, UIColor.systemYellow, "Adding nodes to scene")
-                        #endif
                         Delegate?.ShowIndefiniteIndicator()
                         let PrepStart = CACurrentMediaTime()
                         InView.prepare([FinalNode], completionHandler:
@@ -1334,11 +1302,7 @@ class Generator
                                     {
                                         Sounds.PlaySound(.Confirm)
                                     }
-                                    #if true
                                     Delegate?.Status(1.0, UIColor.yellow, NSLocalizedString("GeneratorCompleted", comment: ""))
-                                    #else
-                                    Delegate?.Status(1.0, UIColor.yellow, "Completed")
-                                    #endif
                                     Delegate?.HideIndefiniteIndicator()
                                     Delegate?.Completed(true)
                                 }
@@ -1469,12 +1433,8 @@ class Generator
                                 }
                                 Log.Message("Saved \(ImageName)")
                                 FrameIndex = FrameIndex + 1
-                                #if true
                                 Delegate?.Status(Double(FrameIndex) / Double(FrameTimes.count), UIColor.systemBlue,
                                                  NSLocalizedString("GeneratorGatheringFrames", comment: ""))
-                                #else
-                                Delegate?.Status(Double(FrameIndex) / Double(FrameTimes.count), UIColor.systemBlue, "Gathering frames")
-                                #endif
                             }
                             catch
                             {
@@ -1511,11 +1471,7 @@ class Generator
     public static func MakeVideo(_ InView: ProcessViewer, _ SomeVideo: URL)
     {
         Log.Message(">>> Make Video <<<")
-        #if true
         Delegate?.Status(0.0, UIColor.red, NSLocalizedString("GeneratorStartVideo", comment: ""))
-        #else
-        Delegate?.Status(0.0, UIColor.red, "Starting video processing")
-        #endif
         let VideoDuration = GetVideoDuration(SomeVideo)
         var QualityS = Settings.GetString(ForKey: .VideoDimensions)
         if QualityS == nil
@@ -1566,12 +1522,8 @@ class Generator
         {
             let ImageName = "\(Index)_SourceFrame.jpg"
             Log.Message(" Frame Image: \(ImageName)")
-            #if true
             Delegate?.Status(Double(Index) / Double(Count), UIColor.systemBlue,
                              "\(NSLocalizedString("GeneratorCreatingFrame", comment: "")) \(Index + 1)")
-            #else
-            Delegate?.Status(Double(Index) / Double(Count), UIColor.systemBlue, "Creating frame \(Index + 1)")
-            #endif
             if let Frame = FileIO.LoadImage(ImageName, InDirectory: FileIO.ScratchDirectory)
             {
                 MakeImage(InView, Frame, BlockSize: BlockSize, Frame: Index, ForVideo: true) 
