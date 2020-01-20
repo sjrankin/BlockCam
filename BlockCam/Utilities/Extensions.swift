@@ -564,13 +564,16 @@ extension String
 extension CIImage
 {
     /// Convert the instance `CIImage` to a `UIImage`.
-    /// - Returns: `UIImage` equivalent of the instance `CIImage`
-    func AsUIImage() -> UIImage
+    /// - Returns: `UIImage` equivalent of the instance `CIImage` Nil return on error.
+    func AsUIImage() -> UIImage?
     {
         let Context: CIContext = CIContext(options: nil)
-        let CGImg: CGImage = Context.createCGImage(self, from: self.extent)!
+        if let CGImg: CGImage = Context.createCGImage(self, from: self.extent)
+        {
         let Final: UIImage = UIImage(cgImage: CGImg)
         return Final
+        }
+        return nil
     }
 }
 
