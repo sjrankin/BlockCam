@@ -30,7 +30,12 @@ extension ViewController
         {
             let CIImg: CIImage = CIImage(cvPixelBuffer: Buffer)
             //let Image: UIImage = ConvertToUIImage(CIImg)
-            let Image: UIImage = CIImg.AsUIImage()
+            let Image: UIImage? = CIImg.AsUIImage()
+            if Image == nil
+            {
+                Log.Message("Nil image returned by UIImage.AsUIImage")
+                return
+            }
             FrameCount = FrameCount + 1
             /*
              if UserDefaults.standard.bool(forKey: "ShowHistogram")
@@ -63,7 +68,7 @@ extension ViewController
                     {
                         [weak self] in
                         self!.OutputView.Clear()
-                        self!.OutputView.ProcessImage(Image, BlockSize: 32.0)
+                        self!.OutputView.ProcessImage(Image!, BlockSize: 32.0)
                 }
             }
         }
