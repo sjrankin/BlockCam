@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1706744B23D599AD00381C42 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1706744A23D599AD00381C42 /* Colors.swift */; };
 		170B3FE023B44AC8009106EB /* Sounds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 170B3FDF23B44AC8009106EB /* Sounds.swift */; };
 		170B3FE223B4644E009106EB /* SoundSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 170B3FE123B4644E009106EB /* SoundSettings.swift */; };
 		170B3FE423B47A22009106EB /* CrashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 170B3FE323B47A22009106EB /* CrashView.swift */; };
@@ -162,6 +163,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1706744A23D599AD00381C42 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		170B3FDF23B44AC8009106EB /* Sounds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sounds.swift; sourceTree = "<group>"; };
 		170B3FE123B4644E009106EB /* SoundSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundSettings.swift; sourceTree = "<group>"; };
 		170B3FE323B47A22009106EB /* CrashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrashView.swift; sourceTree = "<group>"; };
@@ -502,6 +504,7 @@
 				17C04CA323A4B27E00D870EE /* Utility3D.swift */,
 				17F9BE4623A655D10029B0A2 /* Utilities.swift */,
 				170B3FE323B47A22009106EB /* CrashView.swift */,
+				1706744A23D599AD00381C42 /* Colors.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -924,6 +927,7 @@
 				172B2C2C23855FDE00226F18 /* SettingsController.swift in Sources */,
 				17AABB4A2382C8D8006DA546 /* UnicodeBlock.swift in Sources */,
 				17239421238BF3F600D62C93 /* ProcessViewer.swift in Sources */,
+				1706744B23D599AD00381C42 /* Colors.swift in Sources */,
 				170BE50C23A76F9D003A5A72 /* LogViewController.swift in Sources */,
 				176ED92F23BF1AEC000877B6 /* MainTitle.swift in Sources */,
 				17609B8023BA21440014C327 /* Menu_ChangeManager.swift in Sources */,
