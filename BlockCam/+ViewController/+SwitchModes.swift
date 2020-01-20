@@ -59,12 +59,12 @@ extension ViewController
         OutputView.alpha = 0.0
         LiveView.alpha = 1.0
         //Initialize the bottom tool bar.
-        ImageBottomToolView.frame = CGRect(x: 0,
+        ImageBottomBar.frame = CGRect(x: 0,
                                            y: ScreenHeight,
                                            width: ScreenWidth,
-                                           height: ImageBottomToolView.frame.height)
-        ImageBottomToolView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
-        ImageBottomToolView.layer.cornerRadius = 5.0
+                                           height: ImageBottomBar.frame.height)
+        ImageBottomBar.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+        ImageBottomBar.layer.cornerRadius = 5.0
         if let NewRect = MoveButton(CameraButton, To: 0.5)
         {
             CameraButton.frame = NewRect
@@ -84,12 +84,12 @@ extension ViewController
         }
         
         //Initilize the bottom live view bar.
-        LiveViewBottomToolView.frame = CGRect(x: 0,
-                                              y: ScreenHeight - LiveViewBottomToolView.frame.height,
+        MainBottomBar.frame = CGRect(x: 0,
+                                              y: ScreenHeight - MainBottomBar.frame.height,
                                               width: ScreenWidth,
-                                              height: LiveViewBottomToolView.frame.height)
-        LiveViewBottomToolView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
-        LiveViewBottomToolView.layer.cornerRadius = 5.0
+                                              height: MainBottomBar.frame.height)
+        MainBottomBar.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+        MainBottomBar.layer.cornerRadius = 5.0
         if let NewRect = MoveButton(DoneButton, To: 0.0)
         {
             DoneButton.frame = NewRect
@@ -102,7 +102,7 @@ extension ViewController
         CompositeStatus.frame = CGRect(x: DoneButton.frame.maxX + 20,
                                        y: 5.0,
                                        width: CompositeWidth,
-                                       height: LiveViewBottomToolView.frame.height - 10.0)
+                                       height: MainBottomBar.frame.height - 10.0)
         CompositeStatus.backgroundColor = UIColor.clear
         CompositeStatus.layer.borderWidth = 0.5
         CompositeStatus.layer.borderColor = UIColor.blue.cgColor
@@ -142,16 +142,16 @@ extension ViewController
         UIView.animate(withDuration: 0.35,
                        animations:
             {
-                self.ImageBottomToolView.frame = CGRect(x: 0,
+                self.ImageBottomBar.frame = CGRect(x: 0,
                                                         y: ScreenHeight,
                                                         width: ScreenWidth,
-                                                        height: self.ImageBottomToolView.frame.height)
-                self.ImageBottomToolView.alpha = 0.0
-                self.LiveViewBottomToolView.frame = CGRect(x: 0,
-                                                           y: ScreenHeight - self.LiveViewBottomToolView.frame.height,
+                                                        height: self.ImageBottomBar.frame.height)
+                self.ImageBottomBar.alpha = 0.0
+                self.MainBottomBar.frame = CGRect(x: 0,
+                                                           y: ScreenHeight - self.MainBottomBar.frame.height,
                                                            width: ScreenWidth,
-                                                           height: self.LiveViewBottomToolView.frame.height)
-                self.LiveViewBottomToolView.alpha = 1.0
+                                                           height: self.MainBottomBar.frame.height)
+                self.MainBottomBar.alpha = 1.0
         }
         )
                 self.view.bringSubviewToFront(LiveView)
@@ -173,16 +173,16 @@ extension ViewController
         UIView.animate(withDuration: 0.35,
                        animations:
             {
-                self.ImageBottomToolView.frame = CGRect(x: 0,
-                                                        y: ScreenHeight - self.ImageBottomToolView.frame.height,
+                self.ImageBottomBar.frame = CGRect(x: 0,
+                                                        y: ScreenHeight - self.ImageBottomBar.frame.height,
                                                         width: ScreenWidth,
-                                                        height: self.ImageBottomToolView.frame.height)
-                self.ImageBottomToolView.alpha = 1.0
-                self.LiveViewBottomToolView.frame = CGRect(x: 0,
+                                                        height: self.ImageBottomBar.frame.height)
+                self.ImageBottomBar.alpha = 1.0
+                self.MainBottomBar.frame = CGRect(x: 0,
                                                            y: ScreenHeight,
                                                            width: ScreenWidth,
-                                                           height: self.LiveViewBottomToolView.frame.height)
-                self.LiveViewBottomToolView.alpha = 0.0
+                                                           height: self.MainBottomBar.frame.height)
+                self.MainBottomBar.alpha = 0.0
         }
         )
         self.view.bringSubviewToFront(OutputView)
@@ -196,7 +196,7 @@ extension ViewController
         let ScreenHeight = self.view.bounds.height
         let ScreenWidth = self.view.bounds.width
         SceneMotionRecorderView.layer.zPosition = 1000
-        ImageBottomToolView.layer.zPosition = 0
+        ImageBottomBar.layer.zPosition = 0
         UIView.animate(withDuration: 0.35,
                        animations:
             {
@@ -205,10 +205,10 @@ extension ViewController
                                                             y: Top,
                                                             width: ScreenWidth,
                                                             height: self.SceneMotionRecorderView.frame.height)
-                self.ImageBottomToolView.frame = CGRect(x: 0,
+                self.ImageBottomBar.frame = CGRect(x: 0,
                                                         y: ScreenHeight,
                                                         width: ScreenWidth,
-                                                        height: self.ImageBottomToolView.frame.height)
+                                                        height: self.ImageBottomBar.frame.height)
         }
         )
     }
@@ -219,19 +219,19 @@ extension ViewController
         let ScreenHeight = self.view.bounds.height
         let ScreenWidth = self.view.bounds.width
         SceneMotionRecorderView.layer.zPosition = 0
-        ImageBottomToolView.layer.zPosition = 1000
+        ImageBottomBar.layer.zPosition = 1000
         UIView.animate(withDuration: 0.35,
                        animations:
             {
-                let Top = ScreenHeight - self.ImageBottomToolView.frame.height
+                let Top = ScreenHeight - self.ImageBottomBar.frame.height
                 self.SceneMotionRecorderView.frame = CGRect(x: 0,
                                                             y: ScreenHeight,
                                                             width: ScreenWidth,
                                                             height: self.SceneMotionRecorderView.frame.height)
-                self.ImageBottomToolView.frame = CGRect(x: 0,
+                self.ImageBottomBar.frame = CGRect(x: 0,
                                                         y: Top,
                                                         width: ScreenWidth,
-                                                        height: self.ImageBottomToolView.frame.height)
+                                                        height: self.ImageBottomBar.frame.height)
         }
         )
     }
