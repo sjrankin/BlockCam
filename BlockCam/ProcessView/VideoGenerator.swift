@@ -57,19 +57,27 @@ class VideoGenerator
         CombineIntoVideo(ImageList)
     }
     
-    
+    /// Combine the passed set of images into a single video.
+    /// - Parameter Frames: The set of images to combine into a video. Each image must have the same dimensions.
     public static func CombineIntoVideo(_ Frames: [UIImage])
     {
         let ImageSize = Frames[0].size
         let TheURL = FileIO.GetScratchDirectory()!.appendingPathComponent("Scratch.mp4")
-        FileIO.DeleteFile(TheURL)
+        FileIO.DeleteIfPresent(TheURL)
         OutputURL = TheURL
+        print(">> CreateWriter")
         CreateWriter(Size: ImageSize)
+        print(">> CreateBuffer")
         CreateBuffer(Size: ImageSize)
+        print(">> InitializeWriter")
         InitializeWriter()
+        print(">> WriteImages")
         WriteImages(Frames, Size: ImageSize)
     }
     
+    /// Write a set of images to a video, one image per frame.
+    /// - Parameter Frames: Set of images. Each image is written in order, and all images must have the same dimensions.
+    /// - Parameter Size: The size (dimensions) fo all images in `Frames`.
     static func WriteImages(_ Frames: [UIImage], Size: CGSize)
     {
         var LocalFrames = Frames
@@ -84,46 +92,46 @@ class VideoGenerator
             {
                 autoreleasepool
                     {
-                if WriterInput!.isReadyForMoreMediaData
-                {
-                    let Working = LocalFrames.removeFirst()
-                    let LastFrameTime = CMTimeMake(value: FrameCount, timescale: FPS)
-                    let PresentationTime = FrameCount == 0 ? LastFrameTime : CMTimeAdd(LastFrameTime, FrameDuration)
-                    var PixelBuffer: CVPixelBuffer? = nil
-                    let Status: CVReturn = CVPixelBufferPoolCreatePixelBuffer(kCFAllocatorDefault,
-                                                                              BufferAdaptor!.pixelBufferPool!, &PixelBuffer)
-                    if PixelBuffer != nil && Status == 0
-                    {
-                        let ManagedBuffer = PixelBuffer!
-                        CVPixelBufferLockBaseAddress(ManagedBuffer, CVPixelBufferLockFlags(rawValue: 0))
-                        let PixelData = CVPixelBufferGetBaseAddress(ManagedBuffer)
-                        let ColorSpace = CGColorSpaceCreateDeviceRGB()
-                        let Context = CGContext(data: PixelData,
-                                                width: Int(Size.width),
-                                                height: Int(Size.height),
-                                                bitsPerComponent: 8,
-                                                bytesPerRow: CVPixelBufferGetBytesPerRow(ManagedBuffer),
-                                                space: ColorSpace,
-                                                bitmapInfo: CGImageAlphaInfo.premultipliedFirst.rawValue)
-                        Context?.clear(CGRect(origin: CGPoint.zero, size: Size))
-                        Context?.draw(Working.cgImage!, in: CGRect(origin: CGPoint.zero, size: Size))
-                        CVPixelBufferUnlockBaseAddress(ManagedBuffer, CVPixelBufferLockFlags(rawValue: 0))
-                         AppendedOK = BufferAdaptor!.append(ManagedBuffer, withPresentationTime: PresentationTime)
-                    }
-                    else
-                    {
-                        Log.Message("Failed to allocate pixel buffer.")
-                        AppendedOK = false
-                    }
-                    FrameCount = FrameCount + 1
-                }
+                        if WriterInput!.isReadyForMoreMediaData
+                        {
+                            let Working = LocalFrames.removeFirst()
+                            let LastFrameTime = CMTimeMake(value: FrameCount, timescale: FPS)
+                            let PresentationTime = FrameCount == 0 ? LastFrameTime : CMTimeAdd(LastFrameTime, FrameDuration)
+                            var PixelBuffer: CVPixelBuffer? = nil
+                            let Status: CVReturn = CVPixelBufferPoolCreatePixelBuffer(kCFAllocatorDefault,
+                                                                                      BufferAdaptor!.pixelBufferPool!, &PixelBuffer)
+                            if PixelBuffer != nil && Status == 0
+                            {
+                                let ManagedBuffer = PixelBuffer!
+                                CVPixelBufferLockBaseAddress(ManagedBuffer, CVPixelBufferLockFlags(rawValue: 0))
+                                let PixelData = CVPixelBufferGetBaseAddress(ManagedBuffer)
+                                let ColorSpace = CGColorSpaceCreateDeviceRGB()
+                                let Context = CGContext(data: PixelData,
+                                                        width: Int(Size.width),
+                                                        height: Int(Size.height),
+                                                        bitsPerComponent: 8,
+                                                        bytesPerRow: CVPixelBufferGetBytesPerRow(ManagedBuffer),
+                                                        space: ColorSpace,
+                                                        bitmapInfo: CGImageAlphaInfo.premultipliedFirst.rawValue)
+                                Context?.clear(CGRect(origin: CGPoint.zero, size: Size))
+                                Context?.draw(Working.cgImage!, in: CGRect(origin: CGPoint.zero, size: Size))
+                                CVPixelBufferUnlockBaseAddress(ManagedBuffer, CVPixelBufferLockFlags(rawValue: 0))
+                                AppendedOK = BufferAdaptor!.append(ManagedBuffer, withPresentationTime: PresentationTime)
+                            }
+                            else
+                            {
+                                Log.Message("Failed to allocate pixel buffer.")
+                                AppendedOK = false
+                            }
+                            FrameCount = FrameCount + 1
+                        }
                 }
             }
         }
         WriterInput?.markAsFinished()
         Writer?.finishWriting
             {
-            Log.Message("Video written OK.")
+                Log.Message("Video written OK.")
         }
     }
     
@@ -146,12 +154,14 @@ class VideoGenerator
     private static var WriterInput: AVAssetWriterInput? = nil
     private static var BufferAdaptor: AVAssetWriterInputPixelBufferAdaptor? = nil
     
+    /// Initialized the buffer writer.
     public static func InitializeWriter()
     {
         if Writer!.canAdd(WriterInput!)
         {
             Writer!.add(WriterInput!)
         }
+        /*
         if Writer!.startWriting()
         {
             Writer?.startSession(atSourceTime: CMTime.zero)
@@ -161,17 +171,22 @@ class VideoGenerator
         {
             fatalError("startWriting failed.")
         }
+ */
     }
     
+    /// Create an asset writer pixel buffer used by AVFoundation when creating videos from a series of images.
+    /// - Parameter Size: Size (dimensions) of each image.
     public static func CreateBuffer(Size: CGSize)
     {
         let BufferSettings: [String: Any] =
-        [
-            kCVPixelBufferPixelFormatTypeKey as String: kCVPixelFormatType_32ARGB,
-            kCVPixelBufferWidthKey as String: NSNumber(value: Float(Size.width)),
-            kCVPixelBufferHeightKey as String: NSNumber(value: Float(Size.height))
+            [
+                kCVPixelBufferPixelFormatTypeKey as String: kCVPixelFormatType_32ARGB,
+                kCVPixelBufferWidthKey as String: NSNumber(value: Float(Size.width)),
+                kCVPixelBufferHeightKey as String: NSNumber(value: Float(Size.height))
         ]
         BufferAdaptor = AVAssetWriterInputPixelBufferAdaptor(assetWriterInput: WriterInput!, sourcePixelBufferAttributes: BufferSettings)
+        
+
     }
     
     public static func CreateWriter(Size: CGSize)
