@@ -82,6 +82,8 @@ class ViewController: UIViewController,
         let Gradient = Colors.GetGradientFor(CurrentViewMode, Container: MainBottomBar.bounds)
         MainBottomBar.layer.addSublayer(Gradient)
         ImageBottomBar.layer.addSublayer(Colors.GetProcessingGradient(Container: ImageBottomBar.bounds))
+        
+        FileIO.ClearScratchDirectory()
     }
     
     /// Show the splash screen (if settings allow).
@@ -603,7 +605,7 @@ class ViewController: UIViewController,
                     _ in
                     self.SaveRecordedScene()
             }))
-            Alert.addAction(UIAlertAction(title: NSLocalizedString("GenericNo", comment: ""), style: .default, handler: nil))
+            Alert.addAction(UIAlertAction(title: NSLocalizedString("GenericNo", comment: ""), style: .destructive, handler: nil))
             #else
             Alert.addAction(UIAlertAction(title: "Yes", style: .default, handler:
                 {
