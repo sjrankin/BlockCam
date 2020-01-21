@@ -122,6 +122,7 @@ extension ViewController
         {
             SceneRecorderButton.frame = NewRect
         }
+        SceneMotionRecorderView.layer.addSublayer(Colors.GetSceneRecordGradient(Container: SceneMotionRecorderView.bounds))
     }
     
     // MARK: - Code for switching between live view and edit view.
