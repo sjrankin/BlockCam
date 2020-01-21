@@ -119,6 +119,15 @@ class SmallStatusDisplay: UIView
         {
             BottomPercent.isHidden = true
         }
+        
+        self.layer.sublayers?.forEach
+            {
+                if $0.name == "GradientBackground"
+                {
+                    $0.removeFromSuperlayer()
+                }
+        }
+        self.layer.addSublayer(Colors.GetCompositeStatusGradient(Container: self.bounds))
     }
     
     // MARK: - Controlling functions.
