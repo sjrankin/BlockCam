@@ -35,7 +35,9 @@ class FloatingText: UIView
         self.layer.borderWidth = 0.5
         self.layer.cornerRadius = 5.0
         //self.layer.backgroundColor = UIColor(red: 138.0 / 255.0, green: 43.0 / 255.0, blue: 226.0 / 255.0, alpha: 1.0).cgColor
-        self.layer.backgroundColor = UIColor(red: 19.0 / 255.0, green: 41.0 / 255.0, blue: 81.0 / 255.0, alpha: 1.0).cgColor
+        //self.layer.backgroundColor = UIColor(red: 19.0 / 255.0, green: 41.0 / 255.0, blue: 81.0 / 255.0, alpha: 1.0).cgColor
+        //self.layer.addSublayer(Colors.GetCompositeTextGradient(Container: self.bounds))
+        self.layer.backgroundColor = UIColor.clear.cgColor
         self.clipsToBounds = true
     }
     
