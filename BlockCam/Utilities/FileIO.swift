@@ -487,6 +487,16 @@ class FileIO
         }
     }
     
+    /// Delete the specified file. If the file does not exist, return without any errors being issued.
+    /// - Parameter FileURL: The URL of the file to delete.
+    public static func DeleteIfPresent(_ FileURL: URL)
+    {
+        if FileManager.default.fileExists(atPath: FileURL.path)
+        {
+            DeleteFile(FileURL)
+        }
+    }
+    
     /// Return the size of the file.
     /// - Parameter For: The URL of the file whose file size will be returned.
     /// - Returns: Size of the file in bytes.
