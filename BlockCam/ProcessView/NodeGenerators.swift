@@ -359,6 +359,26 @@ extension Generator
         }
     }
     
+    private static func MakeStackShape(Prominence: CGFloat, Color: UIColor, Side: CGFloat,
+                                       ZLocation: inout CGFloat, DoXRotate: inout Bool) -> SCNNode2
+    {
+        DoXRotate = false
+        ZLocation = 0.0
+        let StackNode = SCNNode2()
+        let Count = Int((Prominence * 2.0 / Side)) + 1
+        for Node in 0 ..< Count
+        {
+//            let Stacked = SCNNode(geometry: SCNSphere(radius: Side))
+            let Stacked = SCNNode(geometry: SCNBox(width: Side, height: Side, length: Side, chamferRadius: Side * 0.05))
+            Stacked.geometry?.firstMaterial?.diffuse.contents = Color
+            Stacked.geometry?.firstMaterial?.specular.contents = UIColor.white
+            Stacked.geometry?.firstMaterial?.lightingModel = GetLightModel()
+            Stacked.position = SCNVector3(0.0, 0.0, Side * CGFloat(Node))
+            StackNode.addChildNode(Stacked)
+        }
+    return StackNode
+    }
+    
     /// Create a node of combined nodes for a given shape type.
     /// - Parameter ForShape: The shape of the node whose node is returned.
     /// - Parameter Side: The length of the side of the node.
@@ -376,6 +396,9 @@ extension Generator
         
         switch ForShape
         {
+            case .StackedShapes:
+            return MakeStackShape(Prominence: Prominence, Color: Color, Side: Side, ZLocation: &ZLocation, DoXRotate: &DoXRotate)
+            
             case .Flowers:
                 AncillaryNode = SCNNode2()
                 var PetalCount = Settings.GetInteger(ForKey: .FlowerPetalCount)
