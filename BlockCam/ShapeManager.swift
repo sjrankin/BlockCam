@@ -48,7 +48,7 @@ class ShapeManager
             ("Polygons", [NodeShapes.Triangles.rawValue, NodeShapes.Pentagons.rawValue, NodeShapes.Hexagons.rawValue,
                           NodeShapes.Octagons.rawValue, NodeShapes.Stars.rawValue]),
             ("Solids", [NodeShapes.Tetrahedrons.rawValue]),
-            ("Combined", [NodeShapes.Lines.rawValue, NodeShapes.CappedLines.rawValue, NodeShapes.Flowers.rawValue,
+            ("Combined", [NodeShapes.Lines.rawValue, NodeShapes.CappedLines.rawValue, NodeShapes.StackedShapes.rawValue,
                           NodeShapes.RadiatingLines.rawValue,
                           NodeShapes.PerpendicularSquares.rawValue, NodeShapes.PerpendicularCircles.rawValue,
                           NodeShapes.CombinedForRGB.rawValue, NodeShapes.CombinedForHSB.rawValue]),
@@ -70,7 +70,8 @@ class ShapeManager
     private static var _OptionsAvailable = [NodeShapes.Letters, NodeShapes.Meshes, NodeShapes.CappedLines, NodeShapes.Stars,
                                             NodeShapes.Blocks, NodeShapes.RadiatingLines, NodeShapes.Cones, NodeShapes.Ellipses,
                                             NodeShapes.HueVarying, NodeShapes.SaturationVarying, NodeShapes.BrightnessVarying,
-                                            NodeShapes.Flowers, NodeShapes.Characters, NodeShapes.CharacterSets]
+                                            NodeShapes.Flowers, NodeShapes.Characters, NodeShapes.CharacterSets,
+                                            NodeShapes.StackedShapes]
     /// Returns a table of node shapes that take options.
     public static var OptionsAvailable: [NodeShapes]
     {
@@ -285,6 +286,8 @@ enum NodeShapes: String, CaseIterable
     case Flowers = "Stylized Flower"
     /// Pre-defined character sets.
     case CharacterSets = "Character Sets"
+    /// Stacks of shaped oriented in the prominence dimension.
+    case StackedShapes = "Stacked Shapes"
 }
 
 enum ShapeSeriesSet: String, CaseIterable
