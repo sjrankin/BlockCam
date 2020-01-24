@@ -158,7 +158,7 @@ class Menu_ShapeSettings: UITableViewController, UIPickerViewDelegate, UIPickerV
             .ConeTopOptions, .HeightSource, .InvertHeight, .VerticalExaggeration, .InvertDynamicColorProcess,
             .DynamicColorAction, .DynamicColorType, .DynamicColorCondition, .SceneBackgroundColor, .SourceAsBackground,
             .CappedLineCapShape, .EllipseShape, .CharacterRandomFontSize, .CharacterFontName, .CharacterRandomRange,
-            .CharacterUsesRandomFont, .CharacterSeries
+            .CharacterUsesRandomFont, .CharacterSeries, .StackedShapesSet
     ]
     
     @IBAction func HandleDonePressed(_ sender: Any)
@@ -253,9 +253,9 @@ class Menu_ShapeSettings: UITableViewController, UIPickerViewDelegate, UIPickerV
                     self.navigationController?.pushViewController(Controller, animated: true)
             }
             
-            case .Flowers:
+            case .StackedShapes:
                 let Storyboard = UIStoryboard(name: "Secondary", bundle: nil)
-                if let Controller = Storyboard.instantiateViewController(identifier: "FlowerSettingsUI") as? Menu_FlowerSettings
+                if let Controller = Storyboard.instantiateViewController(identifier: "StackedShapeSettingsUI") as? Menu_StackedShapeSettings
                 {
                     self.navigationController?.pushViewController(Controller, animated: true)
             }
