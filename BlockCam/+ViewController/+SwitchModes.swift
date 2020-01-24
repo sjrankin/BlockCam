@@ -82,6 +82,11 @@ extension ViewController
         {
             SwitchCameraButton.frame = NewRect
         }
+        let InfoLocation: CGFloat = UIDevice.current.userInterfaceIdiom == .phone ? 0.72 : 0.75
+        if let NewRect = MoveButton(LiveViewInfoButton, To: InfoLocation)
+        {
+            LiveViewInfoButton.frame = NewRect
+        }
         
         //Initilize the bottom live view bar.
         MainBottomBar.frame = CGRect(x: 0,
@@ -121,6 +126,10 @@ extension ViewController
         if let NewRect = MoveButton(SceneRecorderButton, To: 0.5)
         {
             SceneRecorderButton.frame = NewRect
+        }
+        if let NewRect = MoveButton(SceneRecordInfoButton, To: 1.0)
+        {
+            SceneRecordInfoButton.frame = NewRect
         }
         SceneMotionRecorderView.layer.addSublayer(Colors.GetSceneRecordGradient(Container: SceneMotionRecorderView.bounds))
     }
