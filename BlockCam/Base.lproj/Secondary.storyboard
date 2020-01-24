@@ -7,7 +7,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Colors-->
+        <!--Conditional Colors-->
         <scene sceneID="TkE-QT-0Bk">
             <objects>
                 <tableViewController id="D8b-CE-DUF" customClass="Menu_DynamicColors" customModule="BlockCam" customModuleProvider="target" sceneMemberID="viewController">
@@ -175,7 +175,7 @@
                             <outlet property="delegate" destination="D8b-CE-DUF" id="ty2-X2-d6A"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Colors" id="yzv-o8-cwn"/>
+                    <navigationItem key="navigationItem" title="Conditional Colors" id="yzv-o8-cwn"/>
                     <connections>
                         <outlet property="ConditionLabel" destination="vQ9-Hc-J1x" id="94y-cI-XxD"/>
                         <outlet property="ConditionalColorAction" destination="WFb-Ma-eMF" id="xuw-I8-fyT"/>
@@ -576,6 +576,87 @@
             </objects>
             <point key="canvasLocation" x="1646.376811594203" y="-679.07608695652175"/>
         </scene>
+        <!--Stacked Shape Options-->
+        <scene sceneID="h83-Xq-moD">
+            <objects>
+                <viewController storyboardIdentifier="StackedShapeSettingsUI" id="dsY-Ne-6ke" customClass="Menu_StackedShapeSettings" customModule="BlockCam" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="KXg-tO-sPI">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Ita-kQ-Hbp">
+                                <rect key="frame" x="20" y="54" width="374" height="519"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="519" id="cTP-BQ-PZI"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
+                                        <real key="value" value="0.5"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <outlet property="dataSource" destination="dsY-Ne-6ke" id="BYg-fm-Cao"/>
+                                    <outlet property="delegate" destination="dsY-Ne-6ke" id="0KJ-LD-BX5"/>
+                                </connections>
+                            </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Long-press the shape to change it." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lXU-Fe-rYw">
+                                <rect key="frame" x="20" y="581" width="374" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3qi-8Z-xr0">
+                                <rect key="frame" x="0.0" y="692" width="414" height="44"/>
+                                <items>
+                                    <barButtonItem title="Item" image="plus.app" catalog="system" id="R2s-Mz-UP0">
+                                        <connections>
+                                            <action selector="HandleAddButton:" destination="dsY-Ne-6ke" id="cT4-M0-bd6"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem width="42" style="plain" systemItem="fixedSpace" id="RIo-3x-45X"/>
+                                    <barButtonItem title="Item" image="square.and.pencil" catalog="system" id="TUR-ad-zA0">
+                                        <connections>
+                                            <action selector="HandleEditTableButton:" destination="dsY-Ne-6ke" id="rlT-wj-taI"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="5ul-Qd-lxu"/>
+                                    <barButtonItem systemItem="trash" id="U27-8r-l4Z">
+                                        <color key="tintColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <connections>
+                                            <action selector="HandleClearAllShapes:" destination="dsY-Ne-6ke" id="lwP-3G-idY"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="Ita-kQ-Hbp" firstAttribute="top" secondItem="qH0-1P-mHS" secondAttribute="top" constant="10" id="Eog-E8-LeJ"/>
+                            <constraint firstItem="Ita-kQ-Hbp" firstAttribute="leading" secondItem="lXU-Fe-rYw" secondAttribute="leading" id="Mgi-Z4-bH9"/>
+                            <constraint firstItem="Ita-kQ-Hbp" firstAttribute="leading" secondItem="KXg-tO-sPI" secondAttribute="leadingMargin" id="T0l-Iz-vaI"/>
+                            <constraint firstItem="Ita-kQ-Hbp" firstAttribute="trailing" secondItem="KXg-tO-sPI" secondAttribute="trailingMargin" id="TFC-Fz-dQf"/>
+                            <constraint firstItem="3qi-8Z-xr0" firstAttribute="leading" secondItem="qH0-1P-mHS" secondAttribute="leading" id="Uwp-w2-93e"/>
+                            <constraint firstItem="Ita-kQ-Hbp" firstAttribute="trailing" secondItem="lXU-Fe-rYw" secondAttribute="trailing" id="gI0-cR-Isy"/>
+                            <constraint firstItem="3qi-8Z-xr0" firstAttribute="bottom" secondItem="qH0-1P-mHS" secondAttribute="bottom" id="hzW-fu-uIm"/>
+                            <constraint firstItem="lXU-Fe-rYw" firstAttribute="top" secondItem="Ita-kQ-Hbp" secondAttribute="bottom" constant="8" id="oM3-PK-PXH"/>
+                            <constraint firstItem="Ita-kQ-Hbp" firstAttribute="centerX" secondItem="3qi-8Z-xr0" secondAttribute="centerX" id="tHC-X4-jaz"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="qH0-1P-mHS"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Stacked Shape Options" id="58X-Tf-LOl"/>
+                    <connections>
+                        <outlet property="DeleteEverythingButton" destination="U27-8r-l4Z" id="Abr-cj-VVT"/>
+                        <outlet property="StackedShapeTable" destination="Ita-kQ-Hbp" id="tfJ-U5-yVM"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Wn7-Or-sTU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2196" y="64"/>
+        </scene>
         <!--Shape Options-->
         <scene sceneID="ADM-EE-jc2">
             <objects>
@@ -789,11 +870,12 @@
                         <segue destination="OGS-Fz-dhB" kind="show" id="hJp-RK-aRH"/>
                         <segue destination="48m-ER-On2" kind="show" id="RoY-Uq-T5n"/>
                         <segue destination="Tk8-UN-L3V" kind="show" id="34Q-3o-CE0"/>
-                        <segue destination="Qx8-N9-oNh" kind="show" id="sEu-gb-p16"/>
+                        <segue destination="Qx8-N9-oNh" kind="show" identifier="ToCompositeShapeOptions" id="sEu-gb-p16"/>
                         <segue destination="Ka3-fs-H9F" kind="show" id="eC5-yD-JWE"/>
                         <segue destination="RLF-0j-wte" kind="show" id="8Ua-FA-Xhy"/>
                         <segue destination="SaD-VS-YNX" kind="show" id="7JN-RS-0pi"/>
                         <segue destination="onx-TP-Luv" kind="show" id="ceA-9X-taX"/>
+                        <segue destination="dsY-Ne-6ke" kind="show" identifier="ToStackedShapeOptions" id="BhW-bM-oUV"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dNH-5W-MAy" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1929,7 +2011,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qHz-S4-6ww" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2007" y="58"/>
+            <point key="canvasLocation" x="1332" y="64"/>
         </scene>
         <!--Character Options-->
         <scene sceneID="a3n-jy-Sh8">
