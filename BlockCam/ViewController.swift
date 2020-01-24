@@ -456,6 +456,10 @@ class ViewController: UIViewController,
     /// - Parameter sender: Not used.
     @IBAction func HandleSwitchModeButtonPressed(_ sender: Any)
     {
+        if Settings.GetBoolean(ForKey: .EnableButtonPressSounds)
+        {
+            Sounds.PlaySound(.Tock)
+        }
         HideTitle(After: 0.0, HideDuration: 0.5, HideHow: .FadeOut)
         CurrentView = CurrentView + 1
         if CurrentView > ViewOrder.count - 1
@@ -510,12 +514,59 @@ class ViewController: UIViewController,
     /// - Parameter sender: Not used.
     @IBAction func HandleSwitchCameras(_ sender: Any)
     {
+        if Settings.GetBoolean(ForKey: .EnableButtonPressSounds)
+        {
+            Sounds.PlaySound(.Tock)
+        }
         HideTitle(After: 0.0, HideDuration: 0.5, HideHow: .FadeOut)
         UsingBackCamera = !UsingBackCamera
         InitializeLiveView(UseBackCamera: UsingBackCamera)
     }
     
     var UsingBackCamera: Bool = true
+    
+    /// Show the quick help text for the record scene toolbar.
+    @IBAction func HandleVideoInfoButtonPressed(_ sender: Any)
+    {
+        if Settings.GetBoolean(ForKey: .EnableButtonPressSounds)
+        {
+            Sounds.PlaySound(.Tock)
+        }
+        let Alert = UIAlertController(title: "Quick Help",
+                                      message: "Press the Record button to start. Move the scene with your finger. Press the Stop button to stop.",
+                                      preferredStyle: .alert)
+        Alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        self.present(Alert, animated: true, completion: nil)
+    }
+    
+    @IBAction func HandleLiveViewInfoButtonPressed(_ sender: Any)
+    {
+        if Settings.GetBoolean(ForKey: .EnableButtonPressSounds)
+        {
+            Sounds.PlaySound(.Tock)
+        }
+        var Message = ""
+        switch CurrentViewMode
+        {
+            case .LiveView:
+            Message = "Long press the live view to set various image processing options."
+            
+            case .PhotoLibrary:
+            Message = "Long press the processed view to set image processing options. If no processed view visible, long press the black region."
+        
+            case .MakeVideo:
+                Message = "Long press the live view to set various image processing options."
+            
+            default:
+            return
+        }
+        
+        let Alert = UIAlertController(title: "Quick Help",
+                                      message: Message,
+                                      preferredStyle: .alert)
+        Alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        self.present(Alert, animated: true, completion: nil)
+    }
     
     // MARK: - Image processing save functions.
     
@@ -842,7 +893,7 @@ class ViewController: UIViewController,
                                      SettingKeys.DynamicColorCondition, SettingKeys.SourceAsBackground, SettingKeys.EllipseShape,
                                      SettingKeys.IncreasePetalCountWithProminence, SettingKeys.CharacterUsesRandomFont,
                                      SettingKeys.CharacterRandomRange, SettingKeys.CharacterFontName, SettingKeys.CharacterRandomFontSize,
-                                     SettingKeys.CharacterSeries]
+                                     SettingKeys.CharacterSeries, SettingKeys.StackedShapesSet]
             let SceneOptions = [SettingKeys.SceneBackgroundColor]
             
             if Utilities.ArrayContains(AnyOf: SceneOptions, In: Working)
@@ -928,6 +979,8 @@ class ViewController: UIViewController,
     @IBOutlet weak var StatusMainLabel: UILabel!
     @IBOutlet weak var UIMenuPrompt: UILabel!
     
+    @IBOutlet weak var LiveViewInfoButton: UIButton!
+    @IBOutlet weak var SceneRecordInfoButton: UIButton!
     @IBOutlet weak var SceneRecorderButton: UIButton!
     @IBOutlet weak var CloseSceneRecorderViewButton: UIButton!
     @IBOutlet weak var SceneMotionRecorderView: UIView!
