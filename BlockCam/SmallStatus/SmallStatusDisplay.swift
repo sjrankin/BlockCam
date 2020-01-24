@@ -60,7 +60,28 @@ class SmallStatusDisplay: UIView
         WaitingIndicator.layer.zPosition = 500
         WaitingIndicator.stopAnimating()
         self.addSubview(WaitingIndicator)
+        HelpButton = UIButton(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
+        HelpButton.addTarget(self, action: #selector(ShowHelpAlert), for: UIControl.Event.touchUpInside)
+        HelpButton.setImage(UIImage(systemName: "info.circle",
+                                    withConfiguration: UIImage.SymbolConfiguration(pointSize: 30.0, weight: .bold)),
+                            for: .normal)
+        HelpButton.tintColor = UIColor.white
+        HelpButton.isUserInteractionEnabled = false
+        HelpButton.alpha = 0.0
+        HelpButton.layer.zPosition = -1000
+        self.addSubview(HelpButton)
         self.clipsToBounds = true
+    }
+    
+    // MARK: - Help display.
+    
+    @objc func ShowHelpAlert(_ sender: Any)
+    {
+        let Alert = UIAlertController(title: "Quick Help",
+                                      message: "Long-press the processed image to see a menu of options.",
+                                      preferredStyle: .alert)
+        Alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        self.ParentViewController!.present(Alert, animated: true, completion: nil)
     }
     
     // MARK: - Initialization and run-time updating.
@@ -80,6 +101,10 @@ class SmallStatusDisplay: UIView
         TextBox.layer.borderWidth = 0.5
         TextBox.layer.cornerRadius = 5.0
         TextBox.layer.borderColor = UIColor.black.cgColor
+        
+        HelpButton.frame = CGRect(x: (Margin * 2.0) + TextWidth,
+                                  y: Margin,
+                                  width: PercentWidth, height: PercentWidth)
         
         if ShowTaskPercentage
         {
@@ -166,6 +191,22 @@ class SmallStatusDisplay: UIView
         BottomPercent.AnimateTo(To, WithDuration: Duration)
     }
     
+    /// Show the help button.
+    public func ShowHelp()
+    {
+        HelpButton.isUserInteractionEnabled = true
+        HelpButton.alpha = 1.0
+        HelpButton.layer.zPosition = 1000
+    }
+    
+    /// Hide the help button.
+    public func HideHelp()
+    {
+        HelpButton.isUserInteractionEnabled = false
+        HelpButton.alpha = 0.0
+        HelpButton.layer.zPosition = -1000
+    }
+    
     // MARK: - Controlling properties.
     
     /// Holds the current thickness of the overall task complete bar.
@@ -195,6 +236,7 @@ class SmallStatusDisplay: UIView
         didSet
         {
             Initialize()
+            HideHelp()
         }
     }
     /// Get or set the show task percentage flag.
@@ -216,6 +258,7 @@ class SmallStatusDisplay: UIView
         didSet
         {
             Initialize()
+            HideHelp()
         }
     }
     /// Get or set the show indefinite indicator flag.
@@ -333,4 +376,5 @@ class SmallStatusDisplay: UIView
     private var BottomPercent: LinearPercent!
     private var TextBox: FloatingText!
     private var WaitingIndicator: UIActivityIndicatorView!
+    private var HelpButton: UIButton!
 }
