@@ -232,7 +232,7 @@ extension Generator
                 FinalShape = SCNTriangle.Geometry(A: Float(Prominence * 1.5), B: Float(Prominence * 1.5),
                                                   C: Float(Prominence * 1.5), Scale: Float(Side * 2.0))
             
-
+            
             
             case .Pentagons:
                 FinalShape = SCNnGon.Geometry(VertexCount: 5, Radius: Side, Depth: Prominence * 2)
@@ -304,7 +304,7 @@ extension Generator
         switch CapShape
         {
             case .Sphere:
-                 Shape = SCNSphere(radius: Side)
+                Shape = SCNSphere(radius: Side)
             
             case .Circle:
                 Shape = SCNCylinder(radius: Side * 0.85, height: 0.05)
@@ -359,6 +359,62 @@ extension Generator
         }
     }
     
+    /// Generate and return a "flat" node (which is really just a barely extruded 2D shape).
+    /// - Warning: If the shape is not recognized, a fatal error is generated.
+    /// - Parameter FlatShape: Determines which shape to return.
+    /// - Parameter Promience: Prominence of the shape's color.
+    /// - Parameter Side: Length of the side of the pixellated region.
+    /// - Parameter Color: The color of the node.
+    /// - Parameter ZLocation: The returned Z axis location.
+    /// - Returns: `SCNNode2` instance with the specfied node.
+    public static func GenerateFlatShape(FlatShape: NodeShapes, Prominence: CGFloat, Side: CGFloat,
+                                         Color: UIColor, ZLocation: inout CGFloat) -> SCNNode2
+    {
+        var Node: SCNNode2!
+        switch FlatShape
+        {
+            case .Square2D:
+                let Geo = SCNBox(width: Side * 1.5, height: Side * 1.5, length: 0.05, chamferRadius: 0.0)
+                Node = SCNNode2(geometry: Geo)
+            
+            case .Rectangle2D:
+                let Geo = SCNBox(width: Side * 1.5, height: Side * 0.75, length: 0.05, chamferRadius: 0.0)
+                Node = SCNNode2(geometry: Geo)
+            
+            case .Circle2D:
+                let Geo = SCNCylinder(radius: Side * 0.85, height: 0.05)
+                Node = SCNNode2(geometry: Geo)
+                Node.rotation = SCNVector4(1.0, 0.0, 0.0, 90.0 * CGFloat.pi / 180.0)
+            
+            case .Oval2D:
+                let (Major, Minor) = GetEllipseParameters()
+                let Geo = SCNEllipse.Geometry(MajorAxis: Side * Major, MinorAxis: Side * Minor, Height: 0.05)
+                Node = SCNNode2(geometry: Geo)
+                Node.scale = SCNEllipse.ReciprocalScale()
+            
+            case .Triangle2D:
+                let Geo = SCNTriangle.Geometry(A: 0.05, B: 0.05, C: 0.05, Scale: 1.0)
+                Node = SCNNode2(geometry: Geo)
+            
+            case .Star2D:
+                let Dim = Double(Side * 1.5)
+                let Geo = SCNStar.Geometry(VertexCount: 5, Height: Dim, Base: Dim * 0.5, ZHeight: 0.05)
+                Node = SCNNode2(geometry: Geo)
+            
+            default:
+                Log.AbortMessage("Unexpected flat shape encountered: \(FlatShape.rawValue)", FileName: #file, FunctionName: #function)
+                {
+                    Message in
+                    fatalError(Message)
+            }
+        }
+        ZLocation = Prominence * 2.0
+        Node.geometry?.firstMaterial?.diffuse.contents = Color
+        Node.geometry?.firstMaterial?.specular.contents = UIColor.white
+        Node.geometry?.firstMaterial?.lightingModel = GetLightModel()
+        return Node
+    }
+    
     private static func MakeStackShape(Prominence: CGFloat, Color: UIColor, Side: CGFloat,
                                        ZLocation: inout CGFloat, DoXRotate: inout Bool) -> SCNNode2
     {
@@ -368,7 +424,7 @@ extension Generator
         let Count = Int((Prominence * 2.0 / Side)) + 1
         for Node in 0 ..< Count
         {
-//            let Stacked = SCNNode(geometry: SCNSphere(radius: Side))
+            //            let Stacked = SCNNode(geometry: SCNSphere(radius: Side))
             let Stacked = SCNNode(geometry: SCNBox(width: Side, height: Side, length: Side, chamferRadius: Side * 0.05))
             Stacked.geometry?.firstMaterial?.diffuse.contents = Color
             Stacked.geometry?.firstMaterial?.specular.contents = UIColor.white
@@ -376,7 +432,7 @@ extension Generator
             Stacked.position = SCNVector3(0.0, 0.0, Side * CGFloat(Node))
             StackNode.addChildNode(Stacked)
         }
-    return StackNode
+        return StackNode
     }
     
     /// Create a node of combined nodes for a given shape type.
@@ -397,26 +453,7 @@ extension Generator
         switch ForShape
         {
             case .StackedShapes:
-            return MakeStackShape(Prominence: Prominence, Color: Color, Side: Side, ZLocation: &ZLocation, DoXRotate: &DoXRotate)
-            
-            case .Flowers:
-                AncillaryNode = SCNNode2()
-                var PetalCount = Settings.GetInteger(ForKey: .FlowerPetalCount)
-                if Settings.GetBoolean(ForKey: .IncreasePetalCountWithProminence)
-                {
-                    PetalCount = PetalCount + Int(Prominence * 1.3)
-                    if PetalCount > 8
-                    {
-                        PetalCount = 8
-                    }
-                }
-                let FinalGeometry = SCNFlower2.Geometry(InteriorRadius: Side * 1.5, PetalRadius: Side * 0.75, PetalCount: PetalCount,
-                                                 Extrusion: Prominence * 2)
-                AncillaryNode?.geometry = FinalGeometry
-                AncillaryNode?.scale = SCNFlower2.ReciprocalScale()
-                AncillaryNode?.geometry?.firstMaterial?.diffuse.contents = Color
-                AncillaryNode?.geometry?.firstMaterial?.specular.contents = UIColor.white
-                AncillaryNode?.geometry?.firstMaterial?.lightingModel = GetLightModel()
+                return MakeStackShape(Prominence: Prominence, Color: Color, Side: Side, ZLocation: &ZLocation, DoXRotate: &DoXRotate)
             
             case .Ellipses:
                 let (Major, Minor) = GetEllipseParameters()
@@ -477,7 +514,7 @@ extension Generator
                 Node2.eulerAngles = SCNVector3(90.0 * CGFloat.pi / 180.0, 0.0, 0.0)
                 AncillaryNode?.addChildNode(Node1)
                 AncillaryNode?.addChildNode(Node2)
-            AncillaryNode?.rotation = SCNVector4(0.0, 1.0, 0.0, 90.0 * CGFloat.pi / 180.0)
+                AncillaryNode?.rotation = SCNVector4(0.0, 1.0, 0.0, 90.0 * CGFloat.pi / 180.0)
             
             case .CappedLines:
                 var BallLocation = BallLocations.Top
@@ -769,7 +806,7 @@ extension Generator
         return FinalShape!
     }
     
-     typealias FontData = (Family: String, Weights: [String], PSNames: [String])
+    typealias FontData = (Family: String, Weights: [String], PSNames: [String])
     
     private static func CharacterFont() -> (Font: UIFont, Name: String, Size: CGFloat)
     {
@@ -788,7 +825,7 @@ extension Generator
             #if false
             if RandomFontList == nil
             {
-            let FontSizeCount = Settings.GetInteger(ForKey: .CharacterRandomFontCount)
+                let FontSizeCount = Settings.GetInteger(ForKey: .CharacterRandomFontCount)
                 RandomFontList = Utilities.RandomlySelectedFontList(FontSizeCount)
             }
             FontName = RandomFontList?.randomElement()!
