@@ -181,6 +181,7 @@ class Settings
         UserDefaults.standard.set(false, forKey: SettingKeys.AllPermissionsGranted.rawValue)
         UserDefaults.standard.set(false, forKey: SettingKeys.CameraAccessGranted.rawValue)
         UserDefaults.standard.set(false, forKey: SettingKeys.PhotoRollAccessGranted.rawValue)
+        UserDefaults.standard.set("Blocks", forKey: SettingKeys.StackedShapesSet.rawValue)
     }
     
     /// Call all subscribers in the notification list to let them know a setting will be changed.
@@ -710,6 +711,7 @@ class Settings
             SettingKeys.CharacterRandomRange,
             SettingKeys.CharacterFontName,
             SettingKeys.CharacterSeries,
+            SettingKeys.StackedShapesSet,
     ]
     
     /// Contains a list of all double-type fields.
@@ -816,6 +818,8 @@ enum SettingKeys: String, CaseIterable, Comparable, Hashable
     case CharacterRandomFontSize = "CharacterRandomFontSize"
     /// String: Which character set to use with the character series shape.
     case CharacterSeries = "CharacterSeries"
+    /// String: Comma-separated list of shapes for stacked shapes.
+    case StackedShapesSet = "StackedShapesSet"
     
     //Dynamic color settings.
     /// String: The type of dynamic color enabled (if any).
