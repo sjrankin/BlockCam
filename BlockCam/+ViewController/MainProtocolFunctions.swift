@@ -99,6 +99,7 @@ extension ViewController: MainProtocol
                         self.CompositeStatus.AddText("Press image for settings")
                     }
                 }
+                self.CompositeStatus.ShowHelp()
         }
     }
     
