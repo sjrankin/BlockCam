@@ -33,9 +33,9 @@ class ShapeManager
     /// Holds the dictionary of minimum pixel sizes for various shapes. This is to restrict complex
     /// shapes from bogging down or freezing the program.
     private static let ShapeSizeRestrictions =
-    [
-        NodeShapes.RadiatingLines: 32,
-        NodeShapes.Characters: 32,
+        [
+            NodeShapes.RadiatingLines: 32,
+            NodeShapes.Characters: 32,
     ]
     
     /// Table of shape categories and the shapes in them.
@@ -44,18 +44,19 @@ class ShapeManager
             ("Standard", [NodeShapes.Blocks.rawValue, NodeShapes.Spheres.rawValue, NodeShapes.Toroids.rawValue,
                           NodeShapes.Ellipses.rawValue, NodeShapes.Diamonds.rawValue, NodeShapes.Cylinders.rawValue,
                           NodeShapes.Capsules.rawValue, NodeShapes.Cones.rawValue, NodeShapes.HueTriangles.rawValue,
-                          NodeShapes.Pyramids.rawValue]),
+                          NodeShapes.Pyramids.rawValue, NodeShapes.Tetrahedrons.rawValue]),
             ("Polygons", [NodeShapes.Triangles.rawValue, NodeShapes.Pentagons.rawValue, NodeShapes.Hexagons.rawValue,
                           NodeShapes.Octagons.rawValue, NodeShapes.Stars.rawValue]),
-            ("Solids", [NodeShapes.Tetrahedrons.rawValue]),
             ("Combined", [NodeShapes.Lines.rawValue, NodeShapes.CappedLines.rawValue, NodeShapes.StackedShapes.rawValue,
-                          NodeShapes.RadiatingLines.rawValue,
-                          NodeShapes.PerpendicularSquares.rawValue, NodeShapes.PerpendicularCircles.rawValue,
-                          NodeShapes.CombinedForRGB.rawValue, NodeShapes.CombinedForHSB.rawValue]),
+                          NodeShapes.RadiatingLines.rawValue, NodeShapes.PerpendicularSquares.rawValue,
+                          NodeShapes.PerpendicularCircles.rawValue, NodeShapes.CombinedForRGB.rawValue,
+                          NodeShapes.CombinedForHSB.rawValue]),
             ("Complex", [NodeShapes.Letters.rawValue, NodeShapes.Characters.rawValue,
                          NodeShapes.CharacterSets.rawValue, NodeShapes.Meshes.rawValue,
                          NodeShapes.HueVarying.rawValue, NodeShapes.SaturationVarying.rawValue,
                          NodeShapes.BrightnessVarying.rawValue]),
+            ("Flat Shapes", [NodeShapes.Square2D.rawValue, NodeShapes.Rectangle2D.rawValue, NodeShapes.Triangle2D.rawValue,
+                             NodeShapes.Circle2D.rawValue, NodeShapes.Oval2D.rawValue, NodeShapes.Star2D.rawValue]),
     ]
     /// Get the table of shape categories.
     public static var ShapeCategories: [(CategoryName: String, List: [String])]
@@ -70,8 +71,7 @@ class ShapeManager
     private static var _OptionsAvailable = [NodeShapes.Letters, NodeShapes.Meshes, NodeShapes.CappedLines, NodeShapes.Stars,
                                             NodeShapes.Blocks, NodeShapes.RadiatingLines, NodeShapes.Cones, NodeShapes.Ellipses,
                                             NodeShapes.HueVarying, NodeShapes.SaturationVarying, NodeShapes.BrightnessVarying,
-                                            NodeShapes.Flowers, NodeShapes.Characters, NodeShapes.CharacterSets,
-                                            NodeShapes.StackedShapes]
+                                            NodeShapes.Characters, NodeShapes.CharacterSets, NodeShapes.StackedShapes]
     /// Returns a table of node shapes that take options.
     public static var OptionsAvailable: [NodeShapes]
     {
@@ -87,6 +87,17 @@ class ShapeManager
     public static func ShapeHasOptions(_ Shape: NodeShapes) -> Bool
     {
         return OptionsAvailable.contains(Shape)
+    }
+    
+    /// Holds a list of all shapes that are available for the stacked shape set.
+    private static var _ValidStackingShapes = [NodeShapes.Blocks, NodeShapes.Spheres, NodeShapes.Capsules,
+                                               NodeShapes.Cylinders, NodeShapes.Cones, NodeShapes.Lines,
+                                               NodeShapes.Triangles, NodeShapes.Ellipses, NodeShapes.Stars]
+    
+    /// Get the list of valid shapes for stacked shapes.
+    public static func ValidShapesForStacking() -> [NodeShapes]
+    {
+        return _ValidStackingShapes
     }
     
     /// Holds a table of slow (performant) shapes.
@@ -288,6 +299,18 @@ enum NodeShapes: String, CaseIterable
     case CharacterSets = "Character Sets"
     /// Stacks of shaped oriented in the prominence dimension.
     case StackedShapes = "Stacked Shapes"
+    /// Semi-2D square.
+    case Square2D = "2D Square"
+    /// Semi-2D rectangle.
+    case Rectangle2D = "2D Rectangle"
+    /// Semi-2D triangle.
+    case Triangle2D = "2D Triangle"
+    /// Semi-2D circle.
+    case Circle2D = "2D Circle"
+    /// Semi-2D ellipse.
+    case Oval2D = "2D Ellipse"
+    /// Semi-2D star.
+    case Star2D = "2D Star"
 }
 
 enum ShapeSeriesSet: String, CaseIterable
