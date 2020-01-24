@@ -535,6 +535,11 @@ class Generator
                                 FinalShape = GenerateNodeGeometry(ForShape: ShapeSelector, Side: Side, Prominence: Prominence,
                                                                   DoXRotate: &DoXRotate, WithColor: Color)
                             
+                            //Pseudo-2D chapes.
+                            case .Square2D, .Rectangle2D, .Circle2D, .Oval2D, .Star2D, .Triangle2D:
+                                AncillaryNode = GenerateFlatShape(FlatShape: ShapeSelector, Prominence: Prominence,
+                                                                  Side: Side, Color: Color, ZLocation: &ZLocation)
+                            
                             //Extruded letters.
                             case .Letters:
                                 FinalShape = GenerateLetters(Prominence: Prominence, LetterFont: LetterFont, RandomSet: RandomSet,
@@ -547,7 +552,7 @@ class Generator
                             
                             //Combined shapes or shapes that need extra processing.
                             case .CappedLines, .RadiatingLines, .PerpendicularSquares, .PerpendicularCircles, .Ellipses,
-                                 .HueTriangles, .Flowers, .StackedShapes:
+                                 .HueTriangles, .StackedShapes:
                                 AncillaryNode = GenerateNode(ForShape: ShapeSelector, Prominence: Prominence, Color: Color,
                                                              Side: Side, ZLocation: &ZLocation, DoXRotate: &DoXRotate) 
                             
