@@ -135,6 +135,9 @@
 		17C04CA623A4C9AD00D870EE /* ImageSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C04CA523A4C9AD00D870EE /* ImageSettings.swift */; };
 		17C04CAA23A4D48E00D870EE /* SettingChangedProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C04CA923A4D48E00D870EE /* SettingChangedProtocol.swift */; };
 		17C04CAC23A4D4B400D870EE /* SettingsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C04CAB23A4D4B400D870EE /* SettingsManager.swift */; };
+		17C1225123DABA120011E9EC /* Menu_StackedShapeSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C1225023DABA120011E9EC /* Menu_StackedShapeSettings.swift */; };
+		17C1225323DAC0F10011E9EC /* Menu_StackedShapeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C1225223DAC0F10011E9EC /* Menu_StackedShapeCell.swift */; };
+		17C1225523DAC2850011E9EC /* StackedShapeContextMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C1225423DAC2850011E9EC /* StackedShapeContextMenu.swift */; };
 		17C1D61523C02AE500FAFA76 /* CompositeShapeChangeProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C1D61423C02AE500FAFA76 /* CompositeShapeChangeProtocol.swift */; };
 		17C1D61723C0605C00FAFA76 /* ShapeContextMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C1D61623C0605C00FAFA76 /* ShapeContextMenu.swift */; };
 		17CD224D23ABB5530059AEB7 /* SystemSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17CD224C23ABB5530059AEB7 /* SystemSettingsView.swift */; };
@@ -306,6 +309,9 @@
 		17C04CA523A4C9AD00D870EE /* ImageSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSettings.swift; sourceTree = "<group>"; };
 		17C04CA923A4D48E00D870EE /* SettingChangedProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingChangedProtocol.swift; sourceTree = "<group>"; };
 		17C04CAB23A4D4B400D870EE /* SettingsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsManager.swift; sourceTree = "<group>"; };
+		17C1225023DABA120011E9EC /* Menu_StackedShapeSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Menu_StackedShapeSettings.swift; sourceTree = "<group>"; };
+		17C1225223DAC0F10011E9EC /* Menu_StackedShapeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Menu_StackedShapeCell.swift; sourceTree = "<group>"; };
+		17C1225423DAC2850011E9EC /* StackedShapeContextMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StackedShapeContextMenu.swift; sourceTree = "<group>"; };
 		17C1D61423C02AE500FAFA76 /* CompositeShapeChangeProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompositeShapeChangeProtocol.swift; sourceTree = "<group>"; };
 		17C1D61623C0605C00FAFA76 /* ShapeContextMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShapeContextMenu.swift; sourceTree = "<group>"; };
 		17CD224C23ABB5530059AEB7 /* SystemSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemSettingsView.swift; sourceTree = "<group>"; };
@@ -565,8 +571,11 @@
 				1738D67A23CD6E5200FBB56E /* ShapeOptions */,
 				175E3F8223B885EF005E04FF /* Menu_ShapeSettings.swift */,
 				1737411123BF5A8700BAEF6F /* Menu_CompositeSettings.swift */,
-				1737411523BF600000BAEF6F /* Menu_CompositeShapeTableViewCell.swift */,
 				17C1D61623C0605C00FAFA76 /* ShapeContextMenu.swift */,
+				1737411523BF600000BAEF6F /* Menu_CompositeShapeTableViewCell.swift */,
+				17C1225023DABA120011E9EC /* Menu_StackedShapeSettings.swift */,
+				17C1225223DAC0F10011E9EC /* Menu_StackedShapeCell.swift */,
+				17C1225423DAC2850011E9EC /* StackedShapeContextMenu.swift */,
 				17AFA87623C9A8B400846087 /* Menu_BackgroundSettings.swift */,
 				17C1D61423C02AE500FAFA76 /* CompositeShapeChangeProtocol.swift */,
 			);
@@ -920,6 +929,7 @@
 				17160C68237980A5001CD2B3 /* EditorSettingsChangedProtocol.swift in Sources */,
 				177A35122383B6BF0051C0E5 /* ShapeOptionsProtocol.swift in Sources */,
 				17749E5B23BDABE200238641 /* Menu_ImageSizeProtocol.swift in Sources */,
+				17C1225323DAC0F10011E9EC /* Menu_StackedShapeCell.swift in Sources */,
 				17499B7F23CDF4CB00A5396A /* SCNCharacter.swift in Sources */,
 				17FA554623B9EA4A00915B83 /* Menu_BlockSettings.swift in Sources */,
 				17C1D61723C0605C00FAFA76 /* ShapeContextMenu.swift in Sources */,
@@ -948,6 +958,7 @@
 				17BE8E892376E94200262F81 /* SCNnGon.swift in Sources */,
 				171C8AC423864FEF005C4825 /* CameraSettings.swift in Sources */,
 				170BE50823A7624B003A5A72 /* LoggingSession.swift in Sources */,
+				17C1225523DAC2850011E9EC /* StackedShapeContextMenu.swift in Sources */,
 				17FA554223B9A0D100915B83 /* MeshOptionsCode.swift in Sources */,
 				17C04CA623A4C9AD00D870EE /* ImageSettings.swift in Sources */,
 				170BE51323A7BAB6003A5A72 /* SCNStar.swift in Sources */,
@@ -1010,6 +1021,7 @@
 				170BE51023A7717F003A5A72 /* LogViewProtocol.swift in Sources */,
 				17F3C90E23CEBD6D009DCA7B /* MetalPixellator.swift in Sources */,
 				178C9C2523B43EFC0049139B /* AsynchronousEventHandling.swift in Sources */,
+				17C1225123DABA120011E9EC /* Menu_StackedShapeSettings.swift in Sources */,
 				17C04CAC23A4D4B400D870EE /* SettingsManager.swift in Sources */,
 				1716414D23BADC1F0093E2CD /* CurrentSettingsDescription.swift in Sources */,
 				1738D67923CD6B4000FBB56E /* Menu_EllipseSettings.swift in Sources */,
