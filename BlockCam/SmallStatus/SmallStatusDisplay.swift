@@ -13,6 +13,8 @@ import UIKit
 /// 3) an overall percent complete display.
 class SmallStatusDisplay: UIView
 {
+    weak var MainDelegate: MainProtocol? = nil
+    
     // MARK: - Initialization.
     
     /// Initializer.
@@ -62,7 +64,7 @@ class SmallStatusDisplay: UIView
         self.addSubview(WaitingIndicator)
         HelpButton = UIButton(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
         HelpButton.addTarget(self, action: #selector(ShowHelpAlert), for: UIControl.Event.touchUpInside)
-        HelpButton.setImage(UIImage(systemName: "info.circle",
+        HelpButton.setImage(UIImage(systemName: "gear",
                                     withConfiguration: UIImage.SymbolConfiguration(pointSize: 30.0, weight: .bold)),
                             for: .normal)
         HelpButton.tintColor = UIColor.white
@@ -77,11 +79,11 @@ class SmallStatusDisplay: UIView
     
     @objc func ShowHelpAlert(_ sender: Any)
     {
-        let Alert = UIAlertController(title: "Quick Help",
-                                      message: "Long-press the processed image to see a menu of options.",
-                                      preferredStyle: .alert)
-        Alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-        self.ParentViewController!.present(Alert, animated: true, completion: nil)
+        if Settings.GetBoolean(ForKey: .EnableButtonPressSounds)
+        {
+            Sounds.PlaySound(.Tock)
+        }
+        MainDelegate?.ShowProcessedImageMenu(From: HelpButton)
     }
     
     // MARK: - Initialization and run-time updating.
