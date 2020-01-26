@@ -45,4 +45,12 @@ protocol MainProtocol: class
     
     /// Hides the indefinite indicator.
     func HideIndefiniteIndicator()
+    
+    /// Returns the source image.
+    /// - Returns: Source image being processed. Nil if it does not exist.
+    func GetSourceImage() -> UIImage?
+    
+    /// Shows the processed image menu.
+    /// - Parameter From: The source object the menu will point to.
+    func ShowProcessedImageMenu(From SourceObject: UIView)
 }
