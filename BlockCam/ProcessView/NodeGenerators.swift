@@ -17,7 +17,7 @@ extension Generator
     /// - Parameter From: The pixel color.
     /// - Parameter Side: The calculated side value.
     /// - Returns: Tuple of the top and bottom sizes of the cone.
-    private static func GetConeDimensions(From: UIColor, Side: CGFloat) -> (Top: CGFloat, Base: CGFloat)
+    public static func GetConeDimensions(From: UIColor, Side: CGFloat) -> (Top: CGFloat, Base: CGFloat)
     {
         let DoInvert = Settings.GetBoolean(ForKey: .ConeIsInverted)
         var TopSize = ConeTopOptions.TopIsZero
@@ -232,8 +232,6 @@ extension Generator
                 FinalShape = SCNTriangle.Geometry(A: Float(Prominence * 1.5), B: Float(Prominence * 1.5),
                                                   C: Float(Prominence * 1.5), Scale: Float(Side * 2.0))
             
-            
-            
             case .Pentagons:
                 FinalShape = SCNnGon.Geometry(VertexCount: 5, Radius: Side, Depth: Prominence * 2)
             
@@ -282,7 +280,7 @@ extension Generator
     /// - Parameter Side: The radius of a sphere. Multiplied by various constants for other shapes.
     /// - Parameter Diffuse: The diffuse material color.
     /// - Reurns: Geometry for the specified (in user defaults) shape.
-    private static func GetCappedLineShape(Side: CGFloat, Diffuse: UIColor) -> SCNGeometry
+    public static func GetCappedLineShape(Side: CGFloat, Diffuse: UIColor) -> SCNGeometry
     {
         var CapShape = CappedLineCapShapes.Sphere
         if let RawShape = Settings.GetString(ForKey: .CappedLineCapShape)
@@ -327,7 +325,7 @@ extension Generator
     }
     
     /// Get the parameters needed to create an ellipse.
-    private static func GetEllipseParameters() -> (Major: CGFloat, Minor: CGFloat)
+    public static func GetEllipseParameters() -> (Major: CGFloat, Minor: CGFloat)
     {
         var Ellipse = EllipticalShapes.HorizontalMedium
         if let RawEllipseShape = Settings.GetString(ForKey: .EllipseShape)
@@ -415,13 +413,140 @@ extension Generator
         return Node
     }
     
+    private static func MakeShapeList(From Raw: String) -> [NodeShapes]
+    {
+        if Raw.isEmpty
+        {
+            return []
+        }
+        var Results = [NodeShapes]()
+        let Parts = Raw.split(separator: ",", omittingEmptySubsequences: true)
+        for Part in Parts
+        {
+            let RawPart = String(Part)
+            if let SomeShape = NodeShapes(rawValue: RawPart)
+            {
+                Results.append(SomeShape)
+            }
+        }
+        return Results
+    }
+    
+    private static func MakeQuickShape(Shape: NodeShapes, Side: CGFloat, Color: UIColor) -> SCNNode
+    {
+        var Node: SCNNode? = nil
+        switch Shape
+        {
+            case .Blocks:
+                Node = SCNNode(geometry: SCNBox(width: Side, height: Side, length: Side, chamferRadius: Side * 0.05))
+            
+            case .Spheres:
+                Node = SCNNode(geometry: SCNSphere(radius: Side))
+            
+            case .Capsules:
+                let Geo = SCNCapsule(capRadius: Side * 0.25, height: Side)
+                Node = SCNNode(geometry: Geo)
+                Node?.rotation = SCNVector4(1.0, 0.0, 0.0, 90.0 * CGFloat.pi / 180.0)
+            
+            case .Cylinders:
+                let Geo = SCNCylinder(radius: Side, height: Side * 2)
+                Node = SCNNode(geometry: Geo)
+                Node?.rotation = SCNVector4(1.0, 0.0, 0.0, 90.0 * CGFloat.pi / 180.0)
+            
+            case .Cones:
+                let (Top, Bottom) = GetConeDimensions(From: Color, Side: Side)
+                let Geo = SCNCone(topRadius: Top, bottomRadius: Bottom, height: Side * 2)
+                Node = SCNNode(geometry: Geo)
+                Node?.rotation = SCNVector4(1.0, 0.0, 0.0, 90.0 * CGFloat.pi / 180.0)
+            
+            case .Lines:
+                let Geo = SCNCapsule(capRadius: 0.1, height: Side)
+                Node = SCNNode(geometry: Geo)
+            
+            case .Triangles:
+                let Geo = SCNTriangle.Geometry(A: Float(Side), B: Float(Side), C: Float(Side), Scale: 1.0)
+                Node = SCNNode(geometry: Geo)
+            
+            case .Ellipses:
+                let (Major, Minor) = GetEllipseParameters()
+                let Geo = SCNEllipse.Geometry(MajorAxis: Side * Major, MinorAxis: Side * Minor, Height: Side)
+                Node = SCNNode(geometry: Geo)
+                Node?.scale = SCNEllipse.ReciprocalScale()
+            
+            case .Stars:
+                var ApexCount = Settings.GetInteger(ForKey: .StarApexCount)
+                if Settings.GetBoolean(ForKey: .IncreaseStarApexesWithProminence)
+                {
+                    ApexCount = ApexCount + Int(Side * 1.3)
+                    if ApexCount > 10
+                    {
+                        ApexCount = 10
+                    }
+                }
+                let Geo = SCNStar.Geometry(VertexCount: ApexCount, Height: Double(Side), Base: Double(Side / 2.0),
+                                           ZHeight: Double(Side))
+                Node = SCNNode(geometry: Geo)
+            
+            case .Square2D:
+                let Geo = SCNBox(width: Side * 1.5, height: Side * 1.5, length: 0.05, chamferRadius: 0.0)
+                Node = SCNNode(geometry: Geo)
+            
+            case .Circle2D:
+                let Geo = SCNCylinder(radius: Side * 0.85, height: 0.05)
+                Node = SCNNode(geometry: Geo)
+                Node?.rotation = SCNVector4(1.0, 0.0, 0.0, 90.0 * CGFloat.pi / 180.0)
+            
+            case .Oval2D:
+                let (Major, Minor) = GetEllipseParameters()
+                let Geo = SCNEllipse.Geometry(MajorAxis: Side * Major, MinorAxis: Side * Minor, Height: 0.05)
+                Node = SCNNode(geometry: Geo)
+                Node?.scale = SCNEllipse.ReciprocalScale()
+            
+            case .Triangle2D:
+                let Geo = SCNTriangle.Geometry(A: 0.05, B: 0.05, C: 0.05, Scale: 1.0)
+                Node = SCNNode(geometry: Geo)
+            
+            default:
+                Node = SCNNode(geometry: SCNBox(width: Side, height: Side, length: Side, chamferRadius: Side * 0.05))
+        }
+        Node?.geometry?.firstMaterial?.diffuse.contents = Color
+        Node?.geometry?.firstMaterial?.specular.contents = UIColor.white
+        Node?.geometry?.firstMaterial?.lightingModel = GetLightModel()
+        return Node!
+    }
+    
     private static func MakeStackShape(Prominence: CGFloat, Color: UIColor, Side: CGFloat,
                                        ZLocation: inout CGFloat, DoXRotate: inout Bool) -> SCNNode2
     {
         DoXRotate = false
         ZLocation = 0.0
         let StackNode = SCNNode2()
+        var ShapeList = [NodeShapes]()
+        if let RawShapeList = Settings.GetString(ForKey: .StackedShapesSet)
+        {
+            ShapeList = MakeShapeList(From: RawShapeList)
+        }
+        else
+        {
+            Settings.SetString(NodeShapes.Blocks.rawValue, ForKey: .StackedShapesSet)
+            ShapeList.append(NodeShapes.Blocks)
+        }
+        var Index = 0
         let Count = Int((Prominence * 2.0 / Side)) + 1
+        #if true
+        for Node in 0 ..< Count
+        {
+            if Index > ShapeList.count - 1
+            {
+                Index = 0
+            }
+            let SubNodeShape = ShapeList[Index]
+            Index = Index + 1
+            let SubNode = MakeQuickShape(Shape: SubNodeShape, Side: Side, Color: Color)
+            SubNode.position = SCNVector3(0.0, 0.0, Side * CGFloat(Node))
+            StackNode.addChildNode(SubNode)
+        }
+        #else
         for Node in 0 ..< Count
         {
             //            let Stacked = SCNNode(geometry: SCNSphere(radius: Side))
@@ -431,7 +556,9 @@ extension Generator
             Stacked.geometry?.firstMaterial?.lightingModel = GetLightModel()
             Stacked.position = SCNVector3(0.0, 0.0, Side * CGFloat(Node))
             StackNode.addChildNode(Stacked)
+            Index = Index + 1
         }
+        #endif
         return StackNode
     }
     
