@@ -79,9 +79,30 @@ extension Menu_StackedShapeCell: UIContextMenuInteractionDelegate
             action in
             self.Delegate?.ShapeChanged(At: self.ShapeIndex, NewShape: ValidShapes[8].rawValue)
         }
+        let Menu9 = UIAction(title: ValidShapes[9].rawValue, image: nil)
+        {
+            action in
+            self.Delegate?.ShapeChanged(At: self.ShapeIndex, NewShape: ValidShapes[9].rawValue)
+        }
+        let Menu10 = UIAction(title: ValidShapes[10].rawValue, image: nil)
+        {
+            action in
+            self.Delegate?.ShapeChanged(At: self.ShapeIndex, NewShape: ValidShapes[10].rawValue)
+        }
+        let Menu11 = UIAction(title: ValidShapes[11].rawValue, image: nil)
+        {
+            action in
+            self.Delegate?.ShapeChanged(At: self.ShapeIndex, NewShape: ValidShapes[11].rawValue)
+        }
+        let Menu12 = UIAction(title: ValidShapes[12].rawValue, image: nil)
+        {
+            action in
+            self.Delegate?.ShapeChanged(At: self.ShapeIndex, NewShape: ValidShapes[12].rawValue)
+        }
         
         let ShapeGroup = UIMenu(title: "", options: .displayInline, children: [Menu0, Menu1, Menu2, Menu3, Menu4,
-                                                                               Menu5, Menu6, Menu7, Menu8])
+                                                                               Menu5, Menu6, Menu7, Menu8, Menu9,
+                                                                               Menu10, Menu11, Menu12])
         return UIMenu(title: "Shapes", children: [ShapeGroup, CancelGroup])
     }
 }
