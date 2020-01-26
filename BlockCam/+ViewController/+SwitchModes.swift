@@ -73,17 +73,12 @@ extension ViewController
         {
             SwitchModeButton.frame = NewRect
         }
-        if let NewRect = MoveButton(GearButton, To: 0.0)
-        {
-            GearButton.frame = NewRect
-        }
         let SwitchLocation: CGFloat = UIDevice.current.userInterfaceIdiom == .phone ? 0.28 : 0.25
         if let NewRect = MoveButton(SwitchCameraButton, To: SwitchLocation)
         {
             SwitchCameraButton.frame = NewRect
         }
-        let InfoLocation: CGFloat = UIDevice.current.userInterfaceIdiom == .phone ? 0.72 : 0.75
-        if let NewRect = MoveButton(LiveViewInfoButton, To: InfoLocation)
+        if let NewRect = MoveButton(LiveViewInfoButton, To: 0.0)
         {
             LiveViewInfoButton.frame = NewRect
         }
@@ -114,6 +109,7 @@ extension ViewController
         CompositeStatus.layer.cornerRadius = 5.0
         CompositeStatus.ShowBottomPercent = true
         CompositeStatus.ShowTaskPercentage = true
+        CompositeStatus.MainDelegate = self
         
         //Initialize the scene moview view.
         SceneMotionRecorderView.frame = CGRect(x: 0, y: ScreenHeight, width: ScreenWidth, height: SceneMotionRecorderView.frame.height)
