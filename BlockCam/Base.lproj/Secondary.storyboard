@@ -603,8 +603,8 @@
                                     <outlet property="delegate" destination="dsY-Ne-6ke" id="0KJ-LD-BX5"/>
                                 </connections>
                             </tableView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Long-press the shape to change it." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lXU-Fe-rYw">
-                                <rect key="frame" x="20" y="581" width="374" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Long-press the shape to change it. You must have at least one shape in this list." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lXU-Fe-rYw">
+                                <rect key="frame" x="20" y="581" width="374" height="40.666666666666629"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -612,13 +612,13 @@
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3qi-8Z-xr0">
                                 <rect key="frame" x="0.0" y="692" width="414" height="44"/>
                                 <items>
-                                    <barButtonItem title="Item" image="plus.app" catalog="system" id="R2s-Mz-UP0">
+                                    <barButtonItem systemItem="add" id="R2s-Mz-UP0">
                                         <connections>
                                             <action selector="HandleAddButton:" destination="dsY-Ne-6ke" id="cT4-M0-bd6"/>
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem width="42" style="plain" systemItem="fixedSpace" id="RIo-3x-45X"/>
-                                    <barButtonItem title="Item" image="square.and.pencil" catalog="system" id="TUR-ad-zA0">
+                                    <barButtonItem systemItem="edit" id="TUR-ad-zA0">
                                         <connections>
                                             <action selector="HandleEditTableButton:" destination="dsY-Ne-6ke" id="rlT-wj-taI"/>
                                         </connections>
@@ -655,7 +655,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Wn7-Or-sTU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2196" y="64"/>
+            <point key="canvasLocation" x="2116" y="110"/>
         </scene>
         <!--Shape Options-->
         <scene sceneID="ADM-EE-jc2">
@@ -2709,13 +2709,13 @@
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Cco-0H-3ti">
                                 <rect key="frame" x="0.0" y="692" width="414" height="44"/>
                                 <items>
-                                    <barButtonItem title="Item" image="plus.app" catalog="system" id="nsp-gQ-Qc0">
+                                    <barButtonItem systemItem="add" id="nsp-gQ-Qc0">
                                         <connections>
                                             <action selector="HandleAddButton:" destination="Qx8-N9-oNh" id="3Rt-iG-2YL"/>
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem width="42" style="plain" systemItem="fixedSpace" id="KVn-3q-At8"/>
-                                    <barButtonItem title="Item" image="square.and.pencil" catalog="system" id="3UR-4k-pQD">
+                                    <barButtonItem systemItem="edit" id="3UR-4k-pQD">
                                         <connections>
                                             <action selector="HandleEditTableButton:" destination="Qx8-N9-oNh" id="nMV-jw-ZBg"/>
                                         </connections>
@@ -3013,11 +3013,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1aY-RN-sbA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3839.130434782609" y="1442.1195652173915"/>
+            <point key="canvasLocation" x="3839" y="1559"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="plus.app" catalog="system" width="64" height="56"/>
-        <image name="square.and.pencil" catalog="system" width="64" height="58"/>
-    </resources>
 </document>
