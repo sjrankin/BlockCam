@@ -159,11 +159,6 @@ class Settings
         #endif
         UserDefaults.standard.set(false, forKey: SettingKeys.SourceAsBackground.rawValue)
         UserDefaults.standard.set(CappedLineCapShapes.Sphere.rawValue, forKey: SettingKeys.CappedLineCapShape.rawValue)
-        //How many seconds between sessions before restarting UI help prompts. 7890000 is three months (+/- a few hours).
-        UserDefaults.standard.set(7890000, forKey: SettingKeys.ShowUIHelpIfNotUsedDuration.rawValue)
-        UserDefaults.standard.set(10, forKey: SettingKeys.TotalUIHelpDisplayCount.rawValue)
-        UserDefaults.standard.set(0, forKey: SettingKeys.CurrentUIHelpCount.rawValue)
-        UserDefaults.standard.set(true, forKey: SettingKeys.ShowUIHelpPrompts.rawValue)
         UserDefaults.standard.set(0, forKey: SettingKeys.InstantiationTime.rawValue)
         #if DEBUG
         UserDefaults.standard.set(true, forKey: SettingKeys.LogImageSettings.rawValue)
@@ -580,32 +575,6 @@ class Settings
         return .Unknown
     }
     
-    /// Determines if UI prompts should be displayed.
-    /// - Note: The determination is calculated by the number of instantiations the display has already been shown.
-    /// - Returns: True if UI prompts should be displayed, false if not.
-    public static func DoShowUIPrompt() -> Bool
-    {
-        if !GetBoolean(ForKey: .ShowUIHelpPrompts)
-        {
-            print("ShowUIHelpPrompts is false")
-            return false
-        }
-        if DidUpdateUIPromptCount
-        {
-            return true
-        }
-        if GetInteger(ForKey: .TotalUIHelpDisplayCount) > GetInteger(ForKey: .CurrentUIHelpCount)
-        {
-            SetInteger(GetInteger(ForKey: .CurrentUIHelpCount) + 1, ForKey: .CurrentUIHelpCount)
-            DidUpdateUIPromptCount = true
-            return true
-        }
-        
-        SetBoolean(false, ForKey: .ShowUIHelpPrompts)
-        print("Total prompt displays equals maximum allowed.")
-        return false
-    }
-    
     private static var DidUpdateUIPromptCount = false
     
     /// Contains a list of all boolean-type fields.
@@ -634,7 +603,6 @@ class Settings
             SettingKeys.InvertDynamicColorProcess,
             SettingKeys.AutoSaveProcessedImage,
             SettingKeys.SourceAsBackground,
-            SettingKeys.ShowUIHelpPrompts,
             SettingKeys.LogImageSettings,
             SettingKeys.IncreasePetalCountWithProminence,
             SettingKeys.CharacterUsesRandomFont,
@@ -660,9 +628,6 @@ class Settings
             SettingKeys.FontSize,
             SettingKeys.RadiatingLineCount,
             SettingKeys.MaxImageDimension,
-            SettingKeys.ShowUIHelpIfNotUsedDuration,
-            SettingKeys.TotalUIHelpDisplayCount,
-            SettingKeys.CurrentUIHelpCount,
             SettingKeys.InstantiationTime,
             SettingKeys.FlowerPetalCount,
     ]
@@ -935,20 +900,15 @@ enum SettingKeys: String, CaseIterable, Comparable, Hashable
     case UserCopyright = "UserCopyright"
     
     //Onboarding and UI help
-    /// Integer: Length of time between sessions to trigger showing UI help again. Measured in seconds.
-    case ShowUIHelpIfNotUsedDuration = "ShowUIHelpIfNotUsedDuration"
-    /// Integer: Current number of times left to show UI help.
-    case CurrentUIHelpCount = "CurrentUIHelpCount"
-    /// Integer: Total number of times to show UI help before not showing any more.
-    case TotalUIHelpDisplayCount = "TotalUIHelpDisplayCount"
-    /// Boolean: Flag that determines if UI help prompts should be displayed.
-    case ShowUIHelpPrompts = "ShowUIHelpPrompts"
     /// Integer: The last time the program was instantiated.
     case InstantiationTime = "InstantiationTime"
     
     //Permissions.
+    /// Boolean: All required permissions have been granted.
     case AllPermissionsGranted = "AllPermissionsGranted"
+    /// Boolean: Camera access has been granted.
     case CameraAccessGranted = "CameraAccessGranted"
+    /// Boolean: Photo roll access has been granted.
     case PhotoRollAccessGranted = "PhotoRollAccessGranted"
 }
 
