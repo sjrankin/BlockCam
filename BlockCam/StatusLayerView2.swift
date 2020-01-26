@@ -22,11 +22,6 @@ extension ViewController
         HideStatusLayer()
         InitializeControls()
         StatusMainLabel.backgroundColor = UIColor.clear
-        UIMenuPrompt.alpha = 0.0
-        UIMenuPrompt.isUserInteractionEnabled = false
-        UIMenuPrompt.layer.borderWidth = 0.5
-        UIMenuPrompt.layer.cornerRadius = 5.0
-        UIMenuPrompt.layer.borderColor = UIColor.systemGreen.cgColor
     }
     
     /// Initialize controls and set up visuals.
@@ -63,7 +58,6 @@ extension ViewController
                 if Reset
                 {
                     self.StatusMainLabel.text = ""
-                    self.UIMenuPrompt.alpha = 0.0
                 }
         }
     }
@@ -116,8 +110,6 @@ extension ViewController
     /// Hide the main message by animating its alpha to 0.0.
     func HideMessage()
     {
-        if Settings.DoShowUIPrompt()
-        {
             OperationQueue.main.addOperation
                 {
                     UIView.animate(withDuration: 0.1, animations:
@@ -131,36 +123,6 @@ extension ViewController
                     }
                     )
             }
-        }
-    }
-    
-    /// Show the UI prompt.
-    func ShowUIPrompt()
-    {
-        if Settings.DoShowUIPrompt()
-        {
-            OperationQueue.main.addOperation
-                {
-                    UIView.animate(withDuration: 0.35, animations:
-                        {
-                            self.UIMenuPrompt.alpha = 1.0
-                    }
-                    )
-            }
-        }
-    }
-    
-    /// Hide the UI prompt.
-    func HideUIPrompt()
-    {
-        OperationQueue.main.addOperation
-            {
-                UIView.animate(withDuration: 0.2, animations:
-                    {
-                        self.UIMenuPrompt.alpha = 0.0
-                }
-                )
-        }
     }
     
     /// Create an attributed text string to display.
