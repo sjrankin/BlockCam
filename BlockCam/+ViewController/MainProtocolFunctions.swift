@@ -88,17 +88,6 @@ extension ViewController: MainProtocol
                         }
                     }
                 }
-                if Settings.DoShowUIPrompt()
-                {
-                    if UIDevice.current.userInterfaceIdiom == .pad
-                    {
-                        self.CompositeStatus.AddText("Long press image for image settings.")
-                    }
-                    else
-                    {
-                        self.CompositeStatus.AddText("Press image for settings")
-                    }
-                }
                 self.CompositeStatus.ShowHelp()
         }
     }
@@ -107,5 +96,19 @@ extension ViewController: MainProtocol
     func MainView() -> UIView
     {
         return self.view
+    }
+    
+    /// Returns the source of the processed image, if it exists.
+    /// - Returns: Source image for processing. Nil if no image is available.
+    func GetSourceImage() -> UIImage?
+    {
+        return ImageToProcess
+    }
+    
+    /// Shows the processed image context menu.
+    /// - Parameter From: The source object the menu will point to.
+    func ShowProcessedImageMenu(From SourceObject: UIView)
+    {
+        ShowProcessedViewMenu(From: SourceObject)
     }
 }
