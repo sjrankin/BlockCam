@@ -23,8 +23,14 @@ class ViewController: UIViewController,
     AVCaptureVideoDataOutputSampleBufferDelegate,
     UIImagePickerControllerDelegate,
     UINavigationControllerDelegate,
-    SettingChangedProtocol
+    SettingChangedProtocol,
+    MenuButtonProtocol
 {
+    func GetButtonMenu() -> UIMenu
+    {
+        return MakeLiveViewMenu()
+    }
+    
     // MARK: - Initialization
     
     var CaptureSession: AVCaptureSession!
@@ -545,27 +551,20 @@ class ViewController: UIViewController,
         {
             Sounds.PlaySound(.Tock)
         }
-        var Message = ""
         switch CurrentViewMode
         {
             case .LiveView:
-            Message = "Long press the live view to set various image processing options."
+            ShowLiveViewMenu()
             
             case .PhotoLibrary:
-            Message = "Long press the processed view to set image processing options. If no processed view visible, long press the black region."
-        
+                ShowProcessedViewMenu(From: LiveViewInfoButton)
+            
             case .MakeVideo:
-                Message = "Long press the live view to set various image processing options."
+            ShowLiveViewMenu()
             
             default:
             return
         }
-        
-        let Alert = UIAlertController(title: "Quick Help",
-                                      message: Message,
-                                      preferredStyle: .alert)
-        Alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-        self.present(Alert, animated: true, completion: nil)
     }
     
     // MARK: - Image processing save functions.
@@ -683,6 +682,15 @@ class ViewController: UIViewController,
     func ChangeSettingsFromMenu()
     {
         performSegue(withIdentifier: "ToSettingsController", sender: self)
+    }
+    
+    func ShowAboutFromMenu()
+    {
+        let Storyboard = UIStoryboard(name: "AboutStoryboard", bundle: nil)
+        if let Controller = Storyboard.instantiateViewController(identifier: "AboutBlockCam") as? AboutBlockCam
+        {
+            self.present(Controller, animated: true)
+        }
     }
     
     /// Save the recorded scene. Delete scene frames once completed.
@@ -977,14 +985,12 @@ class ViewController: UIViewController,
     
     @IBOutlet weak var StatusLayer: UIView!
     @IBOutlet weak var StatusMainLabel: UILabel!
-    @IBOutlet weak var UIMenuPrompt: UILabel!
     
     @IBOutlet weak var LiveViewInfoButton: UIButton!
     @IBOutlet weak var SceneRecordInfoButton: UIButton!
     @IBOutlet weak var SceneRecorderButton: UIButton!
     @IBOutlet weak var CloseSceneRecorderViewButton: UIButton!
     @IBOutlet weak var SceneMotionRecorderView: UIView!
-    @IBOutlet weak var GearButton: UIButton!
     @IBOutlet weak var MainBottomBar: UIView!
     @IBOutlet weak var ImageBottomBar: UIView!
     @IBOutlet weak var SwitchCameraButton: UIButton!
