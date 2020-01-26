@@ -67,6 +67,20 @@ class ShapeManager
         }
     }
     
+    /// Table of shapes that require more than one `SCNGeometry` node to create.case
+    private static let _MultipleGeometryShapes =
+    [
+        NodeShapes.CappedLines, NodeShapes.StackedShapes, NodeShapes.HueVarying, NodeShapes.SaturationVarying,
+        NodeShapes.BrightnessVarying, NodeShapes.PerpendicularCircles, NodeShapes.PerpendicularSquares,
+        NodeShapes.CombinedForRGB, NodeShapes.CombinedForHSB, NodeShapes.Meshes, NodeShapes.RadiatingLines
+    ]
+    /// Get the table of shapes that are formed from more than one `SCNGeometry` node.
+    /// - Returns: Table of shapes that require more than one `SCNGeometry` node.
+    public static func MultipleGeometryShapes() -> [NodeShapes]
+    {
+        return _MultipleGeometryShapes
+    }
+    
     /// Holds a table of node shapes that take options.
     private static var _OptionsAvailable = [NodeShapes.Letters, NodeShapes.Meshes, NodeShapes.CappedLines, NodeShapes.Stars,
                                             NodeShapes.Blocks, NodeShapes.RadiatingLines, NodeShapes.Cones, NodeShapes.Ellipses,
@@ -92,7 +106,9 @@ class ShapeManager
     /// Holds a list of all shapes that are available for the stacked shape set.
     private static var _ValidStackingShapes = [NodeShapes.Blocks, NodeShapes.Spheres, NodeShapes.Capsules,
                                                NodeShapes.Cylinders, NodeShapes.Cones, NodeShapes.Lines,
-                                               NodeShapes.Triangles, NodeShapes.Ellipses, NodeShapes.Stars]
+                                               NodeShapes.Triangles, NodeShapes.Ellipses, NodeShapes.Stars,
+                                               NodeShapes.Square2D, NodeShapes.Circle2D, NodeShapes.Oval2D,
+                                               NodeShapes.Triangle2D]
     
     /// Get the list of valid shapes for stacked shapes.
     public static func ValidShapesForStacking() -> [NodeShapes]
