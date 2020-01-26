@@ -15,15 +15,12 @@ class MiscellaneousSettings: UITableViewController
     {
         super.viewDidLoad()
         ShowSplashScreenSwitch.isOn = Settings.GetBoolean(ForKey: .ShowSplashScreen)
-        ShowUIPromptsSwitch.isOn = Settings.GetBoolean(ForKey: .ShowUIHelpPrompts)
+
     }
     
     @IBAction func HandleUIPromptsChanged(_ sender: Any)
     {
-        if let Switch = sender as? UISwitch
-        {
-            Settings.SetBoolean(Switch.isOn, ForKey: .ShowUIHelpPrompts)
-        }
+
     }
     
     @IBAction func HandleSplashScreenChanged(_ sender: Any)
