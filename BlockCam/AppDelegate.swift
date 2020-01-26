@@ -29,20 +29,11 @@ import os.log
         if LastInstantiation == 0
         {
             Settings.SetInteger(Int(SecondsSince1970.duration), ForKey: .InstantiationTime)
-            Settings.SetBoolean(true, ForKey: .ShowUIHelpPrompts)
-            Settings.SetInteger(0, ForKey: .CurrentUIHelpCount)
-            print("LastInstantiation initialized to \(Settings.GetInteger(ForKey: .InstantiationTime)), ShowUIHelpPrompts<-true, CurrentUIHelpCount<-0")
         }
         else
         {
             let Delta = Int(SecondsSince1970.duration) - LastInstantiation
             print("LastInstandiation=\(LastInstantiation), Delta seconds=\(Delta)")
-            if Delta > Settings.GetInteger(ForKey: .ShowUIHelpIfNotUsedDuration)
-            {
-                print("Not instantiated for \(Settings.GetInteger(ForKey: .ShowUIHelpIfNotUsedDuration)) seconds - resetting UI help prompts.")
-                Settings.SetBoolean(true, ForKey: .ShowUIHelpPrompts)
-                Settings.SetInteger(0, ForKey: .CurrentUIHelpCount)
-            }
         }
         if let ShortcutItem = launchOptions?[UIApplication.LaunchOptionsKey.shortcutItem] as? UIApplicationShortcutItem
         {
