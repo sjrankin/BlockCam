@@ -96,7 +96,9 @@ class Menu_StackedShapeSettings: UIViewController, UITableViewDelegate, UITableV
     {
         if editingStyle == .delete
         {
+            print("Remove item at \(indexPath.row)")
             StackedShapeList.remove(at: indexPath.row)
+            StackedShapeTable.reloadData()
             DeleteEverythingButton.isEnabled = StackedShapeList.count > 0
         }
     }
