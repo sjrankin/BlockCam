@@ -15,6 +15,11 @@ protocol ContextMenuProtocol: class
     /// Command sent from a context menu.
     /// - Parameter Command: The actual command.
     func HandleContextMenu(Command: ContextMenuCommands)
+    
+    /// Command and data sent from a context menu.
+    /// - Parameter Command: The actual command.
+    /// - Parameter Parameter: Command parameter.
+    func HandleContextMenu(Command: ContextMenuCommands, Parameter: Any?)
 }
 
 /// Valid context menu commands.
@@ -44,4 +49,6 @@ enum ContextMenuCommands: String, CaseIterable
     case ShareImage = "ShareImage"
     /// Show help.
     case ShowHelp = "ShowHelp"
+    /// User selected a new shape.
+    case SelectedNewShape = "SelectedNewShape"
 }
