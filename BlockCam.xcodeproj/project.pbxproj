@@ -111,6 +111,7 @@
 		1796DBE723B71F520031FEA5 /* VideoMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1796DBE623B71F520031FEA5 /* VideoMaker.swift */; };
 		1796DBE923B748E50031FEA5 /* VideoGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1796DBE823B748E50031FEA5 /* VideoGenerator.swift */; };
 		1797C4AA23BA1AB400F32222 /* Menu_MeshSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1797C4A923BA1AB400F32222 /* Menu_MeshSettings.swift */; };
+		179F20AC23DF067200D3614B /* GeneralShapesMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179F20AB23DF067200D3614B /* GeneralShapesMenuController.swift */; };
 		17AABB4423826775006DA546 /* Histogram.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17AABB4323826775006DA546 /* Histogram.swift */; };
 		17AABB4623826F61006DA546 /* HistogramFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17AABB4523826F61006DA546 /* HistogramFunctions.swift */; };
 		17AABB482382C816006DA546 /* RandomCharacter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17AABB472382C816006DA546 /* RandomCharacter.swift */; };
@@ -283,6 +284,7 @@
 		1796DBE623B71F520031FEA5 /* VideoMaker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoMaker.swift; sourceTree = "<group>"; };
 		1796DBE823B748E50031FEA5 /* VideoGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoGenerator.swift; sourceTree = "<group>"; };
 		1797C4A923BA1AB400F32222 /* Menu_MeshSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Menu_MeshSettings.swift; sourceTree = "<group>"; };
+		179F20AB23DF067200D3614B /* GeneralShapesMenuController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralShapesMenuController.swift; sourceTree = "<group>"; };
 		17AABB4323826775006DA546 /* Histogram.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Histogram.swift; sourceTree = "<group>"; };
 		17AABB4523826F61006DA546 /* HistogramFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistogramFunctions.swift; sourceTree = "<group>"; };
 		17AABB472382C816006DA546 /* RandomCharacter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomCharacter.swift; sourceTree = "<group>"; };
@@ -573,6 +575,7 @@
 				176F595123DD4AD7006514E6 /* Menus.storyboard */,
 				176F595523DD4DC3006514E6 /* LiveViewMenuController.swift */,
 				1748FA0323DD819700B648E4 /* ProcessedImageMenuController.swift */,
+				179F20AB23DF067200D3614B /* GeneralShapesMenuController.swift */,
 				176F595923DD66E8006514E6 /* MenuCommandController.swift */,
 				176F595723DD5D72006514E6 /* ContextMenuProtocol.swift */,
 			);
@@ -1032,6 +1035,7 @@
 				17C04CA223A49A3900D870EE /* MainProtocolFunctions.swift in Sources */,
 				17CE347B23C44B6700E96E3F /* FloatingText.swift in Sources */,
 				171726AD23968B870078D76E /* Versioning.swift in Sources */,
+				179F20AC23DF067200D3614B /* GeneralShapesMenuController.swift in Sources */,
 				170BE50223A74B19003A5A72 /* Platform.swift in Sources */,
 				17499B7723CD8EFA00A5396A /* SCNCircle.swift in Sources */,
 				1737411223BF5A8700BAEF6F /* Menu_CompositeSettings.swift in Sources */,
