@@ -49,6 +49,9 @@ extension ViewController: ContextMenuProtocol
             
             case .ShareImage:
                 RunExportProcessedImageFromMenu()
+            
+            case .ShowHelp:
+            break
         }
     }
 }
