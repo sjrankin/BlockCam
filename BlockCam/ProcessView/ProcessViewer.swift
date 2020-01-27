@@ -301,21 +301,23 @@ class ProcessViewer: SCNView, SCNSceneRendererDelegate
     
     // MARK: - Public processing interfaces.
     
+    /*
     /// Process the passed image using settings the user defaults.
     /// - Parameter SomeImage: The image to process.
     /// - Parameter BlockSize: Determines how many blocks there are in each dimension.
-    /// - Parameter ResizeTo: If nil, no resizing takes place. If non-nil, the image will be resized to this size.
     public func ProcessImage(_ SomeImage: UIImage, BlockSize: CGFloat)
     {
         Clear()
         SaveVideoFrames = false
         Generator.MakeImage(self, SomeImage, BlockSize: BlockSize)
     }
+ */
     
     /// Process the passed image using settings the user defaults.
     /// - Parameter SomeImage: The image to process.
-    public func ProcessImage(_ SomeImage: UIImage)
+    public func ProcessImage(_ SomeImage: UIImage, CalledFrom: String)
     {
+                print("ProcessImage called from \(CalledFrom)")
         Clear()
         SaveVideoFrames = false
         Generator.MakeImage(self, SomeImage)
@@ -323,8 +325,9 @@ class ProcessViewer: SCNView, SCNSceneRendererDelegate
     
     /// Process the passed set of pixels using user settings.
     /// - Parameter Colors: Pre-processed image as pixel data.
-    public func ProcessImage(_ Colors: [[UIColor]])
+    public func ProcessImage(_ Colors: [[UIColor]], CalledFrom: String)
     {
+        print("ProcessImage (with colors) called from \(CalledFrom)")
         Clear()
         SaveVideoFrames = false
         Generator.MakeImage(self, With: Colors)
