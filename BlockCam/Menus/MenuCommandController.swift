@@ -51,7 +51,28 @@ extension ViewController: ContextMenuProtocol
                 RunExportProcessedImageFromMenu()
             
             case .ShowHelp:
-            break
+                break
+            
+            case .SelectedNewShape:
+                break
+        }
+    }
+    
+    func HandleContextMenu(Command: ContextMenuCommands, Parameter: Any?)
+    {
+        switch Command
+        {
+            case .SelectedNewShape:
+                if let SentParameter = Parameter
+                {
+                    if let Shape = SentParameter as? NodeShapes
+                    {
+                        //HaveNewShape
+                    }
+            }
+            
+            default:
+                break
         }
     }
 }
