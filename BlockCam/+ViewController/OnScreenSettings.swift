@@ -37,7 +37,7 @@ extension ViewController
             ShowMessage("Please Wait", TextColor: UIColor.systemYellow, StrokeColor: UIColor.white)
             BackgroundThread.async
                 {
-                    self.OutputView.ProcessImage(self.ImageToProcess!)
+                    self.OutputView.ProcessImage(self.ImageToProcess!, CalledFrom: "EditorSettings")
             }
         }
     }
