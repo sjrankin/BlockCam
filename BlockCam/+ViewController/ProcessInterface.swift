@@ -26,7 +26,7 @@ extension ViewController
         DispatchQueue.global().async
             {
             [weak self] in
-            self!.OutputView.ProcessImage(Image)
+                self!.OutputView.ProcessImage(Image, CalledFrom: "ProcessImageInBackground(UIImage)")
         }
         #else
         if ShowWait
@@ -55,7 +55,7 @@ extension ViewController
         DispatchQueue.global().async
             {
                 [weak self] in
-                self!.OutputView.ProcessImage(Colors)
+                self!.OutputView.ProcessImage(Colors, CalledFrom: "ProcessImageInBackground([[UIColor]])")
         }
         #else
         if ShowWait
