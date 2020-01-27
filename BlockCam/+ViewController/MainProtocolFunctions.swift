@@ -111,4 +111,11 @@ extension ViewController: MainProtocol
     {
         ShowProcessedViewMenu(From: SourceObject)
     }
+    
+    /// Returns the current program mode.
+    /// - Returns: Returns the current program mode.
+    func GetCurrentMode() -> ProgramModes
+    {
+        return CurrentViewMode
+    }
 }
