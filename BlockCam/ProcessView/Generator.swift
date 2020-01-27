@@ -767,6 +767,7 @@ class Generator
     /// images in XMP metadata with each image.
     public static func LogSettings()
     {
+        return
         if !Settings.GetBoolean(ForKey: .LogImageSettings)
         {
             return
