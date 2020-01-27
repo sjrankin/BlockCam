@@ -55,6 +55,7 @@ extension ViewController
                 if let SelectedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage
                 {
                     ShowStatusLayer()
+                    CurrentViewMode = .ProcessedView
                     ShowMessage("Please Wait", TextColor: UIColor.black, StrokeColor: UIColor.systemYellow)
                     ImageToProcess = SelectedImage
                     OutputView.Clear()
