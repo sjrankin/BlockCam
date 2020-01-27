@@ -19,9 +19,18 @@ class ProcessedImageMenuController: UIViewController
         super.viewDidLoad()
         self.view.backgroundColor = UIColor(red: 0.8, green: 0.8, blue: 0.8, alpha: 1.0)
         TitleBar.layer.borderColor = UIColor.black.cgColor
-        TitleBar.layer.borderWidth = 0.5
-        TitleBar.backgroundColor = UIColor(red: 0.2, green: 0.2, blue: 0.2, alpha: 1.0)
-        TitleText.textColor = UIColor.white
+        TitleBar.layer.borderWidth = 1.0
+//        TitleBar.backgroundColor = UIColor(red: 0.2, green: 0.2, blue: 0.2, alpha: 1.0)
+        TitleBar.backgroundColor = UIColor.clear
+        TitleBar.layer.addSublayer(Colors.GetGradientFor((MainDelegate?.GetCurrentMode())!, Container: TitleBar.bounds))
+        if MainDelegate!.GetCurrentMode() == .PhotoLibrary
+        {
+            TitleText.textColor = UIColor.black
+        }
+        else
+        {
+            TitleText.textColor = UIColor.white
+        }
         ImageSettingBox.layer.borderColor = UIColor.black.cgColor
         ImageSettingBox.backgroundColor = UIColor.clear
         CurrentSettingBox.layer.borderColor = UIColor.black.cgColor
@@ -30,7 +39,7 @@ class ProcessedImageMenuController: UIViewController
         SceneBox.backgroundColor = UIColor.clear
         ShareBox.layer.borderColor = UIColor.black.cgColor
         ShareBox.backgroundColor = UIColor.clear
-        self.preferredContentSize = CGSize(width: 280.0, height: 430.0)
+        self.preferredContentSize = CGSize(width: 280.0, height: 400.0)
         OriginalImage.layer.borderColor = UIColor.systemGray6.cgColor
         OriginalImage.backgroundColor = UIColor.black
         OriginalImage.alpha = 0.0
