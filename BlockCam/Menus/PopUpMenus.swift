@@ -19,14 +19,6 @@ extension ViewController: UIPopoverPresentationControllerDelegate
         if let Controller = Storyboard.instantiateViewController(identifier: "MainLiveViewMenuUI") as? LiveViewMenuController
         {
             Controller.Delegate = self
-            if UIDevice.current.userInterfaceIdiom == .phone
-            {
-                Controller.preferredContentSize = CGSize(width: 200, height: 300)
-            }
-            else
-            {
-                Controller.preferredContentSize = CGSize(width: 250, height: 500)
-            }
             Controller.modalPresentationStyle = .popover
             if let PresentingController = Controller.presentationController
             {
