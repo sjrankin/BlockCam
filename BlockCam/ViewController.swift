@@ -69,15 +69,17 @@ class ViewController: UIViewController,
         #endif
         
         InitializeOutput()
+        /*
         let SceneContextMenu = UIContextMenuInteraction(delegate: self)
         OutputView.addInteraction(SceneContextMenu)
         let LiveContextMenu = UIContextMenuInteraction(delegate: self)
         LiveView.addInteraction(LiveContextMenu)
+        */
         
         OutputView.alpha = 0.0
         
-        UnicodeHelper.Initialize()
-        Emoji.Initialize()
+        //UnicodeHelper.Initialize()
+        //Emoji.Initialize()
         
         FileIO.ClearScratchDirectory()
         
@@ -394,9 +396,6 @@ class ViewController: UIViewController,
                 StillImageOutput.capturePhoto(with: Settings, delegate: self)
                 SwitchToImageMode()
             
-            case .ProcessedView:
-                break
-            
             case .MakeVideo:
                 if MakingVideo
                 {
@@ -433,7 +432,7 @@ class ViewController: UIViewController,
                     )
             }
             
-            case .PhotoLibrary:
+            case .PhotoLibrary, .ProcessedView:
                 if Settings.GetBoolean(ForKey: .EnableButtonPressSounds)
                 {
                     Sounds.PlaySound(.Tock)
@@ -557,7 +556,7 @@ class ViewController: UIViewController,
             ShowLiveViewMenu()
             
             case .PhotoLibrary:
-                ShowProcessedViewMenu(From: LiveViewInfoButton)
+                ShowProcessedViewMenu(From: SettingsButton)
             
             case .MakeVideo:
             ShowLiveViewMenu()
@@ -986,7 +985,7 @@ class ViewController: UIViewController,
     @IBOutlet weak var StatusLayer: UIView!
     @IBOutlet weak var StatusMainLabel: UILabel!
     
-    @IBOutlet weak var LiveViewInfoButton: UIButton!
+    @IBOutlet weak var SettingsButton: UIButton!
     @IBOutlet weak var SceneRecordInfoButton: UIButton!
     @IBOutlet weak var SceneRecorderButton: UIButton!
     @IBOutlet weak var CloseSceneRecorderViewButton: UIButton!
