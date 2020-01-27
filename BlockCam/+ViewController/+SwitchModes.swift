@@ -78,9 +78,9 @@ extension ViewController
         {
             SwitchCameraButton.frame = NewRect
         }
-        if let NewRect = MoveButton(LiveViewInfoButton, To: 0.0)
+        if let NewRect = MoveButton(SettingsButton, To: 0.0)
         {
-            LiveViewInfoButton.frame = NewRect
+            SettingsButton.frame = NewRect
         }
         
         //Initilize the bottom live view bar.
