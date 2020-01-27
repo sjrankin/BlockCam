@@ -62,15 +62,22 @@ extension ViewController
              #endif
              }
              */
+            
+            #if false
             if CurrentViewMode == .ProcessedView
             {
                 BackgroundThread.async
                     {
                         [weak self] in
                         self!.OutputView.Clear()
+                        #if true
+                        self!.OutputView.ProcessImage(Image!, CalledFrom: "captureOutput")
+                        #else
                         self!.OutputView.ProcessImage(Image!, BlockSize: 32.0)
+                        #endif
                 }
             }
+            #endif
         }
     }
     
@@ -106,7 +113,7 @@ extension ViewController
         ShowMessage("Please Wait", TextColor: UIColor.systemYellow, StrokeColor: UIColor.white)
         BackgroundThread.async
             {
-                self.OutputView.ProcessImage(SavedImage!)
+                self.OutputView.ProcessImage(SavedImage!, CalledFrom: "photoOutput")
         }
     }
     
