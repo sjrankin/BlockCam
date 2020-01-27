@@ -53,4 +53,8 @@ protocol MainProtocol: class
     /// Shows the processed image menu.
     /// - Parameter From: The source object the menu will point to.
     func ShowProcessedImageMenu(From SourceObject: UIView)
+    
+    /// Get the current program mode.
+    /// - Returns: The current program mode.
+    func GetCurrentMode() -> ProgramModes
 }
