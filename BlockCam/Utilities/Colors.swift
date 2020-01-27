@@ -36,7 +36,7 @@ class Colors
                 Layer.locations = [NSNumber(value: -0.1), NSNumber(value: 0.2), NSNumber(value: 0.8)]
             
             case .ProcessedView:
-                return GetCompositeStatusGradient(Container: Frame)
+                return GetProcessingGradient(Container: Frame)
         }
         return Layer
     }
