@@ -61,7 +61,7 @@ extension ViewController
                     OutputView.Clear()
                     BackgroundThread.async
                         {
-                            self.OutputView.ProcessImage(self.ImageToProcess!)
+                            self.OutputView.ProcessImage(self.ImageToProcess!, CalledFrom: "imagePickerController")
                     }
             }
             
