@@ -727,6 +727,100 @@
             </objects>
             <point key="canvasLocation" x="591.304347826087" y="200.54347826086959"/>
         </scene>
+        <!--General Shapes Menu Controller-->
+        <scene sceneID="06r-DE-OBg">
+            <objects>
+                <viewController storyboardIdentifier="ShapeSelectionMenuUI" id="oEf-fU-nki" customClass="GeneralShapesMenuController" customModule="BlockCam" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Sl5-gV-s4D">
+                        <rect key="frame" x="0.0" y="0.0" width="280" height="530"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qgb-4n-TVg">
+                                <rect key="frame" x="0.0" y="0.0" width="280" height="50"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Shapes" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b5c-0L-6Ev">
+                                        <rect key="frame" x="104.66666666666669" y="13" width="71" height="24"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="XeY-zA-eEN"/>
+                                    <constraint firstItem="b5c-0L-6Ev" firstAttribute="centerX" secondItem="Qgb-4n-TVg" secondAttribute="centerX" id="hU8-gl-n72"/>
+                                    <constraint firstItem="b5c-0L-6Ev" firstAttribute="centerY" secondItem="Qgb-4n-TVg" secondAttribute="centerY" id="lHW-B1-35N"/>
+                                    <constraint firstItem="b5c-0L-6Ev" firstAttribute="centerX" secondItem="Qgb-4n-TVg" secondAttribute="centerX" id="sua-Bm-wap"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWdith">
+                                        <integer key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="qzp-CE-8Jb">
+                                <rect key="frame" x="16" y="58" width="248" height="416"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
+                                        <real key="value" value="0.5"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <outlet property="dataSource" destination="oEf-fU-nki" id="RNa-Hk-Obz"/>
+                                    <outlet property="delegate" destination="oEf-fU-nki" id="4lD-bL-3Mc"/>
+                                </connections>
+                            </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w24-VE-pyZ">
+                                <rect key="frame" x="16" y="482" width="30" height="36"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                <state key="normal" title="OK"/>
+                                <connections>
+                                    <action selector="HandleOKButton:" destination="oEf-fU-nki" eventType="primaryActionTriggered" id="DUi-Bd-c4W"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TGa-dp-rLU">
+                                <rect key="frame" x="198" y="482" width="66" height="36"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                <state key="normal" title="Cancel"/>
+                                <connections>
+                                    <action selector="HandleCancelButton:" destination="oEf-fU-nki" eventType="primaryActionTriggered" id="Gm2-dZ-iRE"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="Qgb-4n-TVg" firstAttribute="trailing" secondItem="9A0-bY-4Q6" secondAttribute="trailing" id="H00-1f-1mb"/>
+                            <constraint firstItem="qzp-CE-8Jb" firstAttribute="top" secondItem="Qgb-4n-TVg" secondAttribute="bottom" constant="8" id="Hlm-Ah-YUi"/>
+                            <constraint firstItem="qzp-CE-8Jb" firstAttribute="trailing" secondItem="TGa-dp-rLU" secondAttribute="trailing" id="Nlc-5v-iAN"/>
+                            <constraint firstItem="qzp-CE-8Jb" firstAttribute="leading" secondItem="Sl5-gV-s4D" secondAttribute="leadingMargin" id="Soc-l8-Dwq"/>
+                            <constraint firstItem="qzp-CE-8Jb" firstAttribute="centerX" secondItem="Qgb-4n-TVg" secondAttribute="centerX" id="Ter-tT-R2H"/>
+                            <constraint firstItem="Qgb-4n-TVg" firstAttribute="leading" secondItem="9A0-bY-4Q6" secondAttribute="leading" id="VtO-wI-TIm"/>
+                            <constraint firstItem="qzp-CE-8Jb" firstAttribute="leading" secondItem="w24-VE-pyZ" secondAttribute="leading" id="Xiv-Vn-nG3"/>
+                            <constraint firstItem="9A0-bY-4Q6" firstAttribute="bottom" secondItem="w24-VE-pyZ" secondAttribute="bottom" constant="12" id="dYW-9V-cTs"/>
+                            <constraint firstItem="Qgb-4n-TVg" firstAttribute="top" secondItem="9A0-bY-4Q6" secondAttribute="top" id="dZS-Oa-Wqo"/>
+                            <constraint firstItem="w24-VE-pyZ" firstAttribute="baseline" secondItem="TGa-dp-rLU" secondAttribute="baseline" id="hRl-oV-Aq8"/>
+                            <constraint firstItem="Qgb-4n-TVg" firstAttribute="centerX" secondItem="Sl5-gV-s4D" secondAttribute="centerX" id="ogd-Mo-Ti4"/>
+                            <constraint firstItem="w24-VE-pyZ" firstAttribute="top" secondItem="qzp-CE-8Jb" secondAttribute="bottom" constant="8" id="r0E-gO-Fav"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="9A0-bY-4Q6"/>
+                    </view>
+                    <value key="contentSizeForViewInPopover" type="size" width="280" height="230"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="280" height="530"/>
+                    <connections>
+                        <outlet property="MenuTitle" destination="b5c-0L-6Ev" id="TnJ-lS-y5S"/>
+                        <outlet property="ShapeTable" destination="qzp-CE-8Jb" id="ZnP-B9-E65"/>
+                        <outlet property="TitleBox" destination="Qgb-4n-TVg" id="K6R-Ig-u06"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="szB-sA-kEQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="34.782608695652179" y="589.4021739130435"/>
+        </scene>
     </scenes>
     <resources>
         <image name="gear" catalog="system" width="64" height="58"/>
