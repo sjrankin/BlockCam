@@ -36,7 +36,7 @@ class Colors
                 Layer.locations = [NSNumber(value: -0.1), NSNumber(value: 0.2), NSNumber(value: 0.8)]
             
             case .ProcessedView:
-                return Layer
+                return GetCompositeStatusGradient(Container: Frame)
         }
         return Layer
     }
@@ -81,6 +81,21 @@ class Colors
         let Green1 = UIColor(red: 24.0 / 255.0, green: 220.0 / 255.0, blue: 60.0 / 255.0, alpha: 1.0)
         let Green2 = UIColor(red: 52.0 / 255.0, green: 199.0 / 255.0, blue: 89.0 / 255.0, alpha: 1.0)
         Layer.colors = [Green1.cgColor, Green2.cgColor]
+        Layer.locations = [NSNumber(value: 0.2), NSNumber(value: 1.0)]
+        return Layer
+    }
+    
+    /// Return a gradient to use with the title background for the live view context menu.
+    /// - Returns: Gradient to use for the live view context menu title.
+    public static func GetLiveViewTitleBoxGradient(Container Frame: CGRect) -> CAGradientLayer
+    {
+        let Layer = CAGradientLayer()
+        Layer.name = "GradientBackground"
+        Layer.zPosition = -1000
+        Layer.frame = Frame
+        let Color1 = UIColor(red: 1.0, green: 0.84314, blue: 0.0, alpha: 1.0)
+        let Color2 = UIColor.yellow
+        Layer.colors = [Color1.cgColor, Color2.cgColor]
         Layer.locations = [NSNumber(value: 0.2), NSNumber(value: 1.0)]
         return Layer
     }
