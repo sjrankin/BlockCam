@@ -924,7 +924,7 @@ class ViewController: UIViewController,
                 }
                 if CanReusePixels
                 {
-                    OutputView.ProcessImage(PrePixellated!)
+                    OutputView.ProcessImage(PrePixellated!, CalledFrom: "Redraw3D")
                 }
             }
         }
