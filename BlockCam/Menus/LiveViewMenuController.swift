@@ -17,17 +17,28 @@ class LiveViewMenuController: UIViewController
     {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor(red: 0.8, green: 0.8, blue: 0.8, alpha: 1.0)
-        if UIDevice.current.userInterfaceIdiom == .phone
-        {
-            let FontSize: CGFloat = 17.0
-            AboutButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: FontSize)
-                        ProgramSettingsButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: FontSize)
-                        ImageSettingsButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: FontSize)
-                        CurrentSettingsButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: FontSize)
-        }
+        ShapeSettingsBox.layer.borderColor = UIColor.black.cgColor
+        ShapeSettingsBox.backgroundColor = UIColor.clear
+        ProgramSettingsBox.layer.borderColor = UIColor.black.cgColor
+        ProgramSettingsBox.backgroundColor = UIColor.clear
+        HelpBox.layer.borderColor = UIColor.black.cgColor
+        HelpBox.backgroundColor = UIColor.clear
+        TitleText.text = "BlockCam " + Versioning.VerySimpleVersionString()
+        TitleBox.layer.borderColor = UIColor.black.cgColor
+        TitleBox.layer.borderWidth = 1.0
+        TitleBox.layer.addSublayer(Colors.GetLiveViewTitleBoxGradient(Container: TitleBox.bounds))
     }
     
     var WasCancelled = true
+  
+    @IBAction func HandleHelpPressed(_ sender: Any)
+    {
+        WasCancelled = false
+        self.dismiss(animated: true, completion:
+            {
+                self.Delegate?.HandleContextMenu(Command: .ShowHelp)
+        })
+    }
     
     @IBAction func HandleProgramSettingsPressed(_ sender: Any)
     {
@@ -74,8 +85,9 @@ class LiveViewMenuController: UIViewController
         super.viewWillDisappear(animated)
     }
     
-    @IBOutlet weak var AboutButton: UIButton!
-    @IBOutlet weak var ProgramSettingsButton: UIButton!
-    @IBOutlet weak var ImageSettingsButton: UIButton!
-    @IBOutlet weak var CurrentSettingsButton: UIButton!
+    @IBOutlet weak var TitleText: UILabel!
+    @IBOutlet weak var TitleBox: UIView!
+    @IBOutlet weak var HelpBox: UIView!
+    @IBOutlet weak var ShapeSettingsBox: UIView!
+    @IBOutlet weak var ProgramSettingsBox: UIView!
 }
