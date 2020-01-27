@@ -34,7 +34,7 @@ public class Versioning: CustomStringConvertible
     public static let MajorVersion: String = "0"
     
     /// Minor version number.
-    public static let MinorVersion: String = "5"
+    public static let MinorVersion: String = "8"
     
     /// Potential version suffix.
     public static let VersionSuffix: String = ""
@@ -88,6 +88,13 @@ public class Versioning: CustomStringConvertible
         return Label
     }
     
+    /// Returns a very simple version string in the form of v{Major}.{Minor}.
+    /// - Returns: Simple version string.
+    public static func VerySimpleVersionString() -> String
+    {
+        return "v\(MajorVersion).\(MinorVersion)"
+    }
+    
     /// Publishes the version string to the debug console.
     /// - Parameter LinePrefix: The prefix for each line of the version block. Defaults to empty string.
     public static func PublishVersion(_ LinePrefix: String = "")
@@ -96,19 +103,19 @@ public class Versioning: CustomStringConvertible
     }
     
     /// Build number.
-    public static let Build: Int = 1519
+    public static let Build: Int = 1534
     
     /// Build increment.
     private static let BuildIncrement = 1
     
     /// Build ID.
-    public static let BuildID: String = "21BFFDD7-2F12-4260-9A82-EB469B44A0F0"
+    public static let BuildID: String = "BB6D1885-669E-42AC-A316-AC4A88C6290B"
     
     /// Build date.
-    public static let BuildDate: String = "26 January 2020"
+    public static let BuildDate: String = "27 January 2020"
     
     /// Build Time.
-    public static let BuildTime: String = "21:46"
+    public static let BuildTime: String = "16:51"
     
     /// Holds the release build flag.
     private static var _IsReleaseBuild: Bool = false
