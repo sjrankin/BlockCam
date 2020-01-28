@@ -10,8 +10,10 @@ import Foundation
 import UIKit
 
 class Menu_StackedShapeSettings: UIViewController, UITableViewDelegate, UITableViewDataSource,
-    CompositeShapeChangeProtocol
+    UIPopoverPresentationControllerDelegate, ContextMenuProtocol
 {
+    weak var MainDelegate: MainProtocol? = nil
+    
     override func viewDidLoad()
     {
         super.viewDidLoad()
@@ -36,15 +38,19 @@ class Menu_StackedShapeSettings: UIViewController, UITableViewDelegate, UITableV
         }
     }
     
+    /// Tells the view controller how to display the context menus.
+    func adaptivePresentationStyle(for controller: UIPresentationController, traitCollection: UITraitCollection) -> UIModalPresentationStyle
+    {
+        return UIModalPresentationStyle.none
+    }
+    
     func LoadShapeData(FromRaw: String)
     {
         StackedShapeList.removeAll()
         if FromRaw.isEmpty
         {
-            print("No shapes found")
             return
         }
-        print("Parsing: \(FromRaw)")
         let Parts = FromRaw.split(separator: ",", omittingEmptySubsequences: true)
         for Part in Parts
         {
@@ -88,7 +94,6 @@ class Menu_StackedShapeSettings: UIViewController, UITableViewDelegate, UITableV
     {
         let Cell = Menu_StackedShapeCell(style: .default, reuseIdentifier: "StackedShapeCell")
         Cell.Load(Title: StackedShapeList[indexPath.row], TableWidth: StackedShapeTable.bounds.size.width, Index: indexPath.row)
-        Cell.Delegate = self
         return Cell
     }
     
@@ -96,7 +101,6 @@ class Menu_StackedShapeSettings: UIViewController, UITableViewDelegate, UITableV
     {
         if editingStyle == .delete
         {
-            print("Remove item at \(indexPath.row)")
             StackedShapeList.remove(at: indexPath.row)
             StackedShapeTable.reloadData()
             DeleteEverythingButton.isEnabled = StackedShapeList.count > 0
@@ -119,6 +123,19 @@ class Menu_StackedShapeSettings: UIViewController, UITableViewDelegate, UITableV
         return true
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
+    {
+        let CurrentName = StackedShapeList[indexPath.row]
+        let SelectedShape = NodeShapes(rawValue: CurrentName)
+        let ListOfShapes = ShapeManager.ValidShapesForStacking()
+        SelectedPath = indexPath
+        let Cell = tableView.cellForRow(at: indexPath)
+        MainDelegate?.RunShapeMenu(SourceView: Cell!, ShapeList: ListOfShapes, Selected: SelectedShape, MenuDelegate: self,
+                                   WindowDelegate: self, WindowActual: self)
+    }
+    
+    var SelectedPath: IndexPath? = nil
+    
     @IBAction func HandleAddButton(_ sender: Any)
     {
         StackedShapeList.append(NodeShapes.Blocks.rawValue)
@@ -133,11 +150,11 @@ class Menu_StackedShapeSettings: UIViewController, UITableViewDelegate, UITableV
             StackedShapeTable.setEditing(!StackedShapeTable.isEditing, animated: true)
             if StackedShapeTable.isEditing
             {
-                Button.image = UIImage(systemName: "checkmark.circle")
+                Button.title = "Done"
             }
             else
             {
-                Button.image = UIImage(systemName: "square.and.pencil")
+                Button.title = "Edit"
             }
         }
     }
@@ -159,11 +176,28 @@ class Menu_StackedShapeSettings: UIViewController, UITableViewDelegate, UITableV
         Alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: nil))
         self.present(Alert, animated: true)
     }
-    
-    func ShapeChanged(At Index: Int, NewShape: String)
+
+    func HandleContextMenu(Command: ContextMenuCommands)
     {
-        StackedShapeList[Index] = NewShape
-        StackedShapeTable.reloadData()
+        fatalError("Shouldn't get here.")
+    }
+    
+    func HandleContextMenu(Command: ContextMenuCommands, Parameter: Any?)
+    {
+        if Parameter == nil
+        {
+            return
+        }
+        switch Command
+        {
+            case .SelectedNewShape:
+                let NewShape = Parameter as! NodeShapes
+                StackedShapeList[SelectedPath!.row] = NewShape.rawValue
+                StackedShapeTable.reloadData()
+            
+            default:
+                break
+        }
     }
     
     @IBOutlet weak var DeleteEverythingButton: UIBarButtonItem!
