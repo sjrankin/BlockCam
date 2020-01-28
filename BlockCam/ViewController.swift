@@ -23,14 +23,8 @@ class ViewController: UIViewController,
     AVCaptureVideoDataOutputSampleBufferDelegate,
     UIImagePickerControllerDelegate,
     UINavigationControllerDelegate,
-    SettingChangedProtocol,
-    MenuButtonProtocol
+    SettingChangedProtocol
 {
-    func GetButtonMenu() -> UIMenu
-    {
-        return MakeLiveViewMenu()
-    }
-    
     // MARK: - Initialization
     
     var CaptureSession: AVCaptureSession!
@@ -325,10 +319,12 @@ class ViewController: UIViewController,
         else
         {
             InitializeLiveView()
+            InitializeProcessedLiveView()
         }
         #if true
         InitializeHistogramView()
-        HideHistogramView()
+        ShowHistogramView()
+//        HideHistogramView()
         #else
         InitializeHistogramView()
         if Settings.GetBoolean(ForKey: .ShowHistogram)
@@ -432,7 +428,8 @@ class ViewController: UIViewController,
                     )
             }
             
-            case .PhotoLibrary, .ProcessedView:
+            case .PhotoLibrary,
+                 .ProcessedView:
                 if Settings.GetBoolean(ForKey: .EnableButtonPressSounds)
                 {
                     Sounds.PlaySound(.Tock)
@@ -489,7 +486,6 @@ class ViewController: UIViewController,
                 SwitchCameraButton.isHidden = false
                 SwitchCameraButton.isUserInteractionEnabled = true
                 ImageFromLibrary = false
-//                MainBottomBar.backgroundColor = UIColor.systemYellow
                 SwitchToLiveViewMode()
             
             case .MakeVideo:
@@ -498,7 +494,6 @@ class ViewController: UIViewController,
                 SwitchCameraButton.isHidden = false
                 SwitchCameraButton.isUserInteractionEnabled = true
                 ImageFromLibrary = false
-//                MainBottomBar.backgroundColor = UIColor.systemGreen
                 SwitchToLiveViewMode()
             
             case .PhotoLibrary:
@@ -507,7 +502,6 @@ class ViewController: UIViewController,
                 SwitchCameraButton.isHidden = true
                 SwitchCameraButton.isUserInteractionEnabled = false
                 ImageFromLibrary = true
-//                MainBottomBar.backgroundColor = UIColor.systemOrange
                 SwitchToPhotoPickerMode()
             
             default:
@@ -553,16 +547,16 @@ class ViewController: UIViewController,
         switch CurrentViewMode
         {
             case .LiveView:
-            ShowLiveViewMenu()
+                ShowLiveViewMenu()
             
             case .PhotoLibrary:
                 ShowProcessedViewMenu(From: SettingsButton)
             
             case .MakeVideo:
-            ShowLiveViewMenu()
+                ShowLiveViewMenu()
             
             default:
-            return
+                return
         }
     }
     
@@ -680,7 +674,12 @@ class ViewController: UIViewController,
     
     func ChangeSettingsFromMenu()
     {
-        performSegue(withIdentifier: "ToSettingsController", sender: self)
+        let Storyboard = UIStoryboard(name: "ProgramSettings", bundle: nil)
+        if let Controller = Storyboard.instantiateViewController(identifier: "SettingsRootUI") as? SettingsNavigationController
+        {
+            self.present(Controller, animated: true)
+        }
+//        performSegue(withIdentifier: "ToSettingsController", sender: self)
     }
     
     func ShowAboutFromMenu()
@@ -1007,5 +1006,5 @@ class ViewController: UIViewController,
     
     // MARK: - Histogram view.
     
-    @IBOutlet weak var HistogramView: UIView!
+    @IBOutlet weak var HistogramView: HistogramDisplay!
 }
