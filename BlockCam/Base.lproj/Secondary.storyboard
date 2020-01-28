@@ -603,7 +603,7 @@
                                     <outlet property="delegate" destination="dsY-Ne-6ke" id="0KJ-LD-BX5"/>
                                 </connections>
                             </tableView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Long-press the shape to change it. You must have at least one shape in this list." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lXU-Fe-rYw">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap the shape name to change it. You must have at least one shape in this list." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lXU-Fe-rYw">
                                 <rect key="frame" x="20" y="581" width="374" height="40.666666666666629"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -618,7 +618,7 @@
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem width="42" style="plain" systemItem="fixedSpace" id="RIo-3x-45X"/>
-                                    <barButtonItem systemItem="edit" id="TUR-ad-zA0">
+                                    <barButtonItem title="Edit" id="TUR-ad-zA0">
                                         <connections>
                                             <action selector="HandleEditTableButton:" destination="dsY-Ne-6ke" id="rlT-wj-taI"/>
                                         </connections>
@@ -676,9 +676,9 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="huA-Rq-MY5">
-                                                    <rect key="frame" x="165" y="227" width="215" height="41"/>
+                                                    <rect key="frame" x="171" y="227" width="209" height="41"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
-                                                    <state key="normal" title="Edit Shape Options"/>
+                                                    <state key="normal" title="Set Shape Options"/>
                                                     <connections>
                                                         <action selector="HandleShapeOptionsPressed:" destination="TGk-cf-jhT" eventType="primaryActionTriggered" id="tZ7-Y2-Zo8"/>
                                                     </connections>
