@@ -20,7 +20,6 @@ class ProcessedImageMenuController: UIViewController
         self.view.backgroundColor = UIColor(red: 0.8, green: 0.8, blue: 0.8, alpha: 1.0)
         TitleBar.layer.borderColor = UIColor.black.cgColor
         TitleBar.layer.borderWidth = 1.0
-//        TitleBar.backgroundColor = UIColor(red: 0.2, green: 0.2, blue: 0.2, alpha: 1.0)
         TitleBar.backgroundColor = UIColor.clear
         TitleBar.layer.addSublayer(Colors.GetGradientFor((MainDelegate?.GetCurrentMode())!, Container: TitleBar.bounds))
         if MainDelegate!.GetCurrentMode() == .PhotoLibrary
