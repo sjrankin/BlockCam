@@ -26,9 +26,9 @@ extension ViewController
         let Idiom = UIDevice.current.userInterfaceIdiom
         let FinalWidth: CGFloat = Idiom == .phone ? view.frame.width : view.frame.width / 2.0
         HistogramView.layer.maskedCorners = Idiom == .phone ? [.layerMinXMaxYCorner, .layerMaxXMaxYCorner] : [.layerMaxXMaxYCorner]
-        HistogramView.frame = CGRect(x: 0, y: 20,
-                                     width: FinalWidth,
-                                     height: HistogramView.frame.height)
+        //HistogramView.frame = CGRect(x: 0, y: 20,
+        //                             width: FinalWidth,
+        //                             height: HistogramView.frame.height)
     }
     
     /// Populate the histogram display with the passed histogram data.
