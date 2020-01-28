@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 import AVFoundation
 import AVKit
+import Accelerate
 
 extension ViewController
 {
@@ -26,6 +27,12 @@ extension ViewController
     /// - Parameter from: Not used.
     func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection)
     {
+        /*
+        if !Settings.GetBoolean(ForKey: .ShowHistogram)
+        {
+            return
+        }
+ */
         if let Buffer: CVPixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer)
         {
             let CIImg: CIImage = CIImage(cvPixelBuffer: Buffer)
@@ -37,6 +44,42 @@ extension ViewController
                 return
             }
             FrameCount = FrameCount + 1
+            
+            let CImage: CGImage = Image!.cgImage!
+            let ImageFormat = vImage_CGImageFormat(bitsPerComponent: 8,
+                                                   bitsPerPixel: 32,
+                                                   colorSpace: CGColorSpaceCreateDeviceRGB(),
+                                                   bitmapInfo: CGBitmapInfo(rawValue: CGImageAlphaInfo.first.rawValue),
+                                                   renderingIntent: .defaultIntent)!
+            guard var SourceBuffer = try? vImage_Buffer(cgImage: CImage,
+                                                    format: ImageFormat) else
+            {
+                Log.Message("Error creating vImage_Buffer")
+                return
+            }
+            defer {SourceBuffer.free()}
+            
+            let Alpha = [UInt](repeating: 0, count: 256)
+            let Red = [UInt](repeating: 0, count: 256)
+            let Green = [UInt](repeating: 0, count: 256)
+            let Blue = [UInt](repeating: 0, count: 256)
+            let AlphaPtr = UnsafeMutablePointer<vImagePixelCount>(mutating: Alpha) as UnsafeMutablePointer<vImagePixelCount>?
+            let RedPtr = UnsafeMutablePointer<vImagePixelCount>(mutating: Red) as UnsafeMutablePointer<vImagePixelCount>?
+            let GreenPtr = UnsafeMutablePointer<vImagePixelCount>(mutating: Green) as UnsafeMutablePointer<vImagePixelCount>?
+            let BluePtr = UnsafeMutablePointer<vImagePixelCount>(mutating: Blue) as UnsafeMutablePointer<vImagePixelCount>?
+            let ARGB = [AlphaPtr, RedPtr, GreenPtr, BluePtr]
+            let Histogram = UnsafeMutablePointer<UnsafeMutablePointer<vImagePixelCount>?>(mutating: ARGB)
+            let error = vImageHistogramCalculation_ARGB8888(&SourceBuffer, Histogram, UInt32(kvImageNoFlags))
+            if error != kvImageNoError
+            {
+                print("Histogram error: \(error)")
+            }
+            else
+            {
+                let MaxValue = max(max(Int(Red.max()!), Int(Green.max()!)), Int(Blue.max()!))
+                HistogramView.ShowHistogram((Red, Green, Blue), UInt(MaxValue))
+            }
+            
             /*
              if UserDefaults.standard.bool(forKey: "ShowHistogram")
              {
