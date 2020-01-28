@@ -257,6 +257,7 @@ class Menu_ShapeSettings: UITableViewController, UIPickerViewDelegate, UIPickerV
                 let Storyboard = UIStoryboard(name: "Secondary", bundle: nil)
                 if let Controller = Storyboard.instantiateViewController(identifier: "StackedShapeSettingsUI") as? Menu_StackedShapeSettings
                 {
+                    Controller.MainDelegate = Delegate
                     self.navigationController?.pushViewController(Controller, animated: true)
             }
             
