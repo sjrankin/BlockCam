@@ -11,8 +11,6 @@ import UIKit
 
 class Menu_StackedShapeCell: UITableViewCell
 {
-    public weak var Delegate: CompositeShapeChangeProtocol? = nil
-    
     public static let CellHeight: CGFloat = 45.0
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?)
@@ -63,8 +61,6 @@ class Menu_StackedShapeCell: UITableViewCell
     
     func Load(Title: String, TableWidth: CGFloat, Index: Int)
     {
-        let ItemContextMenu = UIContextMenuInteraction(delegate: self)
-        self.addInteraction(ItemContextMenu)
         ShapeIndex = Index
         let TitleWidth = (TableWidth - 10) * 0.8
         TitleLabel.frame = CGRect(x: TitleLabel.frame.minX,
