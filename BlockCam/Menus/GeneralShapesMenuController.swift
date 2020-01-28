@@ -12,15 +12,15 @@ import UIKit
 class GeneralShapesMenuController: UIViewController, UITableViewDataSource, UITableViewDelegate
 {
     weak var Delegate: ContextMenuProtocol? = nil
-    weak var MainDelegate: MainProtocol? = nil
     
     override func viewDidLoad()
     {
         super.viewDidLoad()
         ShapeTable.layer.borderColor = UIColor.black.cgColor
         self.view.backgroundColor = UIColor(red: 0.8, green: 0.8, blue: 0.8, alpha: 1.0)
+        ShapeTable.reloadData()
     }
-    
+
     var SelectedShape: NodeShapes? = nil
     var HasGroupings = false
     
@@ -38,7 +38,6 @@ class GeneralShapesMenuController: UIViewController, UITableViewDataSource, UITa
     {
         HasGroupings = false
         UngroupedShapes = List
-        ShapeTable.reloadData()
     }
     
     var UngroupedShapes = [NodeShapes]()
