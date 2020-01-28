@@ -27,6 +27,7 @@ extension Menu_StackedShapeCell: UIContextMenuInteractionDelegate
     /// somewhere in UIMenu that won't let me add items dynamically, hence the unrolled loop.
     func MakeShapeMenu() -> UIMenu
     {
+        #if false
         let CancelMenu = UIAction(title: "Cancel", image: UIImage(systemName: "xmark.circle"))
         {
             _ in
@@ -104,5 +105,8 @@ extension Menu_StackedShapeCell: UIContextMenuInteractionDelegate
                                                                                Menu5, Menu6, Menu7, Menu8, Menu9,
                                                                                Menu10, Menu11, Menu12])
         return UIMenu(title: "Shapes", children: [ShapeGroup, CancelGroup])
+        #else
+        return UIMenu(title: "No Menu")
+        #endif
     }
 }
