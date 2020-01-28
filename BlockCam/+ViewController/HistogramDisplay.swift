@@ -47,7 +47,6 @@ class HistogramDisplay: UIView
         let Channel = CAShapeLayer()
         Channel.bounds = Frame
         Channel.frame = Bounds
-        print("Bounds size=\(Bounds.size)")
         Channel.backgroundColor = UIColor.clear.cgColor
         let Path = UIBezierPath()
         Path.move(to: CGPoint(x: 0.0, y: Bounds.size.height))
