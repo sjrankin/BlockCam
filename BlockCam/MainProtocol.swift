@@ -57,4 +57,28 @@ protocol MainProtocol: class
     /// Get the current program mode.
     /// - Returns: The current program mode.
     func GetCurrentMode() -> ProgramModes
+    
+    /// Run the shape menu.
+    /// - Parameter SourceView: The UI element that servers as the source.
+    /// - Parameter ShapeList: List of shapes to display.
+    /// - Parameter Selected: The Currently selected shape (nil if none).
+    /// - Parameter MenuDelegate: The delegate that receives menu commands.
+    /// - Parameter WindowDelegate: The delegate responsible to act as the window for the popover.
+    /// - Parameter WindowActual: The view controller that will present the menu.
+    func RunShapeMenu(SourceView: UIView, ShapeList: [NodeShapes], Selected: NodeShapes?,
+                      MenuDelegate: ContextMenuProtocol,
+                      WindowDelegate: UIPopoverPresentationControllerDelegate,
+                      WindowActual: UIViewController)
+    
+    /// Run the shape menu.
+    /// - Parameter SourceView: The UI element that servers as the source.
+    /// - Parameter ShapeGroup: Grouped shape list.
+    /// - Parameter Selected: The Currently selected shape (nil if none).
+    /// - Parameter MenuDelegate: The delegate that receives menu commands.
+    /// - Parameter WindowDelegate: The delegate responsible to act as the window for the popover.
+    /// - Parameter WindowActual: The view controller that will present the menu.
+    func RunShapeMenu(SourceView: UIView, ShapeGroup: [(GroupName: String, GroupShapes: [NodeShapes])],
+                      Selected: NodeShapes?, MenuDelegate: ContextMenuProtocol,
+                      WindowDelegate: UIPopoverPresentationControllerDelegate,
+                      WindowActual: UIViewController)
 }
