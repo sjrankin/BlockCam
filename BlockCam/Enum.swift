@@ -374,3 +374,22 @@ enum EllipticalShapes: String, CaseIterable
     /// Vertical long ellipse (major and minor axes far apart).
     case VerticalLong = "Vertical Long"
 }
+
+/// Orders in which the histogram display can be shown.
+enum HistogramOrders: String, CaseIterable
+{
+    /// Red, green, blue order.
+    case RGB = "RGB"
+    /// Red, blue, green order.
+    case RBG = "RBG"
+    /// Green, red, blue order.
+    case GRB = "GRB"
+    /// Green, blue, red order.
+    case GBR = "GBR"
+    /// Blue, red, green order.
+    case BRG = "BRG"
+    /// Blue, green, red order.
+    case BGR = "BGR"
+    /// Grayscale (showing synthetic brightness).
+    case Gray = "Gray"
+}
