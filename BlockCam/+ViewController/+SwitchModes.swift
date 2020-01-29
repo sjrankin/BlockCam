@@ -60,9 +60,9 @@ extension ViewController
         LiveView.alpha = 1.0
         //Initialize the bottom tool bar.
         ImageBottomBar.frame = CGRect(x: 0,
-                                           y: ScreenHeight,
-                                           width: ScreenWidth,
-                                           height: ImageBottomBar.frame.height)
+                                      y: ScreenHeight,
+                                      width: ScreenWidth,
+                                      height: ImageBottomBar.frame.height)
         ImageBottomBar.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
         ImageBottomBar.layer.cornerRadius = 5.0
         if let NewRect = MoveButton(CameraButton, To: 0.5)
@@ -85,9 +85,9 @@ extension ViewController
         
         //Initilize the bottom live view bar.
         MainBottomBar.frame = CGRect(x: 0,
-                                              y: ScreenHeight - MainBottomBar.frame.height,
-                                              width: ScreenWidth,
-                                              height: MainBottomBar.frame.height)
+                                     y: ScreenHeight - MainBottomBar.frame.height,
+                                     width: ScreenWidth,
+                                     height: MainBottomBar.frame.height)
         MainBottomBar.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
         MainBottomBar.layer.cornerRadius = 5.0
         if let NewRect = MoveButton(DoneButton, To: 0.0)
@@ -135,6 +135,14 @@ extension ViewController
     /// Switch to live view mode - the live view control is visible and assumed to be running.
     func SwitchToLiveViewMode()
     {
+        if Settings.GetBoolean(ForKey: .ShowHistogram)
+        {
+            ShowHistogramView()
+        }
+        else
+        {
+            HideHistogramView()
+        }
         InProcessView = false
         let ScreenHeight = self.view.bounds.height
         let ScreenWidth = self.view.bounds.width
@@ -149,23 +157,24 @@ extension ViewController
                        animations:
             {
                 self.ImageBottomBar.frame = CGRect(x: 0,
-                                                        y: ScreenHeight,
-                                                        width: ScreenWidth,
-                                                        height: self.ImageBottomBar.frame.height)
+                                                   y: ScreenHeight,
+                                                   width: ScreenWidth,
+                                                   height: self.ImageBottomBar.frame.height)
                 self.ImageBottomBar.alpha = 0.0
                 self.MainBottomBar.frame = CGRect(x: 0,
-                                                           y: ScreenHeight - self.MainBottomBar.frame.height,
-                                                           width: ScreenWidth,
-                                                           height: self.MainBottomBar.frame.height)
+                                                  y: ScreenHeight - self.MainBottomBar.frame.height,
+                                                  width: ScreenWidth,
+                                                  height: self.MainBottomBar.frame.height)
                 self.MainBottomBar.alpha = 1.0
         }
         )
-                self.view.bringSubviewToFront(LiveView)
+        self.view.bringSubviewToFront(LiveView)
     }
     
     /// Switch to the 3D scene mode.
     func SwitchToImageMode()
     {
+        HideHistogramView()
         InProcessView = true
         let ScreenHeight = self.view.bounds.height
         let ScreenWidth = self.view.bounds.width
@@ -180,14 +189,14 @@ extension ViewController
                        animations:
             {
                 self.ImageBottomBar.frame = CGRect(x: 0,
-                                                        y: ScreenHeight - self.ImageBottomBar.frame.height,
-                                                        width: ScreenWidth,
-                                                        height: self.ImageBottomBar.frame.height)
+                                                   y: ScreenHeight - self.ImageBottomBar.frame.height,
+                                                   width: ScreenWidth,
+                                                   height: self.ImageBottomBar.frame.height)
                 self.ImageBottomBar.alpha = 1.0
                 self.MainBottomBar.frame = CGRect(x: 0,
-                                                           y: ScreenHeight,
-                                                           width: ScreenWidth,
-                                                           height: self.MainBottomBar.frame.height)
+                                                  y: ScreenHeight,
+                                                  width: ScreenWidth,
+                                                  height: self.MainBottomBar.frame.height)
                 self.MainBottomBar.alpha = 0.0
         }
         )
@@ -212,9 +221,9 @@ extension ViewController
                                                             width: ScreenWidth,
                                                             height: self.SceneMotionRecorderView.frame.height)
                 self.ImageBottomBar.frame = CGRect(x: 0,
-                                                        y: ScreenHeight,
-                                                        width: ScreenWidth,
-                                                        height: self.ImageBottomBar.frame.height)
+                                                   y: ScreenHeight,
+                                                   width: ScreenWidth,
+                                                   height: self.ImageBottomBar.frame.height)
         }
         )
     }
@@ -235,9 +244,9 @@ extension ViewController
                                                             width: ScreenWidth,
                                                             height: self.SceneMotionRecorderView.frame.height)
                 self.ImageBottomBar.frame = CGRect(x: 0,
-                                                        y: Top,
-                                                        width: ScreenWidth,
-                                                        height: self.ImageBottomBar.frame.height)
+                                                   y: Top,
+                                                   width: ScreenWidth,
+                                                   height: self.ImageBottomBar.frame.height)
         }
         )
     }
@@ -245,6 +254,7 @@ extension ViewController
     /// Switch to the photo picker/processor mode.
     func SwitchToPhotoPickerMode()
     {
+        HideHistogramView()
         UIView.animate(withDuration: 0.15,
                        animations:
             {
