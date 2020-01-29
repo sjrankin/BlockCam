@@ -2,38 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>UIAppFonts</key>
-	<array>
-		<string>NotoSansCJKjp-Black.otf</string>
-		<string>NotoSansCJKkr-Black.otf</string>
-		<string>NotoSansCJKsc-Black.otf</string>
-		<string>NotoSansCJKtc-Black.otf</string>
-		<string>NotoSerifCJKjp-Black.otf</string>
-		<string>NotoSerifCJKkr-Black.otf</string>
-		<string>NotoSerifCJKsc-Black.otf</string>
-		<string>NotoSerifCJKtc-Black.otf</string>
-		<string>NotoSansSymbols-Regular.ttf</string>
-		<string>NotoSansSymbols2-Regular.ttf</string>
-		<string>NotoEmoji-Regular.ttf</string>
-		<string>NotoSans-Bold.ttf</string>
-	</array>
-	<key>NSPhotoLibraryUsageDescription</key>
-	<string>BlockCam needs to access the photo library to save videos and images.</string>
-	<key>NSMicrophoneUsageDescription</key>
-	<string>BlockCam needs to access your microphone when making videos.</string>
-	<key>UIApplicationShortcutItems</key>
-	<array>
-		<dict>
-			<key>UIApplicationShortcutItemType</key>
-			<string>UpdateAction</string>
-			<key>UIApplicationShortcutItemIconType</key>
-			<string>UIApplicationShortcutIconTypeUpdate</string>
-			<key>UIApplicationShortcutItemTitle</key>
-			<string>Reset</string>
-			<key>UIApplicationShortcutItemSubtitle</key>
-			<string>Reset settings to original values</string>
-		</dict>
-	</array>
+	<key>NSMotionUsageDescription</key>
+	<string>BlockCam would like to use your device&apos;s gyroscope to detect the orientation to update the user interface to make it easier to use.</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleExecutable</key>
@@ -50,12 +20,50 @@
 	<string>1.0</string>
 	<key>CFBundleVersion</key>
 	<string>1</string>
+	<key>LSApplicationCategoryType</key>
+	<string>public.app-category.photography</string>
 	<key>LSRequiresIPhoneOS</key>
+	<true/>
+	<key>LSSupportsOpeningDocumentsInPlace</key>
 	<true/>
 	<key>NSCameraUsageDescription</key>
 	<string>BlockCam uses your camera to generate 3D images of what it sees.</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>BlockCam needs to access your microphone when making videos.</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
 	<string>Permission is needed to write saved images to your photo library.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>BlockCam needs to access the photo library to save videos and images.</string>
+	<key>UIAppFonts</key>
+	<array>
+		<string>NotoSansCJKjp-Black.otf</string>
+		<string>NotoSansCJKkr-Black.otf</string>
+		<string>NotoSansCJKsc-Black.otf</string>
+		<string>NotoSansCJKtc-Black.otf</string>
+		<string>NotoSerifCJKjp-Black.otf</string>
+		<string>NotoSerifCJKkr-Black.otf</string>
+		<string>NotoSerifCJKsc-Black.otf</string>
+		<string>NotoSerifCJKtc-Black.otf</string>
+		<string>NotoSansSymbols-Regular.ttf</string>
+		<string>NotoSansSymbols2-Regular.ttf</string>
+		<string>NotoEmoji-Regular.ttf</string>
+		<string>NotoSans-Bold.ttf</string>
+	</array>
+	<key>UIApplicationShortcutItems</key>
+	<array>
+		<dict>
+			<key>UIApplicationShortcutItemIconType</key>
+			<string>UIApplicationShortcutIconTypeUpdate</string>
+			<key>UIApplicationShortcutItemSubtitle</key>
+			<string>Reset settings to original values</string>
+			<key>UIApplicationShortcutItemTitle</key>
+			<string>Reset</string>
+			<key>UIApplicationShortcutItemType</key>
+			<string>UpdateAction</string>
+		</dict>
+	</array>
+	<key>UIFileSharingEnabled</key>
+	<true/>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
@@ -63,6 +71,7 @@
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>
+		<string>gyroscope</string>
 	</array>
 	<key>UIStatusBarStyle</key>
 	<string>UIStatusBarStyleLightContent</string>
@@ -77,11 +86,5 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-	<key>LSApplicationCategoryType</key>
-	<string>public.app-category.photography</string>
-	<key>UIFileSharingEnabled</key>
-	<true/>
-	<key>LSSupportsOpeningDocumentsInPlace</key>
-	<true/>
 </dict>
 </plist>
