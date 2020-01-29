@@ -75,7 +75,6 @@ class Settings
         UserDefaults.standard.set("Normal", forKey: SettingKeys.LightIntensity.rawValue)
         UserDefaults.standard.set("Normal", forKey: SettingKeys.FieldOfView.rawValue)
         UserDefaults.standard.set(false, forKey: SettingKeys.ShowHistogram.rawValue)
-        UserDefaults.standard.set(256, forKey: SettingKeys.HistogramBucketCount.rawValue)
         UserDefaults.standard.set("LiveView", forKey: SettingKeys.InitialView.rawValue)
         UserDefaults.standard.set(true, forKey: SettingKeys.FullyExtrudeLetters.rawValue)
         UserDefaults.standard.set("Extrude", forKey: SettingKeys.LetterLocation.rawValue)
@@ -617,7 +616,6 @@ class Settings
         [
             SettingKeys.BlockSize,
             SettingKeys.InputQuality,
-            SettingKeys.HistogramBucketCount,
             SettingKeys.VideoFPS,
             SettingKeys.VideoBlockSize,
             SettingKeys.AntialiasingMode,
@@ -843,8 +841,6 @@ enum SettingKeys: String, CaseIterable, Comparable, Hashable
     //Histogram
     /// Boolean: Holds the show histogram flag.
     case ShowHistogram = "ShowHistogram"
-    /// Integer: Number of buckets in the histogram
-    case HistogramBucketCount = "HistogramBucketCount"
     
     //General purpose
     /// Integer: Next available sequential integer.
