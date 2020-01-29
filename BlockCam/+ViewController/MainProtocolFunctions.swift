@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import Accelerate
 
 extension ViewController: MainProtocol
 {
@@ -70,6 +71,15 @@ extension ViewController: MainProtocol
                 self.HideStatusLayer()
                 self.CompositeStatus.AnimatePercent(To: 0.0, Duration: 1.0)
                 self.CompositeStatus.TaskPercentValue = 0.0
+                #if false
+                if Settings.GetBoolean(ForKey: .ShowHistogram)
+                {
+                    if Settings.GetBoolean(ForKey: .ShowProcessedHistogram)
+                    {
+                        self.DisplayHistogram(For: self.OutputView.snapshot())
+                    }
+                }
+                #endif
                 if self.InitialProcessedImage
                 {
                     self.InitialProcessedImage = false
@@ -88,7 +98,7 @@ extension ViewController: MainProtocol
                         }
                     }
                 }
-                self.CompositeStatus.ShowHelp()
+                self.CompositeStatus.ShowSettingsButton()
         }
     }
     
@@ -151,5 +161,49 @@ extension ViewController: MainProtocol
         ShowShapeSelectionMenu(From: SourceView, ShapeList: ShapeGroup, Selected: Selected,
                                MenuDelegate: MenuDelegate, WindowDelegate: WindowDelegate,
                                WindowActual: WindowActual)
+    }
+    
+    /// Displays the histogram for the passed image. If the histogram is not visible, no action is taken.
+    /// - Parameter For: The image whose histogram will be calculated and displayed.
+    func DisplayHistogram(For Image: UIImage)
+    {
+        if !HistogramIsVisible
+        {
+            return
+        }
+        let CImage: CGImage = Image.cgImage!
+        let ImageFormat = vImage_CGImageFormat(bitsPerComponent: 8,
+                                               bitsPerPixel: 32,
+                                               colorSpace: CGColorSpaceCreateDeviceRGB(),
+                                               bitmapInfo: CGBitmapInfo(rawValue: CGImageAlphaInfo.first.rawValue),
+                                               renderingIntent: .defaultIntent)!
+        guard var SourceBuffer = try? vImage_Buffer(cgImage: CImage,
+                                                    format: ImageFormat) else
+        {
+            Log.Message("Error creating vImage_Buffer")
+            return
+        }
+        defer {SourceBuffer.free()}
+        
+        let Alpha = [UInt](repeating: 0, count: 256)
+        let Red = [UInt](repeating: 0, count: 256)
+        let Green = [UInt](repeating: 0, count: 256)
+        let Blue = [UInt](repeating: 0, count: 256)
+        let AlphaPtr = UnsafeMutablePointer<vImagePixelCount>(mutating: Alpha) as UnsafeMutablePointer<vImagePixelCount>?
+        let RedPtr = UnsafeMutablePointer<vImagePixelCount>(mutating: Red) as UnsafeMutablePointer<vImagePixelCount>?
+        let GreenPtr = UnsafeMutablePointer<vImagePixelCount>(mutating: Green) as UnsafeMutablePointer<vImagePixelCount>?
+        let BluePtr = UnsafeMutablePointer<vImagePixelCount>(mutating: Blue) as UnsafeMutablePointer<vImagePixelCount>?
+        let ARGB = [AlphaPtr, RedPtr, GreenPtr, BluePtr]
+        let Histogram = UnsafeMutablePointer<UnsafeMutablePointer<vImagePixelCount>?>(mutating: ARGB)
+        let error = vImageHistogramCalculation_ARGB8888(&SourceBuffer, Histogram, UInt32(kvImageNoFlags))
+        if error != kvImageNoError
+        {
+            Log.Message("Histogram error: \(error). Unable to display histogram.")
+        }
+        else
+        {
+            let MaxValue = max(max(Int(Red.max()!), Int(Green.max()!)), Int(Blue.max()!))
+            HistogramView.ShowHistogram((Red, Green, Blue), UInt(MaxValue))
+        }
     }
 }
