@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1700D85F23E1C92700381A30 /* Gyroscope.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1700D85E23E1C92700381A30 /* Gyroscope.swift */; };
 		1706744B23D599AD00381C42 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1706744A23D599AD00381C42 /* Colors.swift */; };
 		170B3FE023B44AC8009106EB /* Sounds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 170B3FDF23B44AC8009106EB /* Sounds.swift */; };
 		170B3FE223B4644E009106EB /* SoundSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 170B3FE123B4644E009106EB /* SoundSettings.swift */; };
@@ -33,7 +34,6 @@
 		17160C68237980A5001CD2B3 /* EditorSettingsChangedProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17160C67237980A5001CD2B3 /* EditorSettingsChangedProtocol.swift */; };
 		1716414D23BADC1F0093E2CD /* CurrentSettingsDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1716414C23BADC1F0093E2CD /* CurrentSettingsDescription.swift */; };
 		1716415123BB634D0093E2CD /* Menu_RadiatingLinesSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1716415023BB634D0093E2CD /* Menu_RadiatingLinesSettings.swift */; };
-		171726A523963CCD0078D76E /* OnScreenSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171726A423963CCD0078D76E /* OnScreenSettings.swift */; };
 		171726A723963D630078D76E /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171726A623963D630078D76E /* ImagePicker.swift */; };
 		171726A923963DFB0078D76E /* LiveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171726A823963DFB0078D76E /* LiveView.swift */; };
 		171726AB23963EF60078D76E /* ProcessInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171726AA23963EF60078D76E /* ProcessInterface.swift */; };
@@ -170,6 +170,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1700D85E23E1C92700381A30 /* Gyroscope.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gyroscope.swift; sourceTree = "<group>"; };
 		1706744A23D599AD00381C42 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		170B3FDF23B44AC8009106EB /* Sounds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sounds.swift; sourceTree = "<group>"; };
 		170B3FE123B4644E009106EB /* SoundSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundSettings.swift; sourceTree = "<group>"; };
@@ -198,7 +199,6 @@
 		17160C67237980A5001CD2B3 /* EditorSettingsChangedProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorSettingsChangedProtocol.swift; sourceTree = "<group>"; };
 		1716414C23BADC1F0093E2CD /* CurrentSettingsDescription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentSettingsDescription.swift; sourceTree = "<group>"; };
 		1716415023BB634D0093E2CD /* Menu_RadiatingLinesSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Menu_RadiatingLinesSettings.swift; sourceTree = "<group>"; };
-		171726A423963CCD0078D76E /* OnScreenSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnScreenSettings.swift; sourceTree = "<group>"; };
 		171726A623963D630078D76E /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		171726A823963DFB0078D76E /* LiveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveView.swift; sourceTree = "<group>"; };
 		171726AA23963EF60078D76E /* ProcessInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessInterface.swift; sourceTree = "<group>"; };
@@ -413,7 +413,7 @@
 			isa = PBXGroup;
 			children = (
 				176BCD042379359900BFF80C /* +SwitchModes.swift */,
-				171726A423963CCD0078D76E /* OnScreenSettings.swift */,
+				1700D85E23E1C92700381A30 /* Gyroscope.swift */,
 				171726A623963D630078D76E /* ImagePicker.swift */,
 				171726A823963DFB0078D76E /* LiveView.swift */,
 				171726AA23963EF60078D76E /* ProcessInterface.swift */,
@@ -722,8 +722,10 @@
 				176F595023DD4781006514E6 /* Menus */,
 				17BE8E7423767BE600262F81 /* Assets.xcassets */,
 				17BE8E7F23767BF200262F81 /* BlockCam.entitlements */,
+				17BE8E7623767BE600262F81 /* LaunchScreen.storyboard */,
 				17BE8E6B23767BE400262F81 /* AppDelegate.swift */,
 				17BE8E6F23767BE400262F81 /* ViewController.swift */,
+				1780B72D23974CFD00E6018A /* MainProtocol.swift */,
 				17BE8E7123767BE400262F81 /* Main.storyboard */,
 				17C7681323E071850068EC34 /* ProgramSettings.storyboard */,
 				17B9E0DB23D449C1004DD106 /* Secondary.storyboard */,
@@ -732,10 +734,8 @@
 				178C9C2623B440590049139B /* Enum.swift */,
 				17499B7A23CDE42D00A5396A /* ShapeManager.swift */,
 				17BE8E6D23767BE400262F81 /* SceneDelegate.swift */,
-				1780B72D23974CFD00E6018A /* MainProtocol.swift */,
 				17B2517023AF39030012665E /* StatusLayerView2.swift */,
 				173279D5237A968E00BD19C3 /* Export.swift */,
-				17BE8E7623767BE600262F81 /* LaunchScreen.storyboard */,
 				171726AC23968B870078D76E /* Versioning.swift */,
 				17BE8E7923767BE600262F81 /* Info.plist */,
 			);
@@ -962,7 +962,6 @@
 				17499B7B23CDE42D00A5396A /* ShapeManager.swift in Sources */,
 				17F9BE4723A655D10029B0A2 /* Utilities.swift in Sources */,
 				173C296423C86FD9004CE7E9 /* ScanningParameters.swift in Sources */,
-				171726A523963CCD0078D76E /* OnScreenSettings.swift in Sources */,
 				17B9E0D323D43F30004DD106 /* LanguageSettings.swift in Sources */,
 				17749E5323BDA8D100238641 /* Menu_ImageSizeSettings.swift in Sources */,
 				17499B7523CD81A000A5396A /* Menu_FlowerSettings.swift in Sources */,
@@ -1017,6 +1016,7 @@
 				17CE347723C427E400E96E3F /* SmallStatusDisplay.swift in Sources */,
 				1771A9D523BC38F900B3294F /* Menu_LightSettings.swift in Sources */,
 				1789950523B5F16600238D89 /* ContextMenus.swift in Sources */,
+				1700D85F23E1C92700381A30 /* Gyroscope.swift in Sources */,
 				1723D09323879DC2001F05E1 /* PieChart.swift in Sources */,
 				17AFA87523C9A14F00846087 /* MiscellaneousSettings.swift in Sources */,
 				176BCD0223791F7900BFF80C /* ColorCell.swift in Sources */,
@@ -1296,6 +1296,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = BlockCam/BlockCam.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+				DERIVE_MACCATALYST_PRODUCT_BUNDLE_IDENTIFIER = YES;
 				DEVELOPMENT_TEAM = 4BB235M4GL;
 				"ENABLE_HARDENED_RUNTIME[sdk=macosx*]" = YES;
 				INFOPLIST_FILE = BlockCam/Info.plist;
@@ -1305,7 +1306,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = Irorio.BlockCam;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1317,6 +1318,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = BlockCam/BlockCam.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+				DERIVE_MACCATALYST_PRODUCT_BUNDLE_IDENTIFIER = YES;
 				DEVELOPMENT_TEAM = 4BB235M4GL;
 				"ENABLE_HARDENED_RUNTIME[sdk=macosx*]" = YES;
 				INFOPLIST_FILE = BlockCam/Info.plist;
@@ -1326,7 +1328,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = Irorio.BlockCam;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
