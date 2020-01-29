@@ -44,6 +44,16 @@ class ViewSettings: UITableViewController
             Settings.SetString(HistogramOrders.RGB.rawValue, ForKey: .HistogramOrder)
             InitializeHistogramOrder(HistogramOrders.RGB.rawValue)
         }
+        if let RawSpeed = Settings.GetString(ForKey: .HistogramCreationSpeed)
+        {
+            InitializeHistogramSpeed(RawSpeed)
+        }
+        else
+        {
+            Settings.SetString(HistogramCreationSpeeds.Medium.rawValue, ForKey: .HistogramCreationSpeed)
+            InitializeHistogramSpeed(HistogramCreationSpeeds.Medium.rawValue)
+        }
+        ProcessedHistogramSwitch.isOn = Settings.GetBoolean(ForKey: .ShowProcessedHistogram)
     }
     
     let ModeMap =
@@ -155,6 +165,52 @@ class ViewSettings: UITableViewController
         HistogramOrders.Gray: 6
     ]
     
+    @IBAction func HandleProcessedHistogramChanged(_ sender: Any)
+    {
+        if let Switch = sender as? UISwitch
+        {
+            Settings.SetBoolean(Switch.isOn, ForKey: .ShowProcessedHistogram)
+        }
+    }
+    
+    @IBAction func HandleHistogramSpeedChanged(_ sender: Any)
+    {
+        if let Segment = sender as? UISegmentedControl
+        {
+            let NewIndex = Segment.selectedSegmentIndex
+            for (Speed, Index) in SpeedMap
+            {
+                if Index == NewIndex
+                {
+                    Settings.SetString(Speed.rawValue, ForKey: .HistogramCreationSpeed)
+                }
+            }
+        }
+    }
+    
+    func InitializeHistogramSpeed(_ Raw: String)
+    {
+        if let Speed = HistogramCreationSpeeds(rawValue: Raw)
+        {
+            HistogramSpeedSegment.selectedSegmentIndex = SpeedMap[Speed]!
+        }
+        else
+        {
+            HistogramSpeedSegment.selectedSegmentIndex = 2
+        }
+    }
+    
+    let SpeedMap =
+    [
+        HistogramCreationSpeeds.Fastest: 0,
+        HistogramCreationSpeeds.Fast: 1,
+        HistogramCreationSpeeds.Medium: 2,
+        HistogramCreationSpeeds.Slow: 3,
+        HistogramCreationSpeeds.Slowest: 4
+    ]
+    
+    @IBOutlet weak var HistogramSpeedSegment: UISegmentedControl!
+    @IBOutlet weak var ProcessedHistogramSwitch: UISwitch!
     @IBOutlet weak var HistogramOrder: UISegmentedControl!
     @IBOutlet weak var BestFitOffsetSegment: UISegmentedControl!
     @IBOutlet weak var BestFitSwitch: UISwitch!
