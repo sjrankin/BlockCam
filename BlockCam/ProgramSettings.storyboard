@@ -1185,6 +1185,44 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="94" id="0jZ-o3-qwk">
+                                        <rect key="frame" x="0.0" y="524.66666793823242" width="414" height="94"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="0jZ-o3-qwk" id="eHY-bY-NWn">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="94"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Channel order" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ict-Il-fVv">
+                                                    <rect key="frame" x="20" y="11" width="109" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="0d8-MQ-UQ2">
+                                                    <rect key="frame" x="20" y="40" width="374" height="32"/>
+                                                    <segments>
+                                                        <segment title="RGB"/>
+                                                        <segment title="RBG"/>
+                                                        <segment title="GRB"/>
+                                                        <segment title="GBR"/>
+                                                        <segment title="BRG"/>
+                                                        <segment title="BGR"/>
+                                                        <segment title="Gray"/>
+                                                    </segments>
+                                                    <connections>
+                                                        <action selector="HandleHistogramOrderChanged:" destination="TZn-O9-UZZ" eventType="primaryActionTriggered" id="ZfJ-If-DBN"/>
+                                                    </connections>
+                                                </segmentedControl>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="Ict-Il-fVv" firstAttribute="leading" secondItem="0d8-MQ-UQ2" secondAttribute="leading" id="7D2-G4-cZc"/>
+                                                <constraint firstItem="Ict-Il-fVv" firstAttribute="top" secondItem="eHY-bY-NWn" secondAttribute="topMargin" id="Eeb-kc-mPx"/>
+                                                <constraint firstItem="0d8-MQ-UQ2" firstAttribute="top" secondItem="Ict-Il-fVv" secondAttribute="bottom" constant="8" id="fBe-7k-RWc"/>
+                                                <constraint firstItem="0d8-MQ-UQ2" firstAttribute="trailing" secondItem="eHY-bY-NWn" secondAttribute="trailingMargin" id="h70-fb-5fB"/>
+                                                <constraint firstItem="Ict-Il-fVv" firstAttribute="leading" secondItem="eHY-bY-NWn" secondAttribute="leadingMargin" id="jMp-hp-6CO"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                         </sections>
@@ -1198,6 +1236,7 @@
                         <outlet property="BestFitOffsetSegment" destination="2py-5v-fp1" id="Xkj-gf-y2d"/>
                         <outlet property="BestFitSwitch" destination="psJ-eC-jpS" id="b8g-83-emw"/>
                         <outlet property="HistogramLabel" destination="YJ7-Fw-Vwt" id="HTX-RR-x6q"/>
+                        <outlet property="HistogramOrder" destination="0d8-MQ-UQ2" id="dZD-bv-zKx"/>
                         <outlet property="ModeSegements" destination="B9m-9r-DY9" id="3Fe-hV-0GS"/>
                         <outlet property="ShowHistogramSwitch" destination="pt9-pf-EHw" id="BuV-rr-Jee"/>
                     </connections>
