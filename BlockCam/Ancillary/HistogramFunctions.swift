@@ -23,29 +23,13 @@ extension ViewController
         HistogramView.layer.cornerRadius = 5.0
         HistogramView.backgroundColor = UIColor.black.withAlphaComponent(0.2)
         HistogramView.isUserInteractionEnabled = false
-//        let Idiom = UIDevice.current.userInterfaceIdiom
         let FinalWidth: CGFloat = view.frame.width / 2.0
-//        let FinalWidth: CGFloat = Idiom == .phone ? view.frame.width : view.frame.width / 2.0
-//        HistogramView.layer.maskedCorners = Idiom == .phone ? [.layerMinXMaxYCorner, .layerMaxXMaxYCorner] : [.layerMaxXMaxYCorner]
         HistogramView.layer.maskedCorners = [.layerMaxXMaxYCorner]
         HistogramView.frame = CGRect(x: HistogramView.frame.minX,
                                      y: HistogramView.frame.minY,
                                      width: FinalWidth,
                                      height: HistogramView.frame.height)
-        //HistogramView.frame = CGRect(x: 0, y: 20,
-        //                             width: FinalWidth,
-        //                             height: HistogramView.frame.height)
     }
-    
-    /*
-    /// Populate the histogram display with the passed histogram data.
-    func PopulateHistogram(_ HData: Histogram, InView: UIView)
-    {
-        let ViewWidth: CGFloat = InView.frame.width
-        let ViewHeight: CGFloat = InView.frame.height
-        print("\(HData.MaxRed()),\(HData.MaxGreen()),\(HData.MaxBlue())")
-    }
- */
     
     /// How the histogram view.
     func ShowHistogramView()
