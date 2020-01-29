@@ -15,6 +15,7 @@ import CoreServices
 import AVKit
 import Photos
 import MobileCoreServices
+import CoreMotion
 
 /// Main view controller for the BlockCam program.
 /// - Note: See [Create a Custom Camera View](https://guides.codepath.com/ios/Creating-a-Custom-Camera-View)
@@ -44,7 +45,7 @@ class ViewController: UIViewController,
         InitializeStatusLayer()
         Generator.Delegate = self
         definesPresentationContext = true
-        InitializeModeUIs()
+        //InitializeModeUIs()
         SetupNotifications()
         Sounds.Initialize()
         
@@ -69,12 +70,33 @@ class ViewController: UIViewController,
         ShowStatusLayer()
         ShowSplashScreen()
         GetPermissions()
+
+        FileIO.ClearScratchDirectory()
         
+        if !DeviceHasCamera
+        {
+            SwitchToPhotoPickerMode()
+        }
+        
+        StartGyroscopeUpdates()
+    }
+    
+    /// This even occurs when the safe area insets changed. Unfortunately, iOS doesn't set the insets
+    /// immediately after the view loaded, so we have to wait until they are available, and then we
+    /// can change views taking into account safe area insets.
+    override func viewSafeAreaInsetsDidChange()
+    {
+        InitializeModeUIs(With: self.view.safeAreaInsets)
         let Gradient = Colors.GetGradientFor(CurrentViewMode, Container: MainBottomBar.bounds)
         MainBottomBar.layer.addSublayer(Gradient)
         ImageBottomBar.layer.addSublayer(Colors.GetProcessingGradient(Container: ImageBottomBar.bounds))
-        
-        FileIO.ClearScratchDirectory()
+    }
+    
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator)
+    {
+        super.viewWillTransition(to: size, with: coordinator)
+        let Orientation = UIDevice.current.orientation
+        UpdateButtonsFor(Orientation)
     }
     
     /// Show the splash screen (if settings allow).
@@ -293,14 +315,17 @@ class ViewController: UIViewController,
     {
         super.viewDidAppear(animated)
         #if targetEnvironment(simulator)
+        DeviceHasCamera = false
         Log.Message("Simulator does not support camera input.")
         return
         #endif
         #if targetEnvironment(macCatalyst)
         IsOnCatalyst = true
+        DeviceHasCamera = false
         #endif
         if IsOnCatalyst
         {
+            /*
             if UIImagePickerController.isSourceTypeAvailable(.camera)
             {
                 let ImagePicker = UIImagePickerController()
@@ -309,17 +334,23 @@ class ViewController: UIViewController,
                 ImagePicker.cameraDevice = .front
                 self.present(ImagePicker, animated: true, completion: nil)
             }
+ */
         }
         else
         {
             InitializeLiveView()
             InitializeProcessedLiveView()
         }
-        #if false
-        InitializeHistogramView()
-        ShowHistogramView()
-        //        HideHistogramView()
-        #else
+        
+        if DeviceHasCamera
+        {
+            SwitchModeButton.isHidden = false
+        }
+        else
+        {
+            SwitchModeButton.isHidden = true
+        }
+        
         InitializeHistogramView()
         if Settings.GetBoolean(ForKey: .ShowHistogram)
         {
@@ -329,7 +360,6 @@ class ViewController: UIViewController,
             }
             ShowHistogramView()
         }
-        #endif
     }
     
     /// Set of discovered camera devices.
@@ -921,6 +951,12 @@ class ViewController: UIViewController,
         }
     }
     
+    // MARK: - UI bar variables.
+    
+    public var CommandBar: UIView!
+    public var RecordingBar: UIView!
+    public var ProcessedBar: UIView!
+    
     // MARK: - Alert functions used by the app delegate
     
     public func ShowAlert(Title: String, Message: String, CloseButtonLabel: String)
@@ -933,6 +969,7 @@ class ViewController: UIViewController,
     // MARK: - PhotoKit delegate-required variables.
     
     public var SavingOriginalImage = false
+    public var DeviceHasCamera: Bool = true
     
     // MARK: - Histogram variables.
     
@@ -980,11 +1017,13 @@ class ViewController: UIViewController,
     // MARK: - Process view variables.
     var InProcessView = false
     
+    // MARK: - Gyroscope variables.
+    var MotionManager: CMMotionManager? = nil
+    
     // MARK: - Interface builder variables.
     
     @IBOutlet weak var StatusLayer: UIView!
     @IBOutlet weak var StatusMainLabel: UILabel!
-    
     @IBOutlet weak var SettingsButton: UIButton!
     @IBOutlet weak var SceneRecordInfoButton: UIButton!
     @IBOutlet weak var SceneRecorderButton: UIButton!
