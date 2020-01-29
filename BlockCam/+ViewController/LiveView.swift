@@ -14,113 +14,57 @@ import Accelerate
 
 extension ViewController
 {
+
+    
     /// Called every time a new live-view frame is available. The first few frames are always very dark until the camera figures
     /// out the proper exposure.
     /// - Note:
-    ///    - The code in this delegate function is not used unless `CurrentViewMode` is `.ProcessedView`.
     ///    - The code to create 3D views is very slow compared to how quickly frames are made available. It is best to use
     ///      settings that don't strain things too much when using data from this function.
-    ///    - This function assumes the live view is not visible but the 3D view is.
     ///    - `InitializeProcessedLiveView` must be called in order for this function to receive frames.
+    ///    - Control returnes immediately if the user has disabled the histogram or the histogram display is not visible.
+    ///    - To save battery power, the user may change how often the histogram is updated.
     /// - Parameter output: Not used.
     /// - Parameter didOutput: The frame from the live view.
     /// - Parameter from: Not used.
     func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection)
     {
-        /*
+        FrameCount = FrameCount + 1
+        if !HistogramIsVisible
+        {
+            return
+        }
         if !Settings.GetBoolean(ForKey: .ShowHistogram)
         {
             return
         }
- */
+        if CurrentViewMode != .LiveView
+        {
+            return
+        }
+        if let RawSpeed = Settings.GetString(ForKey: .HistogramCreationSpeed)
+        {
+            if let Speed = HistogramCreationSpeeds(rawValue: RawSpeed)
+            {
+                if let FrameMultiplier = HistogramSpeedTable[Speed]
+                {
+                    if !FrameCount.isMultiple(of: FrameMultiplier)
+                    {
+                        return
+                    }
+                }
+            }
+        }
         if let Buffer: CVPixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer)
         {
             let CIImg: CIImage = CIImage(cvPixelBuffer: Buffer)
-            //let Image: UIImage = ConvertToUIImage(CIImg)
             let Image: UIImage? = CIImg.AsUIImage()
             if Image == nil
             {
                 Log.Message("Nil image returned by UIImage.AsUIImage")
                 return
             }
-            FrameCount = FrameCount + 1
-            
-            let CImage: CGImage = Image!.cgImage!
-            let ImageFormat = vImage_CGImageFormat(bitsPerComponent: 8,
-                                                   bitsPerPixel: 32,
-                                                   colorSpace: CGColorSpaceCreateDeviceRGB(),
-                                                   bitmapInfo: CGBitmapInfo(rawValue: CGImageAlphaInfo.first.rawValue),
-                                                   renderingIntent: .defaultIntent)!
-            guard var SourceBuffer = try? vImage_Buffer(cgImage: CImage,
-                                                    format: ImageFormat) else
-            {
-                Log.Message("Error creating vImage_Buffer")
-                return
-            }
-            defer {SourceBuffer.free()}
-            
-            let Alpha = [UInt](repeating: 0, count: 256)
-            let Red = [UInt](repeating: 0, count: 256)
-            let Green = [UInt](repeating: 0, count: 256)
-            let Blue = [UInt](repeating: 0, count: 256)
-            let AlphaPtr = UnsafeMutablePointer<vImagePixelCount>(mutating: Alpha) as UnsafeMutablePointer<vImagePixelCount>?
-            let RedPtr = UnsafeMutablePointer<vImagePixelCount>(mutating: Red) as UnsafeMutablePointer<vImagePixelCount>?
-            let GreenPtr = UnsafeMutablePointer<vImagePixelCount>(mutating: Green) as UnsafeMutablePointer<vImagePixelCount>?
-            let BluePtr = UnsafeMutablePointer<vImagePixelCount>(mutating: Blue) as UnsafeMutablePointer<vImagePixelCount>?
-            let ARGB = [AlphaPtr, RedPtr, GreenPtr, BluePtr]
-            let Histogram = UnsafeMutablePointer<UnsafeMutablePointer<vImagePixelCount>?>(mutating: ARGB)
-            let error = vImageHistogramCalculation_ARGB8888(&SourceBuffer, Histogram, UInt32(kvImageNoFlags))
-            if error != kvImageNoError
-            {
-                print("Histogram error: \(error)")
-            }
-            else
-            {
-                let MaxValue = max(max(Int(Red.max()!), Int(Green.max()!)), Int(Blue.max()!))
-                HistogramView.ShowHistogram((Red, Green, Blue), UInt(MaxValue))
-            }
-            
-            /*
-             if UserDefaults.standard.bool(forKey: "ShowHistogram")
-             {
-             #if true
-             let Histo = Histogram()
-             if let HImage = Histo.Generate(Image)
-             {
-             OperationQueue.main.addOperation
-             {
-             self.HistogramView.layer.sublayers?.removeAll()
-             let HLayer = CALayer()
-             HLayer.frame = self.HistogramView.frame
-             HLayer.contents = HImage
-             self.HistogramView.layer.addSublayer(HLayer)
-             }
-             }
-             #else
-             let Histo = Histogram(Image)
-             OperationQueue.main.addOperation
-             {
-             self.PopulateHistogram(Histo, InView: self.HistogramView)
-             }
-             #endif
-             }
-             */
-            
-            #if false
-            if CurrentViewMode == .ProcessedView
-            {
-                BackgroundThread.async
-                    {
-                        [weak self] in
-                        self!.OutputView.Clear()
-                        #if true
-                        self!.OutputView.ProcessImage(Image!, CalledFrom: "captureOutput")
-                        #else
-                        self!.OutputView.ProcessImage(Image!, BlockSize: 32.0)
-                        #endif
-                }
-            }
-            #endif
+            DisplayHistogram(For: Image!)
         }
     }
     
