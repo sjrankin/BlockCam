@@ -75,6 +75,7 @@ class Settings
         UserDefaults.standard.set("Normal", forKey: SettingKeys.LightIntensity.rawValue)
         UserDefaults.standard.set("Normal", forKey: SettingKeys.FieldOfView.rawValue)
         UserDefaults.standard.set(false, forKey: SettingKeys.ShowHistogram.rawValue)
+        UserDefaults.standard.set(HistogramOrders.RGB.rawValue, forKey: SettingKeys.HistogramOrder.rawValue) 
         UserDefaults.standard.set("LiveView", forKey: SettingKeys.InitialView.rawValue)
         UserDefaults.standard.set(true, forKey: SettingKeys.FullyExtrudeLetters.rawValue)
         UserDefaults.standard.set("Extrude", forKey: SettingKeys.LetterLocation.rawValue)
@@ -675,6 +676,7 @@ class Settings
             SettingKeys.CharacterFontName,
             SettingKeys.CharacterSeries,
             SettingKeys.StackedShapesSet,
+            SettingKeys.HistogramOrder,
     ]
     
     /// Contains a list of all double-type fields.
@@ -841,6 +843,8 @@ enum SettingKeys: String, CaseIterable, Comparable, Hashable
     //Histogram
     /// Boolean: Holds the show histogram flag.
     case ShowHistogram = "ShowHistogram"
+    /// String: Holds the order of channels in histogram displays.
+    case HistogramOrder = "HistogramOrder"
     
     //General purpose
     /// Integer: Next available sequential integer.
