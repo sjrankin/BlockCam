@@ -26,19 +26,6 @@ class ViewSettings: UITableViewController
             Settings.SetDouble(0.0, ForKey: .BestFitOffset)
         }
         ShowHistogramSwitch.isOn = Settings.GetBoolean(ForKey: .ShowHistogram)
-        var BucketCount = Settings.GetInteger(ForKey: .HistogramBucketCount)
-        if BucketCount == 0
-        {
-            BucketCount = 256
-        }
-        if let CountIndex = BucketCountMap[BucketCount]
-        {
-            BucketCountSegment.selectedSegmentIndex = CountIndex
-        }
-        else
-        {
-            BucketCountSegment.selectedSegmentIndex = 0
-        }
         let InitialS = Settings.GetString(ForKey: .InitialView)
         if let Initial = InitialS == nil ? ProgramModes.LiveView : ProgramModes(rawValue: InitialS!)
         {
@@ -50,14 +37,6 @@ class ViewSettings: UITableViewController
         }
     }
     
-    let BucketCountMap =
-        [
-            64: 0,
-            128: 1,
-            196: 2,
-            256: 3
-    ]
-    
     let ModeMap =
         [
             ProgramModes.LiveView: 0,
@@ -68,20 +47,6 @@ class ViewSettings: UITableViewController
     @IBAction func HandleHistogramChanged(_ sender: Any)
     {
         Settings.SetBoolean(ShowHistogramSwitch.isOn, ForKey: .ShowHistogram)
-    }
-    
-    @IBAction func BucketCountChanged(_ sender: Any)
-    {
-        let NewIndex = BucketCountSegment.selectedSegmentIndex
-        for (Value, Index) in BucketCountMap
-        {
-            if Index == NewIndex
-            {
-                Settings.SetInteger(Value, ForKey: .HistogramBucketCount)
-                return
-            }
-        }
-        Settings.SetInteger(64, ForKey: .HistogramBucketCount)
     }
     
     @IBAction func HandleModeChanged(_ sender: Any)
@@ -137,6 +102,5 @@ class ViewSettings: UITableViewController
     @IBOutlet weak var BestFitSwitch: UISwitch!
     @IBOutlet weak var HistogramLabel: UILabel!
     @IBOutlet weak var ModeSegements: UISegmentedControl!
-    @IBOutlet weak var BucketCountSegment: UISegmentedControl!
     @IBOutlet weak var ShowHistogramSwitch: UISwitch!
 }
