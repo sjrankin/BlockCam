@@ -62,28 +62,28 @@ class SmallStatusDisplay: UIView
         WaitingIndicator.layer.zPosition = 500
         WaitingIndicator.stopAnimating()
         self.addSubview(WaitingIndicator)
-        HelpButton = UIButton(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
-        HelpButton.addTarget(self, action: #selector(ShowHelpAlert), for: UIControl.Event.touchUpInside)
-        HelpButton.setImage(UIImage(systemName: "gear",
+        SettingsButton = UIButton(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
+        SettingsButton.addTarget(self, action: #selector(ShowContextMenu), for: UIControl.Event.touchUpInside)
+        SettingsButton.setImage(UIImage(systemName: "gear",
                                     withConfiguration: UIImage.SymbolConfiguration(pointSize: 30.0, weight: .bold)),
                             for: .normal)
-        HelpButton.tintColor = UIColor.white
-        HelpButton.isUserInteractionEnabled = false
-        HelpButton.alpha = 0.0
-        HelpButton.layer.zPosition = -1000
-        self.addSubview(HelpButton)
+        SettingsButton.tintColor = UIColor.white
+        SettingsButton.isUserInteractionEnabled = false
+        SettingsButton.alpha = 0.0
+        SettingsButton.layer.zPosition = -1000
+        self.addSubview(SettingsButton)
         self.clipsToBounds = true
     }
     
     // MARK: - Help display.
     
-    @objc func ShowHelpAlert(_ sender: Any)
+    @objc func ShowContextMenu(_ sender: Any)
     {
         if Settings.GetBoolean(ForKey: .EnableButtonPressSounds)
         {
             Sounds.PlaySound(.Tock)
         }
-        MainDelegate?.ShowProcessedImageMenu(From: HelpButton)
+        MainDelegate?.ShowProcessedImageMenu(From: SettingsButton)
     }
     
     // MARK: - Initialization and run-time updating.
@@ -104,7 +104,7 @@ class SmallStatusDisplay: UIView
         TextBox.layer.cornerRadius = 5.0
         TextBox.layer.borderColor = UIColor.black.cgColor
         
-        HelpButton.frame = CGRect(x: (Margin * 2.0) + TextWidth,
+        SettingsButton.frame = CGRect(x: (Margin * 2.0) + TextWidth,
                                   y: Margin,
                                   width: PercentWidth, height: PercentWidth)
         
@@ -193,20 +193,20 @@ class SmallStatusDisplay: UIView
         BottomPercent.AnimateTo(To, WithDuration: Duration)
     }
     
-    /// Show the help button.
-    public func ShowHelp()
+    /// Show the settings button.
+    public func ShowSettingsButton()
     {
-        HelpButton.isUserInteractionEnabled = true
-        HelpButton.alpha = 1.0
-        HelpButton.layer.zPosition = 1000
+        SettingsButton.isUserInteractionEnabled = true
+        SettingsButton.alpha = 1.0
+        SettingsButton.layer.zPosition = 1000
     }
     
-    /// Hide the help button.
-    public func HideHelp()
+    /// Hide the settings button.
+    public func HideSettingsButton()
     {
-        HelpButton.isUserInteractionEnabled = false
-        HelpButton.alpha = 0.0
-        HelpButton.layer.zPosition = -1000
+        SettingsButton.isUserInteractionEnabled = false
+        SettingsButton.alpha = 0.0
+        SettingsButton.layer.zPosition = -1000
     }
     
     // MARK: - Controlling properties.
@@ -238,7 +238,7 @@ class SmallStatusDisplay: UIView
         didSet
         {
             Initialize()
-            HideHelp()
+            HideSettingsButton()
         }
     }
     /// Get or set the show task percentage flag.
@@ -260,7 +260,7 @@ class SmallStatusDisplay: UIView
         didSet
         {
             Initialize()
-            HideHelp()
+            HideSettingsButton()
         }
     }
     /// Get or set the show indefinite indicator flag.
@@ -378,5 +378,5 @@ class SmallStatusDisplay: UIView
     private var BottomPercent: LinearPercent!
     private var TextBox: FloatingText!
     private var WaitingIndicator: UIActivityIndicatorView!
-    private var HelpButton: UIButton!
+    private var SettingsButton: UIButton!
 }
