@@ -35,6 +35,15 @@ class ViewSettings: UITableViewController
         {
             ModeSegements.selectedSegmentIndex = 0
         }
+        if let RawOrder = Settings.GetString(ForKey: .HistogramOrder)
+        {
+            InitializeHistogramOrder(RawOrder)
+        }
+        else
+        {
+            Settings.SetString(HistogramOrders.RGB.rawValue, ForKey: .HistogramOrder)
+            InitializeHistogramOrder(HistogramOrders.RGB.rawValue)
+        }
     }
     
     let ModeMap =
@@ -98,6 +107,55 @@ class ViewSettings: UITableViewController
         8.0: 4
     ]
     
+    @IBAction func HandleHistogramOrderChanged(_ sender: Any)
+    {
+        if let Segment = sender as? UISegmentedControl
+        {
+            let NewIndex = Segment.selectedSegmentIndex
+            for (Order, Index) in OrderMap
+            {
+                if Index == NewIndex
+                {
+                    Settings.SetString(Order.rawValue, ForKey: .HistogramOrder)
+                }
+            }
+        }
+    }
+    
+    func InitializeHistogramOrder(_ Raw: String)
+    {
+        if Raw.isEmpty
+        {
+            Log.AbortMessage("Unexpectedly empty string passed to InitializeHistogramOrder")
+            {
+                Message in
+                fatalError(Message)
+            }
+        }
+        if let Order = HistogramOrders(rawValue: Raw)
+        {
+            if let OrderIndex = OrderMap[Order]
+            {
+                HistogramOrder.selectedSegmentIndex = OrderIndex
+                return
+            }
+        }
+        HistogramOrder.selectedSegmentIndex = 0
+        Settings.SetString(HistogramOrders.RGB.rawValue, ForKey: .HistogramOrder)
+    }
+    
+    let OrderMap =
+    [
+        HistogramOrders.RGB: 0,
+        HistogramOrders.RBG: 1,
+        HistogramOrders.GRB: 2,
+        HistogramOrders.GBR: 3,
+        HistogramOrders.BRG: 4,
+        HistogramOrders.BGR: 5,
+        HistogramOrders.Gray: 6
+    ]
+    
+    @IBOutlet weak var HistogramOrder: UISegmentedControl!
     @IBOutlet weak var BestFitOffsetSegment: UISegmentedControl!
     @IBOutlet weak var BestFitSwitch: UISwitch!
     @IBOutlet weak var HistogramLabel: UILabel!
