@@ -38,7 +38,7 @@ class ProcessedImageMenuController: UIViewController
         SceneBox.backgroundColor = UIColor.clear
         ShareBox.layer.borderColor = UIColor.black.cgColor
         ShareBox.backgroundColor = UIColor.clear
-        self.preferredContentSize = CGSize(width: 280.0, height: 400.0)
+        self.preferredContentSize = CGSize(width: 280.0, height: 450.0)
         OriginalImage.layer.borderColor = UIColor.systemGray6.cgColor
         OriginalImage.backgroundColor = UIColor.black
         OriginalImage.alpha = 0.0
@@ -49,7 +49,7 @@ class ProcessedImageMenuController: UIViewController
     {
         if Image != nil
         {
-            self.preferredContentSize = CGSize(width: 280.0, height: 530.0)
+            self.preferredContentSize = CGSize(width: 280.0, height: 580.0)
             OriginalImage.alpha = 1.0
             OriginalImage.contentMode = .scaleAspectFit
             OriginalImage.image = Image
@@ -61,73 +61,82 @@ class ProcessedImageMenuController: UIViewController
     @IBAction func HandleCurrentSettingsPressed(_ sender: Any)
     {
         WasCancelled = false
-        self.dismiss(animated: true, completion:
-            {
-                self.Delegate?.HandleContextMenu(Command: .CurrentImageSettings)
-        })
+        self.dismiss(animated: true)
+        {
+            self.Delegate?.HandleContextMenu(Command: .CurrentImageSettings)
+        }
     }
     
     @IBAction func HandleImageSettingsPressed(_ sender: Any)
     {
         WasCancelled = false
-        self.dismiss(animated: true, completion:
-            {
-                self.Delegate?.HandleContextMenu(Command: .SetImageOptions)
-        })
+        self.dismiss(animated: true)
+        {
+            self.Delegate?.HandleContextMenu(Command: .SetImageOptions)
+        }
     }
     
     @IBAction func HandlePerformanceOptionsPressed(_ sender: Any)
     {
         WasCancelled = false
-        self.dismiss(animated: true, completion:
-            {
-                self.Delegate?.HandleContextMenu(Command: .PerformanceOptions)
-        })
+        self.dismiss(animated: true)
+        {
+            self.Delegate?.HandleContextMenu(Command: .PerformanceOptions)
+        }
     }
     
     @IBAction func HandleLightingOptionsPressed(_ sender: Any)
     {
         WasCancelled = false
-        self.dismiss(animated: true, completion:
-            {
-                self.Delegate?.HandleContextMenu(Command: .LightingOptions)
-        })
+        self.dismiss(animated: true)
+        {
+            self.Delegate?.HandleContextMenu(Command: .LightingOptions)
+        }
     }
     
     @IBAction func HandleLoadScenePressed(_ sender: Any)
     {
         WasCancelled = false
-        self.dismiss(animated: true, completion:
-            {
-                self.Delegate?.HandleContextMenu(Command: .LoadScene)
-        })
+        self.dismiss(animated: true)
+        {
+            self.Delegate?.HandleContextMenu(Command: .LoadScene)
+        }
     }
     
     @IBAction func HandleSaveScenePressed(_ sender: Any)
     {
         WasCancelled = false
-        self.dismiss(animated: true, completion:
-            {
-                self.Delegate?.HandleContextMenu(Command: .SaveScene)
-        })
+        self.dismiss(animated: true)
+        {
+            self.Delegate?.HandleContextMenu(Command: .SaveScene)
+        }
     }
     
     @IBAction func HandleRecordScenePressed(_ sender: Any)
     {
         WasCancelled = false
-        self.dismiss(animated: true, completion:
-            {
-                self.Delegate?.HandleContextMenu(Command: .RecordScene)
-        })
+        self.dismiss(animated: true)
+        {
+            self.Delegate?.HandleContextMenu(Command: .RecordScene)
+        }
     }
     
     @IBAction func HandleShareImagePressed(_ sender: Any)
     {
         WasCancelled = false
-        self.dismiss(animated: true, completion:
-            {
-                self.Delegate?.HandleContextMenu(Command: .ShareImage)
-        })
+        self.dismiss(animated: true)
+        {
+            self.Delegate?.HandleContextMenu(Command: .ShareImage)
+        }
+    }
+    
+    @IBAction func HandleRunProgramSettings(_ sender: Any)
+    {
+        WasCancelled = false
+        self.dismiss(animated: true)
+        {
+            self.Delegate?.HandleContextMenu(Command: .ProgramSettings)
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool)
