@@ -30,6 +30,10 @@ extension ViewController
     func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection)
     {
         FrameCount = FrameCount + 1
+        if !DeviceHasCamera
+        {
+            return
+        }
         if !HistogramIsVisible
         {
             return
@@ -165,8 +169,10 @@ extension ViewController
                 NewDevice = Device
         }
         
+        DeviceHasCamera = true
         guard let InputCamera = NewDevice else
         {
+            DeviceHasCamera = false 
             Log.Message("Unable to access input camera.")
             return
         }
@@ -192,6 +198,10 @@ extension ViewController
     /// - Note: The frame does not have to be shown to the user, which is how the processed live view works.
     func InitializeProcessedLiveView()
     {
+        if !DeviceHasCamera
+        {
+            return
+        }
         let VideoOut = AVCaptureVideoDataOutput()
         VideoOut.videoSettings = [kCVPixelBufferPixelFormatTypeKey as String: NSNumber(value: kCVPixelFormatType_32BGRA)]
         VideoOut.alwaysDiscardsLateVideoFrames = true
