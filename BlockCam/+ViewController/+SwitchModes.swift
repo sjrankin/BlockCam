@@ -50,9 +50,45 @@ extension ViewController
     
     // MARK: - Code for the initialization of bottom tool bars.
     
-    /// Initialize the UI mode. Initial mode is for live view. Initializes button locations for all bottom tool bars.
-    func InitializeModeUIs()
+    /// Update the locations of the various UI elements depending on the safe area as represented by the
+    /// passed Insets structure.
+    func UpdateUIForInsets(_ Insets: UIEdgeInsets)
     {
+        let ViewFrame = self.view.frame
+        let FrameHeight = UIScreen.main.bounds.height - (Insets.bottom + Insets.top + 70)
+        let Frame = CGRect(x: 0, y: Insets.top, width: ViewFrame.width, height: FrameHeight)
+        LiveView.frame = Frame
+        StatusLayer.frame = Frame
+        OutputView.frame = Frame
+        HistogramView.frame = CGRect(x: HistogramView.frame.minX,
+                                     y: Insets.top,
+                                     width: ViewFrame.width,
+                                     height: 100.0)
+        
+        MainBottomBar.frame = CGRect(x: 0,
+                                     y: Frame.maxY,
+                                     width: self.view.frame.width,
+                                     height: 70.0)
+        
+        ImageBottomBar.frame = CGRect(x: 0,
+                                      y: Frame.maxY,
+                                      width: self.view.frame.width,
+                                      height: 70.0)
+        
+        SceneMotionRecorderView.frame = CGRect(x: 0,
+                                               y: Frame.maxY,
+                                               width: self.view.frame.width,
+                                               height: 70.0)
+        
+    }
+    
+    /// Initialize the UI mode. Initial mode is for live view. Initializes button locations for all bottom tool bars.
+    func InitializeModeUIs(With: UIEdgeInsets)
+    {
+        if With.bottom > 0.0 || With.top > 0.0
+        {
+            UpdateUIForInsets(With)
+        }
         OutputView.scene?.background.contents = UIColor.black
         let ScreenHeight = self.view.bounds.height
         let ScreenWidth = self.view.bounds.width
@@ -83,11 +119,14 @@ extension ViewController
             SettingsButton.frame = NewRect
         }
         
-        //Initilize the bottom live view bar.
-        MainBottomBar.frame = CGRect(x: 0,
-                                     y: ScreenHeight - MainBottomBar.frame.height,
-                                     width: ScreenWidth,
-                                     height: MainBottomBar.frame.height)
+        //Initialize the bottom live view bar.
+        //The location of the bottom live view bar is set in UpdateUIForInsets.
+        /*
+         MainBottomBar.frame = CGRect(x: 0,
+         y: ScreenHeight - MainBottomBar.frame.height,
+         width: ScreenWidth,
+         height: MainBottomBar.frame.height)
+         */
         MainBottomBar.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
         MainBottomBar.layer.cornerRadius = 5.0
         if let NewRect = MoveButton(DoneButton, To: 0.0)
@@ -135,6 +174,9 @@ extension ViewController
     /// Switch to live view mode - the live view control is visible and assumed to be running.
     func SwitchToLiveViewMode()
     {
+        let Insets = self.view.safeAreaInsets
+        let FrameHeight = UIScreen.main.bounds.height - (Insets.bottom + Insets.top + 70)
+        let Frame = CGRect(x: 0, y: Insets.top, width: self.view.frame.width, height: FrameHeight)
         if Settings.GetBoolean(ForKey: .ShowHistogram)
         {
             ShowHistogramView()
@@ -156,16 +198,36 @@ extension ViewController
         UIView.animate(withDuration: 0.35,
                        animations:
             {
-                self.ImageBottomBar.frame = CGRect(x: 0,
-                                                   y: ScreenHeight,
-                                                   width: ScreenWidth,
-                                                   height: self.ImageBottomBar.frame.height)
-                self.ImageBottomBar.alpha = 0.0
-                self.MainBottomBar.frame = CGRect(x: 0,
-                                                  y: ScreenHeight - self.MainBottomBar.frame.height,
-                                                  width: ScreenWidth,
-                                                  height: self.MainBottomBar.frame.height)
-                self.MainBottomBar.alpha = 1.0
+                if Insets.bottom > 0
+                {
+                    //Hide the image bar.
+                    self.ImageBottomBar.frame = CGRect(x: ScreenWidth,
+                                                       y: self.ImageBottomBar.frame.minY,
+                                                       width: ScreenWidth,
+                                                       height: self.ImageBottomBar.frame.height)
+                    self.ImageBottomBar.alpha = 0.0
+                    //Show the main bar.
+                    self.MainBottomBar.frame = CGRect(x: 0,
+                                                      y: Frame.maxY,
+                                                      width: ScreenWidth,
+                                                      height: self.MainBottomBar.frame.height)
+                    self.MainBottomBar.alpha = 1.0
+                }
+                else
+                {
+                    //Hide the image bar.
+                    self.ImageBottomBar.frame = CGRect(x: 0,
+                                                       y: ScreenHeight,
+                                                       width: ScreenWidth,
+                                                       height: self.ImageBottomBar.frame.height)
+                    self.ImageBottomBar.alpha = 0.0
+                    //Show the main bar.
+                    self.MainBottomBar.frame = CGRect(x: 0,
+                                                      y: Frame.maxY,
+                                                      width: ScreenWidth,
+                                                      height: self.MainBottomBar.frame.height)
+                    self.MainBottomBar.alpha = 1.0
+                }
         }
         )
         self.view.bringSubviewToFront(LiveView)
@@ -174,6 +236,9 @@ extension ViewController
     /// Switch to the 3D scene mode.
     func SwitchToImageMode()
     {
+        let Insets = self.view.safeAreaInsets
+        let FrameHeight = UIScreen.main.bounds.height - (Insets.bottom + Insets.top + 70)
+        let Frame = CGRect(x: 0, y: Insets.top, width: self.view.frame.width, height: FrameHeight)
         HideHistogramView()
         InProcessView = true
         let ScreenHeight = self.view.bounds.height
@@ -188,16 +253,36 @@ extension ViewController
         UIView.animate(withDuration: 0.35,
                        animations:
             {
-                self.ImageBottomBar.frame = CGRect(x: 0,
-                                                   y: ScreenHeight - self.ImageBottomBar.frame.height,
-                                                   width: ScreenWidth,
-                                                   height: self.ImageBottomBar.frame.height)
-                self.ImageBottomBar.alpha = 1.0
-                self.MainBottomBar.frame = CGRect(x: 0,
-                                                  y: ScreenHeight,
-                                                  width: ScreenWidth,
-                                                  height: self.MainBottomBar.frame.height)
-                self.MainBottomBar.alpha = 0.0
+                if Insets.bottom > 0
+                {
+                    //Show the image bar.
+                    self.ImageBottomBar.frame = CGRect(x: 0,
+                                                       y: Frame.maxY,
+                                                       width: ScreenWidth,
+                                                       height: self.ImageBottomBar.frame.height)
+                    self.ImageBottomBar.alpha = 1.0
+                    //Hide the main bar.
+                    self.MainBottomBar.frame = CGRect(x: ScreenWidth,
+                                                      y: self.MainBottomBar.frame.minY,
+                                                      width: ScreenWidth,
+                                                      height: self.MainBottomBar.frame.height)
+                    self.MainBottomBar.alpha = 0.0
+                }
+                else
+                {
+                    //Show the image bar.
+                    self.ImageBottomBar.frame = CGRect(x: 0,
+                                                       y: Frame.maxY,
+                                                       width: ScreenWidth,
+                                                       height: self.ImageBottomBar.frame.height)
+                    self.ImageBottomBar.alpha = 1.0
+                    //Hide the main bar.
+                    self.MainBottomBar.frame = CGRect(x: 0,
+                                                      y: ScreenHeight,
+                                                      width: ScreenWidth,
+                                                      height: self.MainBottomBar.frame.height)
+                    self.MainBottomBar.alpha = 0.0
+                }
         }
         )
         self.view.bringSubviewToFront(OutputView)
@@ -208,6 +293,9 @@ extension ViewController
     /// Hide the image bottom tool bar. Show the record scene menu bar.
     func ShowRecordSceneBar()
     {
+        let Insets = self.view.safeAreaInsets
+        let FrameHeight = UIScreen.main.bounds.height - (Insets.bottom + Insets.top + 70)
+        let Frame = CGRect(x: 0, y: Insets.top, width: self.view.frame.width, height: FrameHeight)
         let ScreenHeight = self.view.bounds.height
         let ScreenWidth = self.view.bounds.width
         SceneMotionRecorderView.layer.zPosition = 1000
@@ -215,15 +303,32 @@ extension ViewController
         UIView.animate(withDuration: 0.35,
                        animations:
             {
-                let Top = ScreenHeight - self.SceneMotionRecorderView.frame.height
-                self.SceneMotionRecorderView.frame = CGRect(x: 0,
-                                                            y: Top,
-                                                            width: ScreenWidth,
-                                                            height: self.SceneMotionRecorderView.frame.height)
-                self.ImageBottomBar.frame = CGRect(x: 0,
-                                                   y: ScreenHeight,
-                                                   width: ScreenWidth,
-                                                   height: self.ImageBottomBar.frame.height)
+                if Insets.bottom > 0
+                {
+                    //Show the recorder bar.
+                    self.SceneMotionRecorderView.frame = CGRect(x: 0,
+                                                                y: Frame.maxY,
+                                                                width: ScreenWidth,
+                                                                height: self.SceneMotionRecorderView.frame.height)
+                    //Hide the image bar.
+                    self.ImageBottomBar.frame = CGRect(x: ScreenWidth,
+                                                       y: self.ImageBottomBar.frame.minY,
+                                                       width: ScreenWidth,
+                                                       height: self.ImageBottomBar.frame.height)
+                }
+                else
+                {
+                    //Show the recorder bar.
+                    self.SceneMotionRecorderView.frame = CGRect(x: 0,
+                                                                y: Frame.maxY,
+                                                                width: ScreenWidth,
+                                                                height: self.SceneMotionRecorderView.frame.height)
+                    //Hide the image bar.
+                    self.ImageBottomBar.frame = CGRect(x: 0,
+                                                       y: ScreenHeight,
+                                                       width: ScreenWidth,
+                                                       height: self.ImageBottomBar.frame.height)
+                }
         }
         )
     }
@@ -231,6 +336,9 @@ extension ViewController
     /// Hide the record scene menu bar. Restore the normal image bottom tool bar.
     func HideRecordSceneBar()
     {
+        let Insets = self.view.safeAreaInsets
+        let FrameHeight = UIScreen.main.bounds.height - (Insets.bottom + Insets.top + 70)
+        let Frame = CGRect(x: 0, y: Insets.top, width: self.view.frame.width, height: FrameHeight)
         let ScreenHeight = self.view.bounds.height
         let ScreenWidth = self.view.bounds.width
         SceneMotionRecorderView.layer.zPosition = 0
@@ -238,15 +346,32 @@ extension ViewController
         UIView.animate(withDuration: 0.35,
                        animations:
             {
-                let Top = ScreenHeight - self.ImageBottomBar.frame.height
-                self.SceneMotionRecorderView.frame = CGRect(x: 0,
-                                                            y: ScreenHeight,
-                                                            width: ScreenWidth,
-                                                            height: self.SceneMotionRecorderView.frame.height)
-                self.ImageBottomBar.frame = CGRect(x: 0,
-                                                   y: Top,
-                                                   width: ScreenWidth,
-                                                   height: self.ImageBottomBar.frame.height)
+                if Insets.bottom > 0
+                {
+                    //Hide the recorder bar.
+                    self.SceneMotionRecorderView.frame = CGRect(x: ScreenWidth,
+                                                                y: self.SceneMotionRecorderView.frame.minY,
+                                                                width: ScreenWidth,
+                                                                height: self.SceneMotionRecorderView.frame.height)
+                    //Show the image bar.
+                    self.ImageBottomBar.frame = CGRect(x: 0,
+                                                       y: Frame.maxY,
+                                                       width: ScreenWidth,
+                                                       height: self.ImageBottomBar.frame.height)
+                }
+                else
+                {
+                    //Hide the recorder bar.
+                    self.SceneMotionRecorderView.frame = CGRect(x: 0,
+                                                                y: ScreenHeight,
+                                                                width: ScreenWidth,
+                                                                height: self.SceneMotionRecorderView.frame.height)
+                    //Show the image bar.
+                    self.ImageBottomBar.frame = CGRect(x: 0,
+                                                       y: Frame.maxY,
+                                                       width: ScreenWidth,
+                                                       height: self.ImageBottomBar.frame.height)
+                }
         }
         )
     }
@@ -263,5 +388,41 @@ extension ViewController
         }
         )
         self.view.bringSubviewToFront(OutputView)
+    }
+    
+    func RotateButtonTo(_ Angle: Double, Button: UIButton)
+    {
+        Button.transform = CGAffineTransform(rotationAngle: CGFloat(Angle) * CGFloat.pi / 180.0)
+    }
+    
+    func UpdateButtonsFor(_ Orientation: UIDeviceOrientation)
+    {
+        print("New orientatio=\(Orientation)")
+        var Angle = 0.0
+        switch Orientation
+        {
+            case .landscapeLeft:
+                Angle = 90.0
+            
+            case .landscapeRight:
+                Angle = 270.0
+            
+            case .portrait:
+                Angle = 0.0
+            
+            case .portraitUpsideDown:
+                Angle = 180.0
+            
+            default:
+            break
+        }
+        RotateButtonTo(Angle, Button: SettingsButton)
+        RotateButtonTo(Angle, Button: SceneRecordInfoButton)
+        RotateButtonTo(Angle, Button: SceneRecorderButton)
+        RotateButtonTo(Angle, Button: CloseSceneRecorderViewButton)
+        RotateButtonTo(Angle, Button: SwitchCameraButton)
+        RotateButtonTo(Angle, Button: SwitchModeButton)
+        RotateButtonTo(Angle, Button: CameraButton)
+        RotateButtonTo(Angle, Button: SwitchModeButton)
     }
 }
