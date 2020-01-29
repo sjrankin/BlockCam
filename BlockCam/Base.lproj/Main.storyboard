@@ -7,10 +7,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--PerformanceNavigationRootUI-->
+        <!--PerformanceSettingsUI-->
         <scene sceneID="pcq-IE-5ri">
             <objects>
-                <viewControllerPlaceholder storyboardName="Secondary" referencedIdentifier="PerformanceNavigationRootUI" id="R1s-PJ-9wJ" sceneMemberID="viewController">
+                <viewControllerPlaceholder storyboardName="ProgramSettings" referencedIdentifier="PerformanceSettingsUI" id="R1s-PJ-9wJ" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="F46-w3-VoX"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5i3-76-pBA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
