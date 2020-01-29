@@ -19,6 +19,8 @@ import Photos
 /// - Note: `Initialize` *must* be called immediately after instantiation.
 class ProcessViewer: SCNView, SCNSceneRendererDelegate
 {
+    weak var Delegate: MainProtocol? = nil
+    
     // MARK: - Initialization
     
     /// Initializer.
@@ -72,7 +74,8 @@ class ProcessViewer: SCNView, SCNSceneRendererDelegate
     }
     
     /// Adds an observer to the point-of-view node's position value. This allows us to track the scene when it is moved
-    /// which in turn lets us save a frame for each change, which can then be assembled in to a video.
+    /// which in turn lets us save a frame for each change, which can then be assembled in to a video. Additionally, if
+    /// proper settings are enabled, a histogram is generated for the processed image.
     private func AddCameraObserver()
     {
         CameraObserver = self.observe(\.pointOfView?.position, options: [.new])
@@ -80,6 +83,16 @@ class ProcessViewer: SCNView, SCNSceneRendererDelegate
             (Node, Change) in
             OperationQueue.current?.addOperation
                 {
+                    #if false
+                    if Settings.GetBoolean(ForKey: .ShowHistogram)
+                    {
+                        if Settings.GetBoolean(ForKey: .ShowProcessedHistogram)
+                        {
+                            let MotionFrame = self.snapshot()
+                            self.Delegate?.DisplayHistogram(For: MotionFrame)
+                        }
+                    }
+                    #endif
                     if self.RecordScene
                     {
                         let MotionFrame = self.snapshot()
@@ -90,6 +103,13 @@ class ProcessViewer: SCNView, SCNSceneRendererDelegate
                     }
             }
         }
+    }
+    
+    /// Returns the current scene as an image. If no nodes are added, the result will be uninteresting.
+    /// - Returns: Image of the current scene.
+    public func SceneImage() -> UIImage
+    {
+        return self.snapshot()
     }
     
     var SceneFrameCount: Int = 0
@@ -300,18 +320,6 @@ class ProcessViewer: SCNView, SCNSceneRendererDelegate
     }
     
     // MARK: - Public processing interfaces.
-    
-    /*
-    /// Process the passed image using settings the user defaults.
-    /// - Parameter SomeImage: The image to process.
-    /// - Parameter BlockSize: Determines how many blocks there are in each dimension.
-    public func ProcessImage(_ SomeImage: UIImage, BlockSize: CGFloat)
-    {
-        Clear()
-        SaveVideoFrames = false
-        Generator.MakeImage(self, SomeImage, BlockSize: BlockSize)
-    }
- */
     
     /// Process the passed image using settings the user defaults.
     /// - Parameter SomeImage: The image to process.
