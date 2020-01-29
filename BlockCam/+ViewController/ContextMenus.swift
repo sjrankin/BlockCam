@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 
+#if false
 extension ViewController: UIContextMenuInteractionDelegate
 {
     /// Handle `contextMenuInteraction`. The menu that is returned depends on the contents of `interaction.view`.
@@ -132,3 +133,4 @@ extension ViewController: UIContextMenuInteractionDelegate
                       children: [FullSettingsMenu, ExportGroup, CurrentSettingsMenu, MainSceneMenu, CancelGroup])
     }
 }
+#endif
