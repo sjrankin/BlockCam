@@ -393,3 +393,18 @@ enum HistogramOrders: String, CaseIterable
     /// Grayscale (showing synthetic brightness).
     case Gray = "Gray"
 }
+
+/// Determines how often (in frame counts) to create histograms.
+enum HistogramCreationSpeeds: String, CaseIterable
+{
+    /// Create a histogram every frame.
+    case Fastest = "Fastest"
+    /// Crate a histogram at a fast rate.
+    case Fast = "Fast"
+    /// Create a histogram at a medium rate.
+    case Medium = "Medium"
+    /// Create a histogram at a slow rate.
+    case Slow = "Slow"
+    /// Create a histogram at the slowest rate.
+    case Slowest = "Slowest"
+}
