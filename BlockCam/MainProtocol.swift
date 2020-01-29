@@ -81,4 +81,7 @@ protocol MainProtocol: class
                       Selected: NodeShapes?, MenuDelegate: ContextMenuProtocol,
                       WindowDelegate: UIPopoverPresentationControllerDelegate,
                       WindowActual: UIViewController)
+    
+    /// Displays the histogram for the passed image. If the histogram is not visible, no action is taken.
+    func DisplayHistogram(For Image: UIImage)
 }
