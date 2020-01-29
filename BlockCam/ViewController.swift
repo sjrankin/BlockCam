@@ -256,8 +256,13 @@ class ViewController: UIViewController,
         OutputView = ProcessViewer(frame: NewFrame, options: ViewOptions) 
         if OutputView == nil
         {
-            fatalError("Output view was deallocated!")
+            Log.AbortMessage("Outputview was deallocated.")
+            {
+                Message in
+                fatalError(Message)
+            }
         }
+        OutputView.Delegate = self
         self.view.addSubview(OutputView)
         #if DEBUG
         OutputView.showsStatistics = true
@@ -313,7 +318,7 @@ class ViewController: UIViewController,
         #if false
         InitializeHistogramView()
         ShowHistogramView()
-//        HideHistogramView()
+        //        HideHistogramView()
         #else
         InitializeHistogramView()
         if Settings.GetBoolean(ForKey: .ShowHistogram)
@@ -929,8 +934,16 @@ class ViewController: UIViewController,
     
     public var SavingOriginalImage = false
     
-    // MARK: - Extension-required variables.
+    // MARK: - Histogram variables.
     
+    let HistogramSpeedTable =
+        [
+            HistogramCreationSpeeds.Fastest: 1,
+            HistogramCreationSpeeds.Fast: 5,
+            HistogramCreationSpeeds.Medium: 15,
+            HistogramCreationSpeeds.Slow: 20,
+            HistogramCreationSpeeds.Slowest: 30
+    ]
     var HistogramIsVisible: Bool = false
     
     // MARK: - Activity viewer required variables.
