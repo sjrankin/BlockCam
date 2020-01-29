@@ -63,19 +63,8 @@ class ViewController: UIViewController,
         #endif
         
         InitializeOutput()
-        /*
-        let SceneContextMenu = UIContextMenuInteraction(delegate: self)
-        OutputView.addInteraction(SceneContextMenu)
-        let LiveContextMenu = UIContextMenuInteraction(delegate: self)
-        LiveView.addInteraction(LiveContextMenu)
-        */
         
         OutputView.alpha = 0.0
-        
-        //UnicodeHelper.Initialize()
-        //Emoji.Initialize()
-        
-        FileIO.ClearScratchDirectory()
         
         ShowStatusLayer()
         ShowSplashScreen()
@@ -321,7 +310,7 @@ class ViewController: UIViewController,
             InitializeLiveView()
             InitializeProcessedLiveView()
         }
-        #if true
+        #if false
         InitializeHistogramView()
         ShowHistogramView()
 //        HideHistogramView()
@@ -679,7 +668,6 @@ class ViewController: UIViewController,
         {
             self.present(Controller, animated: true)
         }
-//        performSegue(withIdentifier: "ToSettingsController", sender: self)
     }
     
     func ShowAboutFromMenu()
