@@ -71,7 +71,7 @@ extension ViewController
     {
         ParentWidth = view.frame.width
         ParentHeight = view.frame.height
-        let TitleWidth = ParentWidth * 0.75
+        let TitleWidth = ParentWidth * 0.80
         let TitleHeight = ParentHeight * 0.2
         TitleCenter = CGPoint(x: TitleWidth / 2,
                               y: ParentHeight * 0.33 - (TitleHeight / 2))
@@ -105,7 +105,7 @@ extension ViewController
         
         let TextNode = SCNText(string: Title, extrusionDepth: 2.0)
         TextNode.flatness = 0.0
-        TextNode.font = UIFont.boldSystemFont(ofSize: 20.0)
+        TextNode.font = UIFont.boldSystemFont(ofSize: 18.0)
         TextNode.firstMaterial?.specular.contents = UIColor.white
         TextNode.firstMaterial?.diffuse.contents = UIColor.systemYellow
         TextNode.firstMaterial?.lightingModel = .blinn
@@ -189,6 +189,8 @@ extension ViewController
                             self.Wrapper.removeFromSuperview()
                             self.Wrapper = nil
                             self.TitleClosure?(true)
+                            self.TitleBox.removeFromSuperview()
+                            self.TitleBox = nil
                         }
                 })
             
@@ -213,6 +215,8 @@ extension ViewController
                             self.Wrapper.removeFromSuperview()
                             self.Wrapper = nil
                             self.TitleClosure?(true)
+                            self.TitleBox.removeFromSuperview()
+                            self.TitleBox = nil
                         }
                 })
             
@@ -237,6 +241,8 @@ extension ViewController
                             self.Wrapper.removeFromSuperview()
                             self.Wrapper = nil
                             self.TitleClosure?(true)
+                            self.TitleBox.removeFromSuperview()
+                            self.TitleBox = nil
                         }
                 })
             
@@ -261,6 +267,8 @@ extension ViewController
                             self.Wrapper.removeFromSuperview()
                             self.Wrapper = nil
                             self.TitleClosure?(true)
+                            self.TitleBox.removeFromSuperview()
+                            self.TitleBox = nil
                         }
                 })
         }
