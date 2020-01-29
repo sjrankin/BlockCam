@@ -1223,6 +1223,88 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" id="Wq8-bU-PIj">
+                                        <rect key="frame" x="0.0" y="618.66666793823242" width="414" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Wq8-bU-PIj" id="Sqf-bw-IIe">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Show histogram for processed images" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CDA-vo-hBe">
+                                                    <rect key="frame" x="20" y="11" width="293" height="22"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Pls-Pl-BZW">
+                                                    <rect key="frame" x="351" y="6" width="51" height="32"/>
+                                                    <connections>
+                                                        <action selector="HandleProcessedHistogramChanged:" destination="TZn-O9-UZZ" eventType="primaryActionTriggered" id="yXL-Ak-B3s"/>
+                                                    </connections>
+                                                </switch>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="Pls-Pl-BZW" firstAttribute="leading" secondItem="CDA-vo-hBe" secondAttribute="trailing" constant="38" id="8qu-oA-ONv"/>
+                                                <constraint firstItem="Pls-Pl-BZW" firstAttribute="top" secondItem="Sqf-bw-IIe" secondAttribute="topMargin" constant="-5" id="Cf3-RW-nFi"/>
+                                                <constraint firstItem="CDA-vo-hBe" firstAttribute="leading" secondItem="Sqf-bw-IIe" secondAttribute="leadingMargin" id="Rgi-DL-icV"/>
+                                                <constraint firstItem="CDA-vo-hBe" firstAttribute="centerY" secondItem="Sqf-bw-IIe" secondAttribute="centerY" id="dXM-tn-SJz"/>
+                                                <constraint firstItem="CDA-vo-hBe" firstAttribute="centerY" secondItem="Pls-Pl-BZW" secondAttribute="centerY" id="i8m-Of-sgI"/>
+                                                <constraint firstItem="CDA-vo-hBe" firstAttribute="top" secondItem="Sqf-bw-IIe" secondAttribute="topMargin" id="pjK-se-Uhf"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="113" id="TbL-6x-6Fo">
+                                        <rect key="frame" x="0.0" y="662.66666793823242" width="414" height="113"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="TbL-6x-6Fo" id="lxW-Bg-Hxv">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="113"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Histogram creation speed" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Ig-OE-DBP">
+                                                    <rect key="frame" x="20" y="11" width="198" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="y9O-No-2cE">
+                                                    <rect key="frame" x="20" y="41" width="374" height="32"/>
+                                                    <segments>
+                                                        <segment title="Fastest"/>
+                                                        <segment title="Fast"/>
+                                                        <segment title="Medium"/>
+                                                        <segment title="Slow"/>
+                                                        <segment title="Slowest"/>
+                                                    </segments>
+                                                    <connections>
+                                                        <action selector="HandleHistogramSpeedChanged:" destination="TZn-O9-UZZ" eventType="primaryActionTriggered" id="kCY-CS-qxc"/>
+                                                    </connections>
+                                                </segmentedControl>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Uses most power" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8ma-8a-kGB">
+                                                    <rect key="frame" x="20" y="85" width="112" height="17"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Uses least power" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vDz-gV-8vs">
+                                                    <rect key="frame" x="283" y="84" width="111" height="17"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="y9O-No-2cE" firstAttribute="trailing" secondItem="vDz-gV-8vs" secondAttribute="trailing" id="7EE-fg-ieP"/>
+                                                <constraint firstItem="0Ig-OE-DBP" firstAttribute="leading" secondItem="lxW-Bg-Hxv" secondAttribute="leadingMargin" id="BIn-Mx-s6e"/>
+                                                <constraint firstItem="0Ig-OE-DBP" firstAttribute="leading" secondItem="y9O-No-2cE" secondAttribute="leading" id="Dl6-YI-6fT"/>
+                                                <constraint firstItem="0Ig-OE-DBP" firstAttribute="top" secondItem="lxW-Bg-Hxv" secondAttribute="topMargin" id="irb-pH-T6j"/>
+                                                <constraint firstItem="8ma-8a-kGB" firstAttribute="bottom" secondItem="lxW-Bg-Hxv" secondAttribute="bottomMargin" id="kLY-J0-2H5"/>
+                                                <constraint firstItem="y9O-No-2cE" firstAttribute="trailing" secondItem="lxW-Bg-Hxv" secondAttribute="trailingMargin" id="pub-Ot-VeH"/>
+                                                <constraint firstItem="y9O-No-2cE" firstAttribute="leading" secondItem="8ma-8a-kGB" secondAttribute="leading" id="pzy-7a-gcb"/>
+                                                <constraint firstItem="vDz-gV-8vs" firstAttribute="top" secondItem="y9O-No-2cE" secondAttribute="bottom" constant="12" id="vMu-qT-1Zb"/>
+                                                <constraint firstItem="y9O-No-2cE" firstAttribute="centerY" secondItem="lxW-Bg-Hxv" secondAttribute="centerY" id="yB5-Ds-QFT"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                         </sections>
@@ -1237,7 +1319,9 @@
                         <outlet property="BestFitSwitch" destination="psJ-eC-jpS" id="b8g-83-emw"/>
                         <outlet property="HistogramLabel" destination="YJ7-Fw-Vwt" id="HTX-RR-x6q"/>
                         <outlet property="HistogramOrder" destination="0d8-MQ-UQ2" id="dZD-bv-zKx"/>
+                        <outlet property="HistogramSpeedSegment" destination="y9O-No-2cE" id="x4E-Cu-zaT"/>
                         <outlet property="ModeSegements" destination="B9m-9r-DY9" id="3Fe-hV-0GS"/>
+                        <outlet property="ProcessedHistogramSwitch" destination="Pls-Pl-BZW" id="U05-pp-LVi"/>
                         <outlet property="ShowHistogramSwitch" destination="pt9-pf-EHw" id="BuV-rr-Jee"/>
                     </connections>
                 </tableViewController>
