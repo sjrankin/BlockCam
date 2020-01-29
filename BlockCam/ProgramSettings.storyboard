@@ -1143,15 +1143,18 @@
                             </tableViewSection>
                             <tableViewSection headerTitle="Histogram" id="Yg6-Eg-FRA">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" id="4LZ-VH-Qza">
-                                        <rect key="frame" x="0.0" y="415.66666793823242" width="414" height="43.666667938232422"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="109" id="4LZ-VH-Qza">
+                                        <rect key="frame" x="0.0" y="415.66666793823242" width="414" height="109"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="4LZ-VH-Qza" id="GSa-9m-uoo">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.666667938232422"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="109"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Show histogram" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YJ7-Fw-Vwt">
                                                     <rect key="frame" x="20" y="11" width="124" height="22"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="22" id="z55-L7-yUc"/>
+                                                    </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -1162,53 +1165,23 @@
                                                         <action selector="HandleHistogramChanged:" destination="TZn-O9-UZZ" eventType="primaryActionTriggered" id="tm5-fV-1co"/>
                                                     </connections>
                                                 </switch>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="YJ7-Fw-Vwt" firstAttribute="top" secondItem="GSa-9m-uoo" secondAttribute="topMargin" id="1mz-nS-fGf"/>
-                                                <constraint firstItem="pt9-pf-EHw" firstAttribute="top" secondItem="GSa-9m-uoo" secondAttribute="topMargin" constant="-5" id="40L-h0-h7Z"/>
-                                                <constraint firstItem="YJ7-Fw-Vwt" firstAttribute="leading" secondItem="GSa-9m-uoo" secondAttribute="leadingMargin" id="5tk-l6-R5P"/>
-                                                <constraint firstItem="YJ7-Fw-Vwt" firstAttribute="centerY" secondItem="pt9-pf-EHw" secondAttribute="centerY" id="FMF-sh-ZR7"/>
-                                                <constraint firstItem="YJ7-Fw-Vwt" firstAttribute="centerY" secondItem="GSa-9m-uoo" secondAttribute="centerY" id="Jr9-sR-4Cg"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="pt9-pf-EHw" secondAttribute="trailing" constant="1" id="ZQp-Ln-iLH"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" id="agX-vH-Kdb">
-                                        <rect key="frame" x="0.0" y="459.33333587646484" width="414" height="43.666667938232422"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="agX-vH-Kdb" id="K7D-BU-Qd0">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.666667938232422"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Buckets" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ejg-5s-e7a">
-                                                    <rect key="frame" x="20" y="11" width="62" height="22"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Continuously viewing the histogram will increase the power used by BlockCam." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dzt-t0-kBu">
+                                                    <rect key="frame" x="20" y="52" width="374" height="37"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="c4d-En-cE2">
-                                                    <rect key="frame" x="204" y="6" width="190" height="33"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="190" id="t6H-X3-sig"/>
-                                                    </constraints>
-                                                    <segments>
-                                                        <segment title="64"/>
-                                                        <segment title="128"/>
-                                                        <segment title="196"/>
-                                                        <segment title="256"/>
-                                                    </segments>
-                                                    <connections>
-                                                        <action selector="BucketCountChanged:" destination="TZn-O9-UZZ" eventType="primaryActionTriggered" id="3Yw-Qt-0h4"/>
-                                                    </connections>
-                                                </segmentedControl>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="ejg-5s-e7a" firstAttribute="centerY" secondItem="K7D-BU-Qd0" secondAttribute="centerY" id="2YA-Dd-LC9"/>
-                                                <constraint firstItem="c4d-En-cE2" firstAttribute="trailing" secondItem="K7D-BU-Qd0" secondAttribute="trailingMargin" id="Rq2-Wv-qA7"/>
-                                                <constraint firstItem="c4d-En-cE2" firstAttribute="top" secondItem="K7D-BU-Qd0" secondAttribute="topMargin" constant="-5" id="dL3-xj-lG2"/>
-                                                <constraint firstItem="ejg-5s-e7a" firstAttribute="leading" secondItem="K7D-BU-Qd0" secondAttribute="leadingMargin" id="dOx-p9-9gj"/>
-                                                <constraint firstItem="ejg-5s-e7a" firstAttribute="centerY" secondItem="c4d-En-cE2" secondAttribute="centerY" id="gv8-6o-aWk"/>
-                                                <constraint firstItem="ejg-5s-e7a" firstAttribute="top" secondItem="K7D-BU-Qd0" secondAttribute="topMargin" id="hP8-y1-lmk"/>
+                                                <constraint firstItem="pt9-pf-EHw" firstAttribute="top" secondItem="GSa-9m-uoo" secondAttribute="topMargin" constant="-5" id="40L-h0-h7Z"/>
+                                                <constraint firstItem="YJ7-Fw-Vwt" firstAttribute="top" secondItem="GSa-9m-uoo" secondAttribute="topMargin" id="7qn-yv-ppl"/>
+                                                <constraint firstItem="YJ7-Fw-Vwt" firstAttribute="centerY" secondItem="pt9-pf-EHw" secondAttribute="centerY" id="Gpx-N4-6sE"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="dzt-t0-kBu" secondAttribute="bottom" constant="9" id="Pdc-k7-yMD"/>
+                                                <constraint firstItem="dzt-t0-kBu" firstAttribute="top" secondItem="pt9-pf-EHw" secondAttribute="bottom" constant="15" id="UTU-Vo-A1f"/>
+                                                <constraint firstItem="YJ7-Fw-Vwt" firstAttribute="leading" secondItem="GSa-9m-uoo" secondAttribute="leadingMargin" id="XRJ-SY-jQa"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="pt9-pf-EHw" secondAttribute="trailing" constant="1" id="ZQp-Ln-iLH"/>
+                                                <constraint firstItem="dzt-t0-kBu" firstAttribute="leading" secondItem="YJ7-Fw-Vwt" secondAttribute="leading" id="nZb-I4-ARn"/>
+                                                <constraint firstItem="dzt-t0-kBu" firstAttribute="trailing" secondItem="GSa-9m-uoo" secondAttribute="trailingMargin" id="r1m-ye-5nC"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -1224,7 +1197,6 @@
                     <connections>
                         <outlet property="BestFitOffsetSegment" destination="2py-5v-fp1" id="Xkj-gf-y2d"/>
                         <outlet property="BestFitSwitch" destination="psJ-eC-jpS" id="b8g-83-emw"/>
-                        <outlet property="BucketCountSegment" destination="c4d-En-cE2" id="bpY-gf-nv0"/>
                         <outlet property="HistogramLabel" destination="YJ7-Fw-Vwt" id="HTX-RR-x6q"/>
                         <outlet property="ModeSegements" destination="B9m-9r-DY9" id="3Fe-hV-0GS"/>
                         <outlet property="ShowHistogramSwitch" destination="pt9-pf-EHw" id="BuV-rr-Jee"/>
@@ -1232,7 +1204,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dnj-7M-Aot" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2072" y="-7"/>
+            <point key="canvasLocation" x="2071.0144927536235" y="-7.3369565217391308"/>
         </scene>
         <!--Miscellaneous-->
         <scene sceneID="MUI-im-ksU">
