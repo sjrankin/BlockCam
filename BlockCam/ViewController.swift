@@ -78,7 +78,8 @@ class ViewController: UIViewController,
             SwitchToPhotoPickerMode()
         }
         
-        StartGyroscopeUpdates()
+        StartOrientationUpdates()
+        //StartGyroscopeUpdates()
     }
     
     /// This even occurs when the safe area insets changed. Unfortunately, iOS doesn't set the insets
@@ -90,13 +91,6 @@ class ViewController: UIViewController,
         let Gradient = Colors.GetGradientFor(CurrentViewMode, Container: MainBottomBar.bounds)
         MainBottomBar.layer.addSublayer(Gradient)
         ImageBottomBar.layer.addSublayer(Colors.GetProcessingGradient(Container: ImageBottomBar.bounds))
-    }
-    
-    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator)
-    {
-        super.viewWillTransition(to: size, with: coordinator)
-        let Orientation = UIDevice.current.orientation
-        UpdateButtonsFor(Orientation)
     }
     
     /// Show the splash screen (if settings allow).
@@ -247,6 +241,12 @@ class ViewController: UIViewController,
                 let Mode = UInt(Settings.GetInteger(ForKey: .AntialiasingMode))
                 let AntialiasMode = SCNAntialiasingMode(rawValue: Mode)!
                 OutputView.antialiasingMode = AntialiasMode
+            
+            case .LiveViewGridType:
+                GridView.GridType = Settings.GetEnum(ForKey: .LiveViewGridType, EnumType: GridTypes.self, Default: GridTypes.None)
+
+            case .ShowActualOrientation:
+                GridView.ShowActualOrientation = Settings.GetBoolean(ForKey: .ShowActualOrientation)
             
             default:
                 break
@@ -506,7 +506,6 @@ class ViewController: UIViewController,
         {
             case .LiveView:
                 CameraButton.setImage(UIImage(systemName: "camera"), for: UIControl.State.normal)
-                CameraButton.setTitle(NSLocalizedString("UIPhotoButton", comment: ""), for: .normal)
                 SwitchCameraButton.isHidden = false
                 SwitchCameraButton.isUserInteractionEnabled = true
                 ImageFromLibrary = false
@@ -514,7 +513,6 @@ class ViewController: UIViewController,
             
             case .MakeVideo:
                 CameraButton.setImage(UIImage(systemName: "tv.fill"), for: UIControl.State.normal)
-                CameraButton.setTitle(NSLocalizedString("UIVideoButton", comment: ""), for: .normal)
                 SwitchCameraButton.isHidden = false
                 SwitchCameraButton.isUserInteractionEnabled = true
                 ImageFromLibrary = false
@@ -522,7 +520,6 @@ class ViewController: UIViewController,
             
             case .PhotoLibrary:
                 CameraButton.setImage(UIImage(systemName: "photo.on.rectangle"), for: UIControl.State.normal)
-                CameraButton.setTitle(NSLocalizedString("UIAlbumButton", comment: ""), for: .normal)
                 SwitchCameraButton.isHidden = true
                 SwitchCameraButton.isUserInteractionEnabled = false
                 ImageFromLibrary = true
@@ -1019,6 +1016,7 @@ class ViewController: UIViewController,
     
     // MARK: - Gyroscope variables.
     var MotionManager: CMMotionManager? = nil
+    var PreviousRotation: Double = -1000.0
     
     // MARK: - Interface builder variables.
     
@@ -1034,10 +1032,11 @@ class ViewController: UIViewController,
     @IBOutlet weak var SwitchCameraButton: UIButton!
     @IBOutlet weak var SwitchModeButton: UIButton!
     @IBOutlet weak var LiveView: UIView!
+      @IBOutlet weak var GridView: GridLayer!
     @IBOutlet weak var CameraButton: UIButton!
     // "weak" is removed from OutputView because we recreate the class in code and weak leads to strange compiler warnings...
     @IBOutlet var OutputView: ProcessViewer!
-    
+
     // MARK: - Interface builder variables for image processing.
     
     @IBOutlet weak var CompositeStatus: SmallStatusDisplay!
