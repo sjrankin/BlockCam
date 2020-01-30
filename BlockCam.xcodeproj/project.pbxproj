@@ -8,7 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		1700D85F23E1C92700381A30 /* Gyroscope.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1700D85E23E1C92700381A30 /* Gyroscope.swift */; };
+		1702D58323E2850100BCD4DF /* GridLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1702D58223E2850100BCD4DF /* GridLayer.swift */; };
 		1706744B23D599AD00381C42 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1706744A23D599AD00381C42 /* Colors.swift */; };
+		170A091C23E2BC6B0066F1EF /* ProgramSettings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 170A091E23E2BC6B0066F1EF /* ProgramSettings.storyboard */; };
 		170B3FE023B44AC8009106EB /* Sounds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 170B3FDF23B44AC8009106EB /* Sounds.swift */; };
 		170B3FE223B4644E009106EB /* SoundSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 170B3FE123B4644E009106EB /* SoundSettings.swift */; };
 		170B3FE423B47A22009106EB /* CrashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 170B3FE323B47A22009106EB /* CrashView.swift */; };
@@ -144,7 +146,6 @@
 		17C1D61523C02AE500FAFA76 /* CompositeShapeChangeProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C1D61423C02AE500FAFA76 /* CompositeShapeChangeProtocol.swift */; };
 		17C1D61723C0605C00FAFA76 /* ShapeContextMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C1D61623C0605C00FAFA76 /* ShapeContextMenu.swift */; };
 		17C7681023E01F6A0068EC34 /* HistogramDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C7680F23E01F6A0068EC34 /* HistogramDisplay.swift */; };
-		17C7681423E071850068EC34 /* ProgramSettings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 17C7681323E071850068EC34 /* ProgramSettings.storyboard */; };
 		17CD224D23ABB5530059AEB7 /* SystemSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17CD224C23ABB5530059AEB7 /* SystemSettingsView.swift */; };
 		17CE347723C427E400E96E3F /* SmallStatusDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17CE347623C427E400E96E3F /* SmallStatusDisplay.swift */; };
 		17CE347923C42E5600E96E3F /* LinearPercent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17CE347823C42E5600E96E3F /* LinearPercent.swift */; };
@@ -171,7 +172,10 @@
 
 /* Begin PBXFileReference section */
 		1700D85E23E1C92700381A30 /* Gyroscope.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gyroscope.swift; sourceTree = "<group>"; };
+		1702D58223E2850100BCD4DF /* GridLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridLayer.swift; sourceTree = "<group>"; };
 		1706744A23D599AD00381C42 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		170A091D23E2BC6B0066F1EF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/ProgramSettings.storyboard; sourceTree = "<group>"; };
+		170A092023E2BC760066F1EF /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/ProgramSettings.strings; sourceTree = "<group>"; };
 		170B3FDF23B44AC8009106EB /* Sounds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sounds.swift; sourceTree = "<group>"; };
 		170B3FE123B4644E009106EB /* SoundSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundSettings.swift; sourceTree = "<group>"; };
 		170B3FE323B47A22009106EB /* CrashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrashView.swift; sourceTree = "<group>"; };
@@ -322,7 +326,6 @@
 		17C1D61423C02AE500FAFA76 /* CompositeShapeChangeProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompositeShapeChangeProtocol.swift; sourceTree = "<group>"; };
 		17C1D61623C0605C00FAFA76 /* ShapeContextMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShapeContextMenu.swift; sourceTree = "<group>"; };
 		17C7680F23E01F6A0068EC34 /* HistogramDisplay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistogramDisplay.swift; sourceTree = "<group>"; };
-		17C7681323E071850068EC34 /* ProgramSettings.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ProgramSettings.storyboard; sourceTree = "<group>"; };
 		17CD224C23ABB5530059AEB7 /* SystemSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemSettingsView.swift; sourceTree = "<group>"; };
 		17CE347623C427E400E96E3F /* SmallStatusDisplay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmallStatusDisplay.swift; sourceTree = "<group>"; };
 		17CE347823C42E5600E96E3F /* LinearPercent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinearPercent.swift; sourceTree = "<group>"; };
@@ -727,7 +730,7 @@
 				17BE8E6F23767BE400262F81 /* ViewController.swift */,
 				1780B72D23974CFD00E6018A /* MainProtocol.swift */,
 				17BE8E7123767BE400262F81 /* Main.storyboard */,
-				17C7681323E071850068EC34 /* ProgramSettings.storyboard */,
+				170A091E23E2BC6B0066F1EF /* ProgramSettings.storyboard */,
 				17B9E0DB23D449C1004DD106 /* Secondary.storyboard */,
 				170F263423D489B6008AEEEE /* AboutStoryboard.storyboard */,
 				170B3FF623B4A3A7009106EB /* FontManager.swift */,
@@ -736,6 +739,7 @@
 				17BE8E6D23767BE400262F81 /* SceneDelegate.swift */,
 				17B2517023AF39030012665E /* StatusLayerView2.swift */,
 				173279D5237A968E00BD19C3 /* Export.swift */,
+				1702D58223E2850100BCD4DF /* GridLayer.swift */,
 				171726AC23968B870078D76E /* Versioning.swift */,
 				17BE8E7923767BE600262F81 /* Info.plist */,
 			);
@@ -880,7 +884,7 @@
 				17BE8E7823767BE600262F81 /* LaunchScreen.storyboard in Resources */,
 				170BE50623A75884003A5A72 /* AppLog.db in Resources */,
 				170B3FEF23B4A347009106EB /* NotoSansCJKkr-Black.otf in Resources */,
-				17C7681423E071850068EC34 /* ProgramSettings.storyboard in Resources */,
+				170A091C23E2BC6B0066F1EF /* ProgramSettings.storyboard in Resources */,
 				176F595223DD4AD7006514E6 /* Menus.storyboard in Resources */,
 				170B3FF123B4A34E009106EB /* NotoSansCJKtc-Black.otf in Resources */,
 				17BE8E7523767BE600262F81 /* Assets.xcassets in Resources */,
@@ -990,6 +994,7 @@
 				1737411623BF600000BAEF6F /* Menu_CompositeShapeTableViewCell.swift in Sources */,
 				17FC3CB32378313E00D5D122 /* SettingsDistributor.swift in Sources */,
 				171726A723963D630078D76E /* ImagePicker.swift in Sources */,
+				1702D58323E2850100BCD4DF /* GridLayer.swift in Sources */,
 				1796DBE723B71F520031FEA5 /* VideoMaker.swift in Sources */,
 				176F595823DD5D72006514E6 /* ContextMenuProtocol.swift in Sources */,
 				1797C4AA23BA1AB400F32222 /* Menu_MeshSettings.swift in Sources */,
@@ -1070,6 +1075,15 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		170A091E23E2BC6B0066F1EF /* ProgramSettings.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				170A091D23E2BC6B0066F1EF /* Base */,
+				170A092023E2BC760066F1EF /* ja */,
+			);
+			name = ProgramSettings.storyboard;
+			sourceTree = "<group>";
+		};
 		170F263423D489B6008AEEEE /* AboutStoryboard.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
