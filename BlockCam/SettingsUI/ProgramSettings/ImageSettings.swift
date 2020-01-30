@@ -26,6 +26,17 @@ class ImageSettings: UITableViewController
         let Index = SaveOriginalImageActions.allCases.firstIndex(of: SaveOriginalImageActions(rawValue: SaveHowRaw)!)!
         SaveWhenSelector.selectedSegmentIndex = Index
         AutoSaveImageSwitch.isOn = Settings.GetBoolean(ForKey: .AutoSaveProcessedImage)
+        #if true
+        let Cropping = Settings.GetEnum(ForKey: .CroppedImageBorder, EnumType: CroppingOptions.self, Default: CroppingOptions.None)
+        if let Index = CropMap[Cropping]
+        {
+            CroppingSelector.selectedSegmentIndex = Index
+        }
+        else
+        {
+            CroppingSelector.selectedSegmentIndex = 0
+        }
+        #else
         if let RawCrop = Settings.GetString(ForKey: .CroppedImageBorder)
         {
             if let ActualCropping = CroppingOptions(rawValue: RawCrop)
@@ -51,8 +62,18 @@ class ImageSettings: UITableViewController
             CroppingSelector.selectedSegmentIndex = 0
             Settings.SetString(CroppingOptions.None.rawValue, ForKey: .CroppedImageBorder)
         }
+        #endif
     }
     
+    #if true
+    let CropMap =
+        [
+            CroppingOptions.None: 0,
+            CroppingOptions.Close: 1,
+            CroppingOptions.Medium: 2,
+            CroppingOptions.Far: 3
+    ]
+    #else
     let CropMap =
     [
         CroppingOptions.None.rawValue: 0,
@@ -60,6 +81,7 @@ class ImageSettings: UITableViewController
         CroppingOptions.Medium.rawValue: 2,
         CroppingOptions.Far.rawValue: 3
     ]
+    #endif
     
     let SaveOriginalOptions =
     [
@@ -94,7 +116,11 @@ class ImageSettings: UITableViewController
             {
                 if RawIndex == Index
                 {
+                    #if true
+                    Settings.SetEnum(Raw, EnumType: CroppingOptions.self, ForKey: .CroppedImageBorder)
+                    #else
                     Settings.SetString(Raw, ForKey: .CroppedImageBorder)
+                    #endif
                 }
             }
         }
