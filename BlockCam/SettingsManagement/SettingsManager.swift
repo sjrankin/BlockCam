@@ -179,6 +179,8 @@ class Settings
         UserDefaults.standard.set(false, forKey: SettingKeys.CameraAccessGranted.rawValue)
         UserDefaults.standard.set(false, forKey: SettingKeys.PhotoRollAccessGranted.rawValue)
         UserDefaults.standard.set("Blocks", forKey: SettingKeys.StackedShapesSet.rawValue)
+        UserDefaults.standard.set(GridTypes.None.rawValue, forKey: SettingKeys.LiveViewGridType.rawValue)
+        UserDefaults.standard.set(false, forKey: SettingKeys.ShowActualOrientation.rawValue)
     }
     
     /// Call all subscribers in the notification list to let them know a setting will be changed.
@@ -443,6 +445,7 @@ class Settings
     /// - Note: If `ForKey` is not a string setting, a fatal error will be generated.
     /// - Parameter ForKey: The setting whose value will be returned. Nil will be returned if the contents of
     ///                     `ForKey` are not set.
+    /// - Returns: The string pointed to by `ForKey`. If no string has been stored, nil is returned.
     public static func GetString(ForKey: SettingKeys) -> String?
     {
         if StringFields.contains(ForKey)
@@ -452,6 +455,31 @@ class Settings
         else
         {
             fatalError("The key \(ForKey.rawValue) does not point to a string setting.")
+        }
+    }
+    
+    /// Returns the value of a string setting. Guarenteed to always return a string.
+    /// - Note: If `ForKey` is not a string setting, a fatal error will be generated.
+    /// - Parameter ForKey: The settings whose value will be returned.
+    /// - Parameter Default: The value to return if there is no stored value. This value will
+    ///                      also be used to populate the setting.
+    /// - Returns: The string value pointed to by `ForKey` on success, the contents of `Default`
+    ///            if there is no value in the setting pointed to by `ForKey`.
+    public static func GetString(ForKey: SettingKeys, _ Default: String) -> String
+    {
+        if StringFields.contains(ForKey)
+        {
+            let StoredString = UserDefaults.standard.string(forKey: ForKey.rawValue)
+            if StoredString == nil
+            {
+                UserDefaults.standard.set(Default, forKey: ForKey.rawValue)
+                return Default
+            }
+            return StoredString!
+        }
+        else
+        {
+                        fatalError("The key \(ForKey.rawValue) does not point to a string setting.")
         }
     }
     
@@ -497,7 +525,7 @@ class Settings
     {
         //If there is no error, this merely sets Raw equal to NewValue. We do this to make sure
         //the caller didn't use an enum case from the wrong enum with EnumType.
-        guard let Raw = EnumType.init(rawValue: NewValue.rawValue) else
+        guard let _ = EnumType.init(rawValue: NewValue.rawValue) else
         {
             fatalError("Invalid enum conversion. Most likely tried to convert an enum case from Enum A to Enum B.")
         }
@@ -532,7 +560,7 @@ class Settings
     {
         //If there is no error, this merely sets Raw equal to NewValue. We do this to make sure
         //the caller didn't use an enum case from the wrong enum with EnumType.
-        guard let Raw = EnumType.init(rawValue: NewValue.rawValue) else
+        guard let _ = EnumType.init(rawValue: NewValue.rawValue) else
         {
             fatalError("Invalid enum conversion. Most likely tried to convert an enum case from Enum type 'A' to Enum type 'B'.")
         }
@@ -613,6 +641,7 @@ class Settings
             SettingKeys.CameraAccessGranted,
             SettingKeys.PhotoRollAccessGranted,
             SettingKeys.ShowProcessedHistogram,
+            SettingKeys.ShowActualOrientation,
     ]
     
     /// Contains a list of all integer-type fields.
@@ -681,6 +710,7 @@ class Settings
             SettingKeys.StackedShapesSet,
             SettingKeys.HistogramOrder,
             SettingKeys.HistogramCreationSpeed,
+            SettingKeys.LiveViewGridType,
     ]
     
     /// Contains a list of all double-type fields.
@@ -911,12 +941,18 @@ enum SettingKeys: String, CaseIterable, Comparable, Hashable
     /// Integer: The last time the program was instantiated.
     case InstantiationTime = "InstantiationTime"
     
-    //Permissions.
+    //Permissions
     /// Boolean: All required permissions have been granted.
     case AllPermissionsGranted = "AllPermissionsGranted"
     /// Boolean: Camera access has been granted.
     case CameraAccessGranted = "CameraAccessGranted"
     /// Boolean: Photo roll access has been granted.
     case PhotoRollAccessGranted = "PhotoRollAccessGranted"
+    
+    //Grid settings
+    /// String: Grid type for the live view.
+    case LiveViewGridType = "LiveViewGridType"
+    /// Boolean: Show the actual orientation of the device.
+    case ShowActualOrientation = "ShowActualOrientation"
 }
 
