@@ -54,6 +54,25 @@ class ViewSettings: UITableViewController
             InitializeHistogramSpeed(HistogramCreationSpeeds.Medium.rawValue)
         }
         ProcessedHistogramSwitch.isOn = Settings.GetBoolean(ForKey: .ShowProcessedHistogram)
+        ShowCurrentOrientationSwitch.isOn = Settings.GetBoolean(ForKey: .ShowActualOrientation)
+        if let RawGridType = Settings.GetString(ForKey: .LiveViewGridType)
+        {
+            if let ActualType = GridTypes(rawValue: RawGridType)
+            {
+                let Index = GridMap[ActualType]!
+                GridTypeSegment.selectedSegmentIndex = Index
+            }
+            else
+            {
+                Settings.SetString(GridTypes.None.rawValue, ForKey: .LiveViewGridType)
+                GridTypeSegment.selectedSegmentIndex = 0
+            }
+        }
+        else
+        {
+            Settings.SetString(GridTypes.None.rawValue, ForKey: .LiveViewGridType)
+            GridTypeSegment.selectedSegmentIndex = 0
+        }
     }
     
     let ModeMap =
@@ -209,6 +228,38 @@ class ViewSettings: UITableViewController
         HistogramCreationSpeeds.Slowest: 4
     ]
     
+    @IBAction func HandleGridTypeChanged(_ sender: Any)
+    {
+        if let Segment = sender as? UISegmentedControl
+        {
+            let NewIndex = Segment.selectedSegmentIndex
+            for (GridType, GridIndex) in GridMap
+            {
+                if GridIndex == NewIndex
+                {
+                    Settings.SetString(GridType.rawValue, ForKey: .LiveViewGridType)
+                }
+            }
+        }
+    }
+    
+    let GridMap =
+    [
+        GridTypes.None: 0,
+        GridTypes.CrossHairs: 1,
+        GridTypes.RuleOfThree: 2
+    ]
+    
+    @IBAction func HandleCurrentOrientationChanged(_ sender: Any)
+    {
+        if let Switch = sender as? UISwitch
+        {
+            Settings.SetBoolean(Switch.isOn, ForKey: .ShowActualOrientation)
+        }
+    }
+    
+    @IBOutlet weak var ShowCurrentOrientationSwitch: UISwitch!
+    @IBOutlet weak var GridTypeSegment: UISegmentedControl!
     @IBOutlet weak var HistogramSpeedSegment: UISegmentedControl!
     @IBOutlet weak var ProcessedHistogramSwitch: UISwitch!
     @IBOutlet weak var HistogramOrder: UISegmentedControl!
