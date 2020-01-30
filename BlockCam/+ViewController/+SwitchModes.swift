@@ -44,7 +44,8 @@ extension ViewController
                 X = (ScreenWidth * Percent) - (Button.frame.width / 2.0)
             }
         }
-        let NewRect = CGRect(x: X, y: Button.frame.minY, width: Button.frame.width, height: Button.frame.height)
+        let NewY = 35.0 - Button.frame.height / 2.0
+        let NewRect = CGRect(x: X, y: NewY, width: Button.frame.width, height: Button.frame.height)
         return NewRect
     }
     
@@ -395,34 +396,20 @@ extension ViewController
         Button.transform = CGAffineTransform(rotationAngle: CGFloat(Angle) * CGFloat.pi / 180.0)
     }
     
-    func UpdateButtonsFor(_ Orientation: UIDeviceOrientation)
+    /// Update the rotational angle of all UI buttons.
+    /// - Parameter NewAngle: The new angle to use to derive the new rotation of all buttons.
+    func UpdateButtonAngle(_ NewAngle: Double)
     {
-        print("New orientatio=\(Orientation)")
-        var Angle = 0.0
-        switch Orientation
-        {
-            case .landscapeLeft:
-                Angle = 90.0
-            
-            case .landscapeRight:
-                Angle = 270.0
-            
-            case .portrait:
-                Angle = 0.0
-            
-            case .portraitUpsideDown:
-                Angle = 180.0
-            
-            default:
-            break
-        }
-        RotateButtonTo(Angle, Button: SettingsButton)
-        RotateButtonTo(Angle, Button: SceneRecordInfoButton)
-        RotateButtonTo(Angle, Button: SceneRecorderButton)
-        RotateButtonTo(Angle, Button: CloseSceneRecorderViewButton)
-        RotateButtonTo(Angle, Button: SwitchCameraButton)
-        RotateButtonTo(Angle, Button: SwitchModeButton)
-        RotateButtonTo(Angle, Button: CameraButton)
-        RotateButtonTo(Angle, Button: SwitchModeButton)
+        RotateButtonTo(NewAngle, Button: SettingsButton)
+        RotateButtonTo(NewAngle, Button: SceneRecordInfoButton)
+        RotateButtonTo(NewAngle, Button: SceneRecorderButton)
+        RotateButtonTo(NewAngle, Button: CloseSceneRecorderViewButton)
+        RotateButtonTo(NewAngle, Button: SwitchCameraButton)
+        RotateButtonTo(NewAngle, Button: SwitchModeButton)
+        RotateButtonTo(NewAngle, Button: CameraButton)
+        RotateButtonTo(NewAngle, Button: SwitchModeButton)
+        RotateButtonTo(NewAngle, Button: CompositeStatus.SettingsButton)
+        RotateButtonTo(NewAngle, Button: DoneButton)
+        RotateButtonTo(NewAngle, Button: SaveButton)
     }
 }
