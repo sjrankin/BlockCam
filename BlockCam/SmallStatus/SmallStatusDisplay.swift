@@ -378,5 +378,5 @@ class SmallStatusDisplay: UIView
     private var BottomPercent: LinearPercent!
     private var TextBox: FloatingText!
     private var WaitingIndicator: UIActivityIndicatorView!
-    private var SettingsButton: UIButton!
+    public var SettingsButton: UIButton!
 }
