@@ -91,6 +91,14 @@ class ViewController: UIViewController,
         let Gradient = Colors.GetGradientFor(CurrentViewMode, Container: MainBottomBar.bounds)
         MainBottomBar.layer.addSublayer(Gradient)
         ImageBottomBar.layer.addSublayer(Colors.GetProcessingGradient(Container: ImageBottomBar.bounds))
+        if Settings.GetEnum(ForKey: .LiveViewGridType, EnumType: GridTypes.self, Default: GridTypes.None) == .None
+        {
+            GridView.HideGrid()
+        }
+        else
+        {
+            GridView.ShowGrid()
+        }
     }
     
     /// Show the splash screen (if settings allow).
@@ -948,12 +956,6 @@ class ViewController: UIViewController,
         }
     }
     
-    // MARK: - UI bar variables.
-    
-    public var CommandBar: UIView!
-    public var RecordingBar: UIView!
-    public var ProcessedBar: UIView!
-    
     // MARK: - Alert functions used by the app delegate
     
     public func ShowAlert(Title: String, Message: String, CloseButtonLabel: String)
@@ -964,12 +966,11 @@ class ViewController: UIViewController,
     }
     
     // MARK: - PhotoKit delegate-required variables.
-    
     public var SavingOriginalImage = false
     public var DeviceHasCamera: Bool = true
+    public var PreviewSize: CGSize = CGSize.zero
     
     // MARK: - Histogram variables.
-    
     let HistogramSpeedTable =
         [
             HistogramCreationSpeeds.Fastest: 1,
@@ -981,15 +982,12 @@ class ViewController: UIViewController,
     var HistogramIsVisible: Bool = false
     
     // MARK: - Activity viewer required variables.
-    
     var ImageToExport: UIImage? = nil
     
     // MARK: - Title related variables.
-    
     var TitleClosure: ((Bool) -> ())? = nil
     
     // MARK: - Asynchronous event handling variables.
-    
     let ThermalMap =
         [
             ProcessInfo.ThermalState.critical: "Critical",
@@ -999,7 +997,6 @@ class ViewController: UIViewController,
     ]
     
     // MARK: - Status layer required variables.
-    
     var HideTitleDuration: Double = 1.0
     var TitleTimer: Timer!
     var TitleIsVisible = false
@@ -1019,7 +1016,6 @@ class ViewController: UIViewController,
     var PreviousRotation: Double = -1000.0
     
     // MARK: - Interface builder variables.
-    
     @IBOutlet weak var StatusLayer: UIView!
     @IBOutlet weak var StatusMainLabel: UILabel!
     @IBOutlet weak var SettingsButton: UIButton!
@@ -1032,18 +1028,16 @@ class ViewController: UIViewController,
     @IBOutlet weak var SwitchCameraButton: UIButton!
     @IBOutlet weak var SwitchModeButton: UIButton!
     @IBOutlet weak var LiveView: UIView!
-      @IBOutlet weak var GridView: GridLayer!
+    @IBOutlet weak var GridView: GridLayer!
     @IBOutlet weak var CameraButton: UIButton!
     // "weak" is removed from OutputView because we recreate the class in code and weak leads to strange compiler warnings...
     @IBOutlet var OutputView: ProcessViewer!
 
     // MARK: - Interface builder variables for image processing.
-    
     @IBOutlet weak var CompositeStatus: SmallStatusDisplay!
     @IBOutlet weak var SaveButton: UIButton!
     @IBOutlet weak var DoneButton: UIButton!
     
     // MARK: - Histogram view.
-    
     @IBOutlet weak var HistogramView: HistogramDisplay!
 }
