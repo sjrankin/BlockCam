@@ -61,6 +61,7 @@ class Settings
     ///         debug builds are not as stringent with privacy.
     public static func AddDefaultSettings()
     {
+        UserDefaults.standard.set(Versioning.VersionAsNumber(), forKey: "SettingsVersion")
         UserDefaults.standard.set("Initialized", forKey: "Initialized")
         UserDefaults.standard.set(32, forKey: SettingKeys.BlockSize.rawValue)
         UserDefaults.standard.set("Blocks", forKey: SettingKeys.ShapeType.rawValue)
