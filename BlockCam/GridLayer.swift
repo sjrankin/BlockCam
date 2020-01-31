@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 /// Draws a grid to help with alignment. This grid is shown over the live view.
-@IBDesignable class GridLayer: UIView
+class GridLayer: UIView
 {
     /// Initializer.
     /// - Parameter frame: Frame of the base view.
@@ -38,6 +38,44 @@ import UIKit
         GridType = Settings.GetEnum(ForKey: .LiveViewGridType, EnumType: GridTypes.self, Default: GridTypes.None)
         ShowActualOrientation = Settings.GetBoolean(ForKey: .ShowActualOrientation)
     }
+    
+    func ShowGrid()
+    {
+        self.isHidden = false
+    }
+    
+    func HideGrid()
+    {
+        self.isHidden = true
+    }
+    
+    /// Set offsets for the preview that doesn't fit fully into the UI element. Sets up a masking layer
+    /// to make sure things fit where they should.
+    func SetPreviewOffsets(LeftOffset: CGFloat, RightOffset: CGFloat, TopOffset: CGFloat, BottomOffset: CGFloat)
+    {
+        self.LeftOffset = LeftOffset
+        self.RightOffset = RightOffset
+        self.TopOffset = TopOffset
+        self.BottomOffset = BottomOffset
+        let MaskLayer = CALayer()
+        MaskLayer.opacity = 1.0
+        MaskLayer.backgroundColor = UIColor.white.cgColor
+        MaskLayer.bounds = CGRect(x: 0,
+                                  y: 0,
+                                  width: self.bounds.width - (LeftOffset + RightOffset),
+                                  height: self.bounds.height - (TopOffset + BottomOffset))
+        MaskLayer.frame = CGRect(x: LeftOffset,
+                                 y: TopOffset,
+                                 width: self.bounds.width - (LeftOffset + RightOffset),
+                                 height: self.bounds.height - (TopOffset + BottomOffset))
+        self.layer.mask = MaskLayer
+        DrawGrid(_ActualAngle)
+    }
+    
+    var LeftOffset: CGFloat = 0.0
+    var RightOffset: CGFloat = 0.0
+    var TopOffset: CGFloat = 0.0
+    var BottomOffset: CGFloat = 0.0
     
     /// Draw a cross-hair grid.
     /// - Parameter WithActualAngle: The angle of the orientation of the device.
@@ -101,11 +139,13 @@ import UIKit
                 {
                     let DegreeLayer = CATextLayer()
                     DegreeLayer.bounds = CGRect(x: 0, y: 0, width: 30, height: 20)
-                    DegreeLayer.frame = CGRect(x: self.bounds.width - 30, y: self.bounds.height / 2.0 - 20,
-                                               width: 30, height: 20)
+                    DegreeLayer.frame = CGRect(x: self.bounds.width - (35 + RightOffset),
+                                               y: self.bounds.height / 2.0 - 20,
+                                               width: 30,
+                                               height: 20)
                     DegreeLayer.backgroundColor = UIColor.clear.cgColor
                     DegreeLayer.string = "\(360.0 - WithActualAngle)°"
-                    DegreeLayer.foregroundColor = _ActualLineColor.cgColor
+                    DegreeLayer.foregroundColor = UIColor.black.cgColor
                     DegreeLayer.font = UIFont.systemFont(ofSize: 10.0)
                     DegreeLayer.fontSize = 10.0
                     ActualLayer?.addSublayer(DegreeLayer)
@@ -184,11 +224,13 @@ import UIKit
                 {
                     let DegreeLayer = CATextLayer()
                     DegreeLayer.bounds = CGRect(x: 0, y: 0, width: 30, height: 20)
-                    DegreeLayer.frame = CGRect(x: self.bounds.width - 30, y: self.bounds.height / 2.0 - 20,
-                                               width: 30, height: 20)
+                    DegreeLayer.frame = CGRect(x: self.bounds.width - (35 + RightOffset),
+                                               y: self.bounds.height / 2.0 - 20,
+                                               width: 30,
+                                               height: 20)
                     DegreeLayer.backgroundColor = UIColor.clear.cgColor
                     DegreeLayer.string = "\(360.0 - WithActualAngle)°"
-                    DegreeLayer.foregroundColor = _ActualLineColor.cgColor
+                    DegreeLayer.foregroundColor = UIColor.black.cgColor
                     DegreeLayer.font = UIFont.systemFont(ofSize: 10.0)
                     DegreeLayer.fontSize = 10.0
                     ActualLayer?.addSublayer(DegreeLayer)
