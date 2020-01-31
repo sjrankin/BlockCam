@@ -14,8 +14,6 @@ import Accelerate
 
 extension ViewController
 {
-
-    
     /// Called every time a new live-view frame is available. The first few frames are always very dark until the camera figures
     /// out the proper exposure.
     /// - Note:
@@ -143,6 +141,15 @@ extension ViewController
                 DispatchQueue.main.async
                     {
                         self!.VideoPreviewLayer.frame = self!.LiveView.bounds
+                        let VideoPreviewLayerFrame = self!.VideoPreviewLayer.frame
+                        self!.PreviewSize = CGSize(width: VideoPreviewLayerFrame.height * 0.75,
+                                                   height: VideoPreviewLayerFrame.height)
+                        print("Preview = \(self!.PreviewSize)")
+                        print("Full frame=\(VideoPreviewLayerFrame)")
+                        let HOffset = (VideoPreviewLayerFrame.width - self!.PreviewSize.width) / 2.0
+                        let VOffset = (VideoPreviewLayerFrame.height - self!.PreviewSize.height) / 2.0
+                        self!.GridView.SetPreviewOffsets(LeftOffset: HOffset, RightOffset: HOffset,
+                                                         TopOffset: VOffset, BottomOffset: VOffset)
                 }
         }
     }
