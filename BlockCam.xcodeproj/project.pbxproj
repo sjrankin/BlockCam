@@ -567,11 +567,9 @@
 		176F595023DD4781006514E6 /* Menus */ = {
 			isa = PBXGroup;
 			children = (
+				17FDB76223E3E6660033F996 /* MenuControllers */,
 				176F595323DD4C4C006514E6 /* PopUpMenus.swift */,
 				176F595123DD4AD7006514E6 /* Menus.storyboard */,
-				176F595523DD4DC3006514E6 /* LiveViewMenuController.swift */,
-				1748FA0323DD819700B648E4 /* ProcessedImageMenuController.swift */,
-				179F20AB23DF067200D3614B /* GeneralShapesMenuController.swift */,
 				176F595923DD66E8006514E6 /* MenuCommandController.swift */,
 				176F595723DD5D72006514E6 /* ContextMenuProtocol.swift */,
 			);
@@ -781,6 +779,16 @@
 				17F3C90F23CEF798009DCA7B /* PixellateParameters.swift */,
 			);
 			path = Pixellation;
+			sourceTree = "<group>";
+		};
+		17FDB76223E3E6660033F996 /* MenuControllers */ = {
+			isa = PBXGroup;
+			children = (
+				176F595523DD4DC3006514E6 /* LiveViewMenuController.swift */,
+				1748FA0323DD819700B648E4 /* ProcessedImageMenuController.swift */,
+				179F20AB23DF067200D3614B /* GeneralShapesMenuController.swift */,
+			);
+			path = MenuControllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
