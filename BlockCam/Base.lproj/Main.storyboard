@@ -99,7 +99,7 @@
                                             <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="30" scale="large" weight="black"/>
                                         </state>
                                         <connections>
-                                            <action selector="HandleLiveViewInfoButtonPressed:" destination="BYZ-38-t0r" eventType="primaryActionTriggered" id="yIK-Yv-cPx"/>
+                                            <action selector="HandleMainSettingsButtonPressed:" destination="BYZ-38-t0r" eventType="primaryActionTriggered" id="yIK-Yv-cPx"/>
                                         </connections>
                                     </button>
                                 </subviews>
