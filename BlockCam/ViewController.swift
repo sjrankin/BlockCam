@@ -392,7 +392,6 @@ class ViewController: UIViewController,
     @IBSegueAction func InstantiateSettingsDialogs(_ coder: NSCoder) -> SettingsNavigationController?
     {
         HideTitle(After: 0.0, HideDuration: 0.5, HideHow: .FadeOut)
-        //        HideTitle()
         let Controller = SettingsNavigationController(coder: coder)
         return Controller
     }
@@ -567,7 +566,10 @@ class ViewController: UIViewController,
         self.present(Alert, animated: true, completion: nil)
     }
     
-    @IBAction func HandleLiveViewInfoButtonPressed(_ sender: Any)
+    /// Handle the main settings button pressed. Depending on the current mode, different context
+    /// menus are shown.
+    /// - Parameter sender: Not used.
+    @IBAction func HandleMainSettingsButtonPressed(_ sender: Any)
     {
         if Settings.GetBoolean(ForKey: .EnableButtonPressSounds)
         {
@@ -578,14 +580,12 @@ class ViewController: UIViewController,
             case .LiveView:
                 ShowLiveViewMenu()
             
-            case .PhotoLibrary:
+            case .PhotoLibrary,
+                 .ProcessedView:
                 ShowProcessedViewMenu(From: SettingsButton)
             
             case .MakeVideo:
                 ShowLiveViewMenu()
-            
-            default:
-                return
         }
     }
     
