@@ -58,8 +58,17 @@ class ProcessedImageMenuController: UIViewController
     
     var WasCancelled = true
     
+    func MakeSound()
+    {
+        if Settings.GetBoolean(ForKey: .EnableUISounds) && Settings.GetBoolean(ForKey: .EnableButtonPressSounds)
+        {
+            Sounds.PlaySound(.Tock)
+        }
+    }
+    
     @IBAction func HandleCurrentSettingsPressed(_ sender: Any)
     {
+        MakeSound()
         WasCancelled = false
         self.dismiss(animated: true)
         {
@@ -69,6 +78,7 @@ class ProcessedImageMenuController: UIViewController
     
     @IBAction func HandleImageSettingsPressed(_ sender: Any)
     {
+        MakeSound()
         WasCancelled = false
         self.dismiss(animated: true)
         {
@@ -78,6 +88,7 @@ class ProcessedImageMenuController: UIViewController
     
     @IBAction func HandlePerformanceOptionsPressed(_ sender: Any)
     {
+        MakeSound()
         WasCancelled = false
         self.dismiss(animated: true)
         {
@@ -87,6 +98,7 @@ class ProcessedImageMenuController: UIViewController
     
     @IBAction func HandleLightingOptionsPressed(_ sender: Any)
     {
+        MakeSound()
         WasCancelled = false
         self.dismiss(animated: true)
         {
@@ -96,6 +108,7 @@ class ProcessedImageMenuController: UIViewController
     
     @IBAction func HandleLoadScenePressed(_ sender: Any)
     {
+        MakeSound()
         WasCancelled = false
         self.dismiss(animated: true)
         {
@@ -105,6 +118,7 @@ class ProcessedImageMenuController: UIViewController
     
     @IBAction func HandleSaveScenePressed(_ sender: Any)
     {
+        MakeSound()
         WasCancelled = false
         self.dismiss(animated: true)
         {
@@ -114,6 +128,7 @@ class ProcessedImageMenuController: UIViewController
     
     @IBAction func HandleRecordScenePressed(_ sender: Any)
     {
+        MakeSound()
         WasCancelled = false
         self.dismiss(animated: true)
         {
@@ -123,6 +138,7 @@ class ProcessedImageMenuController: UIViewController
     
     @IBAction func HandleShareImagePressed(_ sender: Any)
     {
+        MakeSound()
         WasCancelled = false
         self.dismiss(animated: true)
         {
@@ -132,6 +148,7 @@ class ProcessedImageMenuController: UIViewController
     
     @IBAction func HandleRunProgramSettings(_ sender: Any)
     {
+        MakeSound()
         WasCancelled = false
         self.dismiss(animated: true)
         {

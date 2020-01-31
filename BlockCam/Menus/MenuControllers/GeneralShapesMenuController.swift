@@ -133,6 +133,7 @@ class GeneralShapesMenuController: UIViewController, UITableViewDataSource, UITa
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
     {
+        SelectionSound()
         if HasGroupings
         {
             SelectedShape = GroupedShapes[indexPath.section].GroupShapes[indexPath.row]
@@ -146,8 +147,25 @@ class GeneralShapesMenuController: UIViewController, UITableViewDataSource, UITa
     
     var WasCancelled = true
     
+    func SelectionSound()
+    {
+        if Settings.GetBoolean(ForKey: .EnableUISounds) && Settings.GetBoolean(ForKey: .EnableOptionSelectSounds)
+        {
+            Sounds.PlaySound(.Tink)
+        }
+    }
+    
+    func MakeSound(IsCancel: Bool)
+    {
+        if Settings.GetBoolean(ForKey: .EnableUISounds) && Settings.GetBoolean(ForKey: .EnableButtonPressSounds)
+        {
+            Sounds.PlaySound(IsCancel ? .Cancel : .Confirm)
+        }
+    }
+    
     @IBAction func HandleOKButton(_ sender: Any)
     {
+        MakeSound(IsCancel: false)
         WasCancelled = false
         if let Shape = SelectedShape
         {
@@ -160,6 +178,7 @@ class GeneralShapesMenuController: UIViewController, UITableViewDataSource, UITa
     
     @IBAction func HandleCancelButton(_ sender: Any)
     {
+        MakeSound(IsCancel: true)
         self.dismiss(animated: true, completion: nil)
     }
     

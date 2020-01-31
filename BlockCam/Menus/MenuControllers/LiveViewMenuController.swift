@@ -30,9 +30,18 @@ class LiveViewMenuController: UIViewController
     }
     
     var WasCancelled = true
-  
+    
+    func MakeSound()
+    {
+        if Settings.GetBoolean(ForKey: .EnableUISounds) && Settings.GetBoolean(ForKey: .EnableButtonPressSounds)
+        {
+            Sounds.PlaySound(.Tock)
+        }
+    }
+    
     @IBAction func HandleHelpPressed(_ sender: Any)
     {
+        MakeSound()
         WasCancelled = false
         self.dismiss(animated: true, completion:
             {
@@ -42,6 +51,7 @@ class LiveViewMenuController: UIViewController
     
     @IBAction func HandleProgramSettingsPressed(_ sender: Any)
     {
+        MakeSound()
         WasCancelled = false
         self.dismiss(animated: true, completion:
             {
@@ -51,6 +61,7 @@ class LiveViewMenuController: UIViewController
     
     @IBAction func HandleCurrentSettingsPressed(_ sender: Any)
     {
+        MakeSound()
         WasCancelled = false
         self.dismiss(animated: true, completion:
             {
@@ -60,6 +71,7 @@ class LiveViewMenuController: UIViewController
     
     @IBAction func HandleImageSettingsPressed(_ sender: Any)
     {
+        MakeSound()
         WasCancelled = false
         self.dismiss(animated: true, completion:
             {
@@ -69,6 +81,7 @@ class LiveViewMenuController: UIViewController
     
     @IBAction func HandleAboutButtonPressed(_ sender: Any)
     {
+        MakeSound()
         WasCancelled = false
         self.dismiss(animated: true, completion:
             {
@@ -80,7 +93,7 @@ class LiveViewMenuController: UIViewController
     {
         if WasCancelled
         {
-        Delegate?.HandleContextMenu(Command: .Cancelled)
+            Delegate?.HandleContextMenu(Command: .Cancelled)
         }
         super.viewWillDisappear(animated)
     }
