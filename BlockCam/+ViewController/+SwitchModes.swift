@@ -122,12 +122,6 @@ extension ViewController
         
         //Initialize the bottom live view bar.
         //The location of the bottom live view bar is set in UpdateUIForInsets.
-        /*
-         MainBottomBar.frame = CGRect(x: 0,
-         y: ScreenHeight - MainBottomBar.frame.height,
-         width: ScreenWidth,
-         height: MainBottomBar.frame.height)
-         */
         MainBottomBar.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
         MainBottomBar.layer.cornerRadius = 5.0
         if let NewRect = MoveButton(DoneButton, To: 0.0)
