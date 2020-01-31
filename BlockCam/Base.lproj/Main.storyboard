@@ -113,27 +113,6 @@
                             <view clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QbL-Ai-P2j" customClass="GridLayer" customModule="BlockCam" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="666"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="boolean" keyPath="ShowActualOrientation" value="YES"/>
-                                    <userDefinedRuntimeAttribute type="boolean" keyPath="ShowIdealOrientation" value="YES"/>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="IdealLineColor">
-                                        <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="ActualLineColor">
-                                        <color key="value" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="boolean" keyPath="ShowIdealHorizontalLine" value="YES"/>
-                                    <userDefinedRuntimeAttribute type="boolean" keyPath="ShowIdealVerticalLine" value="YES"/>
-                                    <userDefinedRuntimeAttribute type="boolean" keyPath="ShowActualHorizontalLine" value="YES"/>
-                                    <userDefinedRuntimeAttribute type="boolean" keyPath="ShowActualVerticalLine" value="YES"/>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="ActualAngle">
-                                        <real key="value" value="45"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="GridViewType" value="RuleOfThree"/>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="AlignedColor">
-                                        <color key="value" red="0.90600258840000003" green="0.98548370600000001" blue="0.71997337559999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FVb-mH-eBn">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="666"/>
