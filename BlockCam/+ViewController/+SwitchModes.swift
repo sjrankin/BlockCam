@@ -175,6 +175,7 @@ extension ViewController
     /// Switch to live view mode - the live view control is visible and assumed to be running.
     func SwitchToLiveViewMode()
     {
+        GridView.ShowGrid()
         let Insets = self.view.safeAreaInsets
         let FrameHeight = UIScreen.main.bounds.height - (Insets.bottom + Insets.top + 70)
         let Frame = CGRect(x: 0, y: Insets.top, width: self.view.frame.width, height: FrameHeight)
@@ -237,6 +238,7 @@ extension ViewController
     /// Switch to the 3D scene mode.
     func SwitchToImageMode()
     {
+        GridView.HideGrid()
         let Insets = self.view.safeAreaInsets
         let FrameHeight = UIScreen.main.bounds.height - (Insets.bottom + Insets.top + 70)
         let Frame = CGRect(x: 0, y: Insets.top, width: self.view.frame.width, height: FrameHeight)
@@ -294,6 +296,7 @@ extension ViewController
     /// Hide the image bottom tool bar. Show the record scene menu bar.
     func ShowRecordSceneBar()
     {
+        GridView.HideGrid()
         let Insets = self.view.safeAreaInsets
         let FrameHeight = UIScreen.main.bounds.height - (Insets.bottom + Insets.top + 70)
         let Frame = CGRect(x: 0, y: Insets.top, width: self.view.frame.width, height: FrameHeight)
@@ -380,6 +383,7 @@ extension ViewController
     /// Switch to the photo picker/processor mode.
     func SwitchToPhotoPickerMode()
     {
+        GridView.HideGrid()
         HideHistogramView()
         UIView.animate(withDuration: 0.15,
                        animations:
@@ -391,13 +395,17 @@ extension ViewController
         self.view.bringSubviewToFront(OutputView)
     }
     
+    /// Rotate a button to the specified angle.
+    /// - Parameter Angle: The angle (in degrees) to rotate the button.
+    /// - Parameter Button: The button to rotate.
     func RotateButtonTo(_ Angle: Double, Button: UIButton)
     {
         Button.transform = CGAffineTransform(rotationAngle: CGFloat(Angle) * CGFloat.pi / 180.0)
     }
     
     /// Update the rotational angle of all UI buttons.
-    /// - Parameter NewAngle: The new angle to use to derive the new rotation of all buttons.
+    /// - Parameter NewAngle: The new angle to use to derive the new rotation of all buttons. Value
+    ///                       is in degrees.
     func UpdateButtonAngle(_ NewAngle: Double)
     {
         RotateButtonTo(NewAngle, Button: SettingsButton)
