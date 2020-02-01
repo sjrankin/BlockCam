@@ -14,7 +14,12 @@ extension ViewController
 {
     /// Start monitoring orientation updates. Updates to the rotation of the device trigger orientation
     /// changes in some UI elements.
-    /// - Note: See [CMDeviceMotion](https://nshipster.com/cmdevicemotion/)
+    /// - Note:
+    ///   - Depending on various flags, different parts of the UI are adjusted for how the user
+    ///         holds the device.
+    ///   - If the Z gravity value is close to -1.0 or 1.0, the device is either face up or face down
+    ///     and in that case `CMMotionManager` rotation is disregarded and an orientation of 0° is assumed.
+    ///   - See [CMDeviceMotion](https://nshipster.com/cmdevicemotion/)
     /// - Parameter UpdateFrequency. How often to check for changes. Defaults to 1/60th of a second.
     func StartOrientationUpdates(_ UpdateFrequency: Double = 1.0 / 60.0)
     {
@@ -27,9 +32,22 @@ extension ViewController
                 [weak self] (data, error) in
                 guard let MotionData = data, error == nil else
                 {
+                    print("MotionManager error: \((error)!)")
                     return
                 }
-                var Rotation = atan2(MotionData.gravity.x, MotionData.gravity.y) - .pi
+                var Rotation: Double = 0.0
+                //If the device is flat on a surface (whether facing up or down), reset the orietation
+                //to 0° as the user would expect.
+                let GravityZ = abs(Double(round(MotionData.gravity.z * 1000.0)) / 1000.0)
+                if GravityZ > 0.995
+                {
+                    Rotation = 0.0
+                }
+                else
+                {
+                    Rotation = atan2(MotionData.gravity.x, MotionData.gravity.y) - .pi
+                }
+
                 Rotation = Rotation * 180.0 / .pi
                 Rotation = abs(round(Rotation))
                 if self!.PreviousRotation == Rotation
@@ -47,7 +65,7 @@ extension ViewController
                 switch Rotation
                 {
                     case 0.0 ... 15.0,
-                         345.0 ... 359.999:
+                         345.0 ... 359.99999:
                         self!.UpdateButtonAngle(360.0 - 0.0)
                     
                     case 75.0 ... 105.0:
