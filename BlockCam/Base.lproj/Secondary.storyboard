@@ -303,6 +303,85 @@
             </objects>
             <point key="canvasLocation" x="4550.7246376811599" y="1477.9891304347827"/>
         </scene>
+        <!--Manage Favorite Shapes-->
+        <scene sceneID="yn2-xS-JG7">
+            <objects>
+                <viewController storyboardIdentifier="FavoriteShapeSettingsUI" id="hU5-S1-zzR" customClass="Menu_FavoriteShapeSettings" customModule="BlockCam" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="wrL-v1-RFz">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fcu-Bc-oIR">
+                                <rect key="frame" x="0.0" y="692" width="414" height="44"/>
+                                <items>
+                                    <barButtonItem systemItem="add" id="oc1-F9-wHO">
+                                        <connections>
+                                            <action selector="HandleAddButton:" destination="hU5-S1-zzR" id="qBn-dJ-e4R"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem width="42" style="plain" systemItem="fixedSpace" id="N9p-R5-iVP"/>
+                                    <barButtonItem title="Edit" id="IkH-2j-604">
+                                        <connections>
+                                            <action selector="HandleEditTableButton:" destination="hU5-S1-zzR" id="IR8-qa-Goj"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="MAn-7o-beg"/>
+                                    <barButtonItem systemItem="trash" id="cXd-Q1-4LR">
+                                        <color key="tintColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <connections>
+                                            <action selector="HandleClearAllShapes:" destination="hU5-S1-zzR" id="4ES-90-GC4"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ac8-ok-Wq8">
+                                <rect key="frame" x="20" y="56" width="374" height="527"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="527" id="xBt-UT-vCl"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
+                                        <real key="value" value="0.5"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <outlet property="dataSource" destination="hU5-S1-zzR" id="iaD-mI-VS8"/>
+                                    <outlet property="delegate" destination="hU5-S1-zzR" id="E3i-1L-urL"/>
+                                </connections>
+                            </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Tap the shape name to change it. Duplicate entries are not allowed." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NTw-We-6EX">
+                                <rect key="frame" x="20" y="602" width="374" height="40.666666666666629"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="Fcu-Bc-oIR" firstAttribute="bottom" secondItem="bRk-Ty-vdl" secondAttribute="bottom" id="UEP-eV-1xr"/>
+                            <constraint firstItem="ac8-ok-Wq8" firstAttribute="trailing" secondItem="wrL-v1-RFz" secondAttribute="trailingMargin" id="cAV-2x-rsM"/>
+                            <constraint firstItem="ac8-ok-Wq8" firstAttribute="centerX" secondItem="Fcu-Bc-oIR" secondAttribute="centerX" id="eDo-ut-8BQ"/>
+                            <constraint firstItem="ac8-ok-Wq8" firstAttribute="top" secondItem="bRk-Ty-vdl" secondAttribute="top" constant="12" id="lCZ-9L-cP8"/>
+                            <constraint firstItem="Fcu-Bc-oIR" firstAttribute="leading" secondItem="bRk-Ty-vdl" secondAttribute="leading" id="uqB-uH-wpU"/>
+                            <constraint firstItem="ac8-ok-Wq8" firstAttribute="leading" secondItem="wrL-v1-RFz" secondAttribute="leadingMargin" id="yEM-Xy-qKd"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="bRk-Ty-vdl"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Manage Favorite Shapes" id="I2x-An-DOs"/>
+                    <connections>
+                        <outlet property="DeleteEverythingButton" destination="cXd-Q1-4LR" id="9fg-NR-HAj"/>
+                        <outlet property="FavoriteShapeTable" destination="ac8-ok-Wq8" id="22l-3h-uw0"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="s3o-9l-GSg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1021.7391304347827" y="98.641304347826093"/>
+        </scene>
         <!--Height Settings-->
         <scene sceneID="Voj-mo-IqM">
             <objects>
@@ -835,10 +914,34 @@
                                             <segue destination="wGt-1R-zqY" kind="show" id="daY-g8-Yg2"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" id="4Fj-YE-4aS">
-                                        <rect key="frame" x="0.0" y="674.00000381469727" width="400" height="43.666667938232422"/>
+                                </cells>
+                            </tableViewSection>
+                            <tableViewSection headerTitle="Favorites" id="4DC-c1-VwJ">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" id="dYc-a9-2OA">
+                                        <rect key="frame" x="0.0" y="730.00000381469727" width="400" height="43.666667938232422"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="4Fj-YE-4aS" id="ODT-qz-KMc">
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="dYc-a9-2OA" id="1Ry-52-nHy">
+                                            <rect key="frame" x="0.0" y="0.0" width="369" height="43.666667938232422"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Manage favorite shapes" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="09g-1v-Rtd">
+                                                    <rect key="frame" x="20" y="11" width="183" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="hU5-S1-zzR" kind="show" identifier="ToFavoriteShapeManager" id="1tj-AZ-WNw"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" id="xSs-48-nsb">
+                                        <rect key="frame" x="0.0" y="773.66667175292969" width="400" height="43.666667938232422"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="xSs-48-nsb" id="Nal-bk-RCK">
                                             <rect key="frame" x="0.0" y="0.0" width="400" height="43.666667938232422"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
@@ -2011,7 +2114,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qHz-S4-6ww" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1332" y="64"/>
+            <point key="canvasLocation" x="-342" y="99"/>
         </scene>
         <!--Character Options-->
         <scene sceneID="a3n-jy-Sh8">
