@@ -1075,11 +1075,14 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="pK4-o4-vNR">
-                                                    <rect key="frame" x="20" y="41" width="291" height="32"/>
+                                                    <rect key="frame" x="20" y="41" width="374" height="32"/>
                                                     <segments>
                                                         <segment title="None"/>
-                                                        <segment title="Cross-Hair"/>
+                                                        <segment title="Simple"/>
+                                                        <segment title="Xhair"/>
                                                         <segment title="Rule of 3"/>
+                                                        <segment title="Exotic"/>
+                                                        <segment title="Tight"/>
                                                     </segments>
                                                     <connections>
                                                         <action selector="HandleGridTypeChanged:" destination="TZn-O9-UZZ" eventType="primaryActionTriggered" id="9dZ-CA-yMV"/>
@@ -1089,7 +1092,7 @@
                                             <constraints>
                                                 <constraint firstItem="pK4-o4-vNR" firstAttribute="top" secondItem="YET-T3-92h" secondAttribute="bottom" constant="8" id="S8o-2f-OlA"/>
                                                 <constraint firstItem="YET-T3-92h" firstAttribute="top" secondItem="bxZ-B1-Tzp" secondAttribute="topMargin" constant="1" id="T6x-fU-1t9"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="pK4-o4-vNR" secondAttribute="trailing" constant="83" id="bU2-EX-svq"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="pK4-o4-vNR" secondAttribute="trailing" id="bU2-EX-svq"/>
                                                 <constraint firstItem="YET-T3-92h" firstAttribute="leading" secondItem="pK4-o4-vNR" secondAttribute="leading" id="fsk-97-Pze"/>
                                                 <constraint firstItem="YET-T3-92h" firstAttribute="leading" secondItem="bxZ-B1-Tzp" secondAttribute="leadingMargin" id="iw4-kI-Mlf"/>
                                             </constraints>
@@ -1261,13 +1264,13 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Channel order" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ict-Il-fVv">
-                                                    <rect key="frame" x="20" y="11" width="109" height="21"/>
+                                                    <rect key="frame" x="8" y="11" width="109" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="0d8-MQ-UQ2">
-                                                    <rect key="frame" x="20" y="40" width="374" height="32"/>
+                                                    <rect key="frame" x="8" y="40" width="398" height="32"/>
                                                     <segments>
                                                         <segment title="RGB"/>
                                                         <segment title="RBG"/>
