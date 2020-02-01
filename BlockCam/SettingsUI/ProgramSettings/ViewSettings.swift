@@ -128,12 +128,12 @@ class ViewSettings: UITableViewController
     }
     
     let BestFitMap =
-    [
-        0.0: 0,
-        1.0: 1,
-        2.0: 2,
-        4.0: 3,
-        8.0: 4
+        [
+            0.0: 0,
+            1.0: 1,
+            2.0: 2,
+            4.0: 3,
+            8.0: 4
     ]
     
     @IBAction func HandleHistogramOrderChanged(_ sender: Any)
@@ -174,14 +174,14 @@ class ViewSettings: UITableViewController
     }
     
     let OrderMap =
-    [
-        HistogramOrders.RGB: 0,
-        HistogramOrders.RBG: 1,
-        HistogramOrders.GRB: 2,
-        HistogramOrders.GBR: 3,
-        HistogramOrders.BRG: 4,
-        HistogramOrders.BGR: 5,
-        HistogramOrders.Gray: 6
+        [
+            HistogramOrders.RGB: 0,
+            HistogramOrders.RBG: 1,
+            HistogramOrders.GRB: 2,
+            HistogramOrders.GBR: 3,
+            HistogramOrders.BRG: 4,
+            HistogramOrders.BGR: 5,
+            HistogramOrders.Gray: 6
     ]
     
     @IBAction func HandleProcessedHistogramChanged(_ sender: Any)
@@ -220,12 +220,12 @@ class ViewSettings: UITableViewController
     }
     
     let SpeedMap =
-    [
-        HistogramCreationSpeeds.Fastest: 0,
-        HistogramCreationSpeeds.Fast: 1,
-        HistogramCreationSpeeds.Medium: 2,
-        HistogramCreationSpeeds.Slow: 3,
-        HistogramCreationSpeeds.Slowest: 4
+        [
+            HistogramCreationSpeeds.Fastest: 0,
+            HistogramCreationSpeeds.Fast: 1,
+            HistogramCreationSpeeds.Medium: 2,
+            HistogramCreationSpeeds.Slow: 3,
+            HistogramCreationSpeeds.Slowest: 4
     ]
     
     @IBAction func HandleGridTypeChanged(_ sender: Any)
@@ -244,10 +244,13 @@ class ViewSettings: UITableViewController
     }
     
     let GridMap =
-    [
-        GridTypes.None: 0,
-        GridTypes.CrossHairs: 1,
-        GridTypes.RuleOfThree: 2
+        [
+            GridTypes.None: 0,
+            GridTypes.Simple: 1,
+            GridTypes.CrossHairs: 2,
+            GridTypes.RuleOfThree: 3,
+            GridTypes.Exotic: 4,
+            GridTypes.Tight: 5,
     ]
     
     @IBAction func HandleCurrentOrientationChanged(_ sender: Any)
