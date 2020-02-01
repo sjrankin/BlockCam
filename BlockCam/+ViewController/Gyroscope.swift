@@ -41,6 +41,7 @@ extension ViewController
                 let GravityZ = abs(Double(round(MotionData.gravity.z * 1000.0)) / 1000.0)
                 if GravityZ > 0.995
                 {
+                    //Close enough to flat on a surface.
                     Rotation = 0.0
                 }
                 else
