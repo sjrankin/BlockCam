@@ -79,7 +79,6 @@ class ViewController: UIViewController,
         }
         
         StartOrientationUpdates()
-        //StartGyroscopeUpdates()
     }
     
     /// This even occurs when the safe area insets changed. Unfortunately, iOS doesn't set the insets
