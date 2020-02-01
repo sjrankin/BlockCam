@@ -39,8 +39,8 @@ class ProcessedImageMenuController: UIViewController
         ShareBox.layer.borderColor = UIColor.black.cgColor
         ShareBox.backgroundColor = UIColor.clear
         self.preferredContentSize = CGSize(width: 280.0, height: 450.0)
-        OriginalImage.layer.borderColor = UIColor.systemGray6.cgColor
-        OriginalImage.backgroundColor = UIColor.black
+//        OriginalImage.layer.borderColor = UIColor.systemGray6.cgColor
+        OriginalImage.backgroundColor = UIColor.clear
         OriginalImage.alpha = 0.0
         SetOriginalImage(MainDelegate?.GetSourceImage())
     }
