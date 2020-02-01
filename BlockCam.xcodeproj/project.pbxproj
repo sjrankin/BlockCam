@@ -154,6 +154,7 @@
 		17CE60C923D1EC8000058BFC /* NotoEmoji-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 17CE60C823D1EC7F00058BFC /* NotoEmoji-Regular.ttf */; };
 		17D1F8B923CC28CC00D3CE63 /* SCNFlower1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17D1F8B823CC28CC00D3CE63 /* SCNFlower1.swift */; };
 		17EA5213237FB24B00313481 /* Emoji.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17EA5212237FB24B00313481 /* Emoji.swift */; };
+		17ED7B1A23E5ABEF00604016 /* Menu_FavoriteShapesSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17ED7B1923E5ABEE00604016 /* Menu_FavoriteShapesSettings.swift */; };
 		17F3C90923CEA84A009DCA7B /* Menu_CharacterSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17F3C90823CEA84A009DCA7B /* Menu_CharacterSettings.swift */; };
 		17F3C90C23CEBC16009DCA7B /* MetalPixellation.metal in Sources */ = {isa = PBXBuildFile; fileRef = 17F3C90B23CEBC16009DCA7B /* MetalPixellation.metal */; };
 		17F3C90E23CEBD6D009DCA7B /* MetalPixellator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17F3C90D23CEBD6D009DCA7B /* MetalPixellator.swift */; };
@@ -334,6 +335,7 @@
 		17CE60C823D1EC7F00058BFC /* NotoEmoji-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoEmoji-Regular.ttf"; sourceTree = "<group>"; };
 		17D1F8B823CC28CC00D3CE63 /* SCNFlower1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SCNFlower1.swift; sourceTree = "<group>"; };
 		17EA5212237FB24B00313481 /* Emoji.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Emoji.swift; sourceTree = "<group>"; };
+		17ED7B1923E5ABEE00604016 /* Menu_FavoriteShapesSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Menu_FavoriteShapesSettings.swift; sourceTree = "<group>"; };
 		17F3C90823CEA84A009DCA7B /* Menu_CharacterSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Menu_CharacterSettings.swift; sourceTree = "<group>"; };
 		17F3C90B23CEBC16009DCA7B /* MetalPixellation.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = MetalPixellation.metal; sourceTree = "<group>"; };
 		17F3C90D23CEBD6D009DCA7B /* MetalPixellator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetalPixellator.swift; sourceTree = "<group>"; };
@@ -594,6 +596,7 @@
 				17C1D61623C0605C00FAFA76 /* ShapeContextMenu.swift */,
 				1737411523BF600000BAEF6F /* Menu_CompositeShapeTableViewCell.swift */,
 				17C1225023DABA120011E9EC /* Menu_StackedShapeSettings.swift */,
+				17ED7B1923E5ABEE00604016 /* Menu_FavoriteShapesSettings.swift */,
 				17C1225223DAC0F10011E9EC /* Menu_StackedShapeCell.swift */,
 				17C1225423DAC2850011E9EC /* StackedShapeContextMenu.swift */,
 				17AFA87623C9A8B400846087 /* Menu_BackgroundSettings.swift */,
@@ -1020,6 +1023,7 @@
 				17C7681023E01F6A0068EC34 /* HistogramDisplay.swift in Sources */,
 				17FBBF502388F2D400C362E9 /* PiePercent.swift in Sources */,
 				17F3C90923CEA84A009DCA7B /* Menu_CharacterSettings.swift in Sources */,
+				17ED7B1A23E5ABEF00604016 /* Menu_FavoriteShapesSettings.swift in Sources */,
 				17BE8E6E23767BE400262F81 /* SceneDelegate.swift in Sources */,
 				171726A923963DFB0078D76E /* LiveView.swift in Sources */,
 				17EA5213237FB24B00313481 /* Emoji.swift in Sources */,
