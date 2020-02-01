@@ -219,7 +219,8 @@ class ShapeManager
             ShapeSeriesSet.Emoji: "NotoEmoji",
             ShapeSeriesSet.Latin: "NotoSans-Bold",
             ShapeSeriesSet.Punctuation: "NotoSans-Bold",
-            ShapeSeriesSet.BoxSymbols: "NotoSans-Bold"
+            ShapeSeriesSet.BoxSymbols: "NotoSans-Bold",
+            ShapeSeriesSet.MusicalSymbols: "NotoSansSymbols2-Regular"
     ]
     
     public static let ShapeMap =
@@ -242,7 +243,8 @@ class ShapeManager
             ShapeSeries.Emoji: ShapeSeriesSet.Emoji,
             ShapeSeries.Latin: ShapeSeriesSet.Latin,
             ShapeSeries.Punctuation: ShapeSeriesSet.Punctuation,
-            ShapeSeries.BoxSymbols: ShapeSeriesSet.BoxSymbols
+            ShapeSeries.BoxSymbols: ShapeSeriesSet.BoxSymbols,
+            ShapeSeries.MusicalNotion: ShapeSeriesSet.MusicalSymbols,
     ]
 }
 
@@ -331,7 +333,7 @@ enum NodeShapes: String, CaseIterable
 
 enum ShapeSeriesSet: String, CaseIterable
 {
-    case Flowers = "✻✾✢✥☘❅✽✤🟔✺✿🏵❁🙨🙪🏶❇❀❃❊✼"
+    case Flowers = "✻✾✢✥☘❅✽✤🟔✺✿🏵❁🙨🙪🏶❇❀❃❊✼🌻🌺🌹🌸🌷💐⚜✥🌼᪥ꕥꕤꙮ⚘❀❦"
     case Snowflakes = "❄❆⛄🞾❉"
     case Arrows = "❮❯⇧⬀↯⮔☇⇨⮋⏎⬂⮍👎⇩⏪⮈⮎⮰⇪👍⮱⮶⮴⭪⬃🡇☝⭯⏩⇦☜⮊⬁⮇⮌⬄🠣⮏⮉⇳➘☞➙➚⮕⬊⬇⬋⬅☚☛⬉☟⬌⬍➢➳➶➵➴➹➾"
     case SmallGeometry = "●○◐◑⏾◒◓◖⦿⬬◗◔⬒⯋⬢🙾🞆⬠⬡⬟⭖◕◊◍◌🞖⬯◉◎◙🛆◪🞐🞟⛋◆◇❖◬🞜◈⯄▰■□▢▣⬚▤▥▦▧▨▩◧◩◨"
@@ -405,6 +407,11 @@ enum ShapeSeriesSet: String, CaseIterable
     case BoxSymbols = """
     ○◦◘─│┌┐└┘├┤┴┬╒┼║╖╗╘╚╞╦╕╙╟╛╜╠◙═╓╔╝╡╢╣╤╪╬╥╩╫╨╧▀▄█░▐▌▒▓■□◌●
     """
+    
+    case MusicalSymbols = """
+    𝄀𝄁𝄂𝄃𝄄𝄅𝄆𝄇𝄈𝄉𝄊𝄋𝄌𝄍𝄎𝄏𝄐𝄑𝄒𝄓𝄔𝄕𝄖𝄗𝄘𝄙𝄚𝄛𝅜𝅝𝅗𝅥𝅘𝅥𝅘𝅥𝅮𝅘𝅥𝅯𝅘𝅥𝅰𝅘𝅥𝅱𝅘𝅥𝅲♭♮♯𝄜𝄝𝄞𝄟𝄠𝄡𝄢𝄣𝄤𝄥𝄦𝄩𝄪𝄫𝄬𝄭𝄮𝄯𝄰𝄱𝄲𝄳𝄴𝄵𝄶𝄷𝄸𝄹𝄺𝄻𝄼𝄽𝄾𝄿𝅀𝅁𝅂𝅃𝅄𝅅𝅆𝅇𝆃𝆄𝆌𝆍𝆎𝆏𝆐𝆑𝆒𝆓
+    𝆔𝆕𝆖𝆗𝆘𝆙𝆚𝆛𝆜𝆝𝆞𝆟𝆡𝆢𝆮𝆯𝆰𝆱𝆲𝆳𝆴𝆵𝆶𝆷𝆸𝆹𝆺𝆹𝅥𝆺𝅥𝆹𝅥𝅮𝆺𝅥𝅮𝆹𝅥𝅯𝆺𝅥𝅯𝇏𝇐𝇑𝇒𝇓𝇔𝇕𝇖𝇗𝇘𝇙𝇚𝇛𝇜𝇝
+"""
 }
 
 /// Pre-defined sets of characters.
@@ -448,6 +455,8 @@ enum ShapeSeries: String, CaseIterable
     case Punctuation = "Punctuation"
     /// Symbols used to draw boxes.
     case BoxSymbols = "Box Symbols"
+    /// Symbols used for musical notation.
+    case MusicalNotion = "Musical Noation"
 }
 
 
