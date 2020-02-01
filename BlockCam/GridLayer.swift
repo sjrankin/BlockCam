@@ -91,12 +91,10 @@ class GridLayer: UIView
     /// - Parameter AtCardinalAngle: Flag the says the device is at a cardinal angle.
     func MakeExoticGrid(_ WithActualAngle: CGFloat = 0.0, AtCardinalAngle: Bool)
     {
-        //MakeTightGrid(WithActualAngle, AtCardinalAngle: AtCardinalAngle)
         let Shortest = min(self.bounds.size.width, self.bounds.size.height)
         let Smallest = Shortest * 0.1
         let EvenSmaller = Smallest * 0.3
         let Center = CGPoint(x: self.bounds.size.width / 2.0, y: self.bounds.size.height / 2.0)
-        print("Center=\(Center), Shortest=\(Shortest), self.frame.origin.x=\(self.frame.origin.x)")
         let CircleRect = CGRect(origin: CGPoint(x: Center.x - Smallest / 2.0,
                                                 y: Center.y - Smallest / 2.0),
                                 size: CGSize(width: Smallest,
