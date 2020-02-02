@@ -767,7 +767,7 @@ class Generator
     /// images in XMP metadata with each image.
     public static func LogSettings()
     {
-        return
+        #if false
         if !Settings.GetBoolean(ForKey: .LogImageSettings)
         {
             return
@@ -874,7 +874,8 @@ class Generator
         Log.ChildMessage(Parent: DynColor, "    Dynamic color action: \((Settings.GetString(ForKey: .DynamicColorAction))!)")
         Log.ChildMessage(Parent: DynColor, "    Dynamic color condition: \((Settings.GetString(ForKey: .DynamicColorCondition))!)")
         Log.ChildMessage(Parent: DynColor, "    Invert dynamic color conditional: \(Settings.GetBoolean(ForKey: .InvertDynamicColorProcess))")
-    }
+        #endif
+        }
     
     /// Update an image in-place. Certain settings changes do not require regengeration of shape nodes. To take advantage of that
     /// when those settings are changed, this function will change attributes of each node in-place.
