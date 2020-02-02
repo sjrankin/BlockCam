@@ -163,19 +163,19 @@ extension ViewController
         let PreferredDevice: AVCaptureDevice.DeviceType!
         PreferredDevice = UseBackCamera ? .builtInDualCamera : .builtInTrueDepthCamera
         let Devices = self.VideoDeviceDiscoverySession.devices
-        var NewDevice: AVCaptureDevice? = nil
+        CaptureDevice = nil
         if let Device = Devices.first(where: {$0.position == PreferredPosition && $0.deviceType == PreferredDevice})
         {
-            NewDevice = Device
+            CaptureDevice = Device
         }
         else
             if let Device = Devices.first(where: {$0.position == PreferredPosition})
             {
-                NewDevice = Device
+                CaptureDevice = Device
         }
         
         DeviceHasCamera = true
-        guard let InputCamera = NewDevice else
+        guard let InputCamera = CaptureDevice else
         {
             DeviceHasCamera = false 
             Log.Message("Unable to access input camera.")
