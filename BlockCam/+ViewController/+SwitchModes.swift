@@ -169,6 +169,8 @@ extension ViewController
     /// Switch to live view mode - the live view control is visible and assumed to be running.
     func SwitchToLiveViewMode()
     {
+        LiveView.isUserInteractionEnabled = true
+        GridView.isUserInteractionEnabled = false
         GridView.ShowGrid()
         let Insets = self.view.safeAreaInsets
         let FrameHeight = UIScreen.main.bounds.height - (Insets.bottom + Insets.top + 70)
