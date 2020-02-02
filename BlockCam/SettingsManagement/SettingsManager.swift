@@ -182,6 +182,8 @@ class Settings
         UserDefaults.standard.set("Blocks", forKey: SettingKeys.StackedShapesSet.rawValue)
         UserDefaults.standard.set(GridTypes.None.rawValue, forKey: SettingKeys.LiveViewGridType.rawValue)
         UserDefaults.standard.set(false, forKey: SettingKeys.ShowActualOrientation.rawValue)
+        UserDefaults.standard.set(true, forKey: SettingKeys.ShowTapFeedback.rawValue)
+        UserDefaults.standard.set("", forKey: SettingKeys.FavoriteShapeList.rawValue)
     }
     
     /// Call all subscribers in the notification list to let them know a setting will be changed.
@@ -643,6 +645,7 @@ class Settings
             SettingKeys.PhotoRollAccessGranted,
             SettingKeys.ShowProcessedHistogram,
             SettingKeys.ShowActualOrientation,
+            SettingKeys.ShowTapFeedback,
     ]
     
     /// Contains a list of all integer-type fields.
@@ -712,6 +715,7 @@ class Settings
             SettingKeys.HistogramOrder,
             SettingKeys.HistogramCreationSpeed,
             SettingKeys.LiveViewGridType,
+            SettingKeys.FavoriteShapeList,
     ]
     
     /// Contains a list of all double-type fields.
@@ -955,5 +959,10 @@ enum SettingKeys: String, CaseIterable, Comparable, Hashable
     case LiveViewGridType = "LiveViewGridType"
     /// Boolean: Show the actual orientation of the device.
     case ShowActualOrientation = "ShowActualOrientation"
+    /// Boolean: Show feedback when the user taps the live view.
+    case ShowTapFeedback = "ShowTapFeedBack"
+    
+    //Favorite settings
+    case FavoriteShapeList = "FavoriteShapeList"
 }
 
