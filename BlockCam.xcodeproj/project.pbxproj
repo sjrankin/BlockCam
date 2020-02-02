@@ -95,6 +95,7 @@
 		177F66A623D04F3500DFA840 /* NotoSansSymbols2-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 17499B7D23CDEAA200A5396A /* NotoSansSymbols2-Regular.ttf */; };
 		177F66A723D04F3900DFA840 /* NotoSansSymbols-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 17499B7C23CDEAA200A5396A /* NotoSansSymbols-Regular.ttf */; };
 		1780B72E23974CFD00E6018A /* MainProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1780B72D23974CFD00E6018A /* MainProtocol.swift */; };
+		17897B7523E6905C00AFDA6A /* LiveViewFeedback.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17897B7423E6905C00AFDA6A /* LiveViewFeedback.swift */; };
 		1789950323B5CF3200238D89 /* Indefinite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1789950223B5CF3200238D89 /* Indefinite.swift */; };
 		1789950523B5F16600238D89 /* ContextMenus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1789950423B5F16600238D89 /* ContextMenus.swift */; };
 		178A4F2623C6FB9A00892F88 /* ImageEdgeFinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 178A4F2523C6FB9A00892F88 /* ImageEdgeFinder.swift */; };
@@ -117,10 +118,6 @@
 		17AC305C23DC23BE00E90A70 /* ShapeGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17AC305B23DC23BE00E90A70 /* ShapeGenerator.swift */; };
 		17AFA87523C9A14F00846087 /* MiscellaneousSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17AFA87423C9A14F00846087 /* MiscellaneousSettings.swift */; };
 		17AFA87723C9A8B400846087 /* Menu_BackgroundSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17AFA87623C9A8B400846087 /* Menu_BackgroundSettings.swift */; };
-		17B1D43223BE021800050FA6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17B1D43123BE021800050FA6 /* AppDelegate.swift */; };
-		17B1D43423BE021800050FA6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17B1D43323BE021800050FA6 /* ViewController.swift */; };
-		17B1D43623BE021B00050FA6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 17B1D43523BE021B00050FA6 /* Assets.xcassets */; };
-		17B1D43923BE021B00050FA6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 17B1D43723BE021B00050FA6 /* Main.storyboard */; };
 		17B2517123AF39030012665E /* StatusLayerView2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17B2517023AF39030012665E /* StatusLayerView2.swift */; };
 		17B9E0A823B0A9DC00E35706 /* LogSessionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17B9E0A723B0A9DC00E35706 /* LogSessionCell.swift */; };
 		17B9E0CC23D40757004DD106 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 17B9E0CE23D40757004DD106 /* Localizable.strings */; };
@@ -142,7 +139,6 @@
 		17C04CAC23A4D4B400D870EE /* SettingsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C04CAB23A4D4B400D870EE /* SettingsManager.swift */; };
 		17C1225123DABA120011E9EC /* Menu_StackedShapeSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C1225023DABA120011E9EC /* Menu_StackedShapeSettings.swift */; };
 		17C1225323DAC0F10011E9EC /* Menu_StackedShapeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C1225223DAC0F10011E9EC /* Menu_StackedShapeCell.swift */; };
-		17C1225523DAC2850011E9EC /* StackedShapeContextMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C1225423DAC2850011E9EC /* StackedShapeContextMenu.swift */; };
 		17C1D61523C02AE500FAFA76 /* CompositeShapeChangeProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C1D61423C02AE500FAFA76 /* CompositeShapeChangeProtocol.swift */; };
 		17C1D61723C0605C00FAFA76 /* ShapeContextMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C1D61623C0605C00FAFA76 /* ShapeContextMenu.swift */; };
 		17C7681023E01F6A0068EC34 /* HistogramDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C7680F23E01F6A0068EC34 /* HistogramDisplay.swift */; };
@@ -265,6 +261,7 @@
 		177F66A223D00F2500DFA840 /* SCNShapeRange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SCNShapeRange.swift; sourceTree = "<group>"; };
 		177F66A423D036F000DFA840 /* Menu_CharacterSeries.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Menu_CharacterSeries.swift; sourceTree = "<group>"; };
 		1780B72D23974CFD00E6018A /* MainProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainProtocol.swift; sourceTree = "<group>"; };
+		17897B7423E6905C00AFDA6A /* LiveViewFeedback.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveViewFeedback.swift; sourceTree = "<group>"; };
 		1789950223B5CF3200238D89 /* Indefinite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Indefinite.swift; sourceTree = "<group>"; };
 		1789950423B5F16600238D89 /* ContextMenus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextMenus.swift; sourceTree = "<group>"; };
 		178A4F2523C6FB9A00892F88 /* ImageEdgeFinder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageEdgeFinder.swift; sourceTree = "<group>"; };
@@ -287,7 +284,6 @@
 		17AC305B23DC23BE00E90A70 /* ShapeGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShapeGenerator.swift; sourceTree = "<group>"; };
 		17AFA87423C9A14F00846087 /* MiscellaneousSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiscellaneousSettings.swift; sourceTree = "<group>"; };
 		17AFA87623C9A8B400846087 /* Menu_BackgroundSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Menu_BackgroundSettings.swift; sourceTree = "<group>"; };
-		17B1D42F23BE021800050FA6 /* DesktopBlockCam.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DesktopBlockCam.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		17B1D43123BE021800050FA6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		17B1D43323BE021800050FA6 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		17B1D43523BE021B00050FA6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -323,7 +319,6 @@
 		17C04CAB23A4D4B400D870EE /* SettingsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsManager.swift; sourceTree = "<group>"; };
 		17C1225023DABA120011E9EC /* Menu_StackedShapeSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Menu_StackedShapeSettings.swift; sourceTree = "<group>"; };
 		17C1225223DAC0F10011E9EC /* Menu_StackedShapeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Menu_StackedShapeCell.swift; sourceTree = "<group>"; };
-		17C1225423DAC2850011E9EC /* StackedShapeContextMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StackedShapeContextMenu.swift; sourceTree = "<group>"; };
 		17C1D61423C02AE500FAFA76 /* CompositeShapeChangeProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompositeShapeChangeProtocol.swift; sourceTree = "<group>"; };
 		17C1D61623C0605C00FAFA76 /* ShapeContextMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShapeContextMenu.swift; sourceTree = "<group>"; };
 		17C7680F23E01F6A0068EC34 /* HistogramDisplay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistogramDisplay.swift; sourceTree = "<group>"; };
@@ -353,13 +348,6 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		17B1D42C23BE021800050FA6 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		17BE8E6523767BE400262F81 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -427,6 +415,7 @@
 				1789950423B5F16600238D89 /* ContextMenus.swift */,
 				176ED92E23BF1AEC000877B6 /* MainTitle.swift */,
 				17C7680F23E01F6A0068EC34 /* HistogramDisplay.swift */,
+				17897B7423E6905C00AFDA6A /* LiveViewFeedback.swift */,
 			);
 			path = "+ViewController";
 			sourceTree = "<group>";
@@ -596,9 +585,8 @@
 				17C1D61623C0605C00FAFA76 /* ShapeContextMenu.swift */,
 				1737411523BF600000BAEF6F /* Menu_CompositeShapeTableViewCell.swift */,
 				17C1225023DABA120011E9EC /* Menu_StackedShapeSettings.swift */,
-				17ED7B1923E5ABEE00604016 /* Menu_FavoriteShapesSettings.swift */,
 				17C1225223DAC0F10011E9EC /* Menu_StackedShapeCell.swift */,
-				17C1225423DAC2850011E9EC /* StackedShapeContextMenu.swift */,
+				17ED7B1923E5ABEE00604016 /* Menu_FavoriteShapesSettings.swift */,
 				17AFA87623C9A8B400846087 /* Menu_BackgroundSettings.swift */,
 				17C1D61423C02AE500FAFA76 /* CompositeShapeChangeProtocol.swift */,
 			);
@@ -700,7 +688,6 @@
 			isa = PBXGroup;
 			children = (
 				17BE8E6823767BE400262F81 /* BlockCam.app */,
-				17B1D42F23BE021800050FA6 /* DesktopBlockCam.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -797,23 +784,6 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		17B1D42E23BE021800050FA6 /* DesktopBlockCam */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 17B1D43E23BE021B00050FA6 /* Build configuration list for PBXNativeTarget "DesktopBlockCam" */;
-			buildPhases = (
-				17B1D42B23BE021800050FA6 /* Sources */,
-				17B1D42C23BE021800050FA6 /* Frameworks */,
-				17B1D42D23BE021800050FA6 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = DesktopBlockCam;
-			productName = DesktopBlockCam;
-			productReference = 17B1D42F23BE021800050FA6 /* DesktopBlockCam.app */;
-			productType = "com.apple.product-type.application";
-		};
 		17BE8E6723767BE400262F81 /* BlockCam */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 17BE8E7C23767BE600262F81 /* Build configuration list for PBXNativeTarget "BlockCam" */;
@@ -842,9 +812,6 @@
 				LastUpgradeCheck = 1130;
 				ORGANIZATIONNAME = "Stuart Rankin";
 				TargetAttributes = {
-					17B1D42E23BE021800050FA6 = {
-						CreatedOnToolsVersion = 11.3;
-					};
 					17BE8E6723767BE400262F81 = {
 						CreatedOnToolsVersion = 11.2.1;
 					};
@@ -865,21 +832,11 @@
 			projectRoot = "";
 			targets = (
 				17BE8E6723767BE400262F81 /* BlockCam */,
-				17B1D42E23BE021800050FA6 /* DesktopBlockCam */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		17B1D42D23BE021800050FA6 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				17B1D43623BE021B00050FA6 /* Assets.xcassets in Resources */,
-				17B1D43923BE021B00050FA6 /* Main.storyboard in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		17BE8E6623767BE400262F81 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -931,15 +888,6 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		17B1D42B23BE021800050FA6 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				17B1D43423BE021800050FA6 /* ViewController.swift in Sources */,
-				17B1D43223BE021800050FA6 /* AppDelegate.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		17BE8E6423767BE400262F81 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -986,7 +934,6 @@
 				17BE8E892376E94200262F81 /* SCNnGon.swift in Sources */,
 				171C8AC423864FEF005C4825 /* CameraSettings.swift in Sources */,
 				170BE50823A7624B003A5A72 /* LoggingSession.swift in Sources */,
-				17C1225523DAC2850011E9EC /* StackedShapeContextMenu.swift in Sources */,
 				17C04CA623A4C9AD00D870EE /* ImageSettings.swift in Sources */,
 				170BE51323A7BAB6003A5A72 /* SCNStar.swift in Sources */,
 				171726AB23963EF60078D76E /* ProcessInterface.swift in Sources */,
@@ -1014,6 +961,7 @@
 				171726AD23968B870078D76E /* Versioning.swift in Sources */,
 				179F20AC23DF067200D3614B /* GeneralShapesMenuController.swift in Sources */,
 				170BE50223A74B19003A5A72 /* Platform.swift in Sources */,
+				17897B7523E6905C00AFDA6A /* LiveViewFeedback.swift in Sources */,
 				17499B7723CD8EFA00A5396A /* SCNCircle.swift in Sources */,
 				1737411223BF5A8700BAEF6F /* Menu_CompositeSettings.swift in Sources */,
 				17C04CA423A4B27E00D870EE /* Utility3D.swift in Sources */,
@@ -1154,52 +1102,6 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		17B1D43C23BE021B00050FA6 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = DesktopBlockCam/DesktopBlockCam.entitlements;
-				CODE_SIGN_IDENTITY = "-";
-				CODE_SIGN_STYLE = Automatic;
-				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = 4BB235M4GL;
-				ENABLE_HARDENED_RUNTIME = YES;
-				INFOPLIST_FILE = DesktopBlockCam/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-				);
-				MACOSX_DEPLOYMENT_TARGET = 10.15;
-				PRODUCT_BUNDLE_IDENTIFIER = Irorio.DesktopBlockCam;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx;
-				SWIFT_VERSION = 5.0;
-			};
-			name = Debug;
-		};
-		17B1D43D23BE021B00050FA6 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = DesktopBlockCam/DesktopBlockCam.entitlements;
-				CODE_SIGN_IDENTITY = "-";
-				CODE_SIGN_STYLE = Automatic;
-				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = 4BB235M4GL;
-				ENABLE_HARDENED_RUNTIME = YES;
-				INFOPLIST_FILE = DesktopBlockCam/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-				);
-				MACOSX_DEPLOYMENT_TARGET = 10.15;
-				PRODUCT_BUNDLE_IDENTIFIER = Irorio.DesktopBlockCam;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx;
-				SWIFT_VERSION = 5.0;
-			};
-			name = Release;
-		};
 		17BE8E7A23767BE600262F81 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1320,9 +1222,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ALLOW_ENTITLEMENTS_MODIFICATION = YES;
 				CODE_SIGN_ENTITLEMENTS = BlockCam/BlockCam.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DERIVE_MACCATALYST_PRODUCT_BUNDLE_IDENTIFIER = YES;
 				DEVELOPMENT_TEAM = 4BB235M4GL;
 				"ENABLE_HARDENED_RUNTIME[sdk=macosx*]" = YES;
 				INFOPLIST_FILE = BlockCam/Info.plist;
@@ -1332,7 +1234,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = Irorio.BlockCam;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SUPPORTS_MACCATALYST = YES;
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1342,9 +1244,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ALLOW_ENTITLEMENTS_MODIFICATION = YES;
 				CODE_SIGN_ENTITLEMENTS = BlockCam/BlockCam.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DERIVE_MACCATALYST_PRODUCT_BUNDLE_IDENTIFIER = YES;
 				DEVELOPMENT_TEAM = 4BB235M4GL;
 				"ENABLE_HARDENED_RUNTIME[sdk=macosx*]" = YES;
 				INFOPLIST_FILE = BlockCam/Info.plist;
@@ -1354,7 +1256,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = Irorio.BlockCam;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SUPPORTS_MACCATALYST = YES;
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1363,15 +1265,6 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		17B1D43E23BE021B00050FA6 /* Build configuration list for PBXNativeTarget "DesktopBlockCam" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				17B1D43C23BE021B00050FA6 /* Debug */,
-				17B1D43D23BE021B00050FA6 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		17BE8E6323767BE400262F81 /* Build configuration list for PBXProject "BlockCam" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
