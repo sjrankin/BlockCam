@@ -11,7 +11,6 @@ import UIKit
 import SceneKit
 
 /// Creates a diamond SCNNode geometry.
-/// - Note: This class relies on `UIBezierCurve`'s lack of curves with very small numbers in order to create diamond-shapes nodes.
 class SCNDiamond: SCNNode
 {
     /// Default initializer.
@@ -22,7 +21,7 @@ class SCNDiamond: SCNNode
     }
     
     /// Initializer.
-    /// - Note: By convention, `MajorAxis` should be longer than `MinorAxis` but there are no restrains if the opposite is true.
+    /// - Note: By convention, `MajorAxis` should be longer than `MinorAxis` but there are no restraints if the opposite is true.
     /// - Parameter MajorAxis: The long axis of the diamond.
     /// - Parameter MinorAxis: The short axis of the diamond.
     /// - Parameter Height: The extrusion depth of the diamond.
@@ -48,9 +47,9 @@ class SCNDiamond: SCNNode
     /// Update the diamond with the current property values.
     private func UpdateDiamond()
     {
-        let Geometry = SCNDiamond.Geometry(MajorAxis: MajorAxis, MinorAxis: MinorAxis, Height: Height)
+        let Geometry = SCNDiamond.Geometry(MajorAxis: _MajorAxis, MinorAxis: _MinorAxis, Height: _Height)
         self.geometry = Geometry
-        self.scale = SCNVector3(Scale, Scale, Scale)
+        self.scale = SCNVector3(_Scale, _Scale, _Scale)
     }
     
     /// Holds the major axis value.
@@ -118,18 +117,21 @@ class SCNDiamond: SCNNode
     }
     
     /// Returns geometry to be used to construct an diamond node.
-    /// - Note: By convention, `MajorAxis` should be longer than `MinorAxis` but there are no restrains if the opposite is true.
+    /// - Note: By convention, `MajorAxis` should be longer than `MinorAxis` but there are no restraints if the opposite is true.
     /// - Parameter MajorAxis: The long axis of the diamond.
     /// - Parameter MinorAxis: The short axis of the diamond.
     /// - Parameter Height: The extrusion depth of the diamond.
-    /// - Parameter Scale: The scale of the diamond.
     /// - Returns: Node geometry in the shape of a diamond (parallelogram).
     public static func Geometry(MajorAxis: CGFloat, MinorAxis: CGFloat, Height: CGFloat) -> SCNGeometry
     {
-        let DiamondRectangle = CGRect(x: 0, y: 0, width: MajorAxis, height: MinorAxis)
-        let Diamond = UIBezierPath(ovalIn: DiamondRectangle)
-        Diamond.close()
-        let DiamondGeo = SCNShape(path: Diamond, extrusionDepth: Height)
+        let Path = UIBezierPath()
+        Path.move(to: CGPoint(x: MinorAxis / 2.0, y: 0.0))
+        Path.addLine(to: CGPoint(x: MinorAxis, y: MajorAxis / 2.0))
+        Path.addLine(to: CGPoint(x: MinorAxis / 2.0, y: MajorAxis))
+        Path.addLine(to: CGPoint(x: 0.0, y: MajorAxis / 2.0))
+        Path.addLine(to: CGPoint(x: MinorAxis / 2.0, y: 0.0))
+        Path.close()
+        let DiamondGeo = SCNShape(path: Path, extrusionDepth: Height)
         return DiamondGeo
     }
 }
