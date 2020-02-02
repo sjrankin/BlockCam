@@ -51,4 +51,6 @@ enum ContextMenuCommands: String, CaseIterable
     case ShowHelp = "ShowHelp"
     /// User selected a new shape.
     case SelectedNewShape = "SelectedNewShape"
+    /// Show favorite shapes the user has selected.
+    case ShowFavoriteShapes = "ShowFavoriteShapes"
 }
