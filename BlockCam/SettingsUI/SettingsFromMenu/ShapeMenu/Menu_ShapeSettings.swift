@@ -280,6 +280,13 @@ class Menu_ShapeSettings: UITableViewController, UIPickerViewDelegate, UIPickerV
         }
     }
     
+    @IBSegueAction func InstantiateFavoriteSettings(_ coder: NSCoder) -> Menu_FavoriteShapeSettings?
+    {
+        let Controller = Menu_FavoriteShapeSettings(coder: coder)
+        Controller?.MainDelegate = Delegate
+        return Controller
+    }
+    
     @IBAction func HandleSizeSelectorChanged(_ sender: Any)
     {
         if let Segment = sender as? UISegmentedControl
