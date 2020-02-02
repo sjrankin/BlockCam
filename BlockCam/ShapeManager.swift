@@ -67,6 +67,40 @@ class ShapeManager
         }
     }
     
+    /// Returns a flat list of all shapes.
+    /// - Parameter ExceptFor: List of shapes to exclude from the returned list.
+    /// - Returns: List of all shapes.
+    public static func ShapeFlatList(ExceptFor: [String]) -> [NodeShapes]
+    {
+        var List = [NodeShapes]()
+        for (_, CatList) in _ShapeCategories
+        {
+            for Name in CatList
+            {
+                if !ExceptFor.contains(Name)
+                {
+                List.append(NodeShapes(rawValue: Name)!)
+                }
+            }
+        }
+        return List
+    }
+    
+    /// Returns a flat list of all shapes.
+    /// - Returns: List of all shapes.
+    public static func ShapeFlatList() -> [NodeShapes]
+    {
+        var List = [NodeShapes]()
+        for (_, CatList) in _ShapeCategories
+        {
+            for Name in CatList
+            {
+                List.append(NodeShapes(rawValue: Name)!)
+            }
+        }
+        return List
+    }
+    
     /// Table of shapes that require more than one `SCNGeometry` node to create.case
     private static let _MultipleGeometryShapes =
     [
