@@ -55,6 +55,9 @@ extension ViewController: ContextMenuProtocol
             
             case .SelectedNewShape:
                 break
+            
+            case .ShowFavoriteShapes:
+            break
         }
     }
     
