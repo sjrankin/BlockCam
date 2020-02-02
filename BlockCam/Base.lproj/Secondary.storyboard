@@ -353,9 +353,8 @@
                                     <outlet property="delegate" destination="hU5-S1-zzR" id="E3i-1L-urL"/>
                                 </connections>
                             </tableView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Tap the shape name to change it. Duplicate entries are not allowed." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NTw-We-6EX">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap the shape name to change it. Duplicate entries are not allowed." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NTw-We-6EX">
                                 <rect key="frame" x="20" y="602" width="374" height="40.666666666666629"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -363,6 +362,9 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
+                            <constraint firstItem="NTw-We-6EX" firstAttribute="leading" secondItem="ac8-ok-Wq8" secondAttribute="leading" id="0hp-DM-pvj"/>
+                            <constraint firstItem="NTw-We-6EX" firstAttribute="trailing" secondItem="ac8-ok-Wq8" secondAttribute="trailing" id="Csn-EN-h4f"/>
+                            <constraint firstItem="NTw-We-6EX" firstAttribute="top" secondItem="ac8-ok-Wq8" secondAttribute="bottom" constant="19" id="RZQ-Y0-g6R"/>
                             <constraint firstItem="Fcu-Bc-oIR" firstAttribute="bottom" secondItem="bRk-Ty-vdl" secondAttribute="bottom" id="UEP-eV-1xr"/>
                             <constraint firstItem="ac8-ok-Wq8" firstAttribute="trailing" secondItem="wrL-v1-RFz" secondAttribute="trailingMargin" id="cAV-2x-rsM"/>
                             <constraint firstItem="ac8-ok-Wq8" firstAttribute="centerX" secondItem="Fcu-Bc-oIR" secondAttribute="centerX" id="eDo-ut-8BQ"/>
@@ -935,7 +937,7 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="hU5-S1-zzR" kind="show" identifier="ToFavoriteShapeManager" id="1tj-AZ-WNw"/>
+                                            <segue destination="hU5-S1-zzR" kind="show" identifier="ToFavoriteShapeManager" destinationCreationSelector="InstantiateFavoriteSettings:" id="1tj-AZ-WNw"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" id="xSs-48-nsb">
