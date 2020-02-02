@@ -38,7 +38,9 @@ class ProcessedImageMenuController: UIViewController
         SceneBox.backgroundColor = UIColor.clear
         ShareBox.layer.borderColor = UIColor.black.cgColor
         ShareBox.backgroundColor = UIColor.clear
-        self.preferredContentSize = CGSize(width: 280.0, height: 450.0)
+        FavoriteShapesBox.layer.borderColor = UIColor.black.cgColor
+        FavoriteShapesBox.backgroundColor = UIColor.clear
+        self.preferredContentSize = CGSize(width: 280.0, height: 500.0)//450.0)
 //        OriginalImage.layer.borderColor = UIColor.systemGray6.cgColor
         OriginalImage.backgroundColor = UIColor.clear
         OriginalImage.alpha = 0.0
@@ -49,7 +51,7 @@ class ProcessedImageMenuController: UIViewController
     {
         if Image != nil
         {
-            self.preferredContentSize = CGSize(width: 280.0, height: 580.0)
+            self.preferredContentSize = CGSize(width: 280.0, height: 630.0)//580.0)
             OriginalImage.alpha = 1.0
             OriginalImage.contentMode = .scaleAspectFit
             OriginalImage.image = Image
@@ -156,6 +158,16 @@ class ProcessedImageMenuController: UIViewController
         }
     }
     
+    @IBAction func HandleFavoriteShapesPressed(_ sender: Any)
+    {
+        MakeSound()
+        WasCancelled = false
+        self.dismiss(animated: true)
+        {
+            self.Delegate?.HandleContextMenu(Command: .ShowFavoriteShapes)
+        }
+    }
+    
     override func viewWillDisappear(_ animated: Bool)
     {
         if WasCancelled
@@ -165,6 +177,7 @@ class ProcessedImageMenuController: UIViewController
         super.viewWillDisappear(animated)
     }
     
+    @IBOutlet weak var FavoriteShapesBox: UIView!
     @IBOutlet weak var TitleBar: UIView!
     @IBOutlet weak var ImageSettingBox: UIView!
     @IBOutlet weak var CurrentSettingBox: UIView!
