@@ -267,7 +267,7 @@ extension Generator
                 DoXRotate = true
             
             case .Diamonds:
-                FinalShape = SCNDiamond.Geometry(MajorAxis: Side, MinorAxis: Side * 3, Height: Prominence * 2)
+                FinalShape = SCNDiamond.Geometry(MajorAxis: Side * 3, MinorAxis: Side, Height: Prominence * 2)
             
             default:
                 FinalShape = nil
