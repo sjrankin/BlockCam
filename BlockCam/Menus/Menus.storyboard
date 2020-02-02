@@ -653,15 +653,6 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zJu-x2-lw5">
-                                <rect key="frame" x="19" y="436" width="244" height="124"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
-                                        <real key="value" value="0.5"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                            </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="S8w-G4-mmY">
                                 <rect key="frame" x="18" y="383" width="244" height="45"/>
                                 <subviews>
@@ -720,6 +711,14 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="zJu-x2-lw5">
+                                <rect key="frame" x="19" y="436" width="244" height="124"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
+                                        <real key="value" value="0.5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
@@ -727,14 +726,18 @@
                             <constraint firstItem="rPL-Oz-2Jp" firstAttribute="top" secondItem="EmW-Cx-ANr" secondAttribute="bottom" constant="8" id="5D4-N8-zSm"/>
                             <constraint firstItem="S8w-G4-mmY" firstAttribute="top" secondItem="2gE-7M-K2c" secondAttribute="top" constant="383" id="EI6-fE-gFj"/>
                             <constraint firstItem="Uza-rF-Vgc" firstAttribute="centerX" secondItem="2gE-7M-K2c" secondAttribute="centerX" id="HsD-9C-7wF"/>
+                            <constraint firstItem="zJu-x2-lw5" firstAttribute="leading" secondItem="7bq-Ww-63T" secondAttribute="leading" constant="19" id="MbB-Ms-bOa"/>
                             <constraint firstItem="4WH-xx-Bmm" firstAttribute="top" secondItem="rPL-Oz-2Jp" secondAttribute="bottom" constant="8" id="PlE-a2-uBH"/>
+                            <constraint firstItem="7bq-Ww-63T" firstAttribute="trailing" secondItem="zJu-x2-lw5" secondAttribute="trailing" constant="17" id="Pw4-en-uEH"/>
                             <constraint firstItem="EmW-Cx-ANr" firstAttribute="trailing" secondItem="rPL-Oz-2Jp" secondAttribute="trailing" id="TOx-pu-D5P"/>
                             <constraint firstItem="EmW-Cx-ANr" firstAttribute="trailing" secondItem="4WH-xx-Bmm" secondAttribute="trailing" id="UBf-Cr-2hQ"/>
                             <constraint firstItem="Uza-rF-Vgc" firstAttribute="leading" secondItem="7bq-Ww-63T" secondAttribute="leading" id="W9j-UY-jLA"/>
                             <constraint firstItem="EmW-Cx-ANr" firstAttribute="leading" secondItem="7bq-Ww-63T" secondAttribute="leading" constant="18" id="WCT-SI-Bgb"/>
+                            <constraint firstItem="zJu-x2-lw5" firstAttribute="top" secondItem="S8w-G4-mmY" secondAttribute="bottom" constant="8" id="YJF-EE-AWF"/>
                             <constraint firstItem="EmW-Cx-ANr" firstAttribute="centerX" secondItem="Uza-rF-Vgc" secondAttribute="centerX" id="bnD-0A-cBY"/>
                             <constraint firstItem="S8w-G4-mmY" firstAttribute="leading" secondItem="4WH-xx-Bmm" secondAttribute="leading" id="cEp-hK-xTa"/>
                             <constraint firstItem="EmW-Cx-ANr" firstAttribute="leading" secondItem="rPL-Oz-2Jp" secondAttribute="leading" id="eXI-V6-GEx"/>
+                            <constraint firstItem="7bq-Ww-63T" firstAttribute="bottom" secondItem="zJu-x2-lw5" secondAttribute="bottom" constant="20" id="fjL-ar-eBC"/>
                             <constraint firstItem="S8w-G4-mmY" firstAttribute="top" secondItem="4WH-xx-Bmm" secondAttribute="bottom" constant="8" id="iGU-61-eji"/>
                             <constraint firstItem="Uza-rF-Vgc" firstAttribute="trailing" secondItem="7bq-Ww-63T" secondAttribute="trailing" id="k0z-Fx-vlN"/>
                             <constraint firstItem="EmW-Cx-ANr" firstAttribute="leading" secondItem="4WH-xx-Bmm" secondAttribute="leading" id="kYt-rl-UeL"/>
