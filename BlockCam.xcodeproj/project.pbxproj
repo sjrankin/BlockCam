@@ -97,7 +97,6 @@
 		1780B72E23974CFD00E6018A /* MainProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1780B72D23974CFD00E6018A /* MainProtocol.swift */; };
 		17897B7523E6905C00AFDA6A /* LiveViewFeedback.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17897B7423E6905C00AFDA6A /* LiveViewFeedback.swift */; };
 		1789950323B5CF3200238D89 /* Indefinite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1789950223B5CF3200238D89 /* Indefinite.swift */; };
-		1789950523B5F16600238D89 /* ContextMenus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1789950423B5F16600238D89 /* ContextMenus.swift */; };
 		178A4F2623C6FB9A00892F88 /* ImageEdgeFinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 178A4F2523C6FB9A00892F88 /* ImageEdgeFinder.swift */; };
 		178B493E23BDC88B00C9FE1B /* Menu_ConeSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 178B493D23BDC88B00C9FE1B /* Menu_ConeSettings.swift */; };
 		178B540B238A308A000EA777 /* VideoOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 178B540A238A308A000EA777 /* VideoOptions.swift */; };
@@ -263,7 +262,6 @@
 		1780B72D23974CFD00E6018A /* MainProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainProtocol.swift; sourceTree = "<group>"; };
 		17897B7423E6905C00AFDA6A /* LiveViewFeedback.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveViewFeedback.swift; sourceTree = "<group>"; };
 		1789950223B5CF3200238D89 /* Indefinite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Indefinite.swift; sourceTree = "<group>"; };
-		1789950423B5F16600238D89 /* ContextMenus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextMenus.swift; sourceTree = "<group>"; };
 		178A4F2523C6FB9A00892F88 /* ImageEdgeFinder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageEdgeFinder.swift; sourceTree = "<group>"; };
 		178B493D23BDC88B00C9FE1B /* Menu_ConeSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Menu_ConeSettings.swift; sourceTree = "<group>"; };
 		178B540A238A308A000EA777 /* VideoOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoOptions.swift; sourceTree = "<group>"; };
@@ -412,7 +410,6 @@
 				171726AA23963EF60078D76E /* ProcessInterface.swift */,
 				17C04CA123A49A3900D870EE /* MainProtocolFunctions.swift */,
 				178C9C2423B43EFC0049139B /* AsynchronousEventHandling.swift */,
-				1789950423B5F16600238D89 /* ContextMenus.swift */,
 				176ED92E23BF1AEC000877B6 /* MainTitle.swift */,
 				17C7680F23E01F6A0068EC34 /* HistogramDisplay.swift */,
 				17897B7423E6905C00AFDA6A /* LiveViewFeedback.swift */,
@@ -980,7 +977,6 @@
 				17AABB4623826F61006DA546 /* HistogramFunctions.swift in Sources */,
 				17CE347723C427E400E96E3F /* SmallStatusDisplay.swift in Sources */,
 				1771A9D523BC38F900B3294F /* Menu_LightSettings.swift in Sources */,
-				1789950523B5F16600238D89 /* ContextMenus.swift in Sources */,
 				1700D85F23E1C92700381A30 /* Gyroscope.swift in Sources */,
 				1723D09323879DC2001F05E1 /* PieChart.swift in Sources */,
 				17AFA87523C9A14F00846087 /* MiscellaneousSettings.swift in Sources */,
