@@ -18,14 +18,14 @@ class Menu_FavoriteShapeSettings: UIViewController, UITableViewDelegate, UITable
     {
         super.viewDidLoad()
         FavoriteShapeTable.layer.borderColor = UIColor.black.cgColor
-        if let StackList = Settings.GetString(ForKey: .StackedShapesSet)
+        if let StackList = Settings.GetString(ForKey: .FavoriteShapeList)
         {
             LoadShapeData(FromRaw: StackList)
         }
         else
         {
-            Settings.SetString(NodeShapes.Blocks.rawValue, ForKey: .StackedShapesSet)
-            LoadShapeData(FromRaw: NodeShapes.Blocks.rawValue)
+            Settings.SetString("", ForKey: .FavoriteShapeList)
+            LoadShapeData(FromRaw: "")
         }
         FavoriteShapeTable.reloadData()
         if FavoriteShapeList.count < 1
@@ -75,14 +75,14 @@ class Menu_FavoriteShapeSettings: UIViewController, UITableViewDelegate, UITable
     override func viewWillDisappear(_ animated: Bool)
     {
         let Final = CreateShapeList()
-        Settings.SetString(Final, ForKey: .StackedShapesSet)
+        Settings.SetString(Final, ForKey: .FavoriteShapeList)
         Menu_ChangeManager.AddChanged(.ShapeType)
-        Menu_ChangeManager.AddChanged(.StackedShapesSet)
+        Menu_ChangeManager.AddChanged(.FavoriteShapeList)
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
     {
-        return Menu_CompositeShapeTableViewCell.CellHeight
+        return Menu_StackedShapeCell.CellHeight
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
@@ -92,12 +92,14 @@ class Menu_FavoriteShapeSettings: UIViewController, UITableViewDelegate, UITable
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
-        let Cell = Menu_StackedShapeCell(style: .default, reuseIdentifier: "StackedShapeCell")
-        Cell.Load(Title: FavoriteShapeList[indexPath.row], TableWidth: FavoriteShapeTable.bounds.size.width, Index: indexPath.row)
+        let Cell = Menu_StackedShapeCell(style: .default, reuseIdentifier: "FavoriteShapeCell")
+        Cell.Load(Title: FavoriteShapeList[indexPath.row], TableWidth: FavoriteShapeTable.bounds.size.width,
+                  Index: indexPath.row)
         return Cell
     }
     
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath)
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle,
+                   forRowAt indexPath: IndexPath)
     {
         if editingStyle == .delete
         {
@@ -127,11 +129,11 @@ class Menu_FavoriteShapeSettings: UIViewController, UITableViewDelegate, UITable
     {
         let CurrentName = FavoriteShapeList[indexPath.row]
         let SelectedShape = NodeShapes(rawValue: CurrentName)
-        let ListOfShapes = ShapeManager.ValidShapesForStacking()
+        let ListOfShapes = ShapeManager.ShapeFlatList(ExceptFor: FavoriteShapeList)
         SelectedPath = indexPath
         let Cell = tableView.cellForRow(at: indexPath)
-        MainDelegate?.RunShapeMenu(SourceView: Cell!, ShapeList: ListOfShapes, Selected: SelectedShape, MenuDelegate: self,
-                                   WindowDelegate: self, WindowActual: self)
+        MainDelegate?.RunShapeMenu(SourceView: Cell!, ShapeList: ListOfShapes, Selected: nil,
+                                   MenuDelegate: self, WindowDelegate: self, WindowActual: self)
     }
     
     var SelectedPath: IndexPath? = nil
@@ -161,16 +163,15 @@ class Menu_FavoriteShapeSettings: UIViewController, UITableViewDelegate, UITable
     
     @IBAction func HandleClearAllShapes(_ sender: Any)
     {
-        let Alert = UIAlertController(title: "Confirm", message: "Do you really want to remove all of your favorite shapes? Will reset list to default value.",
+        let Alert = UIAlertController(title: "Confirm", message: "Do you really want to remove all of your favorite shapes?",
                                       preferredStyle: .alert)
         Alert.addAction(UIAlertAction(title: "Yes", style: .destructive)
         {
             _ in
             self.FavoriteShapeList.removeAll()
-            self.FavoriteShapeList.append(NodeShapes.Blocks.rawValue)
             self.FavoriteShapeTable.reloadData()
             self.DeleteEverythingButton.isEnabled = false
-            Settings.SetString(NodeShapes.Blocks.rawValue, ForKey: .StackedShapesSet)
+            Settings.SetString("", ForKey: .FavoriteShapeList)
             }
         )
         Alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: nil))
