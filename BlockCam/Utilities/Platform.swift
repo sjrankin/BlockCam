@@ -315,11 +315,6 @@ class Platform
         return MakeSeparatedNumber(Allocated!, Separator: ",")
     }
     
-    
-    #if targetEnvironment(macCatalyst)
-    /// Table of GPU families for Metal. Not supported on macCatalyst.
-    static let MetalFeatureTable: [MTLFeatureSet: String] = [MTLFeatureSet: String]()
-    #else
     /// Table of GPU families for Metal.
     static let MetalFeatureTable: [MTLFeatureSet: String] =
         [
@@ -341,7 +336,6 @@ class Platform
             MTLFeatureSet.iOS_GPUFamily4_v2: "GPU 4, v2",
             MTLFeatureSet.iOS_GPUFamily5_v1: "GPU 5, v1"
     ]
-    #endif
     
     /// Table of devices to processor names and nominal frequencies.
     /// - Note: See [Device Specifications](https://www.devicespecifications.com/en/brand/cefa26)
