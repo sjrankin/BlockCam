@@ -31,7 +31,7 @@ class ViewController: UIViewController,
     var CaptureSession: AVCaptureSession!
     var StillImageOutput: AVCapturePhotoOutput!
     var VideoPreviewLayer: AVCaptureVideoPreviewLayer!
-    var IsOnCatalyst: Bool = false
+    var CaptureDevice: AVCaptureDevice? = nil
     // Thread for running the processing of images in the background.
     let BackgroundThread = DispatchQueue(label: "ProcessingThread", qos: .background)
     
@@ -70,7 +70,7 @@ class ViewController: UIViewController,
         ShowStatusLayer()
         ShowSplashScreen()
         GetPermissions()
-
+        
         FileIO.ClearScratchDirectory()
         
         if !DeviceHasCamera
@@ -79,6 +79,49 @@ class ViewController: UIViewController,
         }
         
         StartOrientationUpdates()
+        
+        AddLiveViewTaps()
+    }
+    
+    func AddLiveViewTaps()
+    {
+        let Tap = UITapGestureRecognizer(target: self, action: #selector(LiveViewTapHandler))
+        Tap.numberOfTapsRequired = 1
+        LiveView.addGestureRecognizer(Tap)
+    }
+    
+    /// Handle taps on the live view to focus and set exposure.
+    /// - Note: See [Set Camera Focus on Tap Point with Swift](https://stackoverflow.com/questions/26682450/set-camera-focus-on-tap-point-with-swift)
+    /// - Parameter Recognizer: The gesture recognizer.
+    @objc func LiveViewTapHandler(Recognizer: UIGestureRecognizer)
+    {
+        HideTitle(After: 0.0, HideDuration: 0.5, HideHow: .FadeOut)
+        let Location = Recognizer.location(in: LiveView)
+        DispatchQueue.main.async
+            {
+                let Converted = self.VideoPreviewLayer.captureDevicePointConverted(fromLayerPoint: Location)
+                if let Device = self.CaptureDevice
+                {
+                    do
+                    {
+                        try Device.lockForConfiguration()
+                        Device.focusMode = .autoFocus
+                        Device.focusPointOfInterest = Converted
+                        Device.exposureMode = .continuousAutoExposure
+                        Device.exposurePointOfInterest = Converted
+                        Device.unlockForConfiguration()
+                    }
+                    catch
+                    {
+                        print("Error locking device.")
+                    }
+                }
+                self.ShowLiveViewTapFeedback(At: Location)
+                if Settings.GetBoolean(ForKey: .ShowTapFeedback)
+                {
+                    self.ShowLiveViewTapFeedback(At: Location)
+                }
+        }
     }
     
     /// This even occurs when the safe area insets changed. Unfortunately, iOS doesn't set the insets
@@ -251,7 +294,7 @@ class ViewController: UIViewController,
             
             case .LiveViewGridType:
                 GridView.GridType = Settings.GetEnum(ForKey: .LiveViewGridType, EnumType: GridTypes.self, Default: GridTypes.None)
-
+            
             case .ShowActualOrientation:
                 GridView.ShowActualOrientation = Settings.GetBoolean(ForKey: .ShowActualOrientation)
             
@@ -266,9 +309,6 @@ class ViewController: UIViewController,
     func InitializeOutput()
     {
         var ViewOptions: [String: Any]!
-        #if targetEnvironment(macCatalyst)
-        ViewOptions = [SCNView.Option.preferredDevice.rawValue: NSNumber(value: SCNRenderingAPI.metal.rawValue) as Any]
-        #else
         if Settings.GetBoolean(ForKey: .UseMetal)
         {
             ViewOptions = [SCNView.Option.preferredDevice.rawValue: NSNumber(value: SCNRenderingAPI.metal.rawValue) as Any]
@@ -277,7 +317,6 @@ class ViewController: UIViewController,
         {
             ViewOptions = [SCNView.Option.preferredDevice.rawValue: NSNumber(value: SCNRenderingAPI.openGLES2.rawValue) as Any]
         }
-        #endif
         let NewFrame = CGRect(x: self.view.frame.minX,
                               y: self.view.frame.minY,
                               width: self.view.frame.width,
@@ -324,30 +363,9 @@ class ViewController: UIViewController,
         #if targetEnvironment(simulator)
         DeviceHasCamera = false
         Log.Message("Simulator does not support camera input.")
-        return
-        #endif
-        #if targetEnvironment(macCatalyst)
-        IsOnCatalyst = true
-        DeviceHasCamera = false
-        #endif
-        if IsOnCatalyst
-        {
-            /*
-            if UIImagePickerController.isSourceTypeAvailable(.camera)
-            {
-                let ImagePicker = UIImagePickerController()
-                ImagePicker.sourceType = .camera
-                ImagePicker.delegate = self
-                ImagePicker.cameraDevice = .front
-                self.present(ImagePicker, animated: true, completion: nil)
-            }
- */
-        }
-        else
-        {
-            InitializeLiveView()
-            InitializeProcessedLiveView()
-        }
+        #else
+        InitializeLiveView()
+        InitializeProcessedLiveView()
         
         if DeviceHasCamera
         {
@@ -367,6 +385,7 @@ class ViewController: UIViewController,
             }
             ShowHistogramView()
         }
+        #endif
     }
     
     /// Set of discovered camera devices.
@@ -380,7 +399,7 @@ class ViewController: UIViewController,
     override func viewWillDisappear(_ animated: Bool)
     {
         super.viewWillDisappear(animated)
-        #if !targetEnvironment(macCatalyst) && !targetEnvironment(simulator)
+        #if !targetEnvironment(simulator)
         self.CaptureSession.stopRunning()
         #endif
     }
@@ -1031,7 +1050,7 @@ class ViewController: UIViewController,
     @IBOutlet weak var CameraButton: UIButton!
     // "weak" is removed from OutputView because we recreate the class in code and weak leads to strange compiler warnings...
     @IBOutlet var OutputView: ProcessViewer!
-
+    
     // MARK: - Interface builder variables for image processing.
     @IBOutlet weak var CompositeStatus: SmallStatusDisplay!
     @IBOutlet weak var SaveButton: UIButton!
