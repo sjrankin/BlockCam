@@ -33,7 +33,7 @@ import os.log
         else
         {
             let Delta = Int(SecondsSince1970.duration) - LastInstantiation
-            print("LastInstandiation=\(LastInstantiation), Delta seconds=\(Delta)")
+            print("LastInstantiation=\(LastInstantiation), Delta seconds=\(Delta)")
         }
         if let ShortcutItem = launchOptions?[UIApplication.LaunchOptionsKey.shortcutItem] as? UIApplicationShortcutItem
         {
