@@ -23,6 +23,8 @@ class LiveViewMenuController: UIViewController
         ProgramSettingsBox.backgroundColor = UIColor.clear
         HelpBox.layer.borderColor = UIColor.black.cgColor
         HelpBox.backgroundColor = UIColor.clear
+        FavoriteBox.layer.borderColor = UIColor.black.cgColor
+        FavoriteBox.backgroundColor = UIColor.clear
         TitleText.text = "BlockCam " + Versioning.VerySimpleVersionString()
         TitleBox.layer.borderColor = UIColor.black.cgColor
         TitleBox.layer.borderWidth = 1.0
@@ -89,6 +91,16 @@ class LiveViewMenuController: UIViewController
         })
     }
     
+    @IBAction func HandleFavoriteShapesButtonPressed(_ sender: Any)
+    {
+        MakeSound()
+        WasCancelled = false
+        self.dismiss(animated: true, completion:
+            {
+                self.Delegate?.HandleContextMenu(Command: .ShowFavoriteShapes)
+        })
+    }
+    
     override func viewWillDisappear(_ animated: Bool)
     {
         if WasCancelled
@@ -98,6 +110,7 @@ class LiveViewMenuController: UIViewController
         super.viewWillDisappear(animated)
     }
     
+    @IBOutlet weak var FavoriteBox: UIView!
     @IBOutlet weak var TitleText: UILabel!
     @IBOutlet weak var TitleBox: UIView!
     @IBOutlet weak var HelpBox: UIView!
