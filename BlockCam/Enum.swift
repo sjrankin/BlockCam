@@ -408,3 +408,14 @@ enum HistogramCreationSpeeds: String, CaseIterable
     /// Create a histogram at the slowest rate.
     case Slowest = "Slowest"
 }
+
+/// How to rotate the UI in response to device rotation.
+enum UIRotationTypes: String, CaseIterable
+{
+    /// No rotations.
+    case None = "None"
+    /// Rotate to cardinal directions only.
+    case CardinalDirections = "Cardinal Directions"
+    /// Rotate in degrees of 1°.
+    case Continuous = "Continuous Rotation"
+}
