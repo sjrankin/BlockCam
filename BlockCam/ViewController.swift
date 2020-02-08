@@ -351,10 +351,6 @@ class ViewController: UIViewController,
     
     /// Handle view did appear events.
     /// - Note:
-    ///   - If we are running via Catalyst on a Mac, set the appropriate flag. Unfortunately, right now, Catalyst does not support
-    ///     AVFoundation to the extent we need and official Apple guidance (for now) is to use the UIImagePickercontroller with
-    ///     the camera source.
-    ///   - If we are on an iOS/iPadOS device, initialize the live view.
     ///   - If we are running on a simulator, report an error to the debug console and return.
     /// - Parameter animated: Passed to super class.
     override func viewDidAppear(_ animated: Bool)
@@ -1032,6 +1028,7 @@ class ViewController: UIViewController,
     // MARK: - Gyroscope variables.
     var MotionManager: CMMotionManager? = nil
     var PreviousRotation: Double = -1000.0
+        var PreviousRotationType: UIRotationTypes? = nil
     
     // MARK: - Interface builder variables.
     @IBOutlet weak var StatusLayer: UIView!
