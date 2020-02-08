@@ -35,6 +35,20 @@ extension ViewController
                     print("MotionManager error: \((error)!)")
                     return
                 }
+                
+                if Settings.GetEnum(ForKey: .UIRotationStyle, EnumType: UIRotationTypes.self, Default: UIRotationTypes.None) == .None
+                {
+                    self!.UpdateButtonAngle(0.0)
+                    let GridType = Settings.GetEnum(ForKey: .LiveViewGridType,
+                                                    EnumType: GridTypes.self,
+                                                    Default: GridTypes.None)
+                    if GridType != .None
+                    {
+                        self!.GridView.DrawGrid(0.0)
+                    }
+                    return
+                }
+                
                 var Rotation: Double = 0.0
                 //If the device is flat on a surface (whether facing up or down), reset the orietation
                 //to 0° as the user would expect.
@@ -48,7 +62,7 @@ extension ViewController
                 {
                     Rotation = atan2(MotionData.gravity.x, MotionData.gravity.y) - .pi
                 }
-
+                
                 Rotation = Rotation * 180.0 / .pi
                 Rotation = abs(round(Rotation))
                 if self!.PreviousRotation == Rotation
@@ -56,34 +70,66 @@ extension ViewController
                     return
                 }
                 self!.PreviousRotation = Rotation
+                
+                let RotateHow = Settings.GetEnum(ForKey: .UIRotationStyle, EnumType: UIRotationTypes.self, Default: UIRotationTypes.None)
+                switch RotateHow
+                {
+                    case .CardinalDirections:
+                        //Force rotation to a cardinal direction.
+                        switch Rotation
+                        {
+                            case 315.0 ... 360.0,
+                                 0.0 ... 44.9999:
+                                self!.UpdateButtonAngle(360.0 - 0.0)
+                            
+                            case 45.0 ... 134.9999:
+                                self!.UpdateButtonAngle(360.0 - 90.0)
+                            
+                            case 135.0 ... 224.9999:
+                                self!.UpdateButtonAngle(360.0 - 180.0)
+                            
+                            case 225.0 ... 314.9999:
+                                self!.UpdateButtonAngle(360.0 - 270.0)
+                            
+                            default:
+                                self!.UpdateButtonAngle(360.0 - 0.0)
+                    }
+                    
+                    case .Continuous:
+                        //If the rotation is close to a cardinal direction, force it to the exact
+                        //cardinal direction.
+                        switch Rotation
+                        {
+                            case 0.0 ... 15.0,
+                                 345.0 ... 359.99999:
+                                self!.UpdateButtonAngle(360.0 - 0.0)
+                            
+                            case 75.0 ... 105.0:
+                                self!.UpdateButtonAngle(360.0 - 90.0)
+                            
+                            case 165.0 ... 195.0:
+                                self!.UpdateButtonAngle(360.0 - 180.0)
+                            
+                            case 255.0 ... 285.0:
+                                self!.UpdateButtonAngle(360.0 - 270.0)
+                            
+                            default:
+                                self!.UpdateButtonAngle(360.0 - Rotation)
+                    }
+                    
+                    default:
+                        break
+                }
                 let GridType = Settings.GetEnum(ForKey: .LiveViewGridType, EnumType: GridTypes.self, Default: GridTypes.None)
                 if GridType != .None
                 {
                     self!.GridView.DrawGrid(CGFloat(360.0 - Rotation))
                 }
-                //If the rotation is close to a cardinal direction, force it to the exact
-                //cardinal direction.
-                switch Rotation
-                {
-                    case 0.0 ... 15.0,
-                         345.0 ... 359.99999:
-                        self!.UpdateButtonAngle(360.0 - 0.0)
-                    
-                    case 75.0 ... 105.0:
-                        self!.UpdateButtonAngle(360.0 - 90.0)
-                    
-                    case 165.0 ... 195.0:
-                        self!.UpdateButtonAngle(360.0 - 180.0)
-                    
-                    case 255.0 ... 285.0:
-                        self!.UpdateButtonAngle(360.0 - 270.0)
-                    
-                    default:
-                        self!.UpdateButtonAngle(360.0 - Rotation)
-                }
             }
         }
     }
+    
+    
     
     /// Stops the motion manager from updating rotational changes.
     func StopOrientationUpdates()
