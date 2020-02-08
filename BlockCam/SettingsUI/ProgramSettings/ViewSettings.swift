@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class ViewSettings: UITableViewController
+class ViewSettings: UITableViewController, UIPickerViewDelegate, UIPickerViewDataSource
 {
     override func viewDidLoad()
     {
@@ -60,18 +60,18 @@ class ViewSettings: UITableViewController
             if let ActualType = GridTypes(rawValue: RawGridType)
             {
                 let Index = GridMap[ActualType]!
-                GridTypeSegment.selectedSegmentIndex = Index
+                GridPicker.selectRow(Index, inComponent: 0, animated: true)
             }
             else
             {
                 Settings.SetString(GridTypes.None.rawValue, ForKey: .LiveViewGridType)
-                GridTypeSegment.selectedSegmentIndex = 0
+                GridPicker.selectRow(0, inComponent: 0, animated: true)
             }
         }
         else
         {
             Settings.SetString(GridTypes.None.rawValue, ForKey: .LiveViewGridType)
-            GridTypeSegment.selectedSegmentIndex = 0
+            GridPicker.selectRow(0, inComponent: 0, animated: true)
         }
     }
     
@@ -228,17 +228,30 @@ class ViewSettings: UITableViewController
             HistogramCreationSpeeds.Slowest: 4
     ]
     
-    @IBAction func HandleGridTypeChanged(_ sender: Any)
+    let GridTypeList = ["None", "Simple", "Cross Hairs", "Rule of Three", "Exotic", "Tight"]
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int
     {
-        if let Segment = sender as? UISegmentedControl
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int
+    {
+        return GridTypeList.count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String?
+    {
+        return GridTypeList[row]
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int)
+    {
+        for (GridType, GridIndex) in GridMap
         {
-            let NewIndex = Segment.selectedSegmentIndex
-            for (GridType, GridIndex) in GridMap
+            if GridIndex == row
             {
-                if GridIndex == NewIndex
-                {
-                    Settings.SetString(GridType.rawValue, ForKey: .LiveViewGridType)
-                }
+                Settings.SetString(GridType.rawValue, ForKey: .LiveViewGridType)
             }
         }
     }
@@ -261,8 +274,8 @@ class ViewSettings: UITableViewController
         }
     }
     
+    @IBOutlet weak var GridPicker: UIPickerView!
     @IBOutlet weak var ShowCurrentOrientationSwitch: UISwitch!
-    @IBOutlet weak var GridTypeSegment: UISegmentedControl!
     @IBOutlet weak var HistogramSpeedSegment: UISegmentedControl!
     @IBOutlet weak var ProcessedHistogramSwitch: UISwitch!
     @IBOutlet weak var HistogramOrder: UISegmentedControl!
