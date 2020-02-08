@@ -184,6 +184,7 @@ class Settings
         UserDefaults.standard.set(false, forKey: SettingKeys.ShowActualOrientation.rawValue)
         UserDefaults.standard.set(true, forKey: SettingKeys.ShowTapFeedback.rawValue)
         UserDefaults.standard.set("", forKey: SettingKeys.FavoriteShapeList.rawValue)
+        UserDefaults.standard.set(UIRotationTypes.CardinalDirections.rawValue, forKey: SettingKeys.UIRotationStyle.rawValue)
     }
     
     /// Call all subscribers in the notification list to let them know a setting will be changed.
@@ -716,6 +717,7 @@ class Settings
             SettingKeys.HistogramCreationSpeed,
             SettingKeys.LiveViewGridType,
             SettingKeys.FavoriteShapeList,
+            SettingKeys.UIRotationStyle,
     ]
     
     /// Contains a list of all double-type fields.
@@ -961,6 +963,10 @@ enum SettingKeys: String, CaseIterable, Comparable, Hashable
     case ShowActualOrientation = "ShowActualOrientation"
     /// Boolean: Show feedback when the user taps the live view.
     case ShowTapFeedback = "ShowTapFeedBack"
+    
+    //UI rotation settings
+    /// String: How to rotate the UI when the device is rotated.
+    case UIRotationStyle = "UIRotationStyle"
     
     //Favorite settings
     case FavoriteShapeList = "FavoriteShapeList"
