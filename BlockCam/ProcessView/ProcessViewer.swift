@@ -95,11 +95,17 @@ class ProcessViewer: SCNView, SCNSceneRendererDelegate
                     #endif
                     if self.RecordScene
                     {
+                        let Now = CACurrentMediaTime()
+                        let DefaultCamera = Node.defaultCameraController
+                        let POVNode = DefaultCamera.pointOfView
+                        self.SceneRecords?.append((POVNode!.position, Now))
+                        /*
                         let MotionFrame = self.snapshot()
                         let Name = Utilities.MakeSequentialName("Frame", Extension: "jpg", Sequence: &self.SceneFrameCount)
                         //let Name = "Frame\(self.SceneFrameCount).jpg"
                         //self.SceneFrameCount = self.SceneFrameCount + 1
                         FileIO.SaveSceneFrame(MotionFrame, WithName: Name)
+ */
                     }
             }
         }
@@ -112,9 +118,54 @@ class ProcessViewer: SCNView, SCNSceneRendererDelegate
         return self.snapshot()
     }
     
+    private func InitializeSceneRecording()
+    {
+        SceneRecords = [(SCNVector3, Double)]()
+    }
+    
+    var SceneRecords: [(SCNVector3, Double)]? = nil
+    
+    private func FinalizedSceneRecording()
+    {
+        if SceneRecords != nil
+        {
+            let End = SceneRecords!.last!.1
+            let Start = SceneRecords!.first!.1
+            print("Scene frames: \(SceneRecords!.count), duration: \(End - Start)")
+            for (POV, _) in SceneRecords!
+            {
+            self.defaultCameraController.pointOfView?.position = POV
+            }
+        }
+    }
+    
     var SceneFrameCount: Int = 0
-    public var RecordScene: Bool = false
     var CameraObserver: NSKeyValueObservation? = nil
+        private var _RecordScene: Bool = false
+        {
+            didSet
+            {
+                if _RecordScene
+                {
+                    InitializeSceneRecording()
+                }
+                else
+                {
+                    FinalizedSceneRecording()
+                }
+            }
+    }
+    public var RecordScene: Bool
+    {
+        get
+        {
+            return _RecordScene
+        }
+        set
+        {
+            _RecordScene = newValue
+        }
+    }
     
     /// Called when a setting is changed that we care about.
     public func UpdateScene()
@@ -277,6 +328,7 @@ class ProcessViewer: SCNView, SCNSceneRendererDelegate
         }
         CameraNode?.camera = SceneCamera!
         CameraNode?.position = SCNVector3(0.0, 0.0, 20.0)
+
         self.scene?.background.contents = UIColor.black
         self.scene?.rootNode.addChildNode(CameraNode!)
     }
@@ -304,9 +356,18 @@ class ProcessViewer: SCNView, SCNSceneRendererDelegate
     ///         releasing all of the memory (which, depending on the settings, may be prodigious).
     public func Clear()
     {
+        Generator.MasterNode?.enumerateChildNodes
+            {
+                (node, _) in
+                node.removeFromParentNode()
+        }
+        Generator.MasterNode?.removeFromParentNode()
+        Generator.MasterNode = nil
+        /*
         #if true
         DispatchQueue.main.async
             {
+                let OldCount = Utility3D.NodeCount(InScene: self.scene!)
                 Generator.MasterNode?.removeFromParentNode()
                 Generator.MasterNode?.enumerateChildNodes
                     {
@@ -314,6 +375,7 @@ class ProcessViewer: SCNView, SCNSceneRendererDelegate
                         node.removeFromParentNode()
                 }
                 self.PreviousNodeCount = Utility3D.NodeCount(InScene: self.scene!)
+                print("Node count delta: \(self.PreviousNodeCount - OldCount)")
         }
         isPlaying = false
         #else
@@ -324,6 +386,7 @@ class ProcessViewer: SCNView, SCNSceneRendererDelegate
         }
         self.isPlaying = false
         #endif
+ */
     }
     
     // MARK: - Public processing interfaces.
