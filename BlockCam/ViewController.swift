@@ -620,7 +620,7 @@ class ViewController: UIViewController,
         SwitchToLiveViewMode()
         CanSaveOriginal = true
         InProcessView = false
-        OutputView.Clear()
+        //OutputView.Clear()
     }
     
     /// That that controls how often to save the original image - this flag is set to false once the save button is pressed,
@@ -680,7 +680,6 @@ class ViewController: UIViewController,
         {
             SceneRecorderButton.setImage(UIImage(systemName: "circle"), for: .normal)
             SceneRecorderButton.tintColor = UIColor.black
-            SceneRecorderButton.setTitle("Record", for: .normal)
             OutputView.RecordScene = false
             let Alert = UIAlertController(title: "Save Recorded Scene?",
                                           message: "Do you want to save your scene motion as a video? Selecting \"No\" removes recorded frames.",
@@ -706,11 +705,6 @@ class ViewController: UIViewController,
         {
             SceneRecorderButton.setImage(UIImage(systemName: "circle.fill"), for: .normal)
             SceneRecorderButton.tintColor = UIColor.red
-            #if true
-            SceneRecorderButton.setTitle(NSLocalizedString("UIStopButton", comment: ""), for: .normal)
-            #else
-            SceneRecorderButton.setTitle("Stop", for: .normal)
-            #endif
             OutputView.RecordScene = true
         }
     }
