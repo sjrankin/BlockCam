@@ -139,20 +139,20 @@ class ProcessViewer: SCNView, SCNSceneRendererDelegate
     }
     
     let BGColorMap =
-    [
-        BasicColors.Black: UIColor.black,
-        BasicColors.White: UIColor.white,
-        BasicColors.Gray: UIColor.gray,
-        BasicColors.Red: UIColor.red,
-        BasicColors.Green: UIColor.green,
-        BasicColors.Blue: UIColor.blue,
-        BasicColors.Cyan: UIColor.cyan,
-        BasicColors.Magenta: UIColor.magenta,
-        BasicColors.Indigo: UIColor.systemIndigo,
-        BasicColors.SysYellow: UIColor.systemYellow,
-        BasicColors.SysGreen: UIColor.systemGreen,
-        BasicColors.SysBlue: UIColor.systemBlue,
-        BasicColors.SysOrange: UIColor.systemOrange
+        [
+            BasicColors.Black: UIColor.black,
+            BasicColors.White: UIColor.white,
+            BasicColors.Gray: UIColor.gray,
+            BasicColors.Red: UIColor.red,
+            BasicColors.Green: UIColor.green,
+            BasicColors.Blue: UIColor.blue,
+            BasicColors.Cyan: UIColor.cyan,
+            BasicColors.Magenta: UIColor.magenta,
+            BasicColors.Indigo: UIColor.systemIndigo,
+            BasicColors.SysYellow: UIColor.systemYellow,
+            BasicColors.SysGreen: UIColor.systemGreen,
+            BasicColors.SysBlue: UIColor.systemBlue,
+            BasicColors.SysOrange: UIColor.systemOrange
     ]
     
     /// Adds the main light node to the scene. Everytime this function is called, the old node is removed.
@@ -305,9 +305,16 @@ class ProcessViewer: SCNView, SCNSceneRendererDelegate
     public func Clear()
     {
         #if true
-        Generator.MasterNode?.removeFromParentNode()
-        Generator.MasterNode = nil
-        PreviousNodeCount = Utility3D.NodeCount(InScene: self.scene!)
+        DispatchQueue.main.async
+            {
+                Generator.MasterNode?.removeFromParentNode()
+                Generator.MasterNode?.enumerateChildNodes
+                    {
+                        (node, _) in
+                        node.removeFromParentNode()
+                }
+                self.PreviousNodeCount = Utility3D.NodeCount(InScene: self.scene!)
+        }
         isPlaying = false
         #else
         DispatchQueue.main.async
@@ -325,7 +332,7 @@ class ProcessViewer: SCNView, SCNSceneRendererDelegate
     /// - Parameter SomeImage: The image to process.
     public func ProcessImage(_ SomeImage: UIImage, CalledFrom: String)
     {
-                print("ProcessImage called from \(CalledFrom)")
+        print("ProcessImage called from \(CalledFrom)")
         Clear()
         SaveVideoFrames = false
         Generator.MakeImage(self, SomeImage)
