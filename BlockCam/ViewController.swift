@@ -1028,7 +1028,6 @@ class ViewController: UIViewController,
     // MARK: - Gyroscope variables.
     var MotionManager: CMMotionManager? = nil
     var PreviousRotation: Double = -1000.0
-        var PreviousRotationType: UIRotationTypes? = nil
     
     // MARK: - Interface builder variables.
     @IBOutlet weak var StatusLayer: UIView!
