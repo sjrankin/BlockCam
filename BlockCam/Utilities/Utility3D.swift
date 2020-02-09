@@ -79,6 +79,11 @@ class Utility3D
     /// - Returns: The new camera `z` position value.
     @discardableResult public static func BestFit(InView: SCNView, ShowVisually: Bool = true) -> Double
     {
+        #if false
+        let DefaultCamera = InView.defaultCameraController
+        DefaultCamera.frameNodes(InView.scene!.rootNode.childNodes)
+        return 0.0
+        #else
         let PointOfView = InView.pointOfView
         if let RootNode = GetNode(WithName: "ParentNode", InScene: InView.scene!)
         {
@@ -103,7 +108,7 @@ class Utility3D
             Log.Message("ParentNode not found.")
         }
         return 0.0
-        
+        #endif
     }
     
     /// Returns a node with the specified name in the specified scene.
