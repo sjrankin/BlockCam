@@ -58,6 +58,14 @@ class GridLayer: UIView
         return CGPoint(x: X, y: Y)
     }
     
+    func PolarToCartesian(Radius: CGFloat, Degrees: CGFloat, Offset: CGSize) -> CGPoint
+    {
+        let Radians = Degrees * CGFloat.pi / 180.0
+        let X = Radius * cos(Radians)
+        let Y = Radius * sin(Radians)
+        return CGPoint(x: X + Offset.width, y: Y + Offset.height)
+    }
+    
     /// Set offsets for the preview that doesn't fit fully into the UI element. Sets up a masking layer
     /// to make sure things fit where they should.
     func SetPreviewOffsets(LeftOffset: CGFloat, RightOffset: CGFloat, TopOffset: CGFloat, BottomOffset: CGFloat)
@@ -86,41 +94,26 @@ class GridLayer: UIView
     var TopOffset: CGFloat = 0.0
     var BottomOffset: CGFloat = 0.0
     
-    /// Make an exotic, most definitely non-standard grid..
-    /// - Parameter WithActualAngle: The angle of the orientation of the device.
-    /// - Parameter AtCardinalAngle: Flag the says the device is at a cardinal angle.
-    func MakeExoticGrid(_ WithActualAngle: CGFloat = 0.0, AtCardinalAngle: Bool)
+    /// Make an "exotic" grid of circles.
+    /// - Parameter WithAngle: The current angle of the device relative to gravity.
+    /// - Parameter AtCardinalAngle: If true, the device is oriented at one of the four cardinal angles. Otherwise,
+    ///                              the device is not.
+    func MakeExoticGrid(_ WithAngle: CGFloat = 0.0, AtCardinalAngle: Bool)
     {
         let Shortest = min(self.bounds.size.width, self.bounds.size.height)
+                let Center = CGPoint(x: self.bounds.size.width / 2.0, y: self.bounds.size.height / 2.0)
         let Smallest = Shortest * 0.1
+        let BigRadius = (Shortest / 2.0) * 0.65
         let EvenSmaller = Smallest * 0.3
-        let Center = CGPoint(x: self.bounds.size.width / 2.0, y: self.bounds.size.height / 2.0)
-        let CircleRect = CGRect(origin: CGPoint(x: Center.x - Smallest / 2.0,
-                                                y: Center.y - Smallest / 2.0),
-                                size: CGSize(width: Smallest,
-                                             height: Smallest))
-        //Top
-        let ShortestThird = Shortest * 0.333
-        let CircleR1 = CGRect(origin: CGPoint(x: Center.x - EvenSmaller / 2.0,
-                                              y: Center.y - ShortestThird),
-                              size: CGSize(width: EvenSmaller, height: EvenSmaller))
-        //Left
-        let CircleR4 = CGRect(origin: CGPoint(x: Center.x - ShortestThird,
-                                              y: Center.y - EvenSmaller / 2.0),
-                              size: CGSize(width: EvenSmaller, height: EvenSmaller))
+        let SmallRadius = BigRadius * 0.15
+        let CenterCircleRect = CGRect(origin: CGPoint(x: Center.x - SmallRadius, y: Center.y - SmallRadius),
+                                      size: CGSize(width: SmallRadius * 2.0,
+                                                   height: SmallRadius * 2.0))
+        let CircleRect = CGRect(origin: CGPoint(x: Center.x - BigRadius,
+                                                y: Center.y - BigRadius),
+                                size: CGSize(width: BigRadius * 2.0,
+                                             height: BigRadius * 2.0))
         
-        //Bottom
-        let CircleR2 = CGRect(origin: CGPoint(x: Center.x - EvenSmaller / 2.0,
-                                              y: Center.y + ShortestThird - self.frame.origin.y),
-                              size: CGSize(width: EvenSmaller, height: EvenSmaller))
-        //Right
-        let CircleR3 = CGRect(origin: CGPoint(x: Center.x + ShortestThird - self.frame.origin.y,
-                                              y: Center.y - EvenSmaller / 2.0),
-                              size: CGSize(width: EvenSmaller, height: EvenSmaller))
-        
-        let BigCircleRect = CGRect(x: Center.x - Smallest * 3.2, y: Center.y - Smallest * 3.2,
-                                   width: Smallest * 6.4, height:  Smallest * 6.4)
-
         if _ShowIdealOrientation
         {
             IdealLayer = CAShapeLayer()
@@ -129,15 +122,35 @@ class GridLayer: UIView
             IdealLayer?.frame = self.bounds
             IdealLayer?.backgroundColor = UIColor.clear.cgColor
             IdealLayer?.fillColor = UIColor.clear.cgColor
-            let Exotic = UIBezierPath(ovalIn: CircleRect)
-            let BigCircle = UIBezierPath(ovalIn: BigCircleRect)
-
-            let Circle1 = UIBezierPath(ovalIn: CircleR1)
-            let Circle2 = UIBezierPath(ovalIn: CircleR2)
-            let Circle3 = UIBezierPath(ovalIn: CircleR3)
-            let Circle4 = UIBezierPath(ovalIn: CircleR4)
             
-            Exotic.close()
+            let Main = UIBezierPath(ovalIn: CircleRect)
+            let Smaller = UIBezierPath(ovalIn: CenterCircleRect)
+            
+            let Offset = CGSize(width: Center.x - EvenSmaller / 2.0, height: Center.y - EvenSmaller / 2.0)
+            
+            let C0P = PolarToCartesian(Radius: BigRadius, Degrees: 0.0 + 45.0, Offset: Offset)
+            let C0Rect = CGRect(origin: C0P, size: CGSize(width: EvenSmaller, height: EvenSmaller))
+            let C0 = UIBezierPath(ovalIn: C0Rect)
+            
+            let C1P = PolarToCartesian(Radius: BigRadius, Degrees: 90.0 + 45.0, Offset: Offset)
+            let C1Rect = CGRect(origin: C1P, size: CGSize(width: EvenSmaller, height: EvenSmaller))
+            let C1 = UIBezierPath(ovalIn: C1Rect)
+            
+            let C2P = PolarToCartesian(Radius: BigRadius, Degrees: 180.0 + 45.0, Offset: Offset)
+            let C2Rect = CGRect(origin: C2P, size: CGSize(width: EvenSmaller, height: EvenSmaller))
+            let C2 = UIBezierPath(ovalIn: C2Rect)
+            
+            let C3P = PolarToCartesian(Radius: BigRadius, Degrees: 270.0 + 45.0, Offset: Offset)
+            let C3Rect = CGRect(origin: C3P, size: CGSize(width: EvenSmaller, height: EvenSmaller))
+            let C3 = UIBezierPath(ovalIn: C3Rect)
+            
+            let Combined = Main.cgPath.mutableCopy()
+            Combined?.addPath(Smaller.cgPath)
+            Combined?.addPath(C0.cgPath)
+            Combined?.addPath(C1.cgPath)
+            Combined?.addPath(C2.cgPath)
+            Combined?.addPath(C3.cgPath)
+            
             if AtCardinalAngle
             {
                 IdealLayer?.strokeColor = _AlignedColor.cgColor
@@ -146,17 +159,9 @@ class GridLayer: UIView
             {
                 IdealLayer?.strokeColor = _IdealLineColor.cgColor
             }
-            let Combined = Exotic.cgPath.mutableCopy()
-            Combined?.addPath(Circle1.cgPath)
-            Combined?.addPath(Circle2.cgPath)
-            Combined?.addPath(Circle3.cgPath)
-            Combined?.addPath(Circle4.cgPath)
-            Combined?.addPath(BigCircle.cgPath)
-            IdealLayer?.path = Combined
-            IdealLayer?.zPosition = 100
+            IdealLayer?.lineWidth = 1.0
+            IdealLayer?.path = Combined!
             
-            let FinalAngle = 45.0 * CGFloat.pi / 180.0
-            IdealLayer?.transform = CATransform3DRotate(IdealLayer!.transform, FinalAngle, 0.0, 0.0, 1.0)
             self.layer.addSublayer(IdealLayer!)
         }
         if !AtCardinalAngle
@@ -169,24 +174,46 @@ class GridLayer: UIView
                 ActualLayer?.frame = self.bounds
                 ActualLayer?.backgroundColor = UIColor.clear.cgColor
                 ActualLayer?.fillColor = UIColor.clear.cgColor
-                let Exotic = UIBezierPath(ovalIn: CircleRect)
-                Exotic.move(to: Center)
-                Exotic.addLine(to: CGPoint(x: Center.x, y: Center.y - Smallest * 3.2))
-                Exotic.move(to: Center)
-                Exotic.addLine(to: CGPoint(x: Center.x - 150.0, y: Center.y))
-                Exotic.move(to: Center)
-                Exotic.addLine(to: CGPoint(x: Center.x + 150.0, y: Center.y))
                 
-                Exotic.move(to: CGPoint(x: Center.x, y: Center.y - Smallest * 3.2))
-                Exotic.addLine(to: CGPoint(x: Center.x - 150.0, y: Center.y - Smallest * 3.2))
-                Exotic.move(to: CGPoint(x: Center.x, y: Center.y - Smallest * 3.2))
-                Exotic.addLine(to: CGPoint(x: Center.x + 150.0, y: Center.y - Smallest * 3.2))
-                Exotic.close()
-                let BigCircle = UIBezierPath(ovalIn: BigCircleRect)
-                let Circle1 = UIBezierPath(ovalIn: CircleR1)
-                let Combined = Exotic.cgPath.mutableCopy()
-                Combined?.addPath(Circle1.cgPath)
-                Combined?.addPath(BigCircle.cgPath)
+                            let Main = UIBezierPath(ovalIn: CircleRect)
+                            let Smaller = UIBezierPath(ovalIn: CenterCircleRect)
+                Main.move(to: Center)
+                Main.addLine(to: CGPoint(x: Center.x, y: Center.y - BigRadius))
+                Main.move(to: Center)
+                Main.addLine(to: CGPoint(x: Center.x - 150.0, y: Center.y))
+                Main.move(to: Center)
+                Main.addLine(to: CGPoint(x: Center.x + 150.0, y: Center.y))
+                
+                Main.move(to: CGPoint(x: Center.x, y: Center.y - BigRadius))
+                Main.addLine(to: CGPoint(x: Center.x - 150.0, y: Center.y - BigRadius))
+                Main.move(to: CGPoint(x: Center.x, y: Center.y - BigRadius))
+                Main.addLine(to: CGPoint(x: Center.x + 150.0, y: Center.y - BigRadius))
+                Main.close()
+
+                let Offset = CGSize(width: Center.x - EvenSmaller / 2.0, height: Center.y - EvenSmaller / 2.0)
+                
+                let C0P = PolarToCartesian(Radius: BigRadius, Degrees: 0.0 + 45.0, Offset: Offset)
+                let C0Rect = CGRect(origin: C0P, size: CGSize(width: EvenSmaller, height: EvenSmaller))
+                let C0 = UIBezierPath(ovalIn: C0Rect)
+                
+                let C1P = PolarToCartesian(Radius: BigRadius, Degrees: 90.0 + 45.0, Offset: Offset)
+                let C1Rect = CGRect(origin: C1P, size: CGSize(width: EvenSmaller, height: EvenSmaller))
+                let C1 = UIBezierPath(ovalIn: C1Rect)
+                
+                let C2P = PolarToCartesian(Radius: BigRadius, Degrees: 180.0 + 45.0, Offset: Offset)
+                let C2Rect = CGRect(origin: C2P, size: CGSize(width: EvenSmaller, height: EvenSmaller))
+                let C2 = UIBezierPath(ovalIn: C2Rect)
+                
+                let C3P = PolarToCartesian(Radius: BigRadius, Degrees: 270.0 + 45.0, Offset: Offset)
+                let C3Rect = CGRect(origin: C3P, size: CGSize(width: EvenSmaller, height: EvenSmaller))
+                let C3 = UIBezierPath(ovalIn: C3Rect)
+                
+                                let Combined = Main.cgPath.mutableCopy()
+                Combined?.addPath(Smaller.cgPath)
+                Combined?.addPath(C0.cgPath)
+                Combined?.addPath(C1.cgPath)
+                Combined?.addPath(C2.cgPath)
+                Combined?.addPath(C3.cgPath)
                 ActualLayer?.lineWidth = 1.0
                 ActualLayer?.strokeColor = _ActualLineColor.cgColor
                 ActualLayer?.path = Combined!
@@ -198,24 +225,25 @@ class GridLayer: UIView
                     let LayerWidth: CGFloat = 40.0
                     DegreeLayer.bounds = CGRect(x: 0, y: 0, width: LayerWidth, height: LayerHeight)
                     DegreeLayer.frame = CGRect(x: Center.x - LayerWidth / 2.0,
-                                               y: Center.y - Smallest * 3.2 - LayerHeight * 2,
+                                               y: Center.y - BigRadius - LayerHeight * 2,
                                                width: LayerWidth,
                                                height: LayerHeight)
                     DegreeLayer.backgroundColor = UIColor.white.withAlphaComponent(0.4).cgColor
-                    DegreeLayer.string = "\(Int(360.0 - WithActualAngle))°"
+                    DegreeLayer.string = "\(Int(360.0 - WithAngle))°"
                     DegreeLayer.foregroundColor = UIColor.black.cgColor
                     DegreeLayer.alignmentMode = .center
                     DegreeLayer.font = UIFont.systemFont(ofSize: 12.0)
                     DegreeLayer.fontSize = 12.0
                     ActualLayer?.addSublayer(DegreeLayer)
                 }
-                let FinalAngle = WithActualAngle * CGFloat.pi / 180.0
+                
+                let FinalAngle = WithAngle * CGFloat.pi / 180.0
                 ActualLayer?.transform = CATransform3DRotate(ActualLayer!.transform, FinalAngle, 0.0, 0.0, 1.0)
                 self.layer.addSublayer(ActualLayer!)
             }
         }
     }
-    
+  
     /// Make a cross-hair like grid.
     /// - Parameter WithActualAngle: The angle of the orientation of the device.
     /// - Parameter AtCardinalAngle: Flag the says the device is at a cardinal angle.
