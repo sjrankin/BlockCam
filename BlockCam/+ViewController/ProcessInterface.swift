@@ -16,6 +16,7 @@ extension ViewController
     /// - Parameter ShowWait: If true, a "Please Wait" message is shown. Otherwise, nothing is shown.
     func ProcessImageInBackground(_ Image: UIImage, ShowWait: Bool = true)
     {
+        CompositeStatus.AddText("Please wait - clearing scene.")
         OutputView.Clear()
         #if true
         //        CompositeStatus.ShowIndefiniteIndicator = true
@@ -47,6 +48,7 @@ extension ViewController
     /// - Parameter ShowWait: If true, a "Please Wait" message is shown. Otherwise, nothing is shown.
     func ProcessImageInBackground(_ Colors: [[UIColor]], ShowWait: Bool = true)
     {
+                CompositeStatus.AddText("Please wait - clearing scene.")
         OutputView.Clear()
         #if true
         CompositeStatus.AddText("Please Wait")
