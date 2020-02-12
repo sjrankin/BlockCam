@@ -419,3 +419,18 @@ enum UIRotationTypes: String, CaseIterable
     /// Rotate in degrees of 1°.
     case Continuous = "Continuous Rotation"
 }
+
+/// How to determine the color of the line for capped-line shapes.
+enum CappedLineLineColors: String, CaseIterable
+{
+    /// Same color as the sphere.
+    case Same = "Same"
+    /// Darker than the sphere.
+    case Darker = "Darker"
+    /// Ligher than the sphere.
+    case Lighter = "Lighter"
+    /// Black.
+    case Black = "Black"
+    /// White.
+    case White = "White"
+}
