@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16085" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina5_5" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16078.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -1051,7 +1051,7 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uil-TK-4i4">
+                                                <pickerView tag="100" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uil-TK-4i4">
                                                     <rect key="frame" x="20" y="40" width="360" height="118"/>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
@@ -1077,10 +1077,52 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" id="UUj-KN-30N">
-                                        <rect key="frame" x="0.0" y="285" width="400" height="43.666667938232422"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="152" id="UUj-KN-30N">
+                                        <rect key="frame" x="0.0" y="285" width="400" height="152"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="UUj-KN-30N" id="4Qv-Ry-Cxg">
+                                            <rect key="frame" x="0.0" y="0.0" width="400" height="152"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Line color" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="efI-At-XoR">
+                                                    <rect key="frame" x="20" y="11" width="75" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="21" id="wg4-LY-IG1"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <pickerView tag="200" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QRu-sC-U6Z">
+                                                    <rect key="frame" x="20" y="40" width="360" height="101"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
+                                                            <real key="value" value="0.5"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                            <integer key="value" value="5"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                    <connections>
+                                                        <outlet property="dataSource" destination="b2f-Bd-bd5" id="hLo-Vq-hus"/>
+                                                        <outlet property="delegate" destination="b2f-Bd-bd5" id="Gio-rg-ERx"/>
+                                                    </connections>
+                                                </pickerView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="efI-At-XoR" firstAttribute="top" secondItem="4Qv-Ry-Cxg" secondAttribute="topMargin" id="GXf-jO-8TU"/>
+                                                <constraint firstItem="QRu-sC-U6Z" firstAttribute="top" secondItem="efI-At-XoR" secondAttribute="bottom" constant="8" id="Jsp-Kb-FDy"/>
+                                                <constraint firstItem="QRu-sC-U6Z" firstAttribute="bottom" secondItem="4Qv-Ry-Cxg" secondAttribute="bottomMargin" id="SAR-6t-by3"/>
+                                                <constraint firstItem="efI-At-XoR" firstAttribute="leading" secondItem="QRu-sC-U6Z" secondAttribute="leading" id="n1R-qL-dBb"/>
+                                                <constraint firstItem="QRu-sC-U6Z" firstAttribute="trailing" secondItem="4Qv-Ry-Cxg" secondAttribute="trailingMargin" id="oF9-he-i5h"/>
+                                                <constraint firstItem="efI-At-XoR" firstAttribute="leading" secondItem="4Qv-Ry-Cxg" secondAttribute="leadingMargin" id="t8C-Fj-vL4"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" id="gPW-Tz-KlY">
+                                        <rect key="frame" x="0.0" y="437" width="400" height="43.666667938232422"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="gPW-Tz-KlY" id="O1b-kA-sLA">
                                             <rect key="frame" x="0.0" y="0.0" width="400" height="43.666667938232422"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
@@ -1097,6 +1139,7 @@
                     <size key="freeformSize" width="400" height="550"/>
                     <connections>
                         <outlet property="BallLocationSelector" destination="x9w-4B-abQ" id="6aV-Dn-vMF"/>
+                        <outlet property="LineColorPicker" destination="QRu-sC-U6Z" id="EOf-qd-KVB"/>
                         <outlet property="ShapePicker" destination="uil-TK-4i4" id="RIy-S6-sTZ"/>
                     </connections>
                 </tableViewController>
