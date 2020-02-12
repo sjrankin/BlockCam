@@ -12,7 +12,7 @@ Versioning for BlockCam is maintained in the `Versioning.swift` file and is auto
 
 The versioning program does not currently update the BlockCam project file's version numbers.
 
-Most recent build: **Version 0.9 Alpha, Build 1995, Build date: 12 February 2020, 12:26**
+Most recent build: **Version 0.9 Alpha, Build 2006, Build date: 12 February 2020, 12:59**
 
 > See [VersionUpdater](https://github.com/sjrankin/VersionUpdater) repository on GitHub for information on how versions and builds are updated.
 
