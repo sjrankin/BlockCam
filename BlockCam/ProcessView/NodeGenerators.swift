@@ -276,6 +276,32 @@ extension Generator
         return FinalShape
     }
     
+    /// Returns a color for the line for the capped line shape. The color is determined by user settings.
+    /// - Parameter BasedOn: The base color of the shape.
+    /// - Returns: Color to use for the line.
+    public static func GetCappedLineColor(BasedOn: UIColor) -> UIColor
+    {
+        let LineColor = Settings.GetEnum(ForKey: .CappedLineLineColor, EnumType: CappedLineLineColors.self,
+                                         Default: CappedLineLineColors.Same)
+        switch LineColor
+        {
+            case .Same:
+            return BasedOn
+            
+            case .Black:
+                return UIColor.black
+            
+            case .White:
+                return UIColor.white
+            
+            case .Darker:
+                return BasedOn.Darken(By: 0.7)
+            
+            case .Lighter:
+                return BasedOn.Brighten(By: 0.4)
+        }
+    }
+    
     /// Returns the shape the user selected as the cap of a capped line shape.
     /// - Parameter Side: The radius of a sphere. Multiplied by various constants for other shapes.
     /// - Parameter Diffuse: The diffuse material color.
@@ -664,7 +690,8 @@ extension Generator
                 }
                 AncillaryNode = SCNNode2()
                 let Shape1 = SCNCylinder(radius: 0.1, height: Prominence * 2)
-                Shape1.firstMaterial?.diffuse.contents = Color
+                let LineColor = GetCappedLineColor(BasedOn: Color)
+                Shape1.firstMaterial?.diffuse.contents = LineColor
                 Shape1.firstMaterial?.specular.contents = UIColor.white
                 Shape1.firstMaterial?.lightingModel = GetLightModel()
                 let Node1 = SCNNode2(geometry: Shape1)
@@ -700,60 +727,73 @@ extension Generator
                     
                     case RadiatingLineThicknesses.Thick.rawValue:
                         RLineThickness = 0.08
+                    
                     default:
                         RLineThickness = 0.05
                 }
                 AncillaryNode = SCNNode2()
-                let UpLineGeo = SCNCapsule(capRadius: RLineThickness, height: 1.0)
+                let UpLineGeo = SCNBox(width: RLineThickness, height: RLineThickness, length: 1.0, chamferRadius: 0.0)
+                //let UpLineGeo = SCNCapsule(capRadius: RLineThickness, height: 1.0)
                 UpLineGeo.firstMaterial?.diffuse.contents = Color
                 UpLineGeo.firstMaterial?.specular.contents = UIColor.white
                 UpLineGeo.firstMaterial?.lightingModel = GetLightModel()
                 let UpLine = SCNNode(geometry: UpLineGeo)
                 AncillaryNode?.addChildNode(UpLine)
-                let DownLineGeo = SCNCapsule(capRadius: RLineThickness, height: 1.0)
+                
+                let DownLineGeo = SCNBox(width: RLineThickness, height: RLineThickness, length: 1.0, chamferRadius: 0.0)
+                //let DownLineGeo = SCNCapsule(capRadius: RLineThickness, height: 1.0)
                 DownLineGeo.firstMaterial?.diffuse.contents = Color
                 DownLineGeo.firstMaterial?.specular.contents = UIColor.white
                 DownLineGeo.firstMaterial?.lightingModel = GetLightModel()
                 let DownLine = SCNNode(geometry: DownLineGeo)
                 AncillaryNode?.addChildNode(DownLine)
-                let LeftLineGeo = SCNCapsule(capRadius: RLineThickness, height: 1.0)
+                
+                let LeftLineGeo = SCNBox(width: RLineThickness, height: RLineThickness, length: 1.0, chamferRadius: 0.0)
+                //let LeftLineGeo = SCNCapsule(capRadius: RLineThickness, height: 1.0)
                 LeftLineGeo.firstMaterial?.diffuse.contents = Color
                 LeftLineGeo.firstMaterial?.specular.contents = UIColor.white
                 LeftLineGeo.firstMaterial?.lightingModel = GetLightModel()
                 let LeftLine = SCNNode(geometry: LeftLineGeo)
                 LeftLine.eulerAngles = SCNVector3(0.0, 0.0, 90.0 * Double.pi / 180.0)
                 AncillaryNode?.addChildNode(LeftLine)
-                let RightLineGeo = SCNCapsule(capRadius: RLineThickness, height: 1.0)
+                
+                let RightLineGeo = SCNBox(width: RLineThickness, height: RLineThickness, length: 1.0, chamferRadius: 0.0)
+                //let RightLineGeo = SCNCapsule(capRadius: RLineThickness, height: 1.0)
                 RightLineGeo.firstMaterial?.diffuse.contents = Color
                 RightLineGeo.firstMaterial?.specular.contents = UIColor.white
                 RightLineGeo.firstMaterial?.lightingModel = GetLightModel()
                 let RightLine = SCNNode(geometry: RightLineGeo)
                 RightLine.eulerAngles = SCNVector3(0.0, 0.0, -90.0 * Double.pi / 180.0)
                 AncillaryNode?.addChildNode(RightLine)
+                
                 if Settings.GetInteger(ForKey: .RadiatingLineCount) > 4
                 {
-                    let ULGeo = SCNCapsule(capRadius: RLineThickness, height: 1.0)
+                    let ULGeo = SCNBox(width: RLineThickness, height: RLineThickness, length: 1.0, chamferRadius: 0.0)
+                    //let ULGeo = SCNCapsule(capRadius: RLineThickness, height: 1.0)
                     ULGeo.firstMaterial?.diffuse.contents = Color
                     ULGeo.firstMaterial?.specular.contents = UIColor.white
                     ULGeo.firstMaterial?.lightingModel = GetLightModel()
                     let ULLine = SCNNode(geometry: ULGeo)
                     ULLine.eulerAngles = SCNVector3(0.0, 0.0, 45.0 * Double.pi / 180.0)
                     AncillaryNode?.addChildNode(ULLine)
-                    let LLGeo = SCNCapsule(capRadius: RLineThickness, height: 1.0)
+                    let LLGeo = SCNBox(width: RLineThickness, height: RLineThickness, length: 1.0, chamferRadius: 0.0)
+                    //let LLGeo = SCNCapsule(capRadius: RLineThickness, height: 1.0)
                     LLGeo.firstMaterial?.diffuse.contents = Color
                     LLGeo.firstMaterial?.specular.contents = UIColor.white
                     LLGeo.firstMaterial?.lightingModel = GetLightModel()
                     let LLLine = SCNNode(geometry: LLGeo)
                     LLLine.eulerAngles = SCNVector3(0.0, 0.0, 135.0 * Double.pi / 180.0)
                     AncillaryNode?.addChildNode(LLLine)
-                    let URGeo = SCNCapsule(capRadius: RLineThickness, height: 1.0)
+                    let URGeo = SCNBox(width: RLineThickness, height: RLineThickness, length: 1.0, chamferRadius: 0.0)
+                    //let URGeo = SCNCapsule(capRadius: RLineThickness, height: 1.0)
                     URGeo.firstMaterial?.diffuse.contents = Color
                     URGeo.firstMaterial?.specular.contents = UIColor.white
                     URGeo.firstMaterial?.lightingModel = GetLightModel()
                     let URLine = SCNNode(geometry: URGeo)
                     URLine.eulerAngles = SCNVector3(0.0, 0.0, -45.0 * Double.pi / 180.0)
                     AncillaryNode?.addChildNode(URLine)
-                    let LRGeo = SCNCapsule(capRadius: RLineThickness, height: 1.0)
+                    let LRGeo = SCNBox(width: RLineThickness, height: RLineThickness, length: 1.0, chamferRadius: 0.0)
+                    //let LRGeo = SCNCapsule(capRadius: RLineThickness, height: 1.0)
                     LRGeo.firstMaterial?.diffuse.contents = Color
                     LRGeo.firstMaterial?.specular.contents = UIColor.white
                     LRGeo.firstMaterial?.lightingModel = GetLightModel()
@@ -761,30 +801,35 @@ extension Generator
                     LRLine.eulerAngles = SCNVector3(0.0, 0.0, -135.0 * Double.pi / 180.0)
                     AncillaryNode?.addChildNode(LRLine)
                 }
+                
                 if Settings.GetInteger(ForKey: .RadiatingLineCount) > 8
                 {
-                    let UpLineGeo = SCNCapsule(capRadius: RLineThickness, height: 1.0)
+                    let UpLineGeo = SCNBox(width: RLineThickness, height: RLineThickness, length: 1.0, chamferRadius: 0.0)
+                    //let UpLineGeo = SCNCapsule(capRadius: RLineThickness, height: 1.0)
                     UpLineGeo.firstMaterial?.diffuse.contents = Color
                     UpLineGeo.firstMaterial?.specular.contents = UIColor.white
                     UpLineGeo.firstMaterial?.lightingModel = GetLightModel()
                     let UpLine = SCNNode(geometry: UpLineGeo)
                     UpLine.eulerAngles = SCNVector3(-90.0 * Double.pi / 180.0, 0.0, 0.0)
                     AncillaryNode?.addChildNode(UpLine)
-                    let DownLineGeo = SCNCapsule(capRadius: RLineThickness, height: 1.0)
+                    let DownLineGeo = SCNBox(width: RLineThickness, height: RLineThickness, length: 1.0, chamferRadius: 0.0)
+                    //let DownLineGeo = SCNCapsule(capRadius: RLineThickness, height: 1.0)
                     DownLineGeo.firstMaterial?.diffuse.contents = Color
                     DownLineGeo.firstMaterial?.specular.contents = UIColor.white
                     DownLineGeo.firstMaterial?.lightingModel = GetLightModel()
                     let DownLine = SCNNode(geometry: DownLineGeo)
                     DownLine.eulerAngles = SCNVector3(90.0 * Double.pi / 180.0, 0.0, 0.0)
                     AncillaryNode?.addChildNode(DownLine)
-                    let LeftLineGeo = SCNCapsule(capRadius: RLineThickness, height: 1.0)
+                    let LeftLineGeo = SCNBox(width: RLineThickness, height: RLineThickness, length: 1.0, chamferRadius: 0.0)
+                    //let LeftLineGeo = SCNCapsule(capRadius: RLineThickness, height: 1.0)
                     LeftLineGeo.firstMaterial?.diffuse.contents = Color
                     LeftLineGeo.firstMaterial?.specular.contents = UIColor.white
                     LeftLineGeo.firstMaterial?.lightingModel = GetLightModel()
                     let LeftLine = SCNNode(geometry: LeftLineGeo)
                     LeftLine.eulerAngles = SCNVector3(0.0, 0.0, 90.0 * Double.pi / 180.0)
                     AncillaryNode?.addChildNode(LeftLine)
-                    let RightLineGeo = SCNCapsule(capRadius: RLineThickness, height: 1.0)
+                    let RightLineGeo = SCNBox(width: RLineThickness, height: RLineThickness, length: 1.0, chamferRadius: 0.0)
+                    //let RightLineGeo = SCNCapsule(capRadius: RLineThickness, height: 1.0)
                     RightLineGeo.firstMaterial?.diffuse.contents = Color
                     RightLineGeo.firstMaterial?.specular.contents = UIColor.white
                     RightLineGeo.firstMaterial?.lightingModel = GetLightModel()
