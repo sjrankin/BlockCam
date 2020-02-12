@@ -190,6 +190,9 @@ class Utility3D
     /// - Returns: Number of descendents of the passed node.
     private static func GetChildNodeCount(OfNode: SCNNode) -> Int
     {
+        #if true
+        return 0
+        #else
         var Count = 0
         for Child in OfNode.childNodes
         {
@@ -199,5 +202,6 @@ class Utility3D
             Count = Count + GetChildNodeCount(OfNode: Child)
         }
         return Count
+        #endif
     }
 }
