@@ -158,7 +158,7 @@ class Menu_ShapeSettings: UITableViewController, UIPickerViewDelegate, UIPickerV
             .ConeTopOptions, .HeightSource, .InvertHeight, .VerticalExaggeration, .InvertDynamicColorProcess,
             .DynamicColorAction, .DynamicColorType, .DynamicColorCondition, .SceneBackgroundColor, .SourceAsBackground,
             .CappedLineCapShape, .EllipseShape, .CharacterRandomFontSize, .CharacterFontName, .CharacterRandomRange,
-            .CharacterUsesRandomFont, .CharacterSeries, .StackedShapesSet
+            .CharacterUsesRandomFont, .CharacterSeries, .StackedShapesSet, .CappedLineLineColor
     ]
     
     @IBAction func HandleDonePressed(_ sender: Any)
