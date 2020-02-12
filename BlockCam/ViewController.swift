@@ -935,7 +935,7 @@ class ViewController: UIViewController,
                                      SettingKeys.DynamicColorCondition, SettingKeys.SourceAsBackground, SettingKeys.EllipseShape,
                                      SettingKeys.IncreasePetalCountWithProminence, SettingKeys.CharacterUsesRandomFont,
                                      SettingKeys.CharacterRandomRange, SettingKeys.CharacterFontName, SettingKeys.CharacterRandomFontSize,
-                                     SettingKeys.CharacterSeries, SettingKeys.StackedShapesSet]
+                                     SettingKeys.CharacterSeries, SettingKeys.StackedShapesSet, SettingKeys.CappedLineLineColor]
             let SceneOptions = [SettingKeys.SceneBackgroundColor]
             
             if Utilities.ArrayContains(AnyOf: SceneOptions, In: Working)
