@@ -102,6 +102,7 @@ class Settings
         UserDefaults.standard.set(2.0, forKey: SettingKeys.BestFitOffset.rawValue)
         UserDefaults.standard.set(MaterialLightingTypes.Phong.rawValue, forKey: SettingKeys.LightingModel.rawValue)
         UserDefaults.standard.set("Top", forKey: SettingKeys.CappedLineBallLocation.rawValue)
+        UserDefaults.standard.set(CappedLineLineColors.Same.rawValue, forKey: SettingKeys.CappedLineLineColor.rawValue)
         UserDefaults.standard.set(false, forKey: SettingKeys.InvertDynamicColorProcess.rawValue)
         UserDefaults.standard.set(DynamicColorTypes.None.rawValue, forKey: SettingKeys.DynamicColorType.rawValue)
         UserDefaults.standard.set(DynamicColorActions.Grayscale.rawValue, forKey: SettingKeys.DynamicColorAction.rawValue)
@@ -718,6 +719,7 @@ class Settings
             SettingKeys.LiveViewGridType,
             SettingKeys.FavoriteShapeList,
             SettingKeys.UIRotationStyle,
+            SettingKeys.CappedLineLineColor,
     ]
     
     /// Contains a list of all double-type fields.
@@ -784,6 +786,8 @@ enum SettingKeys: String, CaseIterable, Comparable, Hashable
     case CappedLineBallLocation = "CappedLineBallLocation"
     /// String: Shape of the cap of the capped line.
     case CappedLineCapShape = "CappedLineCapShape"
+    /// String/Enum: How to calculate the color of the line for capped-line shapes.
+    case CappedLineLineColor = "CappedLineLineColor"
     /// String: Thickness of mesh lines.
     case MeshLineThickness = "MeshLineThickness"
     /// String: Radius of mesh dots.
