@@ -459,6 +459,56 @@ extension UIColor
         let Result = simd_float4(FVals)
         return Result
     }
+    
+    /// Returns a brightened version of the instance color.
+    /// - Paraemter By: The percent value to multiply the instance color's brightness component by.
+    ///                 If this is not a normal value (0.0 - 1.0), the original color is returned
+    ///                 unchanged.
+    /// - Returns: Brightened color.
+    func Brighten(By Percent: CGFloat) -> UIColor
+    {
+        if Percent >= 1.0
+        {
+            return self
+        }
+        if Percent < 0.0
+        {
+            return self
+        }
+        var Hue: CGFloat = 0.0
+        var Saturation: CGFloat = 0.0
+        var Brightness: CGFloat = 0.0
+        var Alpha: CGFloat = 0.0
+        self.getHue(&Hue, saturation: &Saturation, brightness: &Brightness, alpha: &Alpha)
+        let Multiplier = 1.0 + Percent
+        Brightness = Brightness * Multiplier
+        return UIColor(hue: Hue, saturation: Saturation, brightness: Brightness, alpha: Alpha)
+    }
+    
+    /// Returns a darkened version of the instance color.
+    /// - Paraemter By: The percent value to multiply the instance color's brightness component by.
+    ///                 If this is not a normal value (0.0 - 1.0), the original color is returned
+    ///                 unchanged.
+    /// - Returns: Darkened color.
+    func Darken(By Percent: CGFloat) -> UIColor
+    {
+        if Percent >= 1.0
+        {
+            return self
+        }
+        if Percent < 0.0
+        {
+            return self
+        }
+        var Hue: CGFloat = 0.0
+        var Saturation: CGFloat = 0.0
+        var Brightness: CGFloat = 0.0
+        var Alpha: CGFloat = 0.0
+        self.getHue(&Hue, saturation: &Saturation, brightness: &Brightness, alpha: &Alpha)
+        let Multiplier = Percent
+        Brightness = Brightness * Multiplier
+        return UIColor(hue: Hue, saturation: Saturation, brightness: Brightness, alpha: Alpha)
+    }
 }
 
 /// Extensions for Character.
