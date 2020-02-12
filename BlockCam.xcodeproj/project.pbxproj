@@ -431,8 +431,8 @@
 				17239420238BF3F600D62C93 /* ProcessViewer.swift */,
 				178B540E238A5448000EA777 /* VideoAssembly.swift */,
 				17BA2FE92390EE5400C09639 /* Generator.swift */,
-				17AC305B23DC23BE00E90A70 /* ShapeGenerator.swift */,
 				17FA554323B9D69000915B83 /* NodeGenerators.swift */,
+				17AC305B23DC23BE00E90A70 /* ShapeGenerator.swift */,
 				1796DBE623B71F520031FEA5 /* VideoMaker.swift */,
 				1796DBE823B748E50031FEA5 /* VideoGenerator.swift */,
 			);
