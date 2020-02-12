@@ -11,9 +11,14 @@ import UIKit
 
 class Menu_CappedLineSettings: UITableViewController, UIPickerViewDelegate, UIPickerViewDataSource
 {
+    let ShapePickerTag = 100
+    let ColorPickerTag = 200
+    
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        ShapePicker.layer.borderColor = UIColor.black.cgColor
+        LineColorPicker.layer.borderColor = UIColor.black.cgColor
         if let Where = Settings.GetString(ForKey: .CappedLineBallLocation)
         {
             if let Actual = BallLocations(rawValue: Where)
@@ -59,15 +64,42 @@ class Menu_CappedLineSettings: UITableViewController, UIPickerViewDelegate, UIPi
             ShapePicker.selectRow(0, inComponent: 0, animated: true)
             Settings.SetString(CappedLineCapShapes.Sphere.rawValue, ForKey: .CappedLineCapShape)
         }
+        LineColorPicker.reloadAllComponents()
+        if let RawColor = Settings.GetString(ForKey: .CappedLineLineColor)
+        {
+            if let Index = ColorMap[RawColor]
+            {
+                LineColorPicker.selectRow(Index, inComponent: 0, animated: true)
+            }
+            else
+            {
+                LineColorPicker.selectRow(0, inComponent: 0, animated: true)
+                Settings.SetString(CappedLineLineColors.Same.rawValue, ForKey: .CappedLineLineColor)
+            }
+        }
+        else
+        {
+            LineColorPicker.selectRow(0, inComponent: 0, animated: true)
+            Settings.SetString(CappedLineLineColors.Same.rawValue, ForKey: .CappedLineLineColor)
+        }
     }
     
     let ShapeMap =
-    [
-        CappedLineCapShapes.Sphere.rawValue: 0,
-        CappedLineCapShapes.Box.rawValue: 1,
-        CappedLineCapShapes.Cone.rawValue: 2,
-        CappedLineCapShapes.Square.rawValue: 3,
-        CappedLineCapShapes.Circle.rawValue: 4
+        [
+            CappedLineCapShapes.Sphere.rawValue: 0,
+            CappedLineCapShapes.Box.rawValue: 1,
+            CappedLineCapShapes.Cone.rawValue: 2,
+            CappedLineCapShapes.Square.rawValue: 3,
+            CappedLineCapShapes.Circle.rawValue: 4
+    ]
+    
+    let ColorMap =
+        [
+            CappedLineLineColors.Same.rawValue: 0,
+            CappedLineLineColors.Darker.rawValue: 1,
+            CappedLineLineColors.Lighter.rawValue: 2,
+            CappedLineLineColors.Black.rawValue: 3,
+            CappedLineLineColors.White.rawValue: 4
     ]
     
     @IBAction func HandleBallLocationChanged(_ sender: Any)
@@ -100,7 +132,17 @@ class Menu_CappedLineSettings: UITableViewController, UIPickerViewDelegate, UIPi
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int
     {
-        return ShapeMap.count
+        switch pickerView.tag
+        {
+            case ShapePickerTag:
+                return ShapeMap.count
+            
+            case ColorPickerTag:
+                return ColorMap.count
+            
+            default:
+                return 0
+        }
     }
     
     func ShapeForIndex(_ Index: Int) -> String?
@@ -115,20 +157,57 @@ class Menu_CappedLineSettings: UITableViewController, UIPickerViewDelegate, UIPi
         return nil
     }
     
+    func ColorForIndex(_ Index: Int) -> String?
+    {
+        for (Name, ColorIndex) in ColorMap
+        {
+            if ColorIndex == Index
+            {
+                return Name
+            }
+        }
+        return nil
+    }
+    
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int)
     {
-        if let ShapeName = ShapeForIndex(row)
+        switch pickerView.tag
         {
-            Menu_ChangeManager.AddChanged(.CappedLineCapShape)
-            Settings.SetString(ShapeName, ForKey: .CappedLineCapShape)
+            case ShapePickerTag:
+                if let ShapeName = ShapeForIndex(row)
+                {
+                    Menu_ChangeManager.AddChanged(.CappedLineCapShape)
+                    Settings.SetString(ShapeName, ForKey: .CappedLineCapShape)
+            }
+            
+            case ColorPickerTag:
+                if let ColorType = ColorForIndex(row)
+                {
+                    Menu_ChangeManager.AddChanged(.CappedLineLineColor)
+                    Settings.SetString(ColorType, ForKey: .CappedLineLineColor)
+            }
+            
+            default:
+                break
         }
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String?
     {
-        return ShapeForIndex(row)
+        switch pickerView.tag
+        {
+            case ShapePickerTag:
+                return ShapeForIndex(row)
+            
+            case ColorPickerTag:
+                return ColorForIndex(row)
+            
+            default:
+                return nil
+        }
     }
     
+    @IBOutlet weak var LineColorPicker: UIPickerView!
     @IBOutlet weak var ShapePicker: UIPickerView!
     @IBOutlet weak var BallLocationSelector: UISegmentedControl!
 }
