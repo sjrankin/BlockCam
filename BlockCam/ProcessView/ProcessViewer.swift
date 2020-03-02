@@ -73,6 +73,16 @@ class ProcessViewer: SCNView, SCNSceneRendererDelegate
         antialiasingMode = AntialiasMode!
     }
     
+    public func SnapShot() -> UIImage
+    {
+        let Renderer = UIGraphicsImageRenderer(bounds: self.bounds)
+        return Renderer.image
+            {
+                Context in
+                layer.render(in: Context.cgContext)
+        }
+    }
+    
     /// Adds an observer to the point-of-view node's position value. This allows us to track the scene when it is moved
     /// which in turn lets us save a frame for each change, which can then be assembled in to a video. Additionally, if
     /// proper settings are enabled, a histogram is generated for the processed image.
@@ -280,6 +290,13 @@ class ProcessViewer: SCNView, SCNSceneRendererDelegate
         }
         LightNode?.light = SceneLight!
         LightNode?.position = SCNVector3(-5.0, 5.0, 10.0)
+        if Settings.GetBoolean(ForKey: .EnableShadows)
+        {
+            SceneLight.castsShadow = true
+            SceneLight.shadowColor = UIColor.black.withAlphaComponent(0.80)
+            SceneLight.shadowMode = .forward
+            SceneLight.shadowRadius = 10.0
+        }
         self.scene?.rootNode.addChildNode(LightNode!)
     }
     
