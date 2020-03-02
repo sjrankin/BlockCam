@@ -87,6 +87,8 @@
 		1771A9D723BC392E00B3294F /* Menu_AdvancedLightSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1771A9D623BC392E00B3294F /* Menu_AdvancedLightSettings.swift */; };
 		1771A9D923BC455B00B3294F /* ImageSizeSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1771A9D823BC455B00B3294F /* ImageSizeSettings.swift */; };
 		1771A9DB23BC4C2000B3294F /* PrivacySettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1771A9DA23BC4C2000B3294F /* PrivacySettings.swift */; };
+		1772F752240CCE520071C1D2 /* ShadowsSettingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1772F751240CCE520071C1D2 /* ShadowsSettingController.swift */; };
+		1772F754240CE3450071C1D2 /* Menu_PolygonSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1772F753240CE3450071C1D2 /* Menu_PolygonSettings.swift */; };
 		17749E5323BDA8D100238641 /* Menu_ImageSizeSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17749E5223BDA8D100238641 /* Menu_ImageSizeSettings.swift */; };
 		17749E5923BDAAF000238641 /* Menu_PerformanceSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17749E5823BDAAF000238641 /* Menu_PerformanceSettings.swift */; };
 		17749E5B23BDABE200238641 /* Menu_ImageSizeProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17749E5A23BDABE200238641 /* Menu_ImageSizeProtocol.swift */; };
@@ -254,6 +256,8 @@
 		1771A9D623BC392E00B3294F /* Menu_AdvancedLightSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Menu_AdvancedLightSettings.swift; sourceTree = "<group>"; };
 		1771A9D823BC455B00B3294F /* ImageSizeSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSizeSettings.swift; sourceTree = "<group>"; };
 		1771A9DA23BC4C2000B3294F /* PrivacySettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacySettings.swift; sourceTree = "<group>"; };
+		1772F751240CCE520071C1D2 /* ShadowsSettingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadowsSettingController.swift; sourceTree = "<group>"; };
+		1772F753240CE3450071C1D2 /* Menu_PolygonSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Menu_PolygonSettings.swift; sourceTree = "<group>"; };
 		17749E5223BDA8D100238641 /* Menu_ImageSizeSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Menu_ImageSizeSettings.swift; sourceTree = "<group>"; };
 		17749E5823BDAAF000238641 /* Menu_PerformanceSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Menu_PerformanceSettings.swift; sourceTree = "<group>"; };
 		17749E5A23BDABE200238641 /* Menu_ImageSizeProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Menu_ImageSizeProtocol.swift; sourceTree = "<group>"; };
@@ -462,6 +466,7 @@
 				17F3C90823CEA84A009DCA7B /* Menu_CharacterSettings.swift */,
 				177F66A423D036F000DFA840 /* Menu_CharacterSeries.swift */,
 				17FA554923B9F0FE00915B83 /* Menu_StarSettings.swift */,
+				1772F753240CE3450071C1D2 /* Menu_PolygonSettings.swift */,
 				17499B7423CD81A000A5396A /* Menu_FlowerSettings.swift */,
 				17FA554B23B9F1CC00915B83 /* Menu_LetterSettings.swift */,
 				1797C4A923BA1AB400F32222 /* Menu_MeshSettings.swift */,
@@ -586,6 +591,7 @@
 				17ED7B1923E5ABEE00604016 /* Menu_FavoriteShapesSettings.swift */,
 				17AFA87623C9A8B400846087 /* Menu_BackgroundSettings.swift */,
 				17C1D61423C02AE500FAFA76 /* CompositeShapeChangeProtocol.swift */,
+				1772F751240CCE520071C1D2 /* ShadowsSettingController.swift */,
 			);
 			path = ShapeMenu;
 			sourceTree = "<group>";
@@ -926,6 +932,7 @@
 				17749E5323BDA8D100238641 /* Menu_ImageSizeSettings.swift in Sources */,
 				17499B7523CD81A000A5396A /* Menu_FlowerSettings.swift in Sources */,
 				17AFA87723C9A8B400846087 /* Menu_BackgroundSettings.swift in Sources */,
+				1772F752240CCE520071C1D2 /* ShadowsSettingController.swift in Sources */,
 				1748FA0423DD819700B648E4 /* ProcessedImageMenuController.swift in Sources */,
 				17FA554C23B9F1CC00915B83 /* Menu_LetterSettings.swift in Sources */,
 				17BE8E892376E94200262F81 /* SCNnGon.swift in Sources */,
@@ -1000,6 +1007,7 @@
 				178C9C2523B43EFC0049139B /* AsynchronousEventHandling.swift in Sources */,
 				17C1225123DABA120011E9EC /* Menu_StackedShapeSettings.swift in Sources */,
 				17C04CAC23A4D4B400D870EE /* SettingsManager.swift in Sources */,
+				1772F754240CE3450071C1D2 /* Menu_PolygonSettings.swift in Sources */,
 				1716414D23BADC1F0093E2CD /* CurrentSettingsDescription.swift in Sources */,
 				1738D67923CD6B4000FBB56E /* Menu_EllipseSettings.swift in Sources */,
 				1738D67723CD5E0300FBB56E /* SCNDiamond.swift in Sources */,
