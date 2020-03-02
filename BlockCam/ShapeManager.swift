@@ -45,8 +45,7 @@ class ShapeManager
                           NodeShapes.Ellipses.rawValue, NodeShapes.Diamonds.rawValue, NodeShapes.Cylinders.rawValue,
                           NodeShapes.Capsules.rawValue, NodeShapes.Cones.rawValue, NodeShapes.HueTriangles.rawValue,
                           NodeShapes.Pyramids.rawValue, NodeShapes.Tetrahedrons.rawValue]),
-            ("Polygons", [NodeShapes.Triangles.rawValue, NodeShapes.Pentagons.rawValue, NodeShapes.Hexagons.rawValue,
-                          NodeShapes.Octagons.rawValue, NodeShapes.Stars.rawValue]),
+            ("Regular", [NodeShapes.Stars.rawValue, NodeShapes.Polygons.rawValue]),
             ("Combined", [NodeShapes.Lines.rawValue, NodeShapes.CappedLines.rawValue, NodeShapes.StackedShapes.rawValue,
                           NodeShapes.RadiatingLines.rawValue, NodeShapes.PerpendicularSquares.rawValue,
                           NodeShapes.PerpendicularCircles.rawValue, NodeShapes.CombinedForRGB.rawValue,
@@ -119,7 +118,8 @@ class ShapeManager
     private static var _OptionsAvailable = [NodeShapes.Letters, NodeShapes.Meshes, NodeShapes.CappedLines, NodeShapes.Stars,
                                             NodeShapes.Blocks, NodeShapes.RadiatingLines, NodeShapes.Cones, NodeShapes.Ellipses,
                                             NodeShapes.HueVarying, NodeShapes.SaturationVarying, NodeShapes.BrightnessVarying,
-                                            NodeShapes.Characters, NodeShapes.CharacterSets, NodeShapes.StackedShapes]
+                                            NodeShapes.Characters, NodeShapes.CharacterSets, NodeShapes.StackedShapes,
+                                            NodeShapes.Polygons]
     /// Returns a table of node shapes that take options.
     public static var OptionsAvailable: [NodeShapes]
     {
@@ -140,7 +140,7 @@ class ShapeManager
     /// Holds a list of all shapes that are available for the stacked shape set.
     private static var _ValidStackingShapes = [NodeShapes.Blocks, NodeShapes.Spheres, NodeShapes.Capsules,
                                                NodeShapes.Cylinders, NodeShapes.Cones, NodeShapes.Lines,
-                                               NodeShapes.Triangles, NodeShapes.Ellipses, NodeShapes.Stars,
+                                               NodeShapes.Polygons, NodeShapes.Ellipses, NodeShapes.Stars,
                                                NodeShapes.Square2D, NodeShapes.Circle2D, NodeShapes.Oval2D,
                                                NodeShapes.Triangle2D]
     
@@ -290,17 +290,11 @@ enum NodeShapes: String, CaseIterable
     /// Block from SCNBox.
     case Blocks = "Blocks"
     /// Triangles from SCNnGon.Geometry.
-    case Triangles = "Triangles"
-    /// Extruded ellipses - custom geometry.
     case Ellipses = "Ellipses"
     /// Extruded diamond shapes - custom property (based on `.Ellipses`).
     case Diamonds = "Diamonds"
-    /// Pentagons from SCNnGon.Geometry.
-    case Pentagons = "Pentagons"
-    /// Hexagons from SCNnGon.Geometry.
-    case Hexagons = "Hexagons"
-    /// Octagons from SCNnGon.Geometry.
-    case Octagons = "Octagons"
+    /// Regular polygons.
+    case Polygons = "Polygons"
     /// Pyramids from SCNPyramid. Each node rotated due to SceneKit's default rotation of the node.
     case Pyramids = "Pyramids"
     /// Toruses from SCNTorus. Each node rotated due to SceneKit's default rotation of the node.
