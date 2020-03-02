@@ -158,7 +158,7 @@ class Menu_ShapeSettings: UITableViewController, UIPickerViewDelegate, UIPickerV
             .ConeTopOptions, .HeightSource, .InvertHeight, .VerticalExaggeration, .InvertDynamicColorProcess,
             .DynamicColorAction, .DynamicColorType, .DynamicColorCondition, .SceneBackgroundColor, .SourceAsBackground,
             .CappedLineCapShape, .EllipseShape, .CharacterRandomFontSize, .CharacterFontName, .CharacterRandomRange,
-            .CharacterUsesRandomFont, .CharacterSeries, .StackedShapesSet, .CappedLineLineColor
+            .CharacterUsesRandomFont, .CharacterSeries, .StackedShapesSet, .CappedLineLineColor, .EnableShadows
     ]
     
     @IBAction func HandleDonePressed(_ sender: Any)
@@ -271,6 +271,13 @@ class Menu_ShapeSettings: UITableViewController, UIPickerViewDelegate, UIPickerV
             case .CharacterSets:
                 let Storyboard = UIStoryboard(name: "Secondary", bundle: nil)
                 if let Controller = Storyboard.instantiateViewController(identifier: "CharacterSeriesUI") as? Menu_CharacterSeries
+                {
+                    self.navigationController?.pushViewController(Controller, animated: true)
+            }
+            
+            case .Polygons:
+                let Storyboard = UIStoryboard(name: "Secondary", bundle: nil)
+                if let Controller = Storyboard.instantiateViewController(identifier: "PolygonSettingsUI") as? Menu_PolygonSettings
                 {
                     self.navigationController?.pushViewController(Controller, animated: true)
             }
