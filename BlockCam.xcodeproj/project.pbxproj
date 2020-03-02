@@ -591,7 +591,6 @@
 				17ED7B1923E5ABEE00604016 /* Menu_FavoriteShapesSettings.swift */,
 				17AFA87623C9A8B400846087 /* Menu_BackgroundSettings.swift */,
 				17C1D61423C02AE500FAFA76 /* CompositeShapeChangeProtocol.swift */,
-				1772F751240CCE520071C1D2 /* ShadowsSettingController.swift */,
 			);
 			path = ShapeMenu;
 			sourceTree = "<group>";
@@ -619,6 +618,7 @@
 			children = (
 				1771A9D423BC38F900B3294F /* Menu_LightSettings.swift */,
 				1771A9D623BC392E00B3294F /* Menu_AdvancedLightSettings.swift */,
+				1772F751240CCE520071C1D2 /* ShadowsSettingController.swift */,
 			);
 			path = LightMenu;
 			sourceTree = "<group>";
