@@ -179,7 +179,7 @@ class Menu_LightSettings: UITableViewController, UIPickerViewDelegate, UIPickerV
     
     let ChangeList: [SettingKeys] =
         [
-            .LightingModel, .LightType, .LightColor, .LightIntensity
+            .LightingModel, .LightType, .LightColor, .LightIntensity, .EnableShadows
     ]
     
     @IBAction func HandleDonePressed(_ sender: Any)
@@ -235,6 +235,17 @@ class Menu_LightSettings: UITableViewController, UIPickerViewDelegate, UIPickerV
         {
             Light.color = UIColor.white
             Settings.SetString("White", ForKey: .LightColor)
+        }
+        if Settings.GetBoolean(ForKey: .EnableShadows)
+        {
+            Light.castsShadow = true
+            Light.shadowColor = UIColor.black.withAlphaComponent(0.8)
+            Light.shadowMode = .forward
+            Light.shadowRadius = 10.0
+        }
+        else
+        {
+            Light.castsShadow = false
         }
         
         if let RawIntensity = Settings.GetString(ForKey: .LightIntensity)
@@ -346,18 +357,21 @@ class Menu_LightSettings: UITableViewController, UIPickerViewDelegate, UIPickerV
         Shape1.firstMaterial?.diffuse.contents = UIColor.systemOrange
         Shape1.firstMaterial?.specular.contents = UIColor.white
         let Node1 = SCNNode(geometry: Shape1)
+        Node1.castsShadow = Settings.GetBoolean(ForKey: .EnableShadows)
         Node1.name = "DisplayNode"
         let Shape2 = SCNSphere(radius: 1.5)
         Shape2.firstMaterial?.lightingModel = LightModel
         Shape2.firstMaterial?.diffuse.contents = UIColor.systemYellow
         Shape2.firstMaterial?.specular.contents = UIColor.white
         let Node2 = SCNNode(geometry: Shape2)
+                Node2.castsShadow = Settings.GetBoolean(ForKey: .EnableShadows)
         Node2.name = "DisplayNode"
         let Shape3 = SCNBox(width: 2.5, height: 2.5, length: 2.5, chamferRadius: 0.05)
         Shape3.firstMaterial?.lightingModel = LightModel
         Shape3.firstMaterial?.diffuse.contents = UIColor.systemGreen
         Shape3.firstMaterial?.specular.contents = UIColor.white
         let Node3 = SCNNode(geometry: Shape3)
+                Node3.castsShadow = Settings.GetBoolean(ForKey: .EnableShadows)
         Node3.name = "DisplayNode"
         Node1.position = SCNVector3(0.0, 0.0, 0.0)
         Node2.position = SCNVector3(0.0, 2.5, 0.0)
