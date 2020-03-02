@@ -106,19 +106,17 @@ class ShapeGenerator
             case .Spheres:
                 Geo = SCNSphere(radius: Side * Prominence)
             
-            case .Triangles:
-                let VertexValue: Float = Float(Prominence * 1.5)
-                Geo = SCNTriangle.Geometry(A: VertexValue, B: VertexValue, C: VertexValue,
-                                           Scale: Float(Side * 2.0))
-            
-            case .Pentagons:
-                Geo = SCNnGon.Geometry(VertexCount: 5, Radius: Side, Depth: Prominence * 2.0)
-            
-            case .Hexagons:
-                Geo = SCNnGon.Geometry(VertexCount: 6, Radius: Side, Depth: Prominence * 2.0)
-            
-            case .Octagons:
-                Geo = SCNnGon.Geometry(VertexCount: 8, Radius: Side, Depth: Prominence * 2.0)
+            case .Polygons:
+                var SideCount = Settings.GetInteger(ForKey: .PolygonSideCount)
+                if Settings.GetBoolean(ForKey: .PolygonSideCountVaries)
+                {
+                    SideCount = SideCount + Int(Prominence * 1.3)
+                    if SideCount > 12
+                    {
+                        SideCount = 12
+                    }
+            }
+                Geo = SCNnGon.Geometry(VertexCount: SideCount, Radius: Side, Depth: Prominence * 2.0)
             
             case .Tetrahedrons:
                 Geo = SCNTetrahedron.Geometry(BaseLength: Side, Height: Prominence * 2.0)
