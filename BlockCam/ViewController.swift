@@ -643,6 +643,7 @@ class ViewController: UIViewController,
             Sounds.PlaySound(.Tock)
         }
         let Image = OutputView.snapshot()
+//        let Image = OutputView.SnapShot()
         let SourceSize = "\(Generator.OriginalImageSize)"
         let ReducedSize = "\(Generator.ReducedImageSize)"
         let UserData = CurrentSettings.KVPs(AppendWith: [("Original size", SourceSize), ("Reduced size", ReducedSize)])
@@ -923,6 +924,7 @@ class ViewController: UIViewController,
                 Working = Utilities.RemoveAllOf(LightingSettings, From: Working)
             }
             
+            let FullRedrawAndNewLightOptions = [SettingKeys.EnableShadows]
             let FullRedrawOptions = [SettingKeys.BlockSize]
             let SemiRedrawOptions = [SettingKeys.ShapeType, SettingKeys.HeightSource, SettingKeys.VerticalExaggeration,
                                      SettingKeys.FullyExtrudeLetters, SettingKeys.LetterLocation, SettingKeys.LetterSmoothness,
@@ -936,7 +938,7 @@ class ViewController: UIViewController,
                                      SettingKeys.IncreasePetalCountWithProminence, SettingKeys.CharacterUsesRandomFont,
                                      SettingKeys.CharacterRandomRange, SettingKeys.CharacterFontName, SettingKeys.CharacterRandomFontSize,
                                      SettingKeys.CharacterSeries, SettingKeys.StackedShapesSet, SettingKeys.CappedLineLineColor,
-                                     SettingKeys.EnableShadows, SettingKeys.PolygonSideCountVaries, SettingKeys.PolygonSideCount]
+                                     SettingKeys.PolygonSideCountVaries, SettingKeys.PolygonSideCount]
             let SceneOptions = [SettingKeys.SceneBackgroundColor]
             
             if Utilities.ArrayContains(AnyOf: SceneOptions, In: Working)
@@ -945,6 +947,12 @@ class ViewController: UIViewController,
             }
             if Utilities.ArrayContains(AnyOf: FullRedrawOptions, In: Working)
             {
+                ProcessImageInBackground(ImageToProcess!)
+                return
+            }
+            if Utilities.ArrayContains(AnyOf: FullRedrawAndNewLightOptions, In: Working)
+            {
+                self.OutputView.UpdateLightNode()
                 ProcessImageInBackground(ImageToProcess!)
                 return
             }
