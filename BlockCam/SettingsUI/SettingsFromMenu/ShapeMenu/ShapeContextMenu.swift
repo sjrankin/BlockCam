@@ -26,6 +26,7 @@ extension Menu_CompositeShapeTableViewCell: UIContextMenuInteractionDelegate
     /// Make the shape menu for the shape-varying UI.
     func MakeShapeMenu() -> UIMenu
     {
+        /*
         let CancelMenu = UIAction(title: "Cancel", image: UIImage(systemName: "xmark.circle"))
         {
             _ in
@@ -166,5 +167,7 @@ extension Menu_CompositeShapeTableViewCell: UIContextMenuInteractionDelegate
                                                                                   RGBMenu, HSBMenu, CancelGroup])
         
         return UIMenu(title: "Shapes", children: [StandardGroup, PolygonGroup, SolidGroup, ComplexGroup, CombinedGroup, CancelGroup])
-    }
+ */
+        return UIMenu(title: "Shapes")
+ }
 }
