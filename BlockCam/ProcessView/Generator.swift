@@ -529,7 +529,7 @@ class Generator
                         switch ShapeSelector
                         {
                             //Simple shapes.
-                            case .Blocks, .Spheres, .Pentagons, .Hexagons, .Octagons, .Stars, .Triangles,
+                            case .Blocks, .Spheres, .Stars, .Polygons,
                                  .Cylinders, .Pyramids, .Toroids, .Tetrahedrons, .Capsules, .Lines, .Cones,
                                  .Diamonds:
                                 FinalShape = GenerateNodeGeometry(ForShape: ShapeSelector, Side: Side, Prominence: Prominence,
