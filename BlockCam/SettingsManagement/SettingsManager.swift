@@ -186,6 +186,9 @@ class Settings
         UserDefaults.standard.set(true, forKey: SettingKeys.ShowTapFeedback.rawValue)
         UserDefaults.standard.set("", forKey: SettingKeys.FavoriteShapeList.rawValue)
         UserDefaults.standard.set(UIRotationTypes.CardinalDirections.rawValue, forKey: SettingKeys.UIRotationStyle.rawValue)
+        UserDefaults.standard.set(false, forKey: SettingKeys.EnableShadows.rawValue)
+        UserDefaults.standard.set(5, forKey: SettingKeys.PolygonSideCount.rawValue)
+        UserDefaults.standard.set(false, forKey: SettingKeys.PolygonSideCountVaries.rawValue)
     }
     
     /// Call all subscribers in the notification list to let them know a setting will be changed.
@@ -648,6 +651,8 @@ class Settings
             SettingKeys.ShowProcessedHistogram,
             SettingKeys.ShowActualOrientation,
             SettingKeys.ShowTapFeedback,
+            SettingKeys.EnableShadows,
+            SettingKeys.PolygonSideCountVaries,
     ]
     
     /// Contains a list of all integer-type fields.
@@ -667,6 +672,7 @@ class Settings
             SettingKeys.MaxImageDimension,
             SettingKeys.InstantiationTime,
             SettingKeys.FlowerPetalCount,
+            SettingKeys.PolygonSideCount,
     ]
     
     /// Contains a list of all string-type fields.
@@ -830,6 +836,10 @@ enum SettingKeys: String, CaseIterable, Comparable, Hashable
     case CharacterSeries = "CharacterSeries"
     /// String: Comma-separated list of shapes for stacked shapes.
     case StackedShapesSet = "StackedShapesSet"
+    /// Integer: Number of sides of the current polygon.
+    case PolygonSideCount = "PolygonSideCount"
+    /// Boolean: The number of sides of a polygon is dependent on the current height value of the pixel.
+    case PolygonSideCountVaries = "PolygonSideCountVaries"
     
     //Dynamic color settings.
     /// String: The type of dynamic color enabled (if any).
@@ -840,6 +850,10 @@ enum SettingKeys: String, CaseIterable, Comparable, Hashable
     case DynamicColorAction = "DynamicColorAction"
     /// String: Determines when to perform dynamic colors.
     case DynamicColorCondition = "DynamicColorCondition"
+    
+    //Shadows
+    /// Boolean: Show or hide shadows.
+    case EnableShadows = "EnableShadows"
     
     //Scene settings
     /// Integer: Determines the input quality of the image to process.
