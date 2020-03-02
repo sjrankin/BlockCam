@@ -75,12 +75,21 @@ class ProcessViewer: SCNView, SCNSceneRendererDelegate
     
     public func SnapShot() -> UIImage
     {
+        #if true
+        let Renderer = SCNRenderer(device: MTLCreateSystemDefaultDevice(), options: nil)
+        Renderer.scene = self.scene!
+        let RenderTime = TimeInterval(0)
+        let Size = self.frame.size
+        let Image = Renderer.snapshot(atTime: RenderTime, with: Size, antialiasingMode: .multisampling4X)
+        return Image
+        #else
         let Renderer = UIGraphicsImageRenderer(bounds: self.bounds)
         return Renderer.image
             {
                 Context in
                 layer.render(in: Context.cgContext)
         }
+        #endif
     }
     
     /// Adds an observer to the point-of-view node's position value. This allows us to track the scene when it is moved
