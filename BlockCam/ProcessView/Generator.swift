@@ -329,6 +329,7 @@ class Generator
             RawSource = "Brightness"
         }
         
+        let EnableShadows = Settings.GetBoolean(ForKey: .EnableShadows)
         let HueShapes = GetShapeList(ForKey: .HueShapeList)
         let SatShapes = GetShapeList(ForKey: .SaturationShapeList)
         let BriShapes = GetShapeList(ForKey: .BrightnessShapeList)
@@ -637,6 +638,7 @@ class Generator
                             Node.geometry?.firstMaterial?.lightingModel = GetLightModel()
                         }
                         Node.name = "PixelNode"
+                        Node.castsShadow = EnableShadows
                         WorkingNode.addChildNode(Node)
                 }
             }
