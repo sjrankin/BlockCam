@@ -228,18 +228,17 @@ extension Generator
             case .Spheres:
                 FinalShape = SCNSphere(radius: Side * Prominence)
             
-            case .Triangles:
-                FinalShape = SCNTriangle.Geometry(A: Float(Prominence * 1.5), B: Float(Prominence * 1.5),
-                                                  C: Float(Prominence * 1.5), Scale: Float(Side * 2.0))
-            
-            case .Pentagons:
-                FinalShape = SCNnGon.Geometry(VertexCount: 5, Radius: Side, Depth: Prominence * 2)
-            
-            case .Hexagons:
-                FinalShape = SCNnGon.Geometry(VertexCount: 6, Radius: Side, Depth: Prominence * 2)
-            
-            case .Octagons:
-                FinalShape = SCNnGon.Geometry(VertexCount: 8, Radius: Side, Depth: Prominence * 2)
+            case .Polygons:
+                var SideCount = Settings.GetInteger(ForKey: .PolygonSideCount)
+                if Settings.GetBoolean(ForKey: .PolygonSideCountVaries)
+                {
+                    SideCount = SideCount + Int(Prominence * 1.3)
+                    if SideCount > 12
+                    {
+                        SideCount = 12
+                    }
+                }
+                FinalShape = SCNnGon.Geometry(VertexCount: SideCount, Radius: Side, Depth: Prominence * 2.0)
             
             case .Tetrahedrons:
                 FinalShape = SCNTetrahedron.Geometry(BaseLength: Side, Height: Prominence * 2)
@@ -286,7 +285,7 @@ extension Generator
         switch LineColor
         {
             case .Same:
-            return BasedOn
+                return BasedOn
             
             case .Black:
                 return UIColor.black
@@ -489,8 +488,9 @@ extension Generator
                 let Geo = SCNCapsule(capRadius: 0.1, height: Side)
                 Node = SCNNode(geometry: Geo)
             
-            case .Triangles:
-                let Geo = SCNTriangle.Geometry(A: Float(Side), B: Float(Side), C: Float(Side), Scale: 1.0)
+            case .Polygons:
+                let SideCount = Settings.GetInteger(ForKey: .PolygonSideCount)
+                let Geo = SCNnGon.Geometry(VertexCount: SideCount, Radius: Side, Depth: Side)
                 Node = SCNNode(geometry: Geo)
             
             case .Ellipses:
@@ -529,7 +529,7 @@ extension Generator
                 Node?.scale = SCNEllipse.ReciprocalScale()
             
             case .Triangle2D:
-                let Geo = SCNTriangle.Geometry(A: 0.05, B: 0.05, C: 0.05, Scale: 1.0)
+                let Geo = SCNnGon.Geometry(VertexCount: 3, Radius: Side, Depth: 0.05)
                 Node = SCNNode(geometry: Geo)
             
             default:
@@ -739,15 +739,15 @@ extension Generator
                 let UpLine = SCNNode(geometry: UpLineGeo)
                 UpLine.eulerAngles = SCNVector3(90.0 * Double.pi / 180.0, 0.0, 0.0)
                 AncillaryNode?.addChildNode(UpLine)
-
+                
                 let DownLineGeo = SCNBox(width: RLineThickness, height: RLineThickness, length: 1.0, chamferRadius: 0.0)
                 DownLineGeo.firstMaterial?.diffuse.contents = Color
                 DownLineGeo.firstMaterial?.specular.contents = UIColor.white
                 DownLineGeo.firstMaterial?.lightingModel = GetLightModel()
                 let DownLine = SCNNode(geometry: DownLineGeo)
-                                DownLine.eulerAngles = SCNVector3(-90.0 * Double.pi / 180.0, 0.0, 0.0)
+                DownLine.eulerAngles = SCNVector3(-90.0 * Double.pi / 180.0, 0.0, 0.0)
                 AncillaryNode?.addChildNode(DownLine)
-
+                
                 let LeftLineGeo = SCNBox(width: RLineThickness, height: RLineThickness, length: 1.0, chamferRadius: 0.0)
                 LeftLineGeo.firstMaterial?.diffuse.contents = Color
                 LeftLineGeo.firstMaterial?.specular.contents = UIColor.white
@@ -763,7 +763,7 @@ extension Generator
                 let RightLine = SCNNode(geometry: RightLineGeo)
                 RightLine.eulerAngles = SCNVector3(-90.0 * Double.pi / 180.0, 0.0, -90.0 * Double.pi / 180.0)
                 AncillaryNode?.addChildNode(RightLine)
-
+                
                 if Settings.GetInteger(ForKey: .RadiatingLineCount) > 4
                 {
                     let ULGeo = SCNBox(width: RLineThickness, height: RLineThickness, length: 1.0, chamferRadius: 0.0)
