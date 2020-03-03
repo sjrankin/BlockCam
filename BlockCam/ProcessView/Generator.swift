@@ -530,11 +530,11 @@ class Generator
                         switch ShapeSelector
                         {
                             //Simple shapes.
-                            case .Blocks, .Spheres, .Stars, .Polygons,
-                                 .Cylinders, .Pyramids, .Toroids, .Tetrahedrons, .Capsules, .Lines, .Cones,
-                                 .Diamonds:
+                            case .Blocks, .Spheres, .Stars, .Polygons, .Diamonds,
+                                 .Cylinders, .Pyramids, .Toroids, .Tetrahedrons, .Capsules, .Lines, .Cones:
                                 FinalShape = GenerateNodeGeometry(ForShape: ShapeSelector, Side: Side, Prominence: Prominence,
-                                                                  DoXRotate: &DoXRotate, WithColor: Color)
+                                                                  DoXRotate: &DoXRotate, WithColor: Color,
+                                                                  ZLocation: &ZLocation) 
                             
                             //Pseudo-2D chapes.
                             case .Polygon2D, .Rectangle2D, .Circle2D, .Oval2D, .Star2D, .Diamond2D:
