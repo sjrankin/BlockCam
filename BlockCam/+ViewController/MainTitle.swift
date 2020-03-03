@@ -98,6 +98,10 @@ extension ViewController
         let TitleLight = SCNLight()
         TitleLight.type = .omni
         TitleLight.color = UIColor.white
+        TitleLight.castsShadow = true
+        TitleLight.shadowColor = UIColor.black.withAlphaComponent(0.8)
+        TitleLight.shadowRadius = 10.0
+        TitleLight.shadowMode = .forward
         let LightNode = SCNNode()
         LightNode.light = TitleLight
         LightNode.position = SCNVector3(-2.0, 2.0, 10.0)
@@ -110,6 +114,7 @@ extension ViewController
         TextNode.firstMaterial?.diffuse.contents = UIColor.systemYellow
         TextNode.firstMaterial?.lightingModel = .blinn
         TitleNode = SCNNode(geometry: TextNode)
+        TitleNode?.castsShadow = true
         let (MinTextBox, MaxTextBox) = TitleNode!.boundingBox
         let TextWidth = MaxTextBox.x - MinTextBox.x
         TitleNode?.position = SCNVector3(0.0, 0.0, 0.0)
