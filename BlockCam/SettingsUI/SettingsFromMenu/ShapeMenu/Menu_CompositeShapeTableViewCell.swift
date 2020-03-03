@@ -70,6 +70,7 @@ class Menu_CompositeShapeTableViewCell: UITableViewCell
     
     func Load(Title: String, RangeString: String, TableWidth: CGFloat, Index: Int)
     {
+        /*
         let ItemContextMenu = UIContextMenuInteraction(delegate: self)
         self.addInteraction(ItemContextMenu)
         ShapeIndex = Index
@@ -86,6 +87,7 @@ class Menu_CompositeShapeTableViewCell: UITableViewCell
         TitleLabel.text = Title
         RangeLabel.text = RangeString
         self.selectionStyle = .none
+ */
     }
     
     var ShapeIndex = 0
