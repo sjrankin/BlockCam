@@ -47,6 +47,7 @@ class Menu_SphereSettings: UITableViewController
                 default:
                     Settings.SetEnum(.Size, EnumType: SphereBehaviors.self, ForKey: .SphereBehavior)
             }
+            Menu_ChangeManager.AddChanged(.SphereBehavior)
         }
     }
     
