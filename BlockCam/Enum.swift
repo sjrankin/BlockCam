@@ -434,3 +434,25 @@ enum CappedLineLineColors: String, CaseIterable
     /// White.
     case White = "White"
 }
+
+/// Defines how spheres are generated based on the color prominence.
+enum SphereBehaviors: String, CaseIterable
+{
+    /// Prominence affects the size of the sphere.
+    case Size = "Size"
+    /// Prominence affects the location of the sphere.
+    case Location = "Location"
+    /// Promonence affects the size and location of the sphere.
+    case Both = "Both"
+}
+
+/// General definition of 3D axes.
+enum Axes: String, CaseIterable
+{
+    /// The X axis.
+    case X = "X"
+    /// The Y axis.
+    case Y = "Y"
+    /// The Z axis.
+    case Z = "Z"
+}
