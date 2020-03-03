@@ -643,7 +643,12 @@ class ViewController: UIViewController,
     ///    - Due to the sub-second delay, it is possible for the user to move the rendered scene before
     ///      the image is actually taken. It may end up being desirable to disable camera motion when
     ///      this image executes and restore it afterwards.
-    /// - See: `DoSaveImage`
+    ///    - Rather than using `SCNView.snapshot`, this function uses an extension method defined on
+    ///      `UIView`: `ToImage`. This is because `SCNView.snapshot` does not render shadows correctly
+    ///      while `ToImage` does.
+    /// - See:
+    ///    - `DoSaveImage`
+    ///    - `UIView.ToImage`
     /// - Parameter sender: Not used.
     @IBAction func HandleSaveProcessedImageButton(_ sender: Any)
     {
@@ -663,7 +668,10 @@ class ViewController: UIViewController,
     }
     
     /// Do the actual image save here. Intended to be called by `HandleSaveProcessedImageButton`.
+    /// - Note: If the image is *not* from the photo library, the original image will be saved along
+    ///         with the processed image.
     /// - Parameter Image: The image to save.
+    /// - See: `HandleSaveProcessedImageButton`
     func DoSaveImage(_ Image: UIImage)
     {
         let SourceSize = "\(Generator.OriginalImageSize)"
@@ -960,7 +968,9 @@ class ViewController: UIViewController,
                                      SettingKeys.IncreasePetalCountWithProminence, SettingKeys.CharacterUsesRandomFont,
                                      SettingKeys.CharacterRandomRange, SettingKeys.CharacterFontName, SettingKeys.CharacterRandomFontSize,
                                      SettingKeys.CharacterSeries, SettingKeys.StackedShapesSet, SettingKeys.CappedLineLineColor,
-                                     SettingKeys.PolygonSideCountVaries, SettingKeys.PolygonSideCount]
+                                     SettingKeys.PolygonSideCountVaries, SettingKeys.PolygonSideCount, SettingKeys.SphereBehavior,
+                                     SettingKeys.Polygon2DAxis, SettingKeys.Rectangle2DAxis, SettingKeys.Circle2DAxis,
+                                     SettingKeys.Oval2DAxis, SettingKeys.Star2DAxis, SettingKeys.Diamond2DAxis]
             let SceneOptions = [SettingKeys.SceneBackgroundColor]
             
             if Utilities.ArrayContains(AnyOf: SceneOptions, In: Working)
