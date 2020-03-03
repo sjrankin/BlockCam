@@ -656,7 +656,7 @@ class ViewController: UIViewController,
         var Image: UIImage = UIImage()
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5)
         {
-             Image = self.OutputView.ToImage()
+            Image = self.OutputView.ToImage()
             self.DoSaveImage(Image)
             self.OutputView.showsStatistics = IsShowing
         }
