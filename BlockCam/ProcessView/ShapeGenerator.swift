@@ -148,9 +148,6 @@ class ShapeGenerator
             
             // Flat Shapes
             
-            case .Square2D:
-                 Geo = SCNBox(width: Side * 1.5, height: Side * 1.5, length: 0.05, chamferRadius: 0.0)
-            
             case .Rectangle2D:
                  Geo = SCNBox(width: Side * 1.5, height: Side * 0.75, length: 0.05, chamferRadius: 0.0)
             
@@ -162,9 +159,6 @@ class ShapeGenerator
                 let (Major, Minor) = Generator.GetEllipseParameters()
                 Geo = SCNEllipse.Geometry(MajorAxis: Side * Major, MinorAxis: Side * Minor, Height: 0.05)
                 ApplyScale = SCNEllipse.MultiplierReciprocal
-            
-            case .Triangle2D:
-                 Geo = SCNTriangle.Geometry(A: 0.05, B: 0.05, C: 0.05, Scale: 1.0)
             
             case .Star2D:
                 let Dim = Double(Side * 1.5)
