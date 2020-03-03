@@ -189,6 +189,13 @@ class Settings
         UserDefaults.standard.set(false, forKey: SettingKeys.EnableShadows.rawValue)
         UserDefaults.standard.set(5, forKey: SettingKeys.PolygonSideCount.rawValue)
         UserDefaults.standard.set(false, forKey: SettingKeys.PolygonSideCountVaries.rawValue)
+        UserDefaults.standard.set(SphereBehaviors.Size.rawValue, forKey: SettingKeys.SphereBehavior.rawValue)
+        UserDefaults.standard.set(Axes.X.rawValue, forKey: SettingKeys.Polygon2DAxis.rawValue)
+        UserDefaults.standard.set(Axes.X.rawValue, forKey: SettingKeys.Circle2DAxis.rawValue)
+        UserDefaults.standard.set(Axes.X.rawValue, forKey: SettingKeys.Oval2DAxis.rawValue)
+        UserDefaults.standard.set(Axes.X.rawValue, forKey: SettingKeys.Diamond2DAxis.rawValue)
+        UserDefaults.standard.set(Axes.X.rawValue, forKey: SettingKeys.Star2DAxis.rawValue)
+        UserDefaults.standard.set(Axes.X.rawValue, forKey: SettingKeys.Rectangle2DAxis.rawValue)
     }
     
     /// Call all subscribers in the notification list to let them know a setting will be changed.
@@ -487,7 +494,7 @@ class Settings
         }
         else
         {
-                        fatalError("The key \(ForKey.rawValue) does not point to a string setting.")
+            fatalError("The key \(ForKey.rawValue) does not point to a string setting.")
         }
     }
     
@@ -726,6 +733,14 @@ class Settings
             SettingKeys.FavoriteShapeList,
             SettingKeys.UIRotationStyle,
             SettingKeys.CappedLineLineColor,
+            SettingKeys.SphereBehavior,
+            SettingKeys.SphereBehavior,
+            SettingKeys.Polygon2DAxis,
+            SettingKeys.Rectangle2DAxis,
+            SettingKeys.Circle2DAxis,
+            SettingKeys.Oval2DAxis,
+            SettingKeys.Diamond2DAxis,
+            SettingKeys.Star2DAxis,
     ]
     
     /// Contains a list of all double-type fields.
@@ -840,6 +855,20 @@ enum SettingKeys: String, CaseIterable, Comparable, Hashable
     case PolygonSideCount = "PolygonSideCount"
     /// Boolean: The number of sides of a polygon is dependent on the current height value of the pixel.
     case PolygonSideCountVaries = "PolygonSideCountVaries"
+    /// String/Enum: How spheres are generated based on color prominence.
+    case SphereBehavior = "SphereBehavior"
+    /// String/Enum: The prominent axis for 2D polygons.
+    case Polygon2DAxis = "Polygon2DAxis"
+    /// String/Enum: The prominent axis for 2D rectangles.
+    case Rectangle2DAxis = "Rectangle2DAxis"
+    /// String/Enum: The prominent axis for 2D circles.
+    case Circle2DAxis = "Circle2DAxis"
+    /// String/Enum: The prominent axis for 2D ovals.
+    case Oval2DAxis = "Oval2DAxis"
+    /// String/Enum: The prominent axis for 2D diamonds.
+    case Diamond2DAxis = "Diamond2DAxis"
+    /// String/Enum: The prominent axis for 2D stars.
+    case Star2DAxis = "Star2DAxis"
     
     //Dynamic color settings.
     /// String: The type of dynamic color enabled (if any).
