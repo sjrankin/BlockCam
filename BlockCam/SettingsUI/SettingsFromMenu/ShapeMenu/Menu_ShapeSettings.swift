@@ -158,7 +158,9 @@ class Menu_ShapeSettings: UITableViewController, UIPickerViewDelegate, UIPickerV
             .ConeTopOptions, .HeightSource, .InvertHeight, .VerticalExaggeration, .InvertDynamicColorProcess,
             .DynamicColorAction, .DynamicColorType, .DynamicColorCondition, .SceneBackgroundColor, .SourceAsBackground,
             .CappedLineCapShape, .EllipseShape, .CharacterRandomFontSize, .CharacterFontName, .CharacterRandomRange,
-            .CharacterUsesRandomFont, .CharacterSeries, .StackedShapesSet, .CappedLineLineColor, .EnableShadows
+            .CharacterUsesRandomFont, .CharacterSeries, .StackedShapesSet, .CappedLineLineColor, .EnableShadows,
+            .SphereBehavior, .Polygon2DAxis, .Rectangle2DAxis, .Circle2DAxis, .Oval2DAxis, .Star2DAxis,
+            .Diamond2DAxis, .PolygonSideCount, .PolygonSideCountVaries
     ]
     
     @IBAction func HandleDonePressed(_ sender: Any)
@@ -279,6 +281,21 @@ class Menu_ShapeSettings: UITableViewController, UIPickerViewDelegate, UIPickerV
                 let Storyboard = UIStoryboard(name: "Secondary", bundle: nil)
                 if let Controller = Storyboard.instantiateViewController(identifier: "PolygonSettingsUI") as? Menu_PolygonSettings
                 {
+                    self.navigationController?.pushViewController(Controller, animated: true)
+            }
+            
+            case .Spheres:
+                let Storyboard = UIStoryboard(name: "Secondary", bundle: nil)
+                if let Controller = Storyboard.instantiateViewController(identifier: "SphereSettingsUI") as? Menu_SphereSettings
+                {
+                    self.navigationController?.pushViewController(Controller, animated: true)
+            }
+            
+            case .Polygon2D, .Rectangle2D, .Circle2D, .Oval2D, .Diamond2D, .Star2D:
+                let Storyboard = UIStoryboard(name: "Secondary", bundle: nil)
+                if let Controller = Storyboard.instantiateViewController(identifier: "TwoDSettingsUI") as? Menu_2DSettings
+                {
+                    Controller.TwoDShape = NodeShape
                     self.navigationController?.pushViewController(Controller, animated: true)
             }
             
