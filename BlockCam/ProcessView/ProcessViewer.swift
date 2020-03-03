@@ -73,9 +73,19 @@ class ProcessViewer: SCNView, SCNSceneRendererDelegate
         antialiasingMode = AntialiasMode!
     }
     
+    /// Returns a snapshot view of the scene.
+    /// - Returns: Image of the current scene.
     public func SnapShot() -> UIImage
     {
         #if true
+        if let L = self.layer.sublayers?.first
+        {
+            print("found sub layer")
+        }
+        else
+        {
+            print("No sub layers found")
+        }
         let Renderer = SCNRenderer(device: MTLCreateSystemDefaultDevice(), options: nil)
         Renderer.scene = self.scene!
         let RenderTime = TimeInterval(0)
@@ -299,12 +309,17 @@ class ProcessViewer: SCNView, SCNSceneRendererDelegate
         }
         LightNode?.light = SceneLight!
         LightNode?.position = SCNVector3(-5.0, 5.0, 10.0)
+        //SceneLight.zNear = 0.0
+        //SceneLight.zFar = 10000.0
         if Settings.GetBoolean(ForKey: .EnableShadows)
         {
             SceneLight.castsShadow = true
             SceneLight.shadowColor = UIColor.black.withAlphaComponent(0.80)
             SceneLight.shadowMode = .forward
             SceneLight.shadowRadius = 10.0
+            //SceneLight.shadowCascadeCount = 1
+            //SceneLight.shadowCascadeSplittingFactor = 0.09
+            //SceneLight.shadowMapSize = self.frame.size
         }
         self.scene?.rootNode.addChildNode(LightNode!)
     }
