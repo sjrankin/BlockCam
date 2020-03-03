@@ -19,7 +19,7 @@ class Menu_PolygonSettings: UITableViewController
         if SideCount < 3
         {
             SideCount = 3
-            Settings.SetInteger(4, ForKey: .PolygonSideCount)
+            Settings.SetInteger(3, ForKey: .PolygonSideCount)
         }
         if SideCount > 12
         {
