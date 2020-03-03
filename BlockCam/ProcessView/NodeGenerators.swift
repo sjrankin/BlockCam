@@ -384,6 +384,7 @@ extension Generator
     
     /// Generate and return a "flat" node (which is really just a barely extruded 2D shape).
     /// - Warning: If the shape is not recognized, a fatal error is generated.
+    /// - ToDo: Update size generation for .Diamond2D.
     /// - Parameter FlatShape: Determines which shape to return.
     /// - Parameter Promience: Prominence of the shape's color.
     /// - Parameter Side: Length of the side of the pixellated region.
@@ -396,10 +397,6 @@ extension Generator
         var Node: SCNNode2!
         switch FlatShape
         {
-            case .Square2D:
-                let Geo = SCNBox(width: Side * 1.5, height: Side * 1.5, length: 0.05, chamferRadius: 0.0)
-                Node = SCNNode2(geometry: Geo)
-            
             case .Rectangle2D:
                 let Geo = SCNBox(width: Side * 1.5, height: Side * 0.75, length: 0.05, chamferRadius: 0.0)
                 Node = SCNNode2(geometry: Geo)
@@ -415,14 +412,20 @@ extension Generator
                 Node = SCNNode2(geometry: Geo)
                 Node.scale = SCNEllipse.ReciprocalScale()
             
-            case .Triangle2D:
-                let Geo = SCNTriangle.Geometry(A: 0.05, B: 0.05, C: 0.05, Scale: 1.0)
-                Node = SCNNode2(geometry: Geo)
-            
             case .Star2D:
                 let Dim = Double(Side * 1.5)
                 let Geo = SCNStar.Geometry(VertexCount: 5, Height: Dim, Base: Dim * 0.5, ZHeight: 0.05)
                 Node = SCNNode2(geometry: Geo)
+            
+            case .Polygon2D:
+                let SideCount = Settings.GetInteger(ForKey: .PolygonSideCount)
+                let Geo = SCNnGon.Geometry(VertexCount: SideCount, Radius: Side * 1.5, Depth: 0.05)
+                Node = SCNNode2(geometry: Geo)
+            
+            case .Diamond2D:
+            let (Major, Minor) = GetEllipseParameters()
+            let Geo = SCNDiamond.Geometry(MajorAxis: Side * Major, MinorAxis: Side * Minor, Height: 0.05)
+            Node = SCNNode2(geometry: Geo)
             
             default:
                 Log.AbortMessage("Unexpected flat shape encountered: \(FlatShape.rawValue)", FileName: #file, FunctionName: #function)
@@ -513,10 +516,6 @@ extension Generator
                                            ZHeight: Double(Side))
                 Node = SCNNode(geometry: Geo)
             
-            case .Square2D:
-                let Geo = SCNBox(width: Side * 1.5, height: Side * 1.5, length: 0.05, chamferRadius: 0.0)
-                Node = SCNNode(geometry: Geo)
-            
             case .Circle2D:
                 let Geo = SCNCylinder(radius: Side * 0.85, height: 0.05)
                 Node = SCNNode(geometry: Geo)
@@ -527,10 +526,16 @@ extension Generator
                 let Geo = SCNEllipse.Geometry(MajorAxis: Side * Major, MinorAxis: Side * Minor, Height: 0.05)
                 Node = SCNNode(geometry: Geo)
                 Node?.scale = SCNEllipse.ReciprocalScale()
-            
-            case .Triangle2D:
-                let Geo = SCNnGon.Geometry(VertexCount: 3, Radius: Side, Depth: 0.05)
+
+            case .Diamond2D:
+                let (Major, Minor) = GetEllipseParameters()
+                let Geo = SCNDiamond.Geometry(MajorAxis: Side * Major, MinorAxis: Side * Minor, Height: 0.05)
                 Node = SCNNode(geometry: Geo)
+            
+            case .Polygon2D:
+                let SideCount = Settings.GetInteger(ForKey: .PolygonSideCount)
+                let Geo = SCNnGon.Geometry(VertexCount: SideCount, Radius: Side * 1.5, Depth: 0.05)
+                Node = SCNNode2(geometry: Geo)
             
             default:
                 Node = SCNNode(geometry: SCNBox(width: Side, height: Side, length: Side, chamferRadius: Side * 0.05))
