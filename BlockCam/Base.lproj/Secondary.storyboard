@@ -1945,7 +1945,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LKc-Dj-AzV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1835" y="2426"/>
+            <point key="canvasLocation" x="3461" y="2224"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="fLB-ok-8sE">
@@ -3041,7 +3041,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ll4-Jq-CqB">
-                                                    <rect key="frame" x="345" y="6" width="49" height="31"/>
+                                                    <rect key="frame" x="345" y="6" width="51" height="31"/>
                                                     <connections>
                                                         <action selector="HandleEnableShadowsChanged:" destination="x3f-fs-oer" eventType="primaryActionTriggered" id="yZb-0b-huW"/>
                                                     </connections>
