@@ -165,12 +165,14 @@ extension Generator
     /// - Parameter Prominence: The prominence of the shape.
     /// - Parameter DoXRotate: Returned value indicating whether the caller should rotate the shape on the X axis.
     /// - Parameter WithColor: The color needed by some shapes for variable sizes.
+    /// - Parameter ZLocation: New Z location for shapes that need to be moved.
     /// - Returns: SCNGeometry with the specified shape. Nil if `ForShape` is not handled by this function.
     public static func GenerateNodeGeometry(ForShape: NodeShapes, Side: CGFloat, Prominence: CGFloat, DoXRotate: inout Bool,
-                                            WithColor: UIColor) -> SCNGeometry?
+                                            WithColor: UIColor, ZLocation: inout CGFloat) -> SCNGeometry?
     {
         var FinalShape: SCNGeometry? = nil
         DoXRotate = false
+        ZLocation = 0.0
         
         switch ForShape
         {
@@ -226,7 +228,23 @@ extension Generator
                 DoXRotate = true
             
             case .Spheres:
-                FinalShape = SCNSphere(radius: Side * Prominence)
+                let Behavior = Settings.GetEnum(ForKey: .SphereBehavior, EnumType: SphereBehaviors.self,
+                                                Default: .Size)
+                var FinalRadius = Side
+                switch Behavior
+                {
+                    case .Size:
+                        FinalRadius = Side * Prominence
+                    
+                    case .Location:
+                        FinalRadius = Side * Prominence * 0.5
+                        ZLocation = Prominence * 2.0
+                    
+                    case .Both:
+                        FinalRadius = Side * Prominence * 0.85
+                        ZLocation = Prominence * 1.5
+                }
+                FinalShape = SCNSphere(radius: FinalRadius)
             
             case .Polygons:
                 var SideCount = Settings.GetInteger(ForKey: .PolygonSideCount)
@@ -423,9 +441,9 @@ extension Generator
                 Node = SCNNode2(geometry: Geo)
             
             case .Diamond2D:
-            let (Major, Minor) = GetEllipseParameters()
-            let Geo = SCNDiamond.Geometry(MajorAxis: Side * Major, MinorAxis: Side * Minor, Height: 0.05)
-            Node = SCNNode2(geometry: Geo)
+                let (Major, Minor) = GetEllipseParameters()
+                let Geo = SCNDiamond.Geometry(MajorAxis: Side * Major, MinorAxis: Side * Minor, Height: 0.05)
+                Node = SCNNode2(geometry: Geo)
             
             default:
                 Log.AbortMessage("Unexpected flat shape encountered: \(FlatShape.rawValue)", FileName: #file, FunctionName: #function)
@@ -526,7 +544,7 @@ extension Generator
                 let Geo = SCNEllipse.Geometry(MajorAxis: Side * Major, MinorAxis: Side * Minor, Height: 0.05)
                 Node = SCNNode(geometry: Geo)
                 Node?.scale = SCNEllipse.ReciprocalScale()
-
+            
             case .Diamond2D:
                 let (Major, Minor) = GetEllipseParameters()
                 let Geo = SCNDiamond.Geometry(MajorAxis: Side * Major, MinorAxis: Side * Minor, Height: 0.05)
