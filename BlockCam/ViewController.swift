@@ -635,6 +635,15 @@ class ViewController: UIViewController,
     
     /// Handle the save image button from the image processing view/mode. The current state of the processed image is saved
     /// along with the original image, if the user selected that option.
+    /// - Note:
+    ///    - There is a sub-second delay from when the user presses the save image button and the image
+    ///      actually being saved. This is because if the SCNView is showing statistics, we want to
+    ///      give the view time to turn off the sub-view before saving the image. After the image
+    ///      is saved, the statistics are returned to its original state at the time of this function call.
+    ///    - Due to the sub-second delay, it is possible for the user to move the rendered scene before
+    ///      the image is actually taken. It may end up being desirable to disable camera motion when
+    ///      this image executes and restore it afterwards.
+    /// - See: `DoSaveImage`
     /// - Parameter sender: Not used.
     @IBAction func HandleSaveProcessedImageButton(_ sender: Any)
     {
@@ -642,8 +651,21 @@ class ViewController: UIViewController,
         {
             Sounds.PlaySound(.Tock)
         }
-        let Image = OutputView.snapshot()
-//        let Image = OutputView.SnapShot()
+        let IsShowing = OutputView.showsStatistics
+        OutputView.showsStatistics = false
+        var Image: UIImage = UIImage()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5)
+        {
+             Image = self.OutputView.ToImage()
+            self.DoSaveImage(Image)
+            self.OutputView.showsStatistics = IsShowing
+        }
+    }
+    
+    /// Do the actual image save here. Intended to be called by `HandleSaveProcessedImageButton`.
+    /// - Parameter Image: The image to save.
+    func DoSaveImage(_ Image: UIImage)
+    {
         let SourceSize = "\(Generator.OriginalImageSize)"
         let ReducedSize = "\(Generator.ReducedImageSize)"
         let UserData = CurrentSettings.KVPs(AppendWith: [("Original size", SourceSize), ("Reduced size", ReducedSize)])
