@@ -537,7 +537,7 @@ class Generator
                                                                   DoXRotate: &DoXRotate, WithColor: Color)
                             
                             //Pseudo-2D chapes.
-                            case .Square2D, .Rectangle2D, .Circle2D, .Oval2D, .Star2D, .Triangle2D:
+                            case .Polygon2D, .Rectangle2D, .Circle2D, .Oval2D, .Star2D, .Diamond2D:
                                 AncillaryNode = GenerateFlatShape(FlatShape: ShapeSelector, Prominence: Prominence,
                                                                   Side: Side, Color: Color, ZLocation: &ZLocation)
                             
