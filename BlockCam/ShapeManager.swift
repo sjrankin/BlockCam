@@ -50,12 +50,13 @@ class ShapeManager
                           NodeShapes.RadiatingLines.rawValue, NodeShapes.PerpendicularSquares.rawValue,
                           NodeShapes.PerpendicularCircles.rawValue, NodeShapes.CombinedForRGB.rawValue,
                           NodeShapes.CombinedForHSB.rawValue]),
-            ("Complex", [NodeShapes.Letters.rawValue, NodeShapes.Characters.rawValue,
-                         NodeShapes.CharacterSets.rawValue, NodeShapes.Meshes.rawValue,
+            ("Complex", [NodeShapes.CharacterSets.rawValue, NodeShapes.Meshes.rawValue,
                          NodeShapes.HueVarying.rawValue, NodeShapes.SaturationVarying.rawValue,
                          NodeShapes.BrightnessVarying.rawValue]),
-            ("Flat Shapes", [NodeShapes.Square2D.rawValue, NodeShapes.Rectangle2D.rawValue, NodeShapes.Triangle2D.rawValue,
-                             NodeShapes.Circle2D.rawValue, NodeShapes.Oval2D.rawValue, NodeShapes.Star2D.rawValue]),
+            ("Flat Shapes", [NodeShapes.Polygon2D.rawValue, NodeShapes.Rectangle2D.rawValue,
+                             NodeShapes.Circle2D.rawValue, NodeShapes.Oval2D.rawValue,
+                             NodeShapes.Oval2D.rawValue, NodeShapes.Diamond2D.rawValue,
+                             NodeShapes.Star2D.rawValue]),
     ]
     /// Get the table of shape categories.
     public static var ShapeCategories: [(CategoryName: String, List: [String])]
@@ -119,7 +120,9 @@ class ShapeManager
                                             NodeShapes.Blocks, NodeShapes.RadiatingLines, NodeShapes.Cones, NodeShapes.Ellipses,
                                             NodeShapes.HueVarying, NodeShapes.SaturationVarying, NodeShapes.BrightnessVarying,
                                             NodeShapes.Characters, NodeShapes.CharacterSets, NodeShapes.StackedShapes,
-                                            NodeShapes.Polygons]
+                                            NodeShapes.Polygons, NodeShapes.Rectangle2D, NodeShapes.Polygon2D,
+                                            NodeShapes.Circle2D, NodeShapes.Oval2D, NodeShapes.Diamond2D, NodeShapes.Star2D,
+                                            NodeShapes.Spheres]
     /// Returns a table of node shapes that take options.
     public static var OptionsAvailable: [NodeShapes]
     {
@@ -141,8 +144,8 @@ class ShapeManager
     private static var _ValidStackingShapes = [NodeShapes.Blocks, NodeShapes.Spheres, NodeShapes.Capsules,
                                                NodeShapes.Cylinders, NodeShapes.Cones, NodeShapes.Lines,
                                                NodeShapes.Polygons, NodeShapes.Ellipses, NodeShapes.Stars,
-                                               NodeShapes.Square2D, NodeShapes.Circle2D, NodeShapes.Oval2D,
-                                               NodeShapes.Triangle2D]
+                                               NodeShapes.Polygon2D, NodeShapes.Circle2D, NodeShapes.Oval2D,
+                                               NodeShapes.Rectangle2D, NodeShapes.Star2D]
     
     /// Get the list of valid shapes for stacked shapes.
     public static func ValidShapesForStacking() -> [NodeShapes]
@@ -289,8 +292,8 @@ enum NodeShapes: String, CaseIterable
 {
     /// Block from SCNBox.
     case Blocks = "Blocks"
-    /// Triangles from SCNnGon.Geometry.
-    case Ellipses = "Ellipses"
+    /// Ellipses from custom geometry.
+    case Ellipses = "Ovals"
     /// Extruded diamond shapes - custom property (based on `.Ellipses`).
     case Diamonds = "Diamonds"
     /// Regular polygons.
@@ -345,18 +348,18 @@ enum NodeShapes: String, CaseIterable
     case CharacterSets = "Character Sets"
     /// Stacks of shaped oriented in the prominence dimension.
     case StackedShapes = "Stacked Shapes"
-    /// Semi-2D square.
-    case Square2D = "2D Square"
+    /// Two-dimensional polygons.
+    case Polygon2D = "2D Polygon"
     /// Semi-2D rectangle.
     case Rectangle2D = "2D Rectangle"
-    /// Semi-2D triangle.
-    case Triangle2D = "2D Triangle"
     /// Semi-2D circle.
     case Circle2D = "2D Circle"
     /// Semi-2D ellipse.
     case Oval2D = "2D Ellipse"
     /// Semi-2D star.
     case Star2D = "2D Star"
+    /// Semi-2D diamond.
+    case Diamond2D = "2D Diamond"
 }
 
 enum ShapeSeriesSet: String, CaseIterable
