@@ -126,7 +126,7 @@
 "LightModelSegmentPhong" = "Phong";
 "LightModelSegmentPhysical" = "Physical";
 
-"ShapeOptionsTitle" = "Shape Options";
+"ShapeOptionsTitle" = "Shapes";
 "ShapeOptionsShape" = "Shape";
 "ShapeOptionsButtonText" = "Edit Shape Options";
 "ShapeOptionsSize" = "Shape size";
