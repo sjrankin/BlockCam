@@ -160,7 +160,8 @@ class Menu_ShapeSettings: UITableViewController, UIPickerViewDelegate, UIPickerV
             .CappedLineCapShape, .EllipseShape, .CharacterRandomFontSize, .CharacterFontName, .CharacterRandomRange,
             .CharacterUsesRandomFont, .CharacterSeries, .StackedShapesSet, .CappedLineLineColor, .EnableShadows,
             .SphereBehavior, .Polygon2DAxis, .Rectangle2DAxis, .Circle2DAxis, .Oval2DAxis, .Star2DAxis,
-            .Diamond2DAxis, .PolygonSideCount, .PolygonSideCountVaries
+            .Diamond2DAxis, .PolygonSideCount, .PolygonSideCountVaries, .SpherePlusShape, .BoxPlusShape,
+            .RandomRadius, .RandomBaseShape, .RandomIntensity, .RandomShapeShowsBase
     ]
     
     @IBAction func HandleDonePressed(_ sender: Any)
@@ -296,6 +297,21 @@ class Menu_ShapeSettings: UITableViewController, UIPickerViewDelegate, UIPickerV
                 if let Controller = Storyboard.instantiateViewController(identifier: "TwoDSettingsUI") as? Menu_2DSettings
                 {
                     Controller.TwoDShape = NodeShape
+                    self.navigationController?.pushViewController(Controller, animated: true)
+            }
+            
+            case .SpherePlus, .BoxPlus:
+                let Storyboard = UIStoryboard(name: "Secondary", bundle: nil)
+                if let Controller = Storyboard.instantiateViewController(identifier: "ShapePlusSettingsUI") as? Menu_ShapePlusSettings
+                {
+                    Controller.PlusShape = NodeShape
+                    self.navigationController?.pushViewController(Controller, animated: true)
+            }
+            
+            case .Random:
+                let Storyboard = UIStoryboard(name: "Secondary", bundle: nil)
+                if let Controller = Storyboard.instantiateViewController(identifier: "RandomShapeSettingsUI") as? Menu_RandomShapeSettings
+                {
                     self.navigationController?.pushViewController(Controller, animated: true)
             }
             
