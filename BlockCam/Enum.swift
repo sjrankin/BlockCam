@@ -456,3 +456,34 @@ enum Axes: String, CaseIterable
     /// The Z axis.
     case Z = "Z"
 }
+
+/// Maximum radial distance for random shapes. Actual value determined at run-time.
+enum RandomRadiuses: String, CaseIterable
+{
+    /// Very close to the base location.
+    case VeryClose = "Very Close"
+    /// Close to the base location.
+    case Close = "Close"
+    /// Medium distance from the base location.
+    case Medium = "Medium"
+    /// Far from the base location.
+    case Far = "Far"
+    /// Very far from the base location.
+    case VeryFar = "Very Far"
+}
+
+/// Intensity of random shapes. Defines how many random sub-shapes are generated. Actual value
+/// is determined at run-time.
+enum RandomIntensities: String, CaseIterable
+{
+    /// Few shapes are used.
+    case VeryWeak = "Very Weak"
+    /// Not many shapes are used.
+    case Weak = "Weak"
+    /// Moderate number of shapes are used.
+    case Moderate = "Moderate"
+    /// Many shapes are used.
+    case Strong = "Strong"
+    /// Very many shapes are used.
+    case VeryStrong = "Very Strong"
+}
