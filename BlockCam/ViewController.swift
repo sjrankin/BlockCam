@@ -970,7 +970,9 @@ class ViewController: UIViewController,
                                      SettingKeys.CharacterSeries, SettingKeys.StackedShapesSet, SettingKeys.CappedLineLineColor,
                                      SettingKeys.PolygonSideCountVaries, SettingKeys.PolygonSideCount, SettingKeys.SphereBehavior,
                                      SettingKeys.Polygon2DAxis, SettingKeys.Rectangle2DAxis, SettingKeys.Circle2DAxis,
-                                     SettingKeys.Oval2DAxis, SettingKeys.Star2DAxis, SettingKeys.Diamond2DAxis]
+                                     SettingKeys.Oval2DAxis, SettingKeys.Star2DAxis, SettingKeys.Diamond2DAxis,
+                                     SettingKeys.SpherePlusShape, SettingKeys.BoxPlusShape, SettingKeys.RandomShapeShowsBase,
+                                     SettingKeys.RandomIntensity, SettingKeys.RandomBaseShape, SettingKeys.RandomRadius]
             let SceneOptions = [SettingKeys.SceneBackgroundColor]
             
             if Utilities.ArrayContains(AnyOf: SceneOptions, In: Working)
