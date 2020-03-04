@@ -553,7 +553,7 @@ class Generator
                             
                             //Combined shapes or shapes that need extra processing.
                             case .CappedLines, .RadiatingLines, .PerpendicularSquares, .PerpendicularCircles, .Ellipses,
-                                 .HueTriangles, .StackedShapes:
+                                 .HueTriangles, .StackedShapes, .SpherePlus, .BoxPlus, .Random:
                                 AncillaryNode = GenerateNode(ForShape: ShapeSelector, Prominence: Prominence, Color: Color,
                                                              Side: Side, ZLocation: &ZLocation, DoXRotate: &DoXRotate) 
                             
