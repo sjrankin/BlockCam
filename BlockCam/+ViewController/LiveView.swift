@@ -130,9 +130,11 @@ extension ViewController
     /// Set up the live view.
     func SetupLiveView()
     {
+        CaptureSession.beginConfiguration()
         VideoPreviewLayer = AVCaptureVideoPreviewLayer(session: CaptureSession)
         VideoPreviewLayer.videoGravity = .resizeAspect
         VideoPreviewLayer.connection?.videoOrientation = .portrait
+        CaptureSession.commitConfiguration()
         LiveView.layer.addSublayer(VideoPreviewLayer)
         DispatchQueue.global(qos: .userInitiated).async
             {
