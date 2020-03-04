@@ -151,6 +151,9 @@
 		17CE347E23C44CDE00E96E3F /* Queue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17CE347D23C44CDE00E96E3F /* Queue.swift */; };
 		17CE60C923D1EC8000058BFC /* NotoEmoji-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 17CE60C823D1EC7F00058BFC /* NotoEmoji-Regular.ttf */; };
 		17D1F8B923CC28CC00D3CE63 /* SCNFlower1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17D1F8B823CC28CC00D3CE63 /* SCNFlower1.swift */; };
+		17EA27D6240F542600BA0CC7 /* Menu_ShapePlusSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17EA27D5240F542600BA0CC7 /* Menu_ShapePlusSettings.swift */; };
+		17EA27D8240F853200BA0CC7 /* Menu_RandomShapeSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17EA27D7240F853200BA0CC7 /* Menu_RandomShapeSettings.swift */; };
+		17EA27DA240F974000BA0CC7 /* ShapeSettings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 17EA27D9240F974000BA0CC7 /* ShapeSettings.storyboard */; };
 		17EA5213237FB24B00313481 /* Emoji.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17EA5212237FB24B00313481 /* Emoji.swift */; };
 		17ED7B1A23E5ABEF00604016 /* Menu_FavoriteShapesSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17ED7B1923E5ABEE00604016 /* Menu_FavoriteShapesSettings.swift */; };
 		17F3C90923CEA84A009DCA7B /* Menu_CharacterSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17F3C90823CEA84A009DCA7B /* Menu_CharacterSettings.swift */; };
@@ -333,6 +336,9 @@
 		17CE347D23C44CDE00E96E3F /* Queue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Queue.swift; sourceTree = "<group>"; };
 		17CE60C823D1EC7F00058BFC /* NotoEmoji-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoEmoji-Regular.ttf"; sourceTree = "<group>"; };
 		17D1F8B823CC28CC00D3CE63 /* SCNFlower1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SCNFlower1.swift; sourceTree = "<group>"; };
+		17EA27D5240F542600BA0CC7 /* Menu_ShapePlusSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Menu_ShapePlusSettings.swift; sourceTree = "<group>"; };
+		17EA27D7240F853200BA0CC7 /* Menu_RandomShapeSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Menu_RandomShapeSettings.swift; sourceTree = "<group>"; };
+		17EA27D9240F974000BA0CC7 /* ShapeSettings.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ShapeSettings.storyboard; sourceTree = "<group>"; };
 		17EA5212237FB24B00313481 /* Emoji.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Emoji.swift; sourceTree = "<group>"; };
 		17ED7B1923E5ABEE00604016 /* Menu_FavoriteShapesSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Menu_FavoriteShapesSettings.swift; sourceTree = "<group>"; };
 		17F3C90823CEA84A009DCA7B /* Menu_CharacterSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Menu_CharacterSettings.swift; sourceTree = "<group>"; };
@@ -471,6 +477,8 @@
 				1772F753240CE3450071C1D2 /* Menu_PolygonSettings.swift */,
 				17499B7423CD81A000A5396A /* Menu_FlowerSettings.swift */,
 				17616122240E4B5000889ABA /* Menu_2DSettings.swift */,
+				17EA27D5240F542600BA0CC7 /* Menu_ShapePlusSettings.swift */,
+				17EA27D7240F853200BA0CC7 /* Menu_RandomShapeSettings.swift */,
 				17FA554B23B9F1CC00915B83 /* Menu_LetterSettings.swift */,
 				1797C4A923BA1AB400F32222 /* Menu_MeshSettings.swift */,
 				17616120240E46D800889ABA /* Menu_SphereSettings.swift */,
@@ -727,6 +735,7 @@
 				170A091E23E2BC6B0066F1EF /* ProgramSettings.storyboard */,
 				17B9E0DB23D449C1004DD106 /* Secondary.storyboard */,
 				170F263423D489B6008AEEEE /* AboutStoryboard.storyboard */,
+				17EA27D9240F974000BA0CC7 /* ShapeSettings.storyboard */,
 				170B3FF623B4A3A7009106EB /* FontManager.swift */,
 				178C9C2623B440590049139B /* Enum.swift */,
 				17499B7A23CDE42D00A5396A /* ShapeManager.swift */,
@@ -868,6 +877,7 @@
 				17BE8E7323767BE400262F81 /* Main.storyboard in Resources */,
 				170B3FF423B4A359009106EB /* NotoSerifCJKsc-Black.otf in Resources */,
 				17B9E0DD23D449C1004DD106 /* Secondary.storyboard in Resources */,
+				17EA27DA240F974000BA0CC7 /* ShapeSettings.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -927,6 +937,7 @@
 				178B540D238A3D3B000EA777 /* Extensions.swift in Sources */,
 				176F595A23DD66E8006514E6 /* MenuCommandController.swift in Sources */,
 				1771A9D723BC392E00B3294F /* Menu_AdvancedLightSettings.swift in Sources */,
+				17EA27D6240F542600BA0CC7 /* Menu_ShapePlusSettings.swift in Sources */,
 				17499B7B23CDE42D00A5396A /* ShapeManager.swift in Sources */,
 				17F9BE4723A655D10029B0A2 /* Utilities.swift in Sources */,
 				173C296423C86FD9004CE7E9 /* ScanningParameters.swift in Sources */,
@@ -943,6 +954,7 @@
 				17C04CA623A4C9AD00D870EE /* ImageSettings.swift in Sources */,
 				170BE51323A7BAB6003A5A72 /* SCNStar.swift in Sources */,
 				171726AB23963EF60078D76E /* ProcessInterface.swift in Sources */,
+				17EA27D8240F853200BA0CC7 /* Menu_RandomShapeSettings.swift in Sources */,
 				17499B7923CD913E00A5396A /* SCNFlower2.swift in Sources */,
 				176F595423DD4C4C006514E6 /* PopUpMenus.swift in Sources */,
 				170B3FE023B44AC8009106EB /* Sounds.swift in Sources */,
