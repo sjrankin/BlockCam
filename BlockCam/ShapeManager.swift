@@ -48,8 +48,9 @@ class ShapeManager
             ("Regular", [NodeShapes.Stars.rawValue, NodeShapes.Polygons.rawValue]),
             ("Combined", [NodeShapes.Lines.rawValue, NodeShapes.CappedLines.rawValue, NodeShapes.StackedShapes.rawValue,
                           NodeShapes.RadiatingLines.rawValue, NodeShapes.PerpendicularSquares.rawValue,
-                          NodeShapes.PerpendicularCircles.rawValue, NodeShapes.CombinedForRGB.rawValue,
-                          NodeShapes.CombinedForHSB.rawValue]),
+                          NodeShapes.SpherePlus.rawValue, NodeShapes.BoxPlus.rawValue,
+                          NodeShapes.PerpendicularCircles.rawValue, NodeShapes.Random.rawValue,
+                          NodeShapes.CombinedForRGB.rawValue, NodeShapes.CombinedForHSB.rawValue]),
             ("Complex", [NodeShapes.CharacterSets.rawValue, NodeShapes.Meshes.rawValue,
                          NodeShapes.HueVarying.rawValue, NodeShapes.SaturationVarying.rawValue,
                          NodeShapes.BrightnessVarying.rawValue]),
@@ -106,7 +107,8 @@ class ShapeManager
     [
         NodeShapes.CappedLines, NodeShapes.StackedShapes, NodeShapes.HueVarying, NodeShapes.SaturationVarying,
         NodeShapes.BrightnessVarying, NodeShapes.PerpendicularCircles, NodeShapes.PerpendicularSquares,
-        NodeShapes.CombinedForRGB, NodeShapes.CombinedForHSB, NodeShapes.Meshes, NodeShapes.RadiatingLines
+        NodeShapes.CombinedForRGB, NodeShapes.CombinedForHSB, NodeShapes.Meshes, NodeShapes.RadiatingLines,
+        NodeShapes.SpherePlus, NodeShapes.BoxPlus, NodeShapes.Random
     ]
     /// Get the table of shapes that are formed from more than one `SCNGeometry` node.
     /// - Returns: Table of shapes that require more than one `SCNGeometry` node.
@@ -122,7 +124,7 @@ class ShapeManager
                                             NodeShapes.Characters, NodeShapes.CharacterSets, NodeShapes.StackedShapes,
                                             NodeShapes.Polygons, NodeShapes.Rectangle2D, NodeShapes.Polygon2D,
                                             NodeShapes.Circle2D, NodeShapes.Oval2D, NodeShapes.Diamond2D, NodeShapes.Star2D,
-                                            NodeShapes.Spheres]
+                                            NodeShapes.Spheres, NodeShapes.SpherePlus, NodeShapes.BoxPlus, NodeShapes.Random]
     /// Returns a table of node shapes that take options.
     public static var OptionsAvailable: [NodeShapes]
     {
@@ -138,6 +140,47 @@ class ShapeManager
     public static func ShapeHasOptions(_ Shape: NodeShapes) -> Bool
     {
         return OptionsAvailable.contains(Shape)
+    }
+    
+    /// Holds valid extruded shapes for sphere + shapes.
+    private static var _ValidSpherePlusShapes =
+    [
+        NodeShapes.Blocks, NodeShapes.Spheres, NodeShapes.Cones, NodeShapes.Lines, NodeShapes.Capsules,
+        NodeShapes.Cylinders
+    ]
+    
+    /// Return all valid extruded shapes for sphere +.
+    /// - Returns: Array of shapes that can be extruded.
+    public static func GetValidSpherePlusShapes() -> [NodeShapes]
+    {
+        return _ValidStackingShapes
+    }
+    
+    /// Holds valid extruded shapes for box + shapes.
+    private static var _ValidBoxPlusShapes =
+    [
+        NodeShapes.Spheres, NodeShapes.Blocks, NodeShapes.Cones, NodeShapes.Lines, NodeShapes.Capsules,
+        NodeShapes.Pyramids, NodeShapes.Cylinders
+    ]
+    
+    /// Return all valid extruded shapes for box +.
+    /// - Returns: Array of shapes that can be extruded.
+    public static func GetValidBoxPlusShapes() -> [NodeShapes]
+    {
+        return _ValidBoxPlusShapes
+    }
+    
+    /// Holds valid random shapes.
+    private static var _ValidRandomShapes =
+    [
+        NodeShapes.Spheres, NodeShapes.Blocks, NodeShapes.Circle2D, NodeShapes.Rectangle2D
+    ]
+    
+    /// Return all valid random shapes.
+    /// - Returns: Array of shapes that can be used as random shapes.
+    public static func GetValidRandomShapes() -> [NodeShapes]
+    {
+        return _ValidRandomShapes
     }
     
     /// Holds a list of all shapes that are available for the stacked shape set.
@@ -360,6 +403,12 @@ enum NodeShapes: String, CaseIterable
     case Star2D = "2D Star"
     /// Semi-2D diamond.
     case Diamond2D = "2D Diamond"
+    /// Sphere plus an extruded shape.
+    case SpherePlus = "Sphere +"
+    /// Box plus an extruded shape.
+    case BoxPlus = "Box +"
+    /// Specified shape with randomness.
+    case Random = "Random"
 }
 
 enum ShapeSeriesSet: String, CaseIterable
