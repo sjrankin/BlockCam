@@ -159,6 +159,28 @@ extension Generator
         }
     }
     
+    /// Gets the current chamfer setting and returns a numeric equivalent.
+    /// - Returns: Numeric value based on the saved chamfer size.
+    public static func GetBaseChamfer() -> CGFloat
+    {
+        let Chamfer = Settings.GetEnum(ForKey: .BlockChamferSize, EnumType: BlockEdgeSmoothings.self,
+                                       Default: .None)
+        switch Chamfer
+        {
+            case .None:
+                return 0.0
+            
+            case .Small:
+                return 0.08
+            
+            case .Medium:
+                return 0.15
+            
+            case .Large:
+                return 0.25
+        }
+    }
+    
     /// Create simple node geometry for basic extruded shapes.
     /// - Parameter ForShape: The shape of the node whose geometry is returned.
     /// - Parameter Side: The length of the side of the geometry.
@@ -177,6 +199,8 @@ extension Generator
         switch ForShape
         {
             case .Blocks:
+                let Chamfer = GetBaseChamfer()
+                /*
                 var Chamfer: CGFloat = 0.0
                 if let ChamferValue = Settings.GetString(ForKey: .BlockChamferSize)
                 {
@@ -208,6 +232,7 @@ extension Generator
                     Settings.SetString(BlockEdgeSmoothings.None.rawValue, ForKey: .BlockChamferSize)
                     Chamfer = 0.0
                 }
+ */
                 FinalShape = SCNBox(width: Side, height: Side, length: Prominence * 2, chamferRadius: Chamfer)
             
             case .Cylinders:
@@ -611,6 +636,290 @@ extension Generator
         return StackNode
     }
     
+    /// Returns a shape to be used in conjection with a base shape for certain combined shapes.
+    /// - Warning: Generates a fatal error if `For` does not have an associated extruded shape.
+    /// - Parameter For: The base shape type.
+    /// - Returns: The extruded shape to add to the base shape.
+    public static func GetPlusShape(For: NodeShapes) -> NodeShapes
+    {
+        switch For
+        {
+            case .SpherePlus:
+                return Settings.GetEnum(ForKey: .SpherePlusShape, EnumType: NodeShapes.self,
+                                        Default: NodeShapes.Blocks)
+            
+            case .BoxPlus:
+                return Settings.GetEnum(ForKey: .BoxPlusShape, EnumType: NodeShapes.self,
+                                        Default: NodeShapes.Spheres)
+
+            default:
+                fatalError("Encountered unsupported shape (\(For.rawValue)) in GetPlusShape.")
+        }
+    }
+    
+    /// Creates a base shape along with an extruded shape added to it.
+    /// - Parameter ForShape: The base shape (must be a valid plus shape).
+    /// - Parameter Prominence: The color prominence for the shape.
+    /// - Parameter Color: The color of the shape.
+    /// - Parameter Side: The side value of the shape.
+    /// - Parameter ZLocation: If needed, new Z location for the returned shape.
+    /// - Parameter DoXRotate: Returns true if the shape needs to be rotated along the X axis.
+    /// - Returns: Node with a combined shapes.
+    public static func MakePlusShape(ForShape: NodeShapes, Prominence: CGFloat, Color: UIColor, Side: CGFloat,
+                                     ZLocation: inout CGFloat, DoXRotate: inout Bool) -> SCNNode2?
+    {
+        var AncillaryNode: SCNNode2? = nil
+        DoXRotate = false
+        
+        switch ForShape
+        {
+            case .SpherePlus:
+                let ExtrudedShape = GetPlusShape(For: ForShape)
+                let SphereHeight = Prominence * 2.0
+                let Chamfer = GetBaseChamfer()
+                let Sphere = SCNSphere(radius: Side / 2.0)
+                Sphere.firstMaterial?.diffuse.contents = Color
+                Sphere.firstMaterial?.specular.contents = UIColor.white
+                Sphere.firstMaterial?.lightingModel = GetLightModel()
+                let SphereNode = SCNNode(geometry: Sphere)
+                AncillaryNode = SCNNode2()
+                AncillaryNode?.addChildNode(SphereNode)
+                var Geo = SCNGeometry()
+                var ExZ: CGFloat = Side / 4.0
+                var RotateOnX = false
+                switch ExtrudedShape
+                {
+                    case .Spheres:
+                        Geo = SCNSphere(radius: Side * 0.25)
+                    
+                    case .Blocks:
+                        Geo = SCNBox(width: Side * 0.45, height: Side * 0.45, length: Side * 0.45,
+                                     chamferRadius: Chamfer * 0.75)
+                    
+                    case .Cones:
+                        Geo = SCNCone(topRadius: 0.0, bottomRadius: Side * 0.25, height: Side)
+                        RotateOnX = true
+                    
+                    case .Lines:
+                        Geo = SCNBox(width: 0.05, height: 0.05, length: Side * 2.5, chamferRadius: 0.0)
+                    
+                    case .Capsules:
+                        Geo = SCNCapsule(capRadius: Side * 0.25, height: Side * 2.5)
+                        RotateOnX = true
+                    
+                    case .Cylinders:
+                        Geo = SCNCylinder(radius: Side * 0.25, height: Side * 3.0)
+                        RotateOnX = true
+                    
+                    default:
+                        Geo = SCNSphere(radius: Side * 0.25)
+                }
+                Geo.firstMaterial?.diffuse.contents = Color
+                Geo.firstMaterial?.specular.contents = UIColor.white
+                Geo.firstMaterial?.lightingModel = GetLightModel()
+                let OtherNode = SCNNode(geometry: Geo)
+                if RotateOnX
+                {
+                    OtherNode.eulerAngles = SCNVector3(90.0 * CGFloat.pi / 180.0, 0.0, 0.0)
+                }
+                OtherNode.position = SCNVector3(0.0, 0.0, ExZ)
+                AncillaryNode!.addChildNode(OtherNode)
+                ZLocation = SphereHeight
+            
+            case .BoxPlus:
+                let ExtrudedShape = GetPlusShape(For: ForShape)
+                let BoxHeight = Prominence * 2.0
+                let Chamfer = GetBaseChamfer()
+                let Box = SCNBox(width: Side, height: Side, length: BoxHeight, chamferRadius: Chamfer)
+                Box.firstMaterial?.diffuse.contents = Color
+                Box.firstMaterial?.specular.contents = UIColor.white
+                Box.firstMaterial?.lightingModel = GetLightModel()
+                let BoxNode = SCNNode(geometry: Box)
+                BoxNode.position = SCNVector3(0.0, 0.0, 0.0)
+                AncillaryNode = SCNNode2()
+                AncillaryNode?.addChildNode(BoxNode)
+                var Geo = SCNGeometry()
+                var ExZ: CGFloat = 0.0
+                var RotateOnX = false
+                switch ExtrudedShape
+                {
+                    case .Spheres:
+                        ExZ = BoxHeight / 2.0
+                        Geo = SCNSphere(radius: Side * 0.15)
+                    
+                    case .Blocks:
+                        ExZ = BoxHeight / 2.0
+                        Geo = SCNBox(width: Side * 0.65, height: Side * 0.65, length: Side * 0.65,
+                                     chamferRadius: Chamfer * 0.75)
+                    
+                    case .Cones:
+                        ExZ = BoxHeight / 2.0
+                        Geo = SCNCone(topRadius: 0.0, bottomRadius: Side * 0.25, height: Side)
+                        RotateOnX = true
+                    
+                    case .Lines:
+                        ExZ = BoxHeight / 2.0
+                        Geo = SCNBox(width: 0.05, height: 0.05, length: Side * 2.5, chamferRadius: 0.0)
+                    
+                    case .Capsules:
+                        ExZ = BoxHeight / 2.0
+                        Geo = SCNCapsule(capRadius: Side * 0.25, height: Side)
+                        RotateOnX = true
+                    
+                    case .Pyramids:
+                        ExZ = BoxHeight / 2.0
+                        Geo = SCNPyramid(width: Side * 0.65, height: Side, length: Side * 0.65)
+                        RotateOnX = true
+                    
+                    case .Cylinders:
+                        ExZ = BoxHeight / 2.0
+                        Geo = SCNCylinder(radius: Side * 0.25, height: Side * 2.0)
+                        RotateOnX = true
+                    
+                    default:
+                        ExZ = BoxHeight / 2.0
+                        Geo = SCNSphere(radius: Side * 0.15)
+                }
+                Geo.firstMaterial?.diffuse.contents = Color
+                Geo.firstMaterial?.specular.contents = UIColor.white
+                Geo.firstMaterial?.lightingModel = GetLightModel()
+                let OtherNode = SCNNode(geometry: Geo)
+                if RotateOnX
+                {
+                    OtherNode.eulerAngles = SCNVector3(90.0 * CGFloat.pi / 180.0, 0.0, 0.0)
+                }
+                OtherNode.position = SCNVector3(0.0, 0.0, ExZ)
+                AncillaryNode!.addChildNode(OtherNode)
+                ZLocation = 0.0
+            
+            default:
+                break
+        }
+        return AncillaryNode
+    }
+    
+    public static func GetRandomPosition(Radial: CGFloat) -> SCNVector3
+    {
+        let X = CGFloat.random(in: -Radial ... Radial)
+        let Y = CGFloat.random(in: -Radial ... Radial)
+        let Z = CGFloat.random(in: -Radial ... Radial)
+        return SCNVector3(X, Y, Z)
+    }
+    
+    public static func MakeRandomShape(Prominence: CGFloat, Color: UIColor, Side: CGFloat,
+                                       ZLocation: inout CGFloat) -> SCNNode2
+    {
+        let RandomShape = Settings.GetEnum(ForKey: .RandomBaseShape, EnumType: NodeShapes.self,
+                                           Default: .Spheres)
+        let ShowBaseShape = Settings.GetBoolean(ForKey: .RandomShapeShowsBase)
+        let Intensity = Settings.GetEnum(ForKey: .RandomIntensity, EnumType: RandomIntensities.self,
+                                         Default: .Moderate)
+        let Radius = Settings.GetEnum(ForKey: .RandomRadius, EnumType: RandomRadiuses.self,
+                                      Default: .Medium)
+        var Radial = 1.0
+        switch Radius
+        {
+            case .VeryClose:
+                Radial = 1.5
+            
+            case .Close:
+                Radial = 2.0
+            
+            case .Medium:
+                Radial = 3.0
+            
+            case .Far:
+                Radial = 3.5
+            
+            case .VeryFar:
+                Radial = 5.0
+        }
+        var Count = 6
+        switch Intensity
+        {
+            case .VeryWeak:
+            Count = 3
+            
+            case .Weak:
+            Count = 5
+            
+            case .Moderate:
+            Count = 8
+            
+            case .Strong:
+            Count = 12
+            
+            case .VeryStrong:
+            Count = 16
+        }
+        
+        let Parent = SCNNode2()
+        if ShowBaseShape
+        {
+            var Geo = SCNGeometry()
+            switch RandomShape
+            {
+                case .Spheres:
+                    Geo = SCNSphere(radius: Side / 2.0)
+                
+                case .Blocks:
+                Geo = SCNBox(width: Side, height: Side, length: Side, chamferRadius: GetBaseChamfer())
+                
+                case .Circle2D:
+                    Geo = SCNCylinder(radius: Side / 2.0, height: 0.05)
+                
+                case .Rectangle2D:
+                    Geo = SCNBox(width: Side, height: Side * 0.75, length: 0.05, chamferRadius: 0.0)
+                
+                default:
+                    fatalError("Unexpected shape (\(RandomShape.rawValue)) found in MakeRandomShape")
+            }
+            Geo.firstMaterial?.diffuse.contents = Color
+            Geo.firstMaterial?.specular.contents = UIColor.white
+            Geo.firstMaterial?.lightingModel = GetLightModel()
+            let Center = SCNNode(geometry: Geo)
+            if RandomShape == .Circle2D
+            {
+                Center.eulerAngles = SCNVector3(90.0 * CGFloat.pi / 180.0, 0.0, 0.0)
+            }
+            Parent.addChildNode(Center)
+        }
+        for _ in 0 ... Count
+        {
+            let HalfSide = Side * 0.5
+            var Geo = SCNGeometry()
+            switch RandomShape
+            {
+                case .Spheres:
+                    Geo = SCNSphere(radius: HalfSide / 2.0)
+                
+                case .Blocks:
+                    Geo = SCNBox(width: HalfSide, height: HalfSide, length: HalfSide,
+                                 chamferRadius: GetBaseChamfer() * 0.5)
+                
+                case .Circle2D:
+                    Geo = SCNCylinder(radius: HalfSide / 2.0, height: 0.05)
+                
+                case .Rectangle2D:
+                    Geo = SCNBox(width: HalfSide, height: HalfSide * 0.75, length: 0.05, chamferRadius: 0.0)
+                
+                default:
+                    fatalError("Unexpected shape (\(RandomShape.rawValue)) found in MakeRandomShape")
+            }
+            Geo.firstMaterial?.diffuse.contents = Color
+            Geo.firstMaterial?.specular.contents = UIColor.white
+            Geo.firstMaterial?.lightingModel = GetLightModel()
+            let Child = SCNNode(geometry: Geo)
+            if RandomShape == .Circle2D
+            {
+                Child.eulerAngles = SCNVector3(90.0 * CGFloat.pi / 180.0, 0.0, 0.0)
+            }
+            Child.position = GetRandomPosition(Radial: CGFloat(Radial))
+            Parent.addChildNode(Child)
+        }
+        return Parent
+    }
+    
     /// Create a node of combined nodes for a given shape type.
     /// - Parameter ForShape: The shape of the node whose node is returned.
     /// - Parameter Side: The length of the side of the node.
@@ -628,8 +937,16 @@ extension Generator
         
         switch ForShape
         {
+            case .Random:
+                return MakeRandomShape(Prominence: Prominence, Color: Color, Side: Side,
+                                       ZLocation: &ZLocation)
+            case .SpherePlus, .BoxPlus:
+                return MakePlusShape(ForShape: ForShape, Prominence: Prominence, Color: Color,
+                                     Side: Side, ZLocation: &ZLocation, DoXRotate: &DoXRotate)
+            
             case .StackedShapes:
-                return MakeStackShape(Prominence: Prominence, Color: Color, Side: Side, ZLocation: &ZLocation, DoXRotate: &DoXRotate)
+                return MakeStackShape(Prominence: Prominence, Color: Color, Side: Side,
+                                      ZLocation: &ZLocation, DoXRotate: &DoXRotate)
             
             case .Ellipses:
                 let (Major, Minor) = GetEllipseParameters()
