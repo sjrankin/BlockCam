@@ -196,6 +196,12 @@ class Settings
         UserDefaults.standard.set(Axes.X.rawValue, forKey: SettingKeys.Diamond2DAxis.rawValue)
         UserDefaults.standard.set(Axes.X.rawValue, forKey: SettingKeys.Star2DAxis.rawValue)
         UserDefaults.standard.set(Axes.X.rawValue, forKey: SettingKeys.Rectangle2DAxis.rawValue)
+        UserDefaults.standard.set(NodeShapes.Blocks.rawValue, forKey: SettingKeys.SpherePlusShape.rawValue)
+        UserDefaults.standard.set(NodeShapes.Spheres.rawValue, forKey: SettingKeys.BoxPlusShape.rawValue)
+        UserDefaults.standard.set(NodeShapes.Spheres.rawValue, forKey: SettingKeys.RandomBaseShape.rawValue)
+        UserDefaults.standard.set(RandomIntensities.Moderate.rawValue, forKey: SettingKeys.RandomIntensity.rawValue)
+        UserDefaults.standard.set(RandomRadiuses.Medium.rawValue, forKey: SettingKeys.RandomRadius.rawValue)
+        UserDefaults.standard.set(true, forKey: SettingKeys.RandomShapeShowsBase.rawValue)
     }
     
     /// Call all subscribers in the notification list to let them know a setting will be changed.
@@ -660,6 +666,7 @@ class Settings
             SettingKeys.ShowTapFeedback,
             SettingKeys.EnableShadows,
             SettingKeys.PolygonSideCountVaries,
+            SettingKeys.RandomShapeShowsBase,
     ]
     
     /// Contains a list of all integer-type fields.
@@ -741,6 +748,11 @@ class Settings
             SettingKeys.Oval2DAxis,
             SettingKeys.Diamond2DAxis,
             SettingKeys.Star2DAxis,
+            SettingKeys.SpherePlusShape,
+            SettingKeys.BoxPlusShape,
+            SettingKeys.RandomBaseShape,
+            SettingKeys.RandomRadius,
+            SettingKeys.RandomIntensity,
     ]
     
     /// Contains a list of all double-type fields.
@@ -869,6 +881,18 @@ enum SettingKeys: String, CaseIterable, Comparable, Hashable
     case Diamond2DAxis = "Diamond2DAxis"
     /// String/Enum: The prominent axis for 2D stars.
     case Star2DAxis = "Star2DAxis"
+    /// String/Enum: The shape to use for sphere + shapes.
+    case SpherePlusShape = "SpherePlusShape"
+    /// String/Enum: The shape to use for box + shapes.
+    case BoxPlusShape = "BoxPlusShape"
+    /// String/Enum: Base shape for random shapes.
+    case RandomBaseShape = "RandomBaseShape"
+    /// String/Enum: Intensity of the randomness.
+    case RandomIntensity = "RandomIntensity"
+    /// String/Enum: Radial distances for the randomness.
+    case RandomRadius = "RandomRadius"
+    /// Boolean: If true, random shapes show the base shape as well.
+    case RandomShapeShowsBase = "RandomShapeShowsBase"
     
     //Dynamic color settings.
     /// String: The type of dynamic color enabled (if any).
