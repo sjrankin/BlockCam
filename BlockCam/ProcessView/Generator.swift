@@ -334,26 +334,23 @@ class Generator
         let SatShapes = GetShapeList(ForKey: .SaturationShapeList)
         let BriShapes = GetShapeList(ForKey: .BrightnessShapeList)
         
-        var VEx = Settings.GetString(ForKey: .VerticalExaggeration)
-        if VEx == nil
+        var VerticalExaggeration: CGFloat = 0.5
+        switch Settings.GetEnum(ForKey: .VerticalExaggeration, EnumType: VerticalExaggerations.self,
+                         Default: VerticalExaggerations.Medium)
         {
-            VEx = "Medium"
-        }
-        var VerticalExaggeration: CGFloat = 1.0
-        switch VEx!
-        {
-            case "Low":
+            case .Low:
                 VerticalExaggeration = 1.0
             
-            case "Medium":
+            case .Medium:
                 VerticalExaggeration = 2.0
             
-            case "High":
+            case .High:
                 VerticalExaggeration = 4.0
             
             default:
-                break
+            break
         }
+        
         let HeightSource = HeightSources(rawValue: RawSource!)!
         let Side: CGFloat = 0.5
         
@@ -408,6 +405,10 @@ class Generator
         Delegate?.SubStatus(0.0, UIColor.systemOrange)
         let Total: Double = Double(VBlocks * HBlocks)
         var Count = 0
+        #if true
+        let WorkingShape = Settings.GetEnum(ForKey: .ShapeType, EnumType: NodeShapes.self,
+                                            Default: NodeShapes.Blocks)
+        #else
         var WorkingShape = NodeShapes.Blocks
         if let ShapeValue = Settings.GetString(ForKey: .ShapeType)
         {
@@ -426,6 +427,7 @@ class Generator
             WorkingShape = .Blocks
             Settings.SetString(NodeShapes.Blocks.rawValue, ForKey: .ShapeType)
         }
+        #endif
         
         for Y in 0 ... VBlocks - 1
         {
@@ -648,10 +650,25 @@ class Generator
         return WorkingNode
     }
     
+    /// Map from internally defined material lighting models to SceneKit-defined material lighting models.
+    private static let ModelMap =
+    [
+        MaterialLightingTypes.Blinn: SCNMaterial.LightingModel.blinn,
+        MaterialLightingTypes.Constant: SCNMaterial.LightingModel.constant,
+        MaterialLightingTypes.Lambert: SCNMaterial.LightingModel.lambert,
+        MaterialLightingTypes.Phong: SCNMaterial.LightingModel.phong,
+        MaterialLightingTypes.PhysicallyBased: SCNMaterial.LightingModel.physicallyBased
+    ]
+    
     /// Return the lighting model based on the contents of user settings.
     /// - Returns: Lighting model to use.
     public static func GetLightModel() -> SCNMaterial.LightingModel
     {
+        #if true
+        let Model = Settings.GetEnum(ForKey: .LightingModel, EnumType: MaterialLightingTypes.self,
+                                     Default: .Lambert)
+        return ModelMap[Model]!
+        #else
         var LightModel = SCNMaterial.LightingModel.phong
         if let LightModelRaw = Settings.GetString(ForKey: SettingKeys.LightingModel)
         {
@@ -687,6 +704,7 @@ class Generator
             Settings.SetString(MaterialLightingTypes.Phong.rawValue, ForKey: SettingKeys.LightingModel)
             return .phong
         }
+        #endif
     }
     
     /// Resizes a UIImage to the passed target size.
@@ -764,127 +782,11 @@ class Generator
         return ResizeImage(Image: Image, Longest: MaxDimension)
     }
     
-    /// Dump settings used to create images. Calling this function has no effect if the **#DEBUG** flag is false/not defined. This
-    /// is to help with performance for the release version. Additionally, most of the same information is stored with processed
-    /// images in XMP metadata with each image.
-    public static func LogSettings()
-    {
-        #if false
-        if !Settings.GetBoolean(ForKey: .LogImageSettings)
-        {
-            return
-        }
-        var CurrentShape = NodeShapes.Blocks
-        if let RawShape = Settings.GetString(ForKey: .ShapeType)
-        {
-            if let FinalShape = NodeShapes(rawValue: RawShape)
-            {
-                CurrentShape = FinalShape
-            }
-        }
-        let Parent = Log.Message("Image process settings:")
-        Log.ChildMessage(Parent: Parent, "  Block size: \(Settings.GetInteger(ForKey: .BlockSize))")
-        let ShapeParent = Log.ChildMessage(Parent: Parent, "  Node shape: \((Settings.GetString(ForKey: .ShapeType)!))")
-        switch CurrentShape
-        {
-            case .Blocks:
-                Log.ChildMessage(Parent: ShapeParent, "    Chamfer size: \((Settings.GetString(ForKey: .BlockChamferSize)!))")
-            
-            case .CappedLines:
-                Log.ChildMessage(Parent: ShapeParent, "    Capped line ball location: \((Settings.GetString(ForKey: .CappedLineBallLocation)!))")
-                Log.ChildMessage(Parent: ShapeParent, "    Cap shape: \((Settings.GetString(ForKey: .CappedLineCapShape))!)")
-            
-            case .Meshes:
-                Log.ChildMessage(Parent: ShapeParent, "    Mesh center dot size: \((Settings.GetString(ForKey: .MeshDotSize)!))")
-                Log.ChildMessage(Parent: ShapeParent, "    Mesh line thickness: \((Settings.GetString(ForKey: .MeshLineThickness)!))")
-            
-            case .Stars:
-                Log.ChildMessage(Parent: ShapeParent, "    Star apex count: \(Settings.GetInteger(ForKey: .StarApexCount))")
-                Log.ChildMessage(Parent: ShapeParent, "    Star apexes increase: \(Settings.GetBoolean(ForKey: .IncreaseStarApexesWithProminence))")
-            
-            case .Letters:
-                Log.ChildMessage(Parent: ShapeParent, "    Fully extrude letters: \(Settings.GetBoolean(ForKey: .FullyExtrudeLetters))")
-                Log.ChildMessage(Parent: ShapeParent, "    Letter smoothness: \((Settings.GetString(ForKey: .LetterSmoothness)!))")
-                Log.ChildMessage(Parent: ShapeParent, "    Letter font: \((Settings.GetString(ForKey: .LetterFont)!))")
-                Log.ChildMessage(Parent: ShapeParent, "    Font size: \(Settings.GetInteger(ForKey: .FontSize))")
-                Log.ChildMessage(Parent: ShapeParent, "    Random source: \((Settings.GetString(ForKey: .RandomCharacterSource))!)")
-            
-            case .Cones:
-                Log.ChildMessage(Parent: ShapeParent, "    Invert cone: \(Settings.GetBoolean(ForKey: .ConeIsInverted))")
-                Log.ChildMessage(Parent: ShapeParent, "    Cone top radius: \((Settings.GetString(ForKey: .ConeTopOptions))!)")
-                Log.ChildMessage(Parent: ShapeParent, "    Cone base radius: \((Settings.GetString(ForKey: .ConeBottomOptions))!)")
-            
-            case .CharacterSets:
-                Log.ChildMessage(Parent: ShapeParent, "    Set: \((Settings.GetString(ForKey: .CharacterSeries))!)")
-            
-            case .Characters:
-                Log.ChildMessage(Parent: ShapeParent, "    Fully extrude characters: \(Settings.GetBoolean(ForKey: .FullyExtrudeLetters))")
-                Log.ChildMessage(Parent: ShapeParent, "    Letter smoothness: \((Settings.GetString(ForKey: .LetterSmoothness)!))")
-                Log.ChildMessage(Parent: ShapeParent, "    Character font name: \((Settings.GetString(ForKey: .CharacterFontName)!))")
-                Log.ChildMessage(Parent: ShapeParent, "    Character random font size: \(Settings.GetBoolean(ForKey: .CharacterRandomFontSize))")
-                Log.ChildMessage(Parent: ShapeParent, "    Character font is random: \(Settings.GetBoolean(ForKey: .CharacterUsesRandomFont))")
-            
-            case .Ellipses:
-                Log.ChildMessage(Parent: ShapeParent, "    Ellipse shape: \((Settings.GetString(ForKey: .EllipseShape))!)")
-            
-            case .Flowers:
-                Log.ChildMessage(Parent: ShapeParent, "    Petal count: \(Settings.GetInteger(ForKey: .FlowerPetalCount))")
-                Log.ChildMessage(Parent: ShapeParent, "    Petal count increase: \(Settings.GetBoolean(ForKey: .IncreasePetalCountWithProminence))")
-            
-            case .HueVarying:
-                Log.ChildMessage(Parent: ShapeParent, "    Hue shape list: \((Settings.GetString(ForKey: .HueShapeList))!)")
-            
-            case .SaturationVarying:
-                Log.ChildMessage(Parent: ShapeParent, "    Saturation shape list: \((Settings.GetString(ForKey: .SaturationShapeList))!)")
-            
-            case .BrightnessVarying:
-                Log.ChildMessage(Parent: ShapeParent, "    Brightness shape list: \((Settings.GetString(ForKey: .BrightnessShapeList))!)")
-            
-            case .RadiatingLines:
-                Log.ChildMessage(Parent: ShapeParent, "    Line thickness: \((Settings.GetString(ForKey: .RadiatingLineThickness))!)")
-                Log.ChildMessage(Parent: ShapeParent, "    Line count: \(Settings.GetInteger(ForKey: .RadiatingLineCount))")
-            
-            default:
-                break
-        }
-        let HeightParent = Log.ChildMessage(Parent: Parent, "  Extrusion:")
-        Log.ChildMessage(Parent: HeightParent, "    Invert height: \(Settings.GetBoolean(ForKey: .InvertHeight))")
-        Log.ChildMessage(Parent: HeightParent, "    Height source: \((Settings.GetString(ForKey: .HeightSource)!))")
-        Log.ChildMessage(Parent: HeightParent, "    Vertical exaggeration: \((Settings.GetString(ForKey: .VerticalExaggeration)!))")
-        let VidParent = Log.ChildMessage(Parent: Parent, "  Video:")
-        Log.ChildMessage(Parent: VidParent, "    Video FPS: \(Settings.GetInteger(ForKey: .VideoFPS))")
-        Log.ChildMessage(Parent: VidParent, "    Video dimensions: \((Settings.GetString(ForKey: .VideoDimensions)!))")
-        Log.ChildMessage(Parent: VidParent, "    Video block size: \(Settings.GetInteger(ForKey: .VideoBlockSize))")
-        let LightParent = Log.ChildMessage(Parent: Parent, "  Lighting:")
-        Log.ChildMessage(Parent: LightParent, "    Light color: \((Settings.GetString(ForKey: .LightColor)!))")
-        Log.ChildMessage(Parent: LightParent, "    Light type: \((Settings.GetString(ForKey: .LightType)!))")
-        Log.ChildMessage(Parent: LightParent, "    Material lighting model: \((Settings.GetString(ForKey: .LightingModel)!))")
-        let PerfParent = Log.ChildMessage(Parent: Parent, "  Quality/Performance:")
-        Log.ChildMessage(Parent: PerfParent, "    Maximum image dimension: \(Settings.GetInteger(ForKey: .MaxImageDimension))")
-        Log.ChildMessage(Parent: PerfParent, "    Use Metal: \(Settings.GetBoolean(ForKey: .UseMetal))")
-        Log.ChildMessage(Parent: PerfParent, "    Antialiasing mode: \(Settings.GetInteger(ForKey: .AntialiasingMode))")
-        Log.ChildMessage(Parent: PerfParent, "    Image size contraint: \((Settings.GetString(ForKey: .ImageSizeConstraints)!))")
-        Log.ChildMessage(Parent: PerfParent, "    Input quality: \(Settings.GetInteger(ForKey: .InputQuality))")
-        let ResVParent = Log.ChildMessage(Parent: Parent, "  3D View:")
-        Log.ChildMessage(Parent: ResVParent, "    Initial best fit: \(Settings.GetBoolean(ForKey: .InitialBestFit))")
-        Log.ChildMessage(Parent: ResVParent, "    Best fit offset: \(Settings.GetDouble(ForKey: .BestFitOffset))")
-        let LastImg = Log.ChildMessage(Parent: Parent, "  Last image size:")
-        Log.ChildMessage(Parent: LastImg, "    Source size: \(OriginalImageSize)")
-        Log.ChildMessage(Parent: LastImg, "    Reduced size: \(ReducedImageSize)")
-        let DynColor = Log.ChildMessage(Parent: Parent, "  Dynamic colors:")
-        Log.ChildMessage(Parent: DynColor, "    Dynamic color type: \((Settings.GetString(ForKey: .DynamicColorType))!)")
-        Log.ChildMessage(Parent: DynColor, "    Dynamic color action: \((Settings.GetString(ForKey: .DynamicColorAction))!)")
-        Log.ChildMessage(Parent: DynColor, "    Dynamic color condition: \((Settings.GetString(ForKey: .DynamicColorCondition))!)")
-        Log.ChildMessage(Parent: DynColor, "    Invert dynamic color conditional: \(Settings.GetBoolean(ForKey: .InvertDynamicColorProcess))")
-        #endif
-        }
-    
     /// Update an image in-place. Certain settings changes do not require regengeration of shape nodes. To take advantage of that
     /// when those settings are changed, this function will change attributes of each node in-place.
     /// - Parameter InView: The view whose scene nodes will be updated.
     public static func UpdateImage(_ InView: ProcessViewer)
     {
-        LogSettings()
         autoreleasepool
             {
                 if Settings.GetBoolean(ForKey: .EnableImageProcessingSound)
@@ -909,6 +811,9 @@ class Generator
                     }
                 }
                 
+                #if true
+                let Chamfer = GetBaseChamfer()
+                #else
                 var Chamfer: CGFloat = 0.0
                 if let ChamferValue = Settings.GetString(ForKey: .BlockChamferSize)
                 {
@@ -940,14 +845,11 @@ class Generator
                     Settings.SetString(BlockEdgeSmoothings.None.rawValue, ForKey: .BlockChamferSize)
                     Chamfer = 0.0
                 }
+                #endif
                 
-                let RawShape = Settings.GetString(ForKey: .ShapeType)
-                if RawShape == nil
-                {
-                    return
-                }
-                if let TheShape = NodeShapes(rawValue: RawShape!)
-                {
+                let TheShape = Settings.GetEnum(ForKey: .ShapeType, EnumType: NodeShapes.self,
+                                                Default: NodeShapes.Blocks)
+
                     for ChildNode in MainNode!.childNodes
                     {
                         switch TheShape
@@ -971,7 +873,6 @@ class Generator
                             default:
                                 break
                         }
-                    }
                 }
         }
     }
@@ -982,7 +883,6 @@ class Generator
     /// - Parameter With: The set of pixels created earlier and stored for use.
     public static func MakeImage(_ InView: ProcessViewer, With Pixels: [[UIColor]])
     {
-        LogSettings()
         autoreleasepool
             {
                 Delegate?.ShowIndefiniteIndicator()
@@ -1255,7 +1155,6 @@ class Generator
     public static func MakeImage(_ InView: ProcessViewer, _ SomeImage: UIImage,
                                  BlockSize: CGFloat, Frame: Int? = nil, ForVideo: Bool = false)
     {
-        LogSettings()
         autoreleasepool
             {
                 Delegate?.ShowIndefiniteIndicator()
@@ -1555,9 +1454,19 @@ class Generator
         return CFTimeInterval(DurationTime)
     }
     
+    //MARK: - Global variables and variables used in extensions.
+    
     static var ExpectedFrameCount = -1
     static var VideoIncrement: Double = 0
     static var VideoStatusHandler: ((Double, UIColor, String) -> ())?
     static var VideoCompletionHandler: ((Bool) -> ())?
     static var VideoFrameSize: CGSize = .zero
+    static let SmoothMap: [LetterSmoothnesses: CGFloat] =
+        [
+            .Roughest: 1.2,
+            .Rough: 0.8,
+            .Medium: 0.5,
+            .Smooth: 0.25,
+            .Smoothest: 0.0
+    ]
 }
