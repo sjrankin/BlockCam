@@ -33,6 +33,20 @@ class Menu_RadiatingLinesSettings: UITableViewController
             default:
                 LineCountSelection.selectedSegmentIndex = 1
         }
+        #if true
+        switch Settings.GetEnum(ForKey: .RadiatingLineThickness, EnumType: RadiatingLineThicknesses.self,
+        Default: .Thin)
+        {
+            case .Thin:
+                ThicknessSelection.selectedSegmentIndex = 0
+            
+            case .Medium:
+                ThicknessSelection.selectedSegmentIndex = 1
+            
+            case .Thick:
+                ThicknessSelection.selectedSegmentIndex = 2
+        }
+        #else
         if let RawThickness = Settings.GetString(ForKey: .RadiatingLineThickness)
         {
             if let Thick = RadiatingLineThicknesses(rawValue: RawThickness)
@@ -60,6 +74,7 @@ class Menu_RadiatingLinesSettings: UITableViewController
             Settings.SetString(RadiatingLineThicknesses.Medium.rawValue, ForKey: .RadiatingLineThickness)
             ThicknessSelection.selectedSegmentIndex = 1
         }
+        #endif
     }
     
     @IBAction func HandleThicknessChanged(_ sender: Any)
@@ -71,16 +86,20 @@ class Menu_RadiatingLinesSettings: UITableViewController
             switch Index
             {
                 case 0:
-                    Settings.SetString(RadiatingLineThicknesses.Thin.rawValue, ForKey: .RadiatingLineThickness)
+                    Settings.SetEnum(.Thin, EnumType: RadiatingLineThicknesses.self, ForKey: .RadiatingLineThickness)
+//                    Settings.SetString(RadiatingLineThicknesses.Thin.rawValue, ForKey: .RadiatingLineThickness)
                 
                 case 1:
-                    Settings.SetString(RadiatingLineThicknesses.Medium.rawValue, ForKey: .RadiatingLineThickness)
+                    Settings.SetEnum(.Medium, EnumType: RadiatingLineThicknesses.self, ForKey: .RadiatingLineThickness)
+//                    Settings.SetString(RadiatingLineThicknesses.Medium.rawValue, ForKey: .RadiatingLineThickness)
                 
                 case 2:
-                    Settings.SetString(RadiatingLineThicknesses.Thick.rawValue, ForKey: .RadiatingLineThickness)
+                                    Settings.SetEnum(.Thick, EnumType: RadiatingLineThicknesses.self, ForKey: .RadiatingLineThickness)
+//                    Settings.SetString(RadiatingLineThicknesses.Thick.rawValue, ForKey: .RadiatingLineThickness)
                 
                 default:
-                    Settings.SetString(RadiatingLineThicknesses.Medium.rawValue, ForKey: .RadiatingLineThickness)
+                                    Settings.SetEnum(.Thin, EnumType: RadiatingLineThicknesses.self, ForKey: .RadiatingLineThickness)
+//                    Settings.SetString(RadiatingLineThicknesses.Medium.rawValue, ForKey: .RadiatingLineThickness)
             }
         }
     }
