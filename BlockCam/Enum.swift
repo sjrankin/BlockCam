@@ -204,6 +204,22 @@ enum BlockEdgeSmoothings: String, CaseIterable
     case Large = "Large"
 }
 
+/// How smooth to draw extruded characters. The smoother the character is drawn, the slower
+/// the performance.
+enum LetterSmoothnesses: String, CaseIterable
+{
+    /// Roughest but fastest.
+    case Roughest = "Roughest"
+    /// Rough characters.
+    case Rough = "Rough"
+    /// Normal characters.
+    case Medium = "Medium"
+    /// Smooth characters.
+    case Smooth = "Smooth"
+    /// Smoothest but slowest.
+    case Smoothest = "Smoothest"
+}
+
 /// Determines how to place shapes.
 enum ShapeLocations: String, CaseIterable
 {
@@ -486,4 +502,18 @@ enum RandomIntensities: String, CaseIterable
     case Strong = "Strong"
     /// Very many shapes are used.
     case VeryStrong = "Very Strong"
+}
+
+/// Types/extents of vertical exaggerations. Also defines shape size depending on the shape.
+/// Actual value determined at run-time.
+enum VerticalExaggerations: String, CaseIterable
+{
+    /// No exaggeration.
+    case None = "None"
+    /// Low/small exaggeration.
+    case Low = "Low"
+    /// Medium exaggeration.
+    case Medium = "Medium"
+    /// High/large exaggeration.
+    case High = "High"
 }
