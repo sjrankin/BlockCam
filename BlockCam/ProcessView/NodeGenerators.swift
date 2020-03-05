@@ -21,6 +21,9 @@ extension Generator
     {
         let DoInvert = Settings.GetBoolean(ForKey: .ConeIsInverted)
         var TopSize = ConeTopOptions.TopIsZero
+        let TopValue = Settings.GetEnum(ForKey: .ConeTopOptions, EnumType: ConeTopOptions.self,
+                                        Default: ConeTopOptions.TopIsZero)
+        #if false
         if let RawTop = Settings.GetString(ForKey: .ConeTopOptions)
         {
             if let TopValue = ConeTopOptions(rawValue: RawTop)
@@ -36,7 +39,11 @@ extension Generator
         {
             Settings.SetString(ConeTopOptions.TopIsZero.rawValue, ForKey: .ConeTopOptions)
         }
-        var BaseSize = ConeBaseOptions.BaseIsSide
+        #endif
+        //var BaseSize = ConeBaseOptions.BaseIsSide
+        let BaseSize = Settings.GetEnum(ForKey: .ConeBottomOptions, EnumType: ConeBaseOptions.self,
+                                        Default: .BaseIsSide)
+        #if false
         if let RawBase = Settings.GetString(ForKey: .ConeBottomOptions)
         {
             if let BaseValue = ConeBaseOptions(rawValue: RawBase)
@@ -52,6 +59,7 @@ extension Generator
         {
             Settings.SetString(ConeBaseOptions.BaseIsSide.rawValue, ForKey: .ConeBottomOptions)
         }
+        #endif
         var Hue: CGFloat = 0.0
         var Saturation: CGFloat = 0.0
         var Brightness: CGFloat = 0.0
@@ -200,39 +208,6 @@ extension Generator
         {
             case .Blocks:
                 let Chamfer = GetBaseChamfer()
-                /*
-                var Chamfer: CGFloat = 0.0
-                if let ChamferValue = Settings.GetString(ForKey: .BlockChamferSize)
-                {
-                    if let TheChamfer = BlockEdgeSmoothings(rawValue: ChamferValue)
-                    {
-                        switch TheChamfer
-                        {
-                            case .None:
-                                Chamfer = 0.0
-                            
-                            case .Small:
-                                Chamfer = 0.08
-                            
-                            case .Medium:
-                                Chamfer = 0.15
-                            
-                            case .Large:
-                                Chamfer = 0.25
-                        }
-                    }
-                    else
-                    {
-                        Settings.SetString(BlockEdgeSmoothings.None.rawValue, ForKey: .BlockChamferSize)
-                        Chamfer = 0.0
-                    }
-                }
-                else
-                {
-                    Settings.SetString(BlockEdgeSmoothings.None.rawValue, ForKey: .BlockChamferSize)
-                    Chamfer = 0.0
-                }
- */
                 FinalShape = SCNBox(width: Side, height: Side, length: Prominence * 2, chamferRadius: Chamfer)
             
             case .Cylinders:
@@ -350,6 +325,10 @@ extension Generator
     /// - Reurns: Geometry for the specified (in user defaults) shape.
     public static func GetCappedLineShape(Side: CGFloat, Diffuse: UIColor) -> SCNGeometry
     {
+        #if true
+        let CapShape = Settings.GetEnum(ForKey: .CappedLineCapShape, EnumType: CappedLineCapShapes.self,
+                                        Default: CappedLineCapShapes.Sphere)
+        #else
         var CapShape = CappedLineCapShapes.Sphere
         if let RawShape = Settings.GetString(ForKey: .CappedLineCapShape)
         {
@@ -366,6 +345,7 @@ extension Generator
         {
             Settings.SetString(CappedLineCapShapes.Sphere.rawValue, ForKey: .CappedLineCapShape)
         }
+        #endif
         var Shape: SCNGeometry!
         switch CapShape
         {
@@ -395,6 +375,10 @@ extension Generator
     /// Get the parameters needed to create an ellipse.
     public static func GetEllipseParameters() -> (Major: CGFloat, Minor: CGFloat)
     {
+        #if true
+        let Ellipse = Settings.GetEnum(ForKey: .EllipseShape, EnumType: EllipticalShapes.self,
+                                       Default: .HorizontalMedium)
+        #else
         var Ellipse = EllipticalShapes.HorizontalMedium
         if let RawEllipseShape = Settings.GetString(ForKey: .EllipseShape)
         {
@@ -403,6 +387,7 @@ extension Generator
                 Ellipse = SomeShape
             }
         }
+        #endif
         switch Ellipse
         {
             case .HorizontalShort:
@@ -503,6 +488,11 @@ extension Generator
         return Results
     }
     
+    /// Make a shape quickly for use as sub-shapes.
+    /// - Parameter Shape: The shape to create and return.
+    /// - Parameter Side: The length of a side of a shape.
+    /// - Parameter Color: The color of the resultant shape.
+    /// - Returns: Node with the shape.
     private static func MakeQuickShape(Shape: NodeShapes, Side: CGFloat, Color: UIColor) -> SCNNode
     {
         var Node: SCNNode? = nil
@@ -589,6 +579,14 @@ extension Generator
         return Node!
     }
     
+    /// Create a stack of shapes.
+    /// - Warming: Stacked shape shapes are very slow to render.
+    /// - Parameter Prominence: The color prominence.
+    /// - Parameter Color: The color of the cell.
+    /// - Parameter Side: The size length of the shape.
+    /// - Parameter ZLocation: The Z axis location for the shape.
+    /// - Parameter DoXRotate: Tells the caller whether or not to rotate the final shape.
+    /// - Returns: Node with a set of sub-nodes.
     private static func MakeStackShape(Prominence: CGFloat, Color: UIColor, Side: CGFloat,
                                        ZLocation: inout CGFloat, DoXRotate: inout Bool) -> SCNNode2
     {
@@ -607,7 +605,6 @@ extension Generator
         }
         var Index = 0
         let Count = Int((Prominence * 2.0 / Side)) + 1
-        #if true
         for Node in 0 ..< Count
         {
             if Index > ShapeList.count - 1
@@ -620,19 +617,6 @@ extension Generator
             SubNode.position = SCNVector3(0.0, 0.0, Side * CGFloat(Node))
             StackNode.addChildNode(SubNode)
         }
-        #else
-        for Node in 0 ..< Count
-        {
-            //            let Stacked = SCNNode(geometry: SCNSphere(radius: Side))
-            let Stacked = SCNNode(geometry: SCNBox(width: Side, height: Side, length: Side, chamferRadius: Side * 0.05))
-            Stacked.geometry?.firstMaterial?.diffuse.contents = Color
-            Stacked.geometry?.firstMaterial?.specular.contents = UIColor.white
-            Stacked.geometry?.firstMaterial?.lightingModel = GetLightModel()
-            Stacked.position = SCNVector3(0.0, 0.0, Side * CGFloat(Node))
-            StackNode.addChildNode(Stacked)
-            Index = Index + 1
-        }
-        #endif
         return StackNode
     }
     
@@ -651,7 +635,7 @@ extension Generator
             case .BoxPlus:
                 return Settings.GetEnum(ForKey: .BoxPlusShape, EnumType: NodeShapes.self,
                                         Default: NodeShapes.Spheres)
-
+            
             default:
                 fatalError("Encountered unsupported shape (\(For.rawValue)) in GetPlusShape.")
         }
@@ -798,14 +782,25 @@ extension Generator
         return AncillaryNode
     }
     
-    public static func GetRandomPosition(Radial: CGFloat) -> SCNVector3
+    /// Returns a random position in the defined cube.
+    /// - Parameter BoxSideLength: The length of each side of the cube.
+    /// - Returns: Randomly generated location in the cube.
+    public static func GetRandomPosition(BoxSideLength: CGFloat) -> SCNVector3
     {
-        let X = CGFloat.random(in: -Radial ... Radial)
-        let Y = CGFloat.random(in: -Radial ... Radial)
-        let Z = CGFloat.random(in: -Radial ... Radial)
+        let X = CGFloat.random(in: -BoxSideLength ... BoxSideLength)
+        let Y = CGFloat.random(in: -BoxSideLength ... BoxSideLength)
+        let Z = CGFloat.random(in: -BoxSideLength ... BoxSideLength)
         return SCNVector3(X, Y, Z)
     }
     
+    /// Creates and returns a random shape in the sense the base shape and sub-shapes are all well-
+    /// defined by the user, but the location of each sub-shape is randomly assigned.
+    /// - Warning: Rendering many of this type of shape is very slow.
+    /// - Parameter Prominence: The color prominence.
+    /// - Parameter Color: The color of the shape.
+    /// - Parameter Side: The length of each side of the shape.
+    /// - Parameter ZLocation: Potentially updated Z location for the shape.
+    /// - Returns: Node with probably several sub-nodes.
     public static func MakeRandomShape(Prominence: CGFloat, Color: UIColor, Side: CGFloat,
                                        ZLocation: inout CGFloat) -> SCNNode2
     {
@@ -838,19 +833,19 @@ extension Generator
         switch Intensity
         {
             case .VeryWeak:
-            Count = 3
+                Count = 3
             
             case .Weak:
-            Count = 5
+                Count = 5
             
             case .Moderate:
-            Count = 8
+                Count = 8
             
             case .Strong:
-            Count = 12
+                Count = 12
             
             case .VeryStrong:
-            Count = 16
+                Count = 16
         }
         
         let Parent = SCNNode2()
@@ -863,7 +858,7 @@ extension Generator
                     Geo = SCNSphere(radius: Side / 2.0)
                 
                 case .Blocks:
-                Geo = SCNBox(width: Side, height: Side, length: Side, chamferRadius: GetBaseChamfer())
+                    Geo = SCNBox(width: Side, height: Side, length: Side, chamferRadius: GetBaseChamfer())
                 
                 case .Circle2D:
                     Geo = SCNCylinder(radius: Side / 2.0, height: 0.05)
@@ -914,7 +909,7 @@ extension Generator
             {
                 Child.eulerAngles = SCNVector3(90.0 * CGFloat.pi / 180.0, 0.0, 0.0)
             }
-            Child.position = GetRandomPosition(Radial: CGFloat(Radial))
+            Child.position = GetRandomPosition(BoxSideLength: CGFloat(Radial))
             Parent.addChildNode(Child)
         }
         return Parent
@@ -1204,6 +1199,33 @@ extension Generator
                                     LowerRightColor: UIColor) -> SCNNode2
     {
         let AncillaryNode = SCNNode2()
+        #if true
+        var DotRadius: CGFloat = 0.01
+        var NoDots = false
+        switch Settings.GetEnum(ForKey: .MeshDotSize, EnumType: MeshDotSizes.self, Default: MeshDotSizes.Small)
+        {
+            case .Small:
+                DotRadius = 0.08
+            
+            case .Medium:
+                DotRadius = 0.2
+            
+            case .Large:
+                DotRadius = 0.35
+            
+            case .None:
+                NoDots = true
+        }
+        if !NoDots
+        {
+            let Shape1 = SCNSphere(radius: DotRadius)
+            Shape1.firstMaterial?.diffuse.contents = Color
+            Shape1.firstMaterial?.specular.contents = UIColor.white
+            Shape1.firstMaterial?.lightingModel = GetLightModel()
+            let Node1 = SCNNode2(geometry: Shape1)
+            AncillaryNode.addChildNode(Node1)
+        }
+        #else
         if Settings.GetString(ForKey: .MeshDotSize) != MeshDotSizes.None.rawValue
         {
             var DotRadius: CGFloat = 0.01
@@ -1228,6 +1250,7 @@ extension Generator
             let Node1 = SCNNode2(geometry: Shape1)
             AncillaryNode.addChildNode(Node1)
         }
+        #endif
         let SX: Float = XLocation * Float(Side)
         let SY: Float = YLocation * Float(Side)
         
@@ -1282,34 +1305,7 @@ extension Generator
         FinalShape = SCNText(string: RandomLetter, extrusionDepth: Prominence * 2 * CGFloat(ProminenceMultiplier))
         let TextShape = FinalShape as? SCNText
         TextShape?.font = LetterFont
-        if let Smoothness = Settings.GetString(ForKey: .LetterSmoothness)
-        {
-            switch Smoothness
-            {
-                case "Roughest":
-                    TextShape?.flatness = 1.2
-                
-                case "Rough":
-                    TextShape?.flatness = 0.8
-                
-                case "Medium":
-                    TextShape?.flatness = 0.5
-                
-                case "Smooth":
-                    TextShape?.flatness = 0.25
-                
-                case "Smoothest":
-                    TextShape?.flatness = 0.0
-                
-                default:
-                    TextShape?.flatness = 0.5
-            }
-        }
-        else
-        {
-            Settings.SetString("Smooth", ForKey: .LetterSmoothness)
-            TextShape?.flatness = 0.0
-        }
+        TextShape?.flatness = SmoothMap[Settings.GetEnum(ForKey: .LetterFont, EnumType: LetterSmoothnesses.self, Default: .Smooth)]!
         FinalScale = 0.035
         return FinalShape!
     }
@@ -1365,34 +1361,7 @@ extension Generator
         let FinalShape = SCNText(string: RandomCharacter,
                                  extrusionDepth: Prominence * 2 * CGFloat(ProminenceMultiplier))
         FinalShape.font = Font
-        if let Smoothness = Settings.GetString(ForKey: .LetterSmoothness)
-        {
-            switch Smoothness
-            {
-                case "Roughest":
-                    FinalShape.flatness = 1.2
-                
-                case "Rough":
-                    FinalShape.flatness = 0.8
-                
-                case "Medium":
-                    FinalShape.flatness = 0.5
-                
-                case "Smooth":
-                    FinalShape.flatness = 0.25
-                
-                case "Smoothest":
-                    FinalShape.flatness = 0.0
-                
-                default:
-                    FinalShape.flatness = 0.5
-            }
-        }
-        else
-        {
-            Settings.SetString("Smooth", ForKey: .LetterSmoothness)
-            FinalShape.flatness = 0.0
-        }
+        FinalShape.flatness = SmoothMap[Settings.GetEnum(ForKey: .LetterFont, EnumType: LetterSmoothnesses.self, Default: .Smooth)]!
         FinalScale = 0.035
         return FinalShape
     }
@@ -1426,34 +1395,7 @@ extension Generator
         let FinalShape = SCNText(string: RandomCharacter,
                                  extrusionDepth: Prominence * 2 * CGFloat(ProminenceMultiplier))
         FinalShape.font = UIFont(name: FontName, size: CGFloat(Settings.GetInteger(ForKey: .FontSize)))
-        if let Smoothness = Settings.GetString(ForKey: .LetterSmoothness)
-        {
-            switch Smoothness
-            {
-                case "Roughest":
-                    FinalShape.flatness = 1.2
-                
-                case "Rough":
-                    FinalShape.flatness = 0.8
-                
-                case "Medium":
-                    FinalShape.flatness = 0.5
-                
-                case "Smooth":
-                    FinalShape.flatness = 0.25
-                
-                case "Smoothest":
-                    FinalShape.flatness = 0.0
-                
-                default:
-                    FinalShape.flatness = 0.5
-            }
-        }
-        else
-        {
-            Settings.SetString("Smooth", ForKey: .LetterSmoothness)
-            FinalShape.flatness = 0.0
-        }
+        FinalShape.flatness = SmoothMap[Settings.GetEnum(ForKey: .LetterFont, EnumType: LetterSmoothnesses.self, Default: .Smooth)]!
         FinalScale = 0.035
         return FinalShape
     }
