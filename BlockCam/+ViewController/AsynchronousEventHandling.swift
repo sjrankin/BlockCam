@@ -78,6 +78,5 @@ extension ViewController
     override func didReceiveMemoryWarning()
     {
         Log.Message("Received memory warning.")
-        Generator.LogSettings()
     }
 }
