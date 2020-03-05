@@ -19,6 +19,21 @@ class Menu_CappedLineSettings: UITableViewController, UIPickerViewDelegate, UIPi
         super.viewDidLoad()
         ShapePicker.layer.borderColor = UIColor.black.cgColor
         LineColorPicker.layer.borderColor = UIColor.black.cgColor
+        #if true
+        let Location = Settings.GetEnum(ForKey: .CappedLineBallLocation, EnumType: BallLocations.self,
+                                        Default: .Bottom)
+        switch Location
+        {
+            case .Bottom:
+                BallLocationSelector.selectedSegmentIndex = 0
+            
+            case .Middle:
+                BallLocationSelector.selectedSegmentIndex = 1
+            
+            case .Top:
+                BallLocationSelector.selectedSegmentIndex = 2
+        }
+        #else
         if let Where = Settings.GetString(ForKey: .CappedLineBallLocation)
         {
             if let Actual = BallLocations(rawValue: Where)
@@ -46,7 +61,21 @@ class Menu_CappedLineSettings: UITableViewController, UIPickerViewDelegate, UIPi
             Settings.SetString(BallLocations.Top.rawValue, ForKey: .CappedLineBallLocation)
             BallLocationSelector.selectedSegmentIndex = 2
         }
+        #endif
         ShapePicker.reloadAllComponents()
+        #if true
+        let CapShape = Settings.GetEnum(ForKey: .CappedLineCapShape, EnumType: CappedLineCapShapes.self,
+                                        Default: .Sphere)
+        if let Index = ShapeMap[CapShape.rawValue]
+        {
+            ShapePicker.selectRow(Index, inComponent: 0, animated: true)
+        }
+        else
+        {
+            ShapePicker.selectRow(0, inComponent: 0, animated: true)
+            Settings.SetEnum(.Sphere, EnumType: CappedLineCapShapes.self, ForKey: .CappedLineCapShape)
+        }
+        #else
         if let RawShape = Settings.GetString(ForKey: .CappedLineCapShape)
         {
             if let Index = ShapeMap[RawShape]
@@ -64,7 +93,21 @@ class Menu_CappedLineSettings: UITableViewController, UIPickerViewDelegate, UIPi
             ShapePicker.selectRow(0, inComponent: 0, animated: true)
             Settings.SetString(CappedLineCapShapes.Sphere.rawValue, ForKey: .CappedLineCapShape)
         }
+        #endif
         LineColorPicker.reloadAllComponents()
+        #if true
+        let Color = Settings.GetEnum(ForKey: .CappedLineLineColor, EnumType: CappedLineLineColors.self,
+                                     Default: .Same)
+        if let Index = ColorMap[Color.rawValue]
+        {
+            LineColorPicker.selectRow(Index, inComponent: 0, animated: true)
+        }
+        else
+        {
+            LineColorPicker.selectRow(0, inComponent: 0, animated: true)
+            Settings.SetEnum(.Same, EnumType: CappedLineLineColors.self, ForKey: .CappedLineLineColor)
+        }
+        #else
         if let RawColor = Settings.GetString(ForKey: .CappedLineLineColor)
         {
             if let Index = ColorMap[RawColor]
@@ -82,6 +125,7 @@ class Menu_CappedLineSettings: UITableViewController, UIPickerViewDelegate, UIPi
             LineColorPicker.selectRow(0, inComponent: 0, animated: true)
             Settings.SetString(CappedLineLineColors.Same.rawValue, ForKey: .CappedLineLineColor)
         }
+        #endif
     }
     
     let ShapeMap =
@@ -111,16 +155,20 @@ class Menu_CappedLineSettings: UITableViewController, UIPickerViewDelegate, UIPi
             switch Index
             {
                 case 0:
-                    Settings.SetString(BallLocations.Bottom.rawValue, ForKey: .CappedLineBallLocation)
+                    Settings.SetEnum(.Bottom, EnumType: BallLocations.self, ForKey: .CappedLineBallLocation)
+//                    Settings.SetString(BallLocations.Bottom.rawValue, ForKey: .CappedLineBallLocation)
                 
                 case 1:
-                    Settings.SetString(BallLocations.Middle.rawValue, ForKey: .CappedLineBallLocation)
+                                        Settings.SetEnum(.Middle, EnumType: BallLocations.self, ForKey: .CappedLineBallLocation)
+                    //Settings.SetString(BallLocations.Middle.rawValue, ForKey: .CappedLineBallLocation)
                 
                 case 2:
-                    Settings.SetString(BallLocations.Top.rawValue, ForKey: .CappedLineBallLocation)
+                                        Settings.SetEnum(.Top, EnumType: BallLocations.self, ForKey: .CappedLineBallLocation)
+                   // Settings.SetString(BallLocations.Top.rawValue, ForKey: .CappedLineBallLocation)
                 
                 default:
-                    Settings.SetString(BallLocations.Top.rawValue, ForKey: .CappedLineBallLocation)
+                                        Settings.SetEnum(.Top, EnumType: BallLocations.self, ForKey: .CappedLineBallLocation)
+                   // Settings.SetString(BallLocations.Top.rawValue, ForKey: .CappedLineBallLocation)
             }
         }
     }
