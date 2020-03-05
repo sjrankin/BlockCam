@@ -309,7 +309,7 @@
 		17B9E0E023D44A00004DD106 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		17B9E0E123D44A00004DD106 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Main.strings; sourceTree = "<group>"; };
 		17B9E0E223D44A8B004DD106 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
-		17BA2FE92390EE5400C09639 /* Generator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Generator.swift; sourceTree = "<group>"; };
+		17BA2FE92390EE5400C09639 /* Generator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Generator.swift; sourceTree = "<group>"; wrapsLines = 0; };
 		17BE8E6823767BE400262F81 /* BlockCam.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BlockCam.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		17BE8E6B23767BE400262F81 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		17BE8E6D23767BE400262F81 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -425,6 +425,7 @@
 				176ED92E23BF1AEC000877B6 /* MainTitle.swift */,
 				17C7680F23E01F6A0068EC34 /* HistogramDisplay.swift */,
 				17897B7423E6905C00AFDA6A /* LiveViewFeedback.swift */,
+				17B2517023AF39030012665E /* StatusLayerView2.swift */,
 			);
 			path = "+ViewController";
 			sourceTree = "<group>";
@@ -740,7 +741,6 @@
 				178C9C2623B440590049139B /* Enum.swift */,
 				17499B7A23CDE42D00A5396A /* ShapeManager.swift */,
 				17BE8E6D23767BE400262F81 /* SceneDelegate.swift */,
-				17B2517023AF39030012665E /* StatusLayerView2.swift */,
 				173279D5237A968E00BD19C3 /* Export.swift */,
 				1702D58223E2850100BCD4DF /* GridLayer.swift */,
 				171726AC23968B870078D76E /* Versioning.swift */,
