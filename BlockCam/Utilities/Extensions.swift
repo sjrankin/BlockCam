@@ -271,6 +271,18 @@ extension UIColor
         }
     }
     
+    /// Returns the hue, saturation, and brightness channels. Convenience property for calling
+    /// getHue on the color.
+    var HSB: (H: CGFloat, S: CGFloat, B: CGFloat)
+    {
+        var Hue: CGFloat = 0.0
+        var Saturation: CGFloat = 0.0
+        var Brightness: CGFloat = 0.0
+        var Alpha: CGFloat = 0.0
+        self.getHue(&Hue, saturation: &Saturation, brightness: &Brightness, alpha: &Alpha)
+        return (H: Hue, S: Saturation, B: Brightness)
+    }
+    
     /// Returns the CIE LAB equivalent of the instance color, in L, A, B order.
     /// - Note: See (Color math and programming code examples)[http://www.easyrgb.com/en/math.php]
     var LAB: (L: CGFloat, A: CGFloat, B: CGFloat)
