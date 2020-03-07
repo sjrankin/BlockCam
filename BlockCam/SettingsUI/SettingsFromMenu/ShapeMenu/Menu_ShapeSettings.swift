@@ -161,7 +161,7 @@ class Menu_ShapeSettings: UITableViewController, UIPickerViewDelegate, UIPickerV
             .CharacterUsesRandomFont, .CharacterSeries, .StackedShapesSet, .CappedLineLineColor, .EnableShadows,
             .SphereBehavior, .Polygon2DAxis, .Rectangle2DAxis, .Circle2DAxis, .Oval2DAxis, .Star2DAxis,
             .Diamond2DAxis, .PolygonSideCount, .PolygonSideCountVaries, .SpherePlusShape, .BoxPlusShape,
-            .RandomRadius, .RandomBaseShape, .RandomIntensity, .RandomShapeShowsBase
+            .RandomRadius, .RandomBaseShape, .RandomIntensity, .RandomShapeShowsBase, .RegularSolidBehavior
     ]
     
     @IBAction func HandleDonePressed(_ sender: Any)
@@ -311,6 +311,13 @@ class Menu_ShapeSettings: UITableViewController, UIPickerViewDelegate, UIPickerV
             case .Random:
                 let Storyboard = UIStoryboard(name: "Secondary", bundle: nil)
                 if let Controller = Storyboard.instantiateViewController(identifier: "RandomShapeSettingsUI") as? Menu_RandomShapeSettings
+                {
+                    self.navigationController?.pushViewController(Controller, animated: true)
+            }
+            
+            case .Tetrahedrons, .Icosahedrons:
+                let Storyboard = UIStoryboard(name: "Secondary", bundle: nil)
+                if let Controller = Storyboard.instantiateViewController(identifier: "RegularSolidSettingsUI") as? Menu_RegularSolidSettings
                 {
                     self.navigationController?.pushViewController(Controller, animated: true)
             }
