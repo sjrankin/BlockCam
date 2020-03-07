@@ -4,8 +4,8 @@
   <contributor>
    <authoring_tool>SceneKit Collada Exporter v1.0</authoring_tool>
   </contributor>
-  <created>2020-03-07T09:32:01Z</created>
-  <modified>2020-03-07T09:32:01Z</modified>
+  <created>2020-03-07T09:11:04Z</created>
+  <modified>2020-03-07T09:11:04Z</modified>
   <unit meter="0.010000"/>
   <up_axis>Y_UP</up_axis>
  </asset>
@@ -18,7 +18,7 @@
   <effect id="effect_default">
    <profile_COMMON>
     <technique sid="common">
-     <blinn>
+     <phong>
       <ambient>
        <color>0 0 0 0</color>
       </ambient>
@@ -29,7 +29,7 @@
        <color>0.168985 0.171333 0.159404 1</color>
       </specular>
       <shininess>
-       <float>0.644582</float>
+       <float>0.2</float>
       </shininess>
       <transparency>
        <float>1</float>
@@ -37,7 +37,7 @@
       <index_of_refraction>
        <float>1</float>
       </index_of_refraction>
-     </blinn>
+     </phong>
     </technique>
    </profile_COMMON>
    <extra>
@@ -51,40 +51,40 @@
  <library_geometries>
   <geometry id="geometry1">
    <mesh>
-    <source id="Cube6-0-Pos">
-     <float_array id="ID2-array" count="24">-1 -1 1 -1 1 1 -1 1 -1 -1 -1 -1 1 -1 -1 1 1 -1 1 1 1 1 -1 1 </float_array>
+    <source id="dodecahedron1-0-Pos">
+     <float_array id="ID2-array" count="60">-1.30902 0.5 0 -0.809017 0.809017 0.809017 0 1.30902 0.5 0 1.30902 -0.5 -0.809017 0.809017 -0.809017 0.809017 0.809017 -0.809017 0.5 0 -1.30902 -0.5 0 -1.30902 0.809017 -0.809017 -0.809017 1.30902 0.5 0 1.30902 -0.5 0 -0.5 0 1.30902 -1.30902 -0.5 0 -0.809017 -0.809017 0.809017 -0.809017 -0.809017 -0.809017 0 -1.30902 -0.5 0 -1.30902 0.5 0.809017 0.809017 0.809017 0.809017 -0.809017 0.809017 0.5 0 1.30902 </float_array>
      <technique_common>
-      <accessor source="#ID2-array" count="8" stride="3">
+      <accessor source="#ID2-array" count="20" stride="3">
        <param name="X" type="float"/>
        <param name="Y" type="float"/>
        <param name="Z" type="float"/>
       </accessor>
      </technique_common>
     </source>
-    <source id="Cube6-0-Normal">
-     <float_array id="ID3-array" count="24">-0.57735 -0.57735 0.57735 -0.57735 0.57735 0.57735 -0.57735 0.57735 -0.57735 -0.57735 -0.57735 -0.57735 0.57735 -0.57735 -0.57735 0.57735 0.57735 -0.57735 0.57735 0.57735 0.57735 0.57735 -0.57735 0.57735 </float_array>
+    <source id="dodecahedron1-0-Normal">
+     <float_array id="ID3-array" count="60">-0.934172 0.356822 0 -0.57735 0.57735 0.57735 0 0.934172 0.356822 0 0.934172 -0.356822 -0.57735 0.57735 -0.57735 0.57735 0.57735 -0.57735 0.356822 0 -0.934172 -0.356822 0 -0.934172 0.57735 -0.57735 -0.57735 0.934172 0.356822 0 0.934172 -0.356822 0 -0.356822 0 0.934172 -0.934172 -0.356822 0 -0.57735 -0.57735 0.57735 -0.57735 -0.57735 -0.57735 0 -0.934172 -0.356822 0 -0.934172 0.356822 0.57735 0.57735 0.57735 0.57735 -0.57735 0.57735 0.356822 0 0.934172 </float_array>
      <technique_common>
-      <accessor source="#ID3-array" count="8" stride="3">
+      <accessor source="#ID3-array" count="20" stride="3">
        <param name="X" type="float"/>
        <param name="Y" type="float"/>
        <param name="Z" type="float"/>
       </accessor>
      </technique_common>
     </source>
-    <vertices id="Cube6-0-Pos-vertices">
-     <input semantic="POSITION" source="#Cube6-0-Pos"/>
+    <vertices id="dodecahedron1-0-Pos-vertices">
+     <input semantic="POSITION" source="#dodecahedron1-0-Pos"/>
     </vertices>
-    <triangles count="12" material="geometryElement4">
-     <input semantic="VERTEX" offset="0" source="#Cube6-0-Pos-vertices"/>
-     <input semantic="NORMAL" offset="0" source="#Cube6-0-Normal"/>
-     <p>0 1 2 0 2 3 4 5 6 4 6 7 2 5 4 2 4 3 0 7 6 0 6 1 3 4 7 3 7 0 1 6 5 1 5 2 </p>
+    <triangles count="36" material="geometryElement4">
+     <input semantic="VERTEX" offset="0" source="#dodecahedron1-0-Pos-vertices"/>
+     <input semantic="NORMAL" offset="0" source="#dodecahedron1-0-Normal"/>
+     <p>2 3 4 0 1 2 0 2 4 3 5 6 4 3 6 4 6 7 6 5 9 8 6 9 8 9 10 0 12 13 11 1 0 11 0 13 16 13 12 15 16 12 14 15 12 4 7 14 12 0 4 12 4 14 8 15 14 7 6 8 7 8 14 2 17 9 3 2 9 5 3 9 16 15 8 10 18 16 10 16 8 9 17 19 10 9 19 18 10 19 13 16 18 11 13 18 11 18 19 17 2 1 19 17 1 19 1 11 </p>
     </triangles>
    </mesh>
   </geometry>
  </library_geometries>
  <library_visual_scenes>
   <visual_scene id="scene5">
-   <node id="Cube6-0L1" name="Cube">
+   <node id="dodecahedron1-0L1" name="Dodecahedron">
     <instance_geometry url="#geometry1">
      <bind_material>
       <technique_common>

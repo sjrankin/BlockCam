@@ -4,8 +4,8 @@
   <contributor>
    <authoring_tool>SceneKit Collada Exporter v1.0</authoring_tool>
   </contributor>
-  <created>2020-03-07T09:32:01Z</created>
-  <modified>2020-03-07T09:32:01Z</modified>
+  <created>2020-03-07T09:11:04Z</created>
+  <modified>2020-03-07T09:11:04Z</modified>
   <unit meter="0.010000"/>
   <up_axis>Y_UP</up_axis>
  </asset>
@@ -18,7 +18,7 @@
   <effect id="effect_default">
    <profile_COMMON>
     <technique sid="common">
-     <blinn>
+     <phong>
       <ambient>
        <color>0 0 0 0</color>
       </ambient>
@@ -29,7 +29,7 @@
        <color>0.168985 0.171333 0.159404 1</color>
       </specular>
       <shininess>
-       <float>0.644582</float>
+       <float>0.2</float>
       </shininess>
       <transparency>
        <float>1</float>
@@ -37,7 +37,7 @@
       <index_of_refraction>
        <float>1</float>
       </index_of_refraction>
-     </blinn>
+     </phong>
     </technique>
    </profile_COMMON>
    <extra>

@@ -4,8 +4,8 @@
   <contributor>
    <authoring_tool>SceneKit Collada Exporter v1.0</authoring_tool>
   </contributor>
-  <created>2020-03-07T09:32:01Z</created>
-  <modified>2020-03-07T09:32:01Z</modified>
+  <created>2020-03-07T09:11:04Z</created>
+  <modified>2020-03-07T09:11:04Z</modified>
   <unit meter="0.010000"/>
   <up_axis>Y_UP</up_axis>
  </asset>
@@ -18,7 +18,7 @@
   <effect id="effect_default">
    <profile_COMMON>
     <technique sid="common">
-     <blinn>
+     <phong>
       <ambient>
        <color>0 0 0 0</color>
       </ambient>
@@ -29,7 +29,7 @@
        <color>0.168985 0.171333 0.159404 1</color>
       </specular>
       <shininess>
-       <float>0.644582</float>
+       <float>0.2</float>
       </shininess>
       <transparency>
        <float>1</float>
@@ -37,7 +37,7 @@
       <index_of_refraction>
        <float>1</float>
       </index_of_refraction>
-     </blinn>
+     </phong>
     </technique>
    </profile_COMMON>
    <extra>
@@ -51,40 +51,40 @@
  <library_geometries>
   <geometry id="geometry1">
    <mesh>
-    <source id="Cube6-0-Pos">
-     <float_array id="ID2-array" count="24">-1 -1 1 -1 1 1 -1 1 -1 -1 -1 -1 1 -1 -1 1 1 -1 1 1 1 1 -1 1 </float_array>
+    <source id="octahedron2-0-Pos">
+     <float_array id="ID2-array" count="18">-2 0 0 0 0 -2 0 -2 0 2 0 0 0 2 0 0 0 2 </float_array>
      <technique_common>
-      <accessor source="#ID2-array" count="8" stride="3">
+      <accessor source="#ID2-array" count="6" stride="3">
        <param name="X" type="float"/>
        <param name="Y" type="float"/>
        <param name="Z" type="float"/>
       </accessor>
      </technique_common>
     </source>
-    <source id="Cube6-0-Normal">
-     <float_array id="ID3-array" count="24">-0.57735 -0.57735 0.57735 -0.57735 0.57735 0.57735 -0.57735 0.57735 -0.57735 -0.57735 -0.57735 -0.57735 0.57735 -0.57735 -0.57735 0.57735 0.57735 -0.57735 0.57735 0.57735 0.57735 0.57735 -0.57735 0.57735 </float_array>
+    <source id="octahedron2-0-Normal">
+     <float_array id="ID3-array" count="18">-1 0 0 0 0 -1 0 -1 0 1 0 0 0 1 0 0 0 1 </float_array>
      <technique_common>
-      <accessor source="#ID3-array" count="8" stride="3">
+      <accessor source="#ID3-array" count="6" stride="3">
        <param name="X" type="float"/>
        <param name="Y" type="float"/>
        <param name="Z" type="float"/>
       </accessor>
      </technique_common>
     </source>
-    <vertices id="Cube6-0-Pos-vertices">
-     <input semantic="POSITION" source="#Cube6-0-Pos"/>
+    <vertices id="octahedron2-0-Pos-vertices">
+     <input semantic="POSITION" source="#octahedron2-0-Pos"/>
     </vertices>
-    <triangles count="12" material="geometryElement4">
-     <input semantic="VERTEX" offset="0" source="#Cube6-0-Pos-vertices"/>
-     <input semantic="NORMAL" offset="0" source="#Cube6-0-Normal"/>
-     <p>0 1 2 0 2 3 4 5 6 4 6 7 2 5 4 2 4 3 0 7 6 0 6 1 3 4 7 3 7 0 1 6 5 1 5 2 </p>
+    <triangles count="8" material="geometryElement4">
+     <input semantic="VERTEX" offset="0" source="#octahedron2-0-Pos-vertices"/>
+     <input semantic="NORMAL" offset="0" source="#octahedron2-0-Normal"/>
+     <p>0 1 2 2 1 3 4 1 0 3 1 4 2 5 0 3 5 2 0 5 4 4 5 3 </p>
     </triangles>
    </mesh>
   </geometry>
  </library_geometries>
  <library_visual_scenes>
   <visual_scene id="scene5">
-   <node id="Cube6-0L1" name="Cube">
+   <node id="octahedron2-0L1" name="Octahedron">
     <instance_geometry url="#geometry1">
      <bind_material>
       <technique_common>
