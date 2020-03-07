@@ -44,6 +44,14 @@
 		171B98D223C5C5CA00118BFB /* Menu_SomethingChanged.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171B98D123C5C5CA00118BFB /* Menu_SomethingChanged.swift */; };
 		171B98D523C5D7AD00118BFB /* Menu_DynamicColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171B98D423C5D7AD00118BFB /* Menu_DynamicColors.swift */; };
 		171C8AC423864FEF005C4825 /* CameraSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171C8AC323864FEF005C4825 /* CameraSettings.swift */; };
+		171DA63B241389C400C8058B /* SCNPlatonicSolid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171DA63A241389C400C8058B /* SCNPlatonicSolid.swift */; };
+		171DA63D24138F1100C8058B /* PlatonicSolidData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171DA63C24138F1100C8058B /* PlatonicSolidData.swift */; };
+		171DA64024139B0600C8058B /* Tetrahedron.dae in Resources */ = {isa = PBXBuildFile; fileRef = 171DA63F24139B0600C8058B /* Tetrahedron.dae */; };
+		171DA64624139B1C00C8058B /* Octatoad.dae in Resources */ = {isa = PBXBuildFile; fileRef = 171DA64124139B1C00C8058B /* Octatoad.dae */; };
+		171DA64724139B1C00C8058B /* Octahedron.dae in Resources */ = {isa = PBXBuildFile; fileRef = 171DA64224139B1C00C8058B /* Octahedron.dae */; };
+		171DA64824139B1C00C8058B /* Icosahedron.dae in Resources */ = {isa = PBXBuildFile; fileRef = 171DA64324139B1C00C8058B /* Icosahedron.dae */; };
+		171DA64924139B1C00C8058B /* Cube.dae in Resources */ = {isa = PBXBuildFile; fileRef = 171DA64424139B1C00C8058B /* Cube.dae */; };
+		171DA64A24139B1C00C8058B /* Dodecahedron.dae in Resources */ = {isa = PBXBuildFile; fileRef = 171DA64524139B1C00C8058B /* Dodecahedron.dae */; };
 		1723941C238B641800D62C93 /* FileIO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1723941B238B641800D62C93 /* FileIO.swift */; };
 		17239421238BF3F600D62C93 /* ProcessViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17239420238BF3F600D62C93 /* ProcessViewer.swift */; };
 		1723D09323879DC2001F05E1 /* PieChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1723D09223879DC2001F05E1 /* PieChart.swift */; };
@@ -160,6 +168,8 @@
 		17F3C90C23CEBC16009DCA7B /* MetalPixellation.metal in Sources */ = {isa = PBXBuildFile; fileRef = 17F3C90B23CEBC16009DCA7B /* MetalPixellation.metal */; };
 		17F3C90E23CEBD6D009DCA7B /* MetalPixellator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17F3C90D23CEBD6D009DCA7B /* MetalPixellator.swift */; };
 		17F3C91023CEF798009DCA7B /* PixellateParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17F3C90F23CEF798009DCA7B /* PixellateParameters.swift */; };
+		17F6A3BE2413649500970F26 /* SCNIcosahedron.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17F6A3BD2413649500970F26 /* SCNIcosahedron.swift */; };
+		17F6A3C02413716A00970F26 /* Menu_RegularSolidSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17F6A3BF2413716A00970F26 /* Menu_RegularSolidSettings.swift */; };
 		17F9BE4723A655D10029B0A2 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17F9BE4623A655D10029B0A2 /* Utilities.swift */; };
 		17FA554423B9D69000915B83 /* NodeGenerators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17FA554323B9D69000915B83 /* NodeGenerators.swift */; };
 		17FA554623B9EA4A00915B83 /* Menu_BlockSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17FA554523B9EA4A00915B83 /* Menu_BlockSettings.swift */; };
@@ -213,6 +223,14 @@
 		171B98D123C5C5CA00118BFB /* Menu_SomethingChanged.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Menu_SomethingChanged.swift; sourceTree = "<group>"; };
 		171B98D423C5D7AD00118BFB /* Menu_DynamicColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Menu_DynamicColors.swift; sourceTree = "<group>"; };
 		171C8AC323864FEF005C4825 /* CameraSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraSettings.swift; sourceTree = "<group>"; };
+		171DA63A241389C400C8058B /* SCNPlatonicSolid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SCNPlatonicSolid.swift; sourceTree = "<group>"; };
+		171DA63C24138F1100C8058B /* PlatonicSolidData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlatonicSolidData.swift; sourceTree = "<group>"; };
+		171DA63F24139B0600C8058B /* Tetrahedron.dae */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml.dae; path = Tetrahedron.dae; sourceTree = "<group>"; };
+		171DA64124139B1C00C8058B /* Octatoad.dae */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml.dae; path = Octatoad.dae; sourceTree = "<group>"; };
+		171DA64224139B1C00C8058B /* Octahedron.dae */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml.dae; path = Octahedron.dae; sourceTree = "<group>"; };
+		171DA64324139B1C00C8058B /* Icosahedron.dae */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml.dae; path = Icosahedron.dae; sourceTree = "<group>"; };
+		171DA64424139B1C00C8058B /* Cube.dae */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml.dae; path = Cube.dae; sourceTree = "<group>"; };
+		171DA64524139B1C00C8058B /* Dodecahedron.dae */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml.dae; path = Dodecahedron.dae; sourceTree = "<group>"; };
 		1723941B238B641800D62C93 /* FileIO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileIO.swift; sourceTree = "<group>"; };
 		17239420238BF3F600D62C93 /* ProcessViewer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessViewer.swift; sourceTree = "<group>"; };
 		1723D09223879DC2001F05E1 /* PieChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PieChart.swift; sourceTree = "<group>"; };
@@ -345,6 +363,8 @@
 		17F3C90B23CEBC16009DCA7B /* MetalPixellation.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = MetalPixellation.metal; sourceTree = "<group>"; };
 		17F3C90D23CEBD6D009DCA7B /* MetalPixellator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetalPixellator.swift; sourceTree = "<group>"; };
 		17F3C90F23CEF798009DCA7B /* PixellateParameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PixellateParameters.swift; sourceTree = "<group>"; };
+		17F6A3BD2413649500970F26 /* SCNIcosahedron.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SCNIcosahedron.swift; sourceTree = "<group>"; };
+		17F6A3BF2413716A00970F26 /* Menu_RegularSolidSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Menu_RegularSolidSettings.swift; sourceTree = "<group>"; };
 		17F9BE4623A655D10029B0A2 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		17FA554323B9D69000915B83 /* NodeGenerators.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NodeGenerators.swift; sourceTree = "<group>"; };
 		17FA554523B9EA4A00915B83 /* Menu_BlockSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Menu_BlockSettings.swift; sourceTree = "<group>"; };
@@ -438,6 +458,19 @@
 			path = ColorMenu;
 			sourceTree = "<group>";
 		};
+		171DA63E24139AD600C8058B /* SolidModels */ = {
+			isa = PBXGroup;
+			children = (
+				171DA64424139B1C00C8058B /* Cube.dae */,
+				171DA64524139B1C00C8058B /* Dodecahedron.dae */,
+				171DA64324139B1C00C8058B /* Icosahedron.dae */,
+				171DA64224139B1C00C8058B /* Octahedron.dae */,
+				171DA64124139B1C00C8058B /* Octatoad.dae */,
+				171DA63F24139B0600C8058B /* Tetrahedron.dae */,
+			);
+			path = SolidModels;
+			sourceTree = "<group>";
+		};
 		1723941F238BF3E500D62C93 /* ProcessView */ = {
 			isa = PBXGroup;
 			children = (
@@ -483,6 +516,7 @@
 				17FA554B23B9F1CC00915B83 /* Menu_LetterSettings.swift */,
 				1797C4A923BA1AB400F32222 /* Menu_MeshSettings.swift */,
 				17616120240E46D800889ABA /* Menu_SphereSettings.swift */,
+				17F6A3BF2413716A00970F26 /* Menu_RegularSolidSettings.swift */,
 			);
 			path = ShapeOptions;
 			sourceTree = "<group>";
@@ -550,8 +584,8 @@
 		1767C747237D08FA0084F9E9 /* 3DNodes */ = {
 			isa = PBXGroup;
 			children = (
+				17F6A3C12413755600970F26 /* PlatonicSolids */,
 				176DAFA92377BCF200819842 /* SCNNode2.swift */,
-				1767C743237D08AC0084F9E9 /* SCNTetrahedron.swift */,
 				1767C741237CFED60084F9E9 /* SCNImageMesh.swift */,
 				17BE8E882376E94200262F81 /* SCNnGon.swift */,
 				178D0D642395087800751610 /* SCNTriangle.swift */,
@@ -786,6 +820,18 @@
 			path = Pixellation;
 			sourceTree = "<group>";
 		};
+		17F6A3C12413755600970F26 /* PlatonicSolids */ = {
+			isa = PBXGroup;
+			children = (
+				171DA63E24139AD600C8058B /* SolidModels */,
+				1767C743237D08AC0084F9E9 /* SCNTetrahedron.swift */,
+				17F6A3BD2413649500970F26 /* SCNIcosahedron.swift */,
+				171DA63A241389C400C8058B /* SCNPlatonicSolid.swift */,
+				171DA63C24138F1100C8058B /* PlatonicSolidData.swift */,
+			);
+			path = PlatonicSolids;
+			sourceTree = "<group>";
+		};
 		17FDB76223E3E6660033F996 /* MenuControllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -857,15 +903,21 @@
 			buildActionMask = 2147483647;
 			files = (
 				17B9E0CC23D40757004DD106 /* Localizable.strings in Resources */,
+				171DA64924139B1C00C8058B /* Cube.dae in Resources */,
 				17CE60C923D1EC8000058BFC /* NotoEmoji-Regular.ttf in Resources */,
 				170B3FF023B4A34A009106EB /* NotoSansCJKsc-Black.otf in Resources */,
+				171DA64024139B0600C8058B /* Tetrahedron.dae in Resources */,
 				177F66A623D04F3500DFA840 /* NotoSansSymbols2-Regular.ttf in Resources */,
 				170B3FF323B4A356009106EB /* NotoSerifCJKkr-Black.otf in Resources */,
+				171DA64724139B1C00C8058B /* Octahedron.dae in Resources */,
 				177F66A723D04F3900DFA840 /* NotoSansSymbols-Regular.ttf in Resources */,
+				171DA64824139B1C00C8058B /* Icosahedron.dae in Resources */,
 				174522C823D330BE00057E63 /* NotoSans-Bold.ttf in Resources */,
 				170F263223D489B6008AEEEE /* AboutStoryboard.storyboard in Resources */,
+				171DA64A24139B1C00C8058B /* Dodecahedron.dae in Resources */,
 				17BE8E7823767BE600262F81 /* LaunchScreen.storyboard in Resources */,
 				170BE50623A75884003A5A72 /* AppLog.db in Resources */,
+				171DA64624139B1C00C8058B /* Octatoad.dae in Resources */,
 				170B3FEF23B4A347009106EB /* NotoSansCJKkr-Black.otf in Resources */,
 				170A091C23E2BC6B0066F1EF /* ProgramSettings.storyboard in Resources */,
 				176F595223DD4AD7006514E6 /* Menus.storyboard in Resources */,
@@ -958,6 +1010,7 @@
 				17499B7923CD913E00A5396A /* SCNFlower2.swift in Sources */,
 				176F595423DD4C4C006514E6 /* PopUpMenus.swift in Sources */,
 				170B3FE023B44AC8009106EB /* Sounds.swift in Sources */,
+				17F6A3BE2413649500970F26 /* SCNIcosahedron.swift in Sources */,
 				17BE8E6C23767BE400262F81 /* AppDelegate.swift in Sources */,
 				17616123240E4B5000889ABA /* Menu_2DSettings.swift in Sources */,
 				178C9C2723B440590049139B /* Enum.swift in Sources */,
@@ -985,6 +1038,7 @@
 				1737411223BF5A8700BAEF6F /* Menu_CompositeSettings.swift in Sources */,
 				17C04CA423A4B27E00D870EE /* Utility3D.swift in Sources */,
 				176BCD052379359900BFF80C /* +SwitchModes.swift in Sources */,
+				17F6A3C02413716A00970F26 /* Menu_RegularSolidSettings.swift in Sources */,
 				1767C742237CFED60084F9E9 /* SCNImageMesh.swift in Sources */,
 				17AC305C23DC23BE00E90A70 /* ShapeGenerator.swift in Sources */,
 				17C7681023E01F6A0068EC34 /* HistogramDisplay.swift in Sources */,
@@ -996,6 +1050,7 @@
 				17EA5213237FB24B00313481 /* Emoji.swift in Sources */,
 				17C04CAA23A4D48E00D870EE /* SettingChangedProtocol.swift in Sources */,
 				1723941C238B641800D62C93 /* FileIO.swift in Sources */,
+				171DA63B241389C400C8058B /* SCNPlatonicSolid.swift in Sources */,
 				17AABB4623826F61006DA546 /* HistogramFunctions.swift in Sources */,
 				17CE347723C427E400E96E3F /* SmallStatusDisplay.swift in Sources */,
 				1771A9D523BC38F900B3294F /* Menu_LightSettings.swift in Sources */,
@@ -1048,6 +1103,7 @@
 				17FB638523CC965E00C72A4A /* SCNEllipse.swift in Sources */,
 				17F3C90C23CEBC16009DCA7B /* MetalPixellation.metal in Sources */,
 				173C296223C86AAA004CE7E9 /* ColumnEdgeDetector.metal in Sources */,
+				171DA63D24138F1100C8058B /* PlatonicSolidData.swift in Sources */,
 				175E3F8023B847FA005E04FF /* SCNLine2.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
