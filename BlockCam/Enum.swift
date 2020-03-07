@@ -462,6 +462,15 @@ enum SphereBehaviors: String, CaseIterable
     case Both = "Both"
 }
 
+/// Defines how regular solids size themselves.
+enum RegularSolidBehaviors: String, CaseIterable
+{
+    /// The size of the regular solid is based on the color.
+    case Size = "Size"
+    /// the location of the regular solid is based on the color.
+    case Location = "Location"
+}
+
 /// General definition of 3D axes.
 enum Axes: String, CaseIterable
 {
