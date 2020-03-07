@@ -43,18 +43,19 @@ class ShapeManager
         [
             ("Standard", [NodeShapes.Blocks.rawValue, NodeShapes.Spheres.rawValue, NodeShapes.Toroids.rawValue,
                           NodeShapes.Ellipses.rawValue, NodeShapes.Diamonds.rawValue, NodeShapes.Cylinders.rawValue,
-                          NodeShapes.Capsules.rawValue, NodeShapes.Cones.rawValue, NodeShapes.HueTriangles.rawValue,
-                          NodeShapes.Pyramids.rawValue, NodeShapes.Tetrahedrons.rawValue]),
-            ("Regular", [NodeShapes.Stars.rawValue, NodeShapes.Polygons.rawValue]),
+                          NodeShapes.Capsules.rawValue, NodeShapes.Cones.rawValue,
+                          NodeShapes.Pyramids.rawValue]),
+            ("Polygonal", [NodeShapes.Stars.rawValue, NodeShapes.Polygons.rawValue]),
+            ("Regular Solids", [NodeShapes.Tetrahedrons.rawValue, NodeShapes.Icosahedrons.rawValue]),
             ("Combined", [NodeShapes.Lines.rawValue, NodeShapes.CappedLines.rawValue, NodeShapes.StackedShapes.rawValue,
                           NodeShapes.RadiatingLines.rawValue, NodeShapes.PerpendicularSquares.rawValue,
                           NodeShapes.PerpendicularCircles.rawValue,
                           NodeShapes.SpherePlus.rawValue, NodeShapes.BoxPlus.rawValue,
                           NodeShapes.Random.rawValue,
                           NodeShapes.CombinedForRGB.rawValue, NodeShapes.CombinedForHSB.rawValue]),
-            ("Complex", [NodeShapes.CharacterSets.rawValue, NodeShapes.Meshes.rawValue,
-                         NodeShapes.HueVarying.rawValue, NodeShapes.SaturationVarying.rawValue,
-                         NodeShapes.BrightnessVarying.rawValue]),
+            ("Complex", [NodeShapes.CharacterSets.rawValue, NodeShapes.Meshes.rawValue]),
+            ("Varying", [NodeShapes.HueVarying.rawValue, NodeShapes.SaturationVarying.rawValue,
+                         NodeShapes.BrightnessVarying.rawValue, NodeShapes.HueTriangles.rawValue]),
             ("Flat Shapes", [NodeShapes.Polygon2D.rawValue, NodeShapes.Rectangle2D.rawValue,
                              NodeShapes.Circle2D.rawValue, NodeShapes.Oval2D.rawValue,
                              NodeShapes.Oval2D.rawValue, NodeShapes.Diamond2D.rawValue,
@@ -125,7 +126,8 @@ class ShapeManager
                                             NodeShapes.Characters, NodeShapes.CharacterSets, NodeShapes.StackedShapes,
                                             NodeShapes.Polygons, NodeShapes.Rectangle2D, NodeShapes.Polygon2D,
                                             NodeShapes.Circle2D, NodeShapes.Oval2D, NodeShapes.Diamond2D, NodeShapes.Star2D,
-                                            NodeShapes.Spheres, NodeShapes.SpherePlus, NodeShapes.BoxPlus, NodeShapes.Random]
+                                            NodeShapes.Spheres, NodeShapes.SpherePlus, NodeShapes.BoxPlus, NodeShapes.Random,
+                                            NodeShapes.Tetrahedrons, NodeShapes.Icosahedrons]
     /// Returns a table of node shapes that take options.
     public static var OptionsAvailable: [NodeShapes]
     {
@@ -356,6 +358,8 @@ enum NodeShapes: String, CaseIterable
     case Cones = "Cones"
     /// Tetrahedrons from SCNTetrahedron.
     case Tetrahedrons = "Tetrahedrons"
+    /// Icosahedron from SCNIcosahedron.
+    case Icosahedrons = "Icosahedron"
     /// Star shapes from SCNStar.Geometry.
     case Stars = "Stars"
     /// Each node uses three shapes, one for red, one for green, and one for blue.
