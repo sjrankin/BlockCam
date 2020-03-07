@@ -258,10 +258,6 @@ extension Generator
                 }
                 FinalShape = SCNnGon.Geometry(VertexCount: SideCount, Radius: Side, Depth: Prominence * 2.0)
             
-            case .Tetrahedrons:
-                FinalShape = SCNTetrahedron.Geometry(BaseLength: Side, Height: Prominence * 2)
-                DoXRotate = true
-            
             case .Stars:
                 var ApexCount = Settings.GetInteger(ForKey: .StarApexCount)
                 if Settings.GetBoolean(ForKey: .IncreaseStarApexesWithProminence)
@@ -913,6 +909,54 @@ extension Generator
             Parent.addChildNode(Child)
         }
         return Parent
+    }
+    
+    /// Create a regular geometric solid.
+    /// - Parameter ForShape: Determines the solid to create.
+    /// - Parameter Prominence: The color prominence that determines the height or size of the solid.
+    /// - Parameter Color: The color of the shape.
+    /// - Parameter Side: The side value for the shape.
+    /// - Parameter ZLocation: The location of the shape in the Z axis if user settings use it.
+    /// - Returns: Node with the specified regular solid.
+    public static func GenerateRegularSolid(ForShape: NodeShapes, Prominence: CGFloat, Color: UIColor,
+                                            Side: CGFloat, ZLocation: inout CGFloat) -> SCNNode2?
+    {
+        ZLocation = 0.0
+        var FinalShape = SCNGeometry()
+        var ShapeScale = SCNVector3(1.0, 1.0, 1.0)
+        switch ForShape
+        {
+            case .Tetrahedrons:
+                FinalShape = SCNTetrahedron.Geometry(BaseLength: Side, Height: Side) 
+            
+            case .Icosahedrons:
+                FinalShape = SCNIcosahedron.Geometry(BaseLength: Side)
+            
+            default:
+                Log.AbortMessage("Invalid shape: \(ForShape.rawValue)", FileName: #file, FunctionName: #function,
+                                 LineNumber: #line)
+                {
+                    Message in
+                    fatalError(Message)
+            }
+        }
+        
+        switch Settings.GetEnum(ForKey: .RegularSolidBehavior, EnumType: RegularSolidBehaviors.self,
+                                Default: .Size)
+        {
+            case .Location:
+                ZLocation = Prominence * 2
+            
+            case .Size:
+                ShapeScale = SCNVector3(Prominence, Prominence, Prominence)
+        }
+        
+        FinalShape.firstMaterial?.diffuse.contents = Color
+        FinalShape.firstMaterial?.specular.contents = UIColor.white
+        FinalShape.firstMaterial?.lightingModel = GetLightModel()
+        let Node = SCNNode2(geometry: FinalShape)
+        Node.scale = ShapeScale
+        return Node
     }
     
     /// Create a node of combined nodes for a given shape type.
