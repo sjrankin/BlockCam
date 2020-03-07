@@ -990,6 +990,7 @@
                         <segue destination="pM4-PL-9Z1" kind="show" identifier="To2DOptions" id="gB6-Or-Vtf"/>
                         <segue destination="wgA-tM-WG0" kind="show" identifier="ToShapePlus" id="Ec2-HE-9xX"/>
                         <segue destination="JLM-Vh-dVi" kind="show" identifier="ToRandomSettings" id="K7l-fY-Spr"/>
+                        <segue destination="XEU-hs-Wtk" kind="show" identifier="ToRegularSolidOptions" id="Abf-Ma-ymP"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dNH-5W-MAy" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -3925,6 +3926,79 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mvy-wf-10b" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="5756.521739130435" y="-973.36956521739137"/>
+        </scene>
+        <!--Regular Solid Options-->
+        <scene sceneID="JUG-hw-a49">
+            <objects>
+                <tableViewController storyboardIdentifier="RegularSolidSettingsUI" id="XEU-hs-Wtk" customClass="Menu_RegularSolidSettings" customModule="BlockCam" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="EZo-ek-0yP">
+                        <rect key="frame" x="0.0" y="0.0" width="400" height="550"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <sections>
+                            <tableViewSection headerTitle="" id="FEx-nX-B3J">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="88" id="t7p-hb-d2P">
+                                        <rect key="frame" x="0.0" y="28" width="400" height="88"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="t7p-hb-d2P" id="Eff-MV-gau">
+                                            <rect key="frame" x="0.0" y="0.0" width="400" height="88"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="pQ4-Pl-69t">
+                                                    <rect key="frame" x="20" y="45" width="254" height="33"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="254" id="NRr-Ka-NVy"/>
+                                                    </constraints>
+                                                    <segments>
+                                                        <segment title="Size"/>
+                                                        <segment title="Location"/>
+                                                    </segments>
+                                                    <connections>
+                                                        <action selector="HandleBehaviorChanged:" destination="XEU-hs-Wtk" eventType="primaryActionTriggered" id="hWW-Jd-Nlt"/>
+                                                    </connections>
+                                                </segmentedControl>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Color affects" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dGf-r1-hC8">
+                                                    <rect key="frame" x="20.000000000000007" y="11" width="98.666666666666686" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="pQ4-Pl-69t" firstAttribute="bottom" secondItem="Eff-MV-gau" secondAttribute="bottomMargin" id="4M4-fI-RpB"/>
+                                                <constraint firstItem="dGf-r1-hC8" firstAttribute="leading" secondItem="Eff-MV-gau" secondAttribute="leadingMargin" id="5ea-UL-imp"/>
+                                                <constraint firstItem="pQ4-Pl-69t" firstAttribute="top" secondItem="dGf-r1-hC8" secondAttribute="bottom" constant="13" id="dat-ZD-bXQ"/>
+                                                <constraint firstItem="dGf-r1-hC8" firstAttribute="top" secondItem="Eff-MV-gau" secondAttribute="topMargin" id="erN-y4-77k"/>
+                                                <constraint firstItem="pQ4-Pl-69t" firstAttribute="leading" secondItem="dGf-r1-hC8" secondAttribute="leading" id="wUJ-tC-6np"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" id="8Nk-6k-Ecx">
+                                        <rect key="frame" x="0.0" y="116" width="400" height="43.666667938232422"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="8Nk-6k-Ecx" id="Rfe-GD-BFZ">
+                                            <rect key="frame" x="0.0" y="0.0" width="400" height="43.666667938232422"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
+                        <connections>
+                            <outlet property="dataSource" destination="XEU-hs-Wtk" id="jXq-fP-rbl"/>
+                            <outlet property="delegate" destination="XEU-hs-Wtk" id="oyR-9A-emi"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Regular Solid Options" id="91Y-R3-5Kw"/>
+                    <size key="freeformSize" width="400" height="550"/>
+                    <connections>
+                        <outlet property="BehaviorSegment" destination="pQ4-Pl-69t" id="qzJ-ed-sP9"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2VF-hi-uiA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4138" y="-1345"/>
         </scene>
     </scenes>
 </document>
