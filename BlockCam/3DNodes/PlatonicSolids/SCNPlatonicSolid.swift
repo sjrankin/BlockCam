@@ -100,6 +100,7 @@ class SCNPlatonicSolid: SCNNode
     /// - Returns: SCNGeometry object with the specified Platonic solid.
     public static func Geometry(Solid: PlatonicSolids, BaseLength: CGFloat) -> SCNGeometry
     {
+        
         let SolidVertices = PlatonicSolid.GetVertices(For: Solid)
         Vertices.removeAll()
         for Vertex in SolidVertices
@@ -122,6 +123,13 @@ class SCNPlatonicSolid: SCNNode
         let UVPoints = SCNGeometrySource(textureCoordinates: TextureCoordinates)
         let Geo = SCNGeometry(sources: [GeoSource, UVPoints], elements: [GeoElement])
         return Geo
+    }
+    
+    public static func Geometry2(Solid: PlatonicSolids, BaseLength: CGFloat) -> SCNGeometry
+    {
+        let Object = SCNScene(named: "Assets.xcassets/Cube.dae")
+        let Node = Object?.rootNode.childNode(withName: "Cube", recursively: true)
+        return Node!.geometry!
     }
 }
 
