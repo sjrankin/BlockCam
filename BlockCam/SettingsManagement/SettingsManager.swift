@@ -190,6 +190,7 @@ class Settings
         UserDefaults.standard.set(5, forKey: SettingKeys.PolygonSideCount.rawValue)
         UserDefaults.standard.set(false, forKey: SettingKeys.PolygonSideCountVaries.rawValue)
         UserDefaults.standard.set(SphereBehaviors.Size.rawValue, forKey: SettingKeys.SphereBehavior.rawValue)
+        UserDefaults.standard.set(RegularSolidBehaviors.Size.rawValue, forKey: SettingKeys.RegularSolidBehavior.rawValue)
         UserDefaults.standard.set(Axes.X.rawValue, forKey: SettingKeys.Polygon2DAxis.rawValue)
         UserDefaults.standard.set(Axes.X.rawValue, forKey: SettingKeys.Circle2DAxis.rawValue)
         UserDefaults.standard.set(Axes.X.rawValue, forKey: SettingKeys.Oval2DAxis.rawValue)
@@ -753,6 +754,7 @@ class Settings
             SettingKeys.RandomBaseShape,
             SettingKeys.RandomRadius,
             SettingKeys.RandomIntensity,
+            SettingKeys.RegularSolidBehavior,
     ]
     
     /// Contains a list of all double-type fields.
@@ -893,6 +895,8 @@ enum SettingKeys: String, CaseIterable, Comparable, Hashable
     case RandomRadius = "RandomRadius"
     /// Boolean: If true, random shapes show the base shape as well.
     case RandomShapeShowsBase = "RandomShapeShowsBase"
+    /// String/Enum: Defines how color affects regular solids.
+    case RegularSolidBehavior = "RegularSolidBehavior"
     
     //Dynamic color settings.
     /// String: The type of dynamic color enabled (if any).
