@@ -33,7 +33,7 @@ class Generator
     
     /// Prepare an image to be processed.
     /// - Note:
-    ///   1. Images are rotated 90° right.
+    ///   1. This function will rotate images 90° right.
     ///   2. Images are resized as required as determined by the original image size and the `.MaxImageDimension` setting.
     /// - Parameter Image: The image to prepare.
     /// - Returns: Resized (potentially) and rotated image on success, nil on failure.
@@ -43,14 +43,16 @@ class Generator
         OriginalImageSize = Image.size
         var ImageToProcess: UIImage = Image.Rotate(Radians: CGFloat.pi * 2)
         var DidResize = false
-        if Int(max(Image.size.height, Image.size.width)) > Settings.GetInteger(ForKey: .MaxImageDimension)
+        let MaxImageDimension = Int(max(Image.size.height, Image.size.width))
+        if MaxImageDimension > Settings.GetInteger(ForKey: .MaxImageDimension)
         {
+            Log.Message("Maximum image dimension \(MaxImageDimension) is greater than \(Settings.GetInteger(ForKey: .MaxImageDimension))")
             ImageToProcess = ResizeImage(Image: Image, Longest: CGFloat(Settings.GetInteger(ForKey: .MaxImageDimension)))
             ReducedImageSize = ImageToProcess.size
             DidResize = true
         }
         let EndPrepare = CACurrentMediaTime() - ResizeStart
-        Log.Message(" Prepare duration: \(EndPrepare), \(DidResize ? "with resize" : "no resize")")
+        Log.Message(" Prepare duration: \(EndPrepare), \(DidResize ? "with resize to \(Settings.GetInteger(ForKey: .MaxImageDimension))" : "no resize")")
         return ImageToProcess
     }
     
@@ -88,6 +90,15 @@ class Generator
     }
     
     /// Parses a pixellated image into an array of colors.
+    /// - Note:
+    ///    - This function looks at one pixel in each pixellated area to get the region's color. That
+    ///      color is what is stored in the returned array of colors.
+    ///    - This function is not terribly efficient but is fast enough to get the job done without
+    ///      slowing the user a great deal.
+    ///    - The loop that runs through the image data has its inner loop in an autoreleasepool
+    ///      closure to reduce memory usage.
+    ///    - If the user selected a large image size and small block size, this function will be
+    ///      correspondingly slower.
     /// - Parameter Image: The pixellated image to parse. Only one pixel from each block/pixel is sampled.
     /// - Parameter BlockSize: The size of each pixellated block in the image.
     /// - Parameter HBlocks: Upon exit, will contain the number of horizontal pixel blocks.
@@ -533,12 +544,21 @@ class Generator
                         {
                             //Simple shapes.
                             case .Blocks, .Spheres, .Stars, .Polygons, .Diamonds,
-                                 .Cylinders, .Pyramids, .Toroids, .Tetrahedrons, .Capsules, .Lines, .Cones:
+                                 .Cylinders, .Pyramids, .Toroids, .Capsules, .Lines, .Cones:
                                 FinalShape = GenerateNodeGeometry(ForShape: ShapeSelector, Side: Side, Prominence: Prominence,
                                                                   DoXRotate: &DoXRotate, WithColor: Color,
                                                                   ZLocation: &ZLocation) 
                             
-                            //Pseudo-2D chapes.
+                            //Regular solids. Cubes are handled elsewhere.
+                            case .Tetrahedrons, .Icosahedrons:
+                            AncillaryNode = GenerateRegularSolid(ForShape: ShapeSelector, Prominence: Prominence, Color: Color, Side: Side,
+                                                                 ZLocation: &ZLocation)
+                            if AncillaryNode == nil
+                            {
+                                fatalError("Unexpected received nil node.")
+                            }
+                            
+                            //Pseudo-2D shapes.
                             case .Polygon2D, .Rectangle2D, .Circle2D, .Oval2D, .Star2D, .Diamond2D:
                                 AncillaryNode = GenerateFlatShape(FlatShape: ShapeSelector, Prominence: Prominence,
                                                                   Side: Side, Color: Color, ZLocation: &ZLocation)
