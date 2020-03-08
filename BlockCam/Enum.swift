@@ -561,20 +561,62 @@ enum RingOrientations: String, CaseIterable
     case HueSaturation = "Hue and Saturation"
 }
 
+/// Types of lights (sub-set of what is available in SceneKit).
+enum LightTypes: String, CaseIterable
+{
+    /// Omni light.
+    case Omni = "Omni"
+    /// Ambient - no shadows.
+    case Ambient = "Ambient"
+    /// Directional light.
+    case Directional = "Directional"
+    /// Spot light.
+    case Spot = "Spot"
+}
+
+/// Roughness levels for materials (only takes effect if the material model is physically based).
+/// Actual value determined at run-time.
 enum MaterialRoughnesses: String, CaseIterable
 {
+    /// Roughest surface.
     case Roughest = "Roughest"
+    /// Rough surface.
     case Rough = "Rough"
+    /// Medium surface.
     case Medium = "Medium"
+    /// Smooth surface.
     case Smooth = "Smooth"
+    /// Smoothest surface.
     case Smoothest = "Smoothest"
 }
 
+/// Metalness levels for materials (only takes effect if the material model is physically based).
+/// Actual value determined at run-time.
 enum Metalnesses: String, CaseIterable
 {
+    /// Least metalness.
     case Least = "Least"
+    /// Not much metalness.
     case NotMuch = "Not Much"
+    /// Medium metalness.
     case Medium = "Medium"
+    /// A lot of metalness.
     case ALot = "A Lot"
+    /// The most metalness.
     case Most = "Most"
+}
+
+/// Scene light intensities. Actual value determined at run-time.
+enum LightIntensities: String, CaseIterable
+{
+    /// Darkest light.
+    case Darkest = "Darkest"
+    /// Dim light.
+    case Dim = "Dim"
+    /// Normal light.
+    case Normal = "Normal"
+    /// Bright light.
+    case Bright = "Bright"
+    /// Brightest light.
+    case Brightest = "Brightest"
 }
