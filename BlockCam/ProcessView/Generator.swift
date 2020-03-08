@@ -575,7 +575,7 @@ class Generator
                             
                             //Combined shapes or shapes that need extra processing.
                             case .CappedLines, .RadiatingLines, .PerpendicularSquares, .PerpendicularCircles, .Ellipses,
-                                 .HueTriangles, .StackedShapes, .SpherePlus, .BoxPlus, .Random:
+                                 .HueTriangles, .StackedShapes, .SpherePlus, .BoxPlus, .Random, .EmbeddedBlocks, .SphereWithTorus:
                                 AncillaryNode = GenerateNode(ForShape: ShapeSelector, Prominence: Prominence, Color: Color,
                                                              Side: Side, ZLocation: &ZLocation, DoXRotate: &DoXRotate) 
                             
@@ -630,9 +630,13 @@ class Generator
                                 Node.LogicalX = X
                                 Node.LogicalY = Y
                                 Node.position = Position
+                                #if true
+                                SetMaterials(To: FinalShape, With: Color)
+                                #else
                                 FinalShape.firstMaterial?.diffuse.contents = Color
                                 FinalShape.firstMaterial?.specular.contents = UIColor.white
                                 FinalShape.firstMaterial?.lightingModel = GetLightModel()
+                                #endif
                             }
                         }
                         else
@@ -656,8 +660,12 @@ class Generator
                             let RotateNodeBy: CGFloat = CGFloat(Angle) * (CGFloat.pi / 180.0)
                             
                             Node.eulerAngles = SCNVector3(0.0, 0.0, RotateNodeBy)
+                            #if true
+                            SetMaterials(To: Node.geometry!, With: Color)
+                            #else
                             Node.geometry?.firstMaterial?.diffuse.contents = Color//UIColor.red
                             Node.geometry?.firstMaterial?.lightingModel = GetLightModel()
+                            #endif
                         }
                         Node.name = "PixelNode"
                         Node.castsShadow = EnableShadows
@@ -668,6 +676,71 @@ class Generator
         let SceneEnd = CACurrentMediaTime() - SceneStart
         Log.Message("  Scene generation duration: \(SceneEnd)")
         return WorkingNode
+    }
+    
+    public static func GetRoughness() -> Double
+    {
+        switch Settings.GetEnum(ForKey: .MaterialRoughness, EnumType: MaterialRoughnesses.self,
+                                Default: .Medium)
+        {
+            case .Roughest:
+                return 0.0
+            
+            case .Rough:
+                return 0.25
+            
+            case .Medium:
+                return 0.5
+            
+            case .Smooth:
+                return 0.75
+            
+            case .Smoothest:
+                return 1.0
+        }
+    }
+    
+    public static func GetMetalness() -> Double
+    {
+        switch Settings.GetEnum(ForKey: .Metalness, EnumType: Metalnesses.self, Default: .Medium)
+        {
+            case .Least:
+                return 0.0
+            
+            case .NotMuch:
+                return 0.25
+            
+            case .Medium:
+                return 0.5
+            
+            case .ALot:
+                return 0.75
+            
+            case .Most:
+                return 1.0
+        }
+    }
+    
+    /// Set various aspects of the first material in the passed geometry.
+    /// - Notes:
+    ///   - The lighting model is set using the current global setting.
+    ///   - If the lighting model is physically-based, the roughness and metalness contents
+    ///     are set as well.
+    /// - Parameter To: The geometry the settings will be applied to.
+    /// - Parameter With: The color used for the diffuse material.
+    /// - Parameter SpecularColor: The color used for the specular material.
+    public static func SetMaterials(To Geometry: SCNGeometry, With Color: UIColor,
+                                    SpecularColor: UIColor = UIColor.white)
+    {
+        let Model = GetLightModel()
+        if Model == .physicallyBased
+        {
+            Geometry.firstMaterial?.roughness.contents = NSNumber(value: GetRoughness())
+            Geometry.firstMaterial?.metalness.contents = NSNumber(value: GetMetalness())
+        }
+        Geometry.firstMaterial?.lightingModel = Model
+        Geometry.firstMaterial?.diffuse.contents = Color
+        Geometry.firstMaterial?.specular.contents = SpecularColor
     }
     
     /// Map from internally defined material lighting models to SceneKit-defined material lighting models.
