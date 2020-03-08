@@ -51,7 +51,8 @@ class ShapeManager
                           NodeShapes.RadiatingLines.rawValue, NodeShapes.PerpendicularSquares.rawValue,
                           NodeShapes.PerpendicularCircles.rawValue,
                           NodeShapes.SpherePlus.rawValue, NodeShapes.BoxPlus.rawValue,
-                          NodeShapes.Random.rawValue,
+                          NodeShapes.Random.rawValue, NodeShapes.EmbeddedBlocks.rawValue,
+                          NodeShapes.SphereWithTorus.rawValue,
                           NodeShapes.CombinedForRGB.rawValue, NodeShapes.CombinedForHSB.rawValue]),
             ("Complex", [NodeShapes.CharacterSets.rawValue, NodeShapes.Meshes.rawValue]),
             ("Varying", [NodeShapes.HueVarying.rawValue, NodeShapes.SaturationVarying.rawValue,
@@ -104,13 +105,49 @@ class ShapeManager
         return List
     }
     
+    /// Contains a set of options that if changed, would require at least a semi-redraw of the image.
+    private static let SemiRedrawOptions: [SettingKeys] = [.ShapeType, .HeightSource, .VerticalExaggeration,
+                                            .FullyExtrudeLetters, .LetterLocation, .LetterSmoothness,
+                                            .LetterFont, .RandomCharacterSource, .StarApexCount,
+                                            .IncreaseStarApexesWithProminence, .CappedLineBallLocation,
+                                            .FontSize, .MeshDotSize, .MeshLineThickness,
+                                            .BlockChamferSize, .RadiatingLineCount, .InvertHeight,
+                                            .HeightSource, .InvertDynamicColorProcess, .FlowerPetalCount,
+                                            .DynamicColorAction, .DynamicColorType, .CappedLineCapShape,
+                                            .DynamicColorCondition, .SourceAsBackground, .EllipseShape,
+                                            .IncreasePetalCountWithProminence, .CharacterUsesRandomFont,
+                                            .CharacterRandomRange, .CharacterFontName, .CharacterRandomFontSize,
+                                            .CharacterSeries, .StackedShapesSet, .CappedLineLineColor,
+                                            .PolygonSideCountVaries, .PolygonSideCount, .SphereBehavior,
+                                            .Polygon2DAxis, .Rectangle2DAxis, .Circle2DAxis,
+                                            .Oval2DAxis, .Star2DAxis, .Diamond2DAxis,
+                                            .SpherePlusShape, .BoxPlusShape, .RandomShapeShowsBase,
+                                            .RandomIntensity, .RandomBaseShape, .RandomRadius,
+                                            .RegularSolidBehavior, .EmbeddedBoxColor, .SphereRingOrientation,
+                                            .SphereRingOrientation, .Metalness, .MaterialRoughness]
+    
+    /// Get the array of options that if change requires a semi-redraw of the image.
+    public static func GetSemiRedrawOptions() -> [SettingKeys]
+    {
+        return SemiRedrawOptions
+    }
+    
+    /// Determines if any of the setting keys in `Options` is in the semi-redraw required list.
+    /// - Parameter Options: Array of setting keys that were changed.
+    /// - Returns: True if any key in `Options` is in the semi-redraw list, false if not.
+    public static func InSemiRedraw(_ Options: [SettingKeys]) -> Bool
+    {
+        return Utilities.ArrayContains(AnyOf: SemiRedrawOptions, In: Options)
+    }
+    
     /// Table of shapes that require more than one `SCNGeometry` node to create.case
     private static let _MultipleGeometryShapes =
     [
         NodeShapes.CappedLines, NodeShapes.StackedShapes, NodeShapes.HueVarying, NodeShapes.SaturationVarying,
         NodeShapes.BrightnessVarying, NodeShapes.PerpendicularCircles, NodeShapes.PerpendicularSquares,
         NodeShapes.CombinedForRGB, NodeShapes.CombinedForHSB, NodeShapes.Meshes, NodeShapes.RadiatingLines,
-        NodeShapes.SpherePlus, NodeShapes.BoxPlus, NodeShapes.Random
+        NodeShapes.SpherePlus, NodeShapes.BoxPlus, NodeShapes.Random, NodeShapes.EmbeddedBlocks,
+        NodeShapes.SphereWithTorus
     ]
     /// Get the table of shapes that are formed from more than one `SCNGeometry` node.
     /// - Returns: Table of shapes that require more than one `SCNGeometry` node.
@@ -127,7 +164,8 @@ class ShapeManager
                                             NodeShapes.Polygons, NodeShapes.Rectangle2D, NodeShapes.Polygon2D,
                                             NodeShapes.Circle2D, NodeShapes.Oval2D, NodeShapes.Diamond2D, NodeShapes.Star2D,
                                             NodeShapes.Spheres, NodeShapes.SpherePlus, NodeShapes.BoxPlus, NodeShapes.Random,
-                                            NodeShapes.Tetrahedrons, NodeShapes.Icosahedrons]
+                                            NodeShapes.Tetrahedrons, NodeShapes.Icosahedrons, NodeShapes.EmbeddedBlocks,
+                                            NodeShapes.SphereWithTorus]
     /// Returns a table of node shapes that take options.
     public static var OptionsAvailable: [NodeShapes]
     {
@@ -338,6 +376,8 @@ enum NodeShapes: String, CaseIterable
 {
     /// Block from SCNBox.
     case Blocks = "Blocks"
+    /// Two blocks, one rotated relative to the first.
+    case EmbeddedBlocks = "Embedded Blocks"
     /// Ellipses from custom geometry.
     case Ellipses = "Ovals"
     /// Extruded diamond shapes - custom property (based on `.Ellipses`).
@@ -347,11 +387,12 @@ enum NodeShapes: String, CaseIterable
     /// Pyramids from SCNPyramid. Each node rotated due to SceneKit's default rotation of the node.
     case Pyramids = "Pyramids"
     /// Toruses from SCNTorus. Each node rotated due to SceneKit's default rotation of the node.
-    case Toroids = "Toroids"
+    case Toroids = "Rings"
     /// Cylinders from SCNCylinder. Each node rotate due to SceneKit's default rotation of the node.
     case Cylinders = "Cylinders"
     /// Spheres from SCNSphere.
     case Spheres = "Spheres"
+    case SphereWithTorus = "Sphere with Ring"
     /// Capsules from SCNCapsule. Each node rotate due to SceneKit's default rotation of the node.
     case Capsules = "Capsules"
     /// Cones from SCNCone.
