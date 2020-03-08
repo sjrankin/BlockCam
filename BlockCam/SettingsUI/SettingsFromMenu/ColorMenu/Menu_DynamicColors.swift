@@ -14,6 +14,41 @@ class Menu_DynamicColors: UITableViewController
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        switch Settings.GetEnum(ForKey: .Metalness, EnumType: Metalnesses.self, Default: .Medium)
+        {
+            case .Least:
+                MetalSegment.selectedSegmentIndex = 0
+            
+            case .NotMuch:
+                MetalSegment.selectedSegmentIndex = 1
+            
+            case .Medium:
+                MetalSegment.selectedSegmentIndex = 2
+            
+            case .ALot:
+                MetalSegment.selectedSegmentIndex = 3
+            
+            case .Most:
+                MetalSegment.selectedSegmentIndex = 4
+        }
+        switch Settings.GetEnum(ForKey: .MaterialRoughness, EnumType: MaterialRoughnesses.self,
+                                Default: .Medium)
+        {
+            case .Roughest:
+                RoughSegment.selectedSegmentIndex = 0
+            
+            case .Rough:
+                RoughSegment.selectedSegmentIndex = 1
+            
+            case .Medium:
+                RoughSegment.selectedSegmentIndex = 2
+            
+            case .Smooth:
+                RoughSegment.selectedSegmentIndex = 3
+            
+            case .Smoothest:
+                RoughSegment.selectedSegmentIndex = 4
+        }
         InvertConditionalColorSwitch.isOn = Settings.GetBoolean(ForKey: .InvertDynamicColorProcess)
         UpdateConditionalSigns(IsInverted: InvertConditionalColorSwitch.isOn)
         if let RawType = Settings.GetString(ForKey: .DynamicColorType)
@@ -200,6 +235,58 @@ class Menu_DynamicColors: UITableViewController
         }
     }
     
+    @IBAction func HandleRoughChanged(_ sender: Any)
+    {
+        switch RoughSegment.selectedSegmentIndex
+        {
+            case 0:
+                Settings.SetEnum(.Roughest, EnumType: MaterialRoughnesses.self, ForKey: .MaterialRoughness)
+            
+            case 1:
+                Settings.SetEnum(.Rough, EnumType: MaterialRoughnesses.self, ForKey: .MaterialRoughness)
+            
+            case 2:
+                Settings.SetEnum(.Medium, EnumType: MaterialRoughnesses.self, ForKey: .MaterialRoughness)
+            
+            case 3:
+                Settings.SetEnum(.Smooth, EnumType: MaterialRoughnesses.self, ForKey: .MaterialRoughness)
+            
+            case 4:
+                Settings.SetEnum(.Smoothest, EnumType: MaterialRoughnesses.self, ForKey: .MaterialRoughness)
+            
+            default:
+                Settings.SetEnum(.Medium, EnumType: MaterialRoughnesses.self, ForKey: .MaterialRoughness)
+        }
+        Menu_ChangeManager.AddChanged(.MaterialRoughness)
+    }
+    
+    @IBAction func HandleMetalChanged(_ sender: Any)
+    {
+        switch MetalSegment.selectedSegmentIndex
+        {
+            case 0:
+                Settings.SetEnum(.Least, EnumType: Metalnesses.self, ForKey: .Metalness)
+            
+            case 1:
+                Settings.SetEnum(.NotMuch, EnumType: Metalnesses.self, ForKey: .Metalness)
+            
+            case 2:
+                Settings.SetEnum(.Medium, EnumType: Metalnesses.self, ForKey: .Metalness)
+            
+            case 3:
+                Settings.SetEnum(.ALot, EnumType: Metalnesses.self, ForKey: .Metalness)
+            
+            case 4:
+                Settings.SetEnum(.Most, EnumType: Metalnesses.self, ForKey: .Metalness)
+            
+            default:
+                Settings.SetEnum(.Medium, EnumType: Metalnesses.self, ForKey: .Metalness)
+        }
+        Menu_ChangeManager.AddChanged(.Metalness)
+    }
+    
+    @IBOutlet weak var RoughSegment: UISegmentedControl!
+    @IBOutlet weak var MetalSegment: UISegmentedControl!
     @IBOutlet weak var ConditionLabel: UILabel!
     @IBOutlet weak var ConditionalColorLabel: UILabel!
     @IBOutlet weak var ConditionalColorSelection: UISegmentedControl!
