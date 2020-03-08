@@ -161,7 +161,8 @@ class Menu_ShapeSettings: UITableViewController, UIPickerViewDelegate, UIPickerV
             .CharacterUsesRandomFont, .CharacterSeries, .StackedShapesSet, .CappedLineLineColor, .EnableShadows,
             .SphereBehavior, .Polygon2DAxis, .Rectangle2DAxis, .Circle2DAxis, .Oval2DAxis, .Star2DAxis,
             .Diamond2DAxis, .PolygonSideCount, .PolygonSideCountVaries, .SpherePlusShape, .BoxPlusShape,
-            .RandomRadius, .RandomBaseShape, .RandomIntensity, .RandomShapeShowsBase, .RegularSolidBehavior
+            .RandomRadius, .RandomBaseShape, .RandomIntensity, .RandomShapeShowsBase, .RegularSolidBehavior,
+            .EmbeddedBoxColor, .SphereRingOrientation, .SphereRingColor, .Metalness, .MaterialRoughness
     ]
     
     @IBAction func HandleDonePressed(_ sender: Any)
@@ -318,6 +319,20 @@ class Menu_ShapeSettings: UITableViewController, UIPickerViewDelegate, UIPickerV
             case .Tetrahedrons, .Icosahedrons:
                 let Storyboard = UIStoryboard(name: "Secondary", bundle: nil)
                 if let Controller = Storyboard.instantiateViewController(identifier: "RegularSolidSettingsUI") as? Menu_RegularSolidSettings
+                {
+                    self.navigationController?.pushViewController(Controller, animated: true)
+            }
+            
+            case .EmbeddedBlocks:
+                let Storyboard = UIStoryboard(name: "Secondary", bundle: nil)
+                if let Controller = Storyboard.instantiateViewController(identifier: "EmbeddedBoxesSettingsUI") as? Menu_EmbeddedBoxesSettings
+                {
+                    self.navigationController?.pushViewController(Controller, animated: true)
+            }
+            
+            case .SphereWithTorus:
+                let Storyboard = UIStoryboard(name: "Secondary", bundle: nil)
+                if let Controller = Storyboard.instantiateViewController(identifier: "SphereWithRingSettingsUI") as? Menu_SphereWithRingSettings
                 {
                     self.navigationController?.pushViewController(Controller, animated: true)
             }
