@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.1">
+ <asset>
+  <contributor>
+   <authoring_tool>SceneKit Collada Exporter v1.0</authoring_tool>
+  </contributor>
+  <created>2020-03-07T09:11:04Z</created>
+  <modified>2020-03-07T09:11:04Z</modified>
+  <unit meter="0.010000"/>
+  <up_axis>Y_UP</up_axis>
+ </asset>
+ <library_materials>
+  <material id="default" name="default">
+   <instance_effect url="#effect_default"/>
+  </material>
+ </library_materials>
+ <library_effects>
+  <effect id="effect_default">
+   <profile_COMMON>
+    <technique sid="common">
+     <phong>
+      <ambient>
+       <color>0 0 0 0</color>
+      </ambient>
+      <diffuse>
+       <color>0.789854 0.813333 0.694044 1</color>
+      </diffuse>
+      <specular>
+       <color>0.168985 0.171333 0.159404 1</color>
+      </specular>
+      <shininess>
+       <float>0.2</float>
+      </shininess>
+      <transparency>
+       <float>1</float>
+      </transparency>
+      <index_of_refraction>
+       <float>1</float>
+      </index_of_refraction>
+     </phong>
+    </technique>
+   </profile_COMMON>
+   <extra>
+    <technique profile="SceneKit">
+     <litPerPixel>1</litPerPixel>
+     <ambient_diffuse_lock>1</ambient_diffuse_lock>
+    </technique>
+   </extra>
+  </effect>
+ </library_effects>
+ <library_geometries>
+  <geometry id="geometry1">
+   <mesh>
+    <source id="octahedron2-0-Pos">
+     <float_array id="ID2-array" count="18">-2 0 0 0 0 -2 0 -2 0 2 0 0 0 2 0 0 0 2 </float_array>
+     <technique_common>
+      <accessor source="#ID2-array" count="6" stride="3">
+       <param name="X" type="float"/>
+       <param name="Y" type="float"/>
+       <param name="Z" type="float"/>
+      </accessor>
+     </technique_common>
+    </source>
+    <source id="octahedron2-0-Normal">
+     <float_array id="ID3-array" count="18">-1 0 0 0 0 -1 0 -1 0 1 0 0 0 1 0 0 0 1 </float_array>
+     <technique_common>
+      <accessor source="#ID3-array" count="6" stride="3">
+       <param name="X" type="float"/>
+       <param name="Y" type="float"/>
+       <param name="Z" type="float"/>
+      </accessor>
+     </technique_common>
+    </source>
+    <vertices id="octahedron2-0-Pos-vertices">
+     <input semantic="POSITION" source="#octahedron2-0-Pos"/>
+    </vertices>
+    <triangles count="8" material="geometryElement4">
+     <input semantic="VERTEX" offset="0" source="#octahedron2-0-Pos-vertices"/>
+     <input semantic="NORMAL" offset="0" source="#octahedron2-0-Normal"/>
+     <p>0 1 2 2 1 3 4 1 0 3 1 4 2 5 0 3 5 2 0 5 4 4 5 3 </p>
+    </triangles>
+   </mesh>
+  </geometry>
+ </library_geometries>
+ <library_visual_scenes>
+  <visual_scene id="scene5">
+   <node id="octahedron2-0L1" name="Octahedron">
+    <instance_geometry url="#geometry1">
+     <bind_material>
+      <technique_common>
+       <instance_material symbol="geometryElement4" target="#default"/>
+      </technique_common>
+     </bind_material>
+    </instance_geometry>
+   </node>
+  </visual_scene>
+ </library_visual_scenes>
+ <scene>
+  <instance_visual_scene url="#scene5"/>
+ </scene>
+</COLLADA>
