@@ -39,36 +39,61 @@ class Menu_LightSettings: UITableViewController, UIPickerViewDelegate, UIPickerV
         ColorListUI.selectRow(Index, inComponent: 0, animated: true)
         ColorListUI.layer.borderColor = UIColor.black.cgColor
         
-        var LightType = Settings.GetString(ForKey: .LightType)
-        if LightType == nil
+        let LightType = Settings.GetEnum(ForKey: .LightType, EnumType: LightTypes.self, Default: .Omni)
+        switch LightType
         {
-            LightType = "Omni"
-            Settings.SetString("Omni", ForKey: .LightType)
-        }
-        DoShowLightTypeDescription(ForType: LightType!)
-        if let TypeIndex = LightTypeMap[LightType!]
-        {
-            LightTypeSegment.selectedSegmentIndex = TypeIndex
-        }
-        else
-        {
-            LightTypeSegment.selectedSegmentIndex = 0
+            case .Ambient:
+                LightTypeSegment.selectedSegmentIndex = 3
+            
+            case .Directional:
+                LightTypeSegment.selectedSegmentIndex = 2
+            
+            case .Omni:
+                LightTypeSegment.selectedSegmentIndex = 0
+            
+            case .Spot:
+                LightTypeSegment.selectedSegmentIndex = 1
         }
         
-        var LightIntensity = Settings.GetString(ForKey: .LightIntensity)
-        if LightIntensity == nil
+        let LightIntensity = Settings.GetEnum(ForKey: .LightIntensity, EnumType: LightIntensities.self, Default: .Normal)
+        switch LightIntensity
         {
-            LightIntensity = "Normal"
-            Settings.SetString("Normal", ForKey: .LightIntensity)
+            case .Darkest:
+                LightIntensitySegment.selectedSegmentIndex = 0
+            
+            case .Dim:
+                LightIntensitySegment.selectedSegmentIndex = 1
+            
+            case .Normal:
+                LightIntensitySegment.selectedSegmentIndex = 2
+            
+            case .Bright:
+                LightIntensitySegment.selectedSegmentIndex = 3
+            
+            case .Brightest:
+                LightIntensitySegment.selectedSegmentIndex = 4
         }
-        if let IntensityIndex = LightIntensityMap[LightIntensity!]
+        
+        let Model = Settings.GetEnum(ForKey: .LightingModel, EnumType: MaterialLightingTypes.self,
+                                     Default: .Lambert)
+        switch Model
         {
-            LightIntensitySegment.selectedSegmentIndex = IntensityIndex
+            case .Blinn:
+                ModelSegment.selectedSegmentIndex = 0
+            
+            case .Constant:
+                ModelSegment.selectedSegmentIndex = 1
+            
+            case .Lambert:
+                ModelSegment.selectedSegmentIndex = 2
+            
+            case .Phong:
+                ModelSegment.selectedSegmentIndex = 3
+            
+            case .PhysicallyBased:
+                ModelSegment.selectedSegmentIndex = 4
         }
-        else
-        {
-            LightIntensitySegment.selectedSegmentIndex = 3
-        }
+        
         UpdateSample()
     }
     
@@ -89,56 +114,80 @@ class Menu_LightSettings: UITableViewController, UIPickerViewDelegate, UIPickerV
             "Brightest": 4
     ]
     
-    func DoShowLightTypeDescription(ForType: String)
+    func DoShowLightTypeDescription(ForType: LightTypes)
     {
         switch ForType
         {
-            case "Omni":
+            case .Omni:
                 LightTypeDescription.text = "Point light that shines in all directions."
             
-            case "Ambient":
+            case .Ambient:
                 LightTypeDescription.text = "Light that illuminates all sides of an object equally."
             
-            case "Directional":
+            case .Directional:
                 LightTypeDescription.text = "Light that is aimed in one direction."
             
-            case "Spot":
+            case .Spot:
                 LightTypeDescription.text = "Light that shines with a cone of illumination."
-            
-            default:
-                LightTypeDescription.text = ""
         }
     }
     
     @IBAction func HandleLightTypeChange(_ sender: Any)
     {
         let Index = LightTypeSegment.selectedSegmentIndex
-        for (Name, Value) in LightTypeMap
+        switch Index
         {
-            if Value == Index
-            {
-                Menu_ChangeManager.AddChanged(.LightType)
-                Settings.SetString(Name, ForKey: .LightType)
-                DoShowLightTypeDescription(ForType: Name)
-                UpdateSample()
-                return
-            }
+            case 0:
+                Settings.SetEnum(.Omni, EnumType: LightTypes.self, ForKey: .LightType)
+                DoShowLightTypeDescription(ForType: .Omni)
+            
+            case 1:
+                Settings.SetEnum(.Spot, EnumType: LightTypes.self, ForKey: .LightType)
+                DoShowLightTypeDescription(ForType: .Spot)
+            
+            case 2:
+                Settings.SetEnum(.Directional, EnumType: LightTypes.self, ForKey: .LightType)
+                DoShowLightTypeDescription(ForType: .Directional)
+            
+            case 3:
+                Settings.SetEnum(.Ambient, EnumType: LightTypes.self, ForKey: .LightType)
+                DoShowLightTypeDescription(ForType: .Ambient)
+            
+            default:
+                Settings.SetEnum(.Omni, EnumType: LightTypes.self, ForKey: .LightType)
+                DoShowLightTypeDescription(ForType: .Omni)
         }
+        Menu_ChangeManager.AddChanged(.LightType)
+        
+        UpdateSample()
     }
     
     @IBAction func HandleLightIntensityChange(_ sender: Any)
     {
         let Index = LightIntensitySegment.selectedSegmentIndex
-        for (Name, Value) in LightIntensityMap
+        switch Index
         {
-            if Value == Index
-            {
-                Menu_ChangeManager.AddChanged(.LightIntensity)
-                Settings.SetString(Name, ForKey: .LightIntensity)
-                UpdateSample()
-                return
-            }
+            case 0:
+                Settings.SetEnum(.Darkest, EnumType: LightIntensities.self, ForKey: .LightIntensity)
+            
+            case 1:
+                Settings.SetEnum(.Dim, EnumType: LightIntensities.self, ForKey: .LightIntensity)
+            
+            case 2:
+                Settings.SetEnum(.Normal, EnumType: LightIntensities.self, ForKey: .LightIntensity)
+            
+            case 3:
+                Settings.SetEnum(.Bright, EnumType: LightIntensities.self, ForKey: .LightIntensity)
+            
+            case 4:
+                Settings.SetEnum(.Brightest, EnumType: LightIntensities.self, ForKey: .LightIntensity)
+            
+            default:
+                Settings.SetEnum(.Normal, EnumType: LightIntensities.self, ForKey: .LightIntensity)
         }
+        
+        Menu_ChangeManager.AddChanged(.LightIntensity)
+        UpdateSample()
     }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int
@@ -248,92 +297,60 @@ class Menu_LightSettings: UITableViewController, UIPickerViewDelegate, UIPickerV
             Light.castsShadow = false
         }
         
-        if let RawIntensity = Settings.GetString(ForKey: .LightIntensity)
+        let Intensity = Settings.GetEnum(ForKey: .LightIntensity, EnumType: LightIntensities.self, Default: .Normal)
+        switch Intensity
         {
-            switch RawIntensity
-            {
-                case "Darkest":
-                    Light.intensity = 500
-                
-                case "Dim":
-                    Light.intensity = 750
-                
-                case "Normal":
-                    Light.intensity = 1000
-                
-                case "Bright":
-                    Light.intensity = 1500
-                
-                case "Brightest":
-                    Light.intensity = 2000
-                
-                default:
-                    Light.intensity = 1000
-                    Settings.SetString("Normal", ForKey: .LightIntensity)
-            }
-        }
-        else
-        {
-            Light.intensity = 1000
-            Settings.SetString("Normal", ForKey: .LightIntensity)
+            case .Darkest:
+                Light.intensity = 500
+            
+            case .Dim:
+                Light.intensity = 750
+            
+            case .Normal:
+                Light.intensity = 1000
+            
+            case .Bright:
+                Light.intensity = 1500
+            
+            case .Brightest:
+                Light.intensity = 2000
         }
         
-        if let RawType = Settings.GetString(ForKey: .LightType)
+        let LightType = Settings.GetEnum(ForKey: .LightType, EnumType: LightTypes.self, Default: .Omni)
+        switch LightType
         {
-            switch RawType
-            {
-                case "Omni":
-                    Light.type = .omni
-                
-                case "Ambient":
-                    Light.type = .ambient
-                
-                case "Directional":
-                    Light.type = .directional
-                
-                case "Spot":
-                    Light.type = .spot
-                
-                default:
-                    Light.type = .omni
-                    Settings.SetString("Omni", ForKey: .LightType)
-            }
-        }
-        else
-        {
-            Light.type = .omni
-            Settings.SetString("Omni", ForKey: .LightType)
+            case .Omni:
+                Light.type = .omni
+            
+            case .Ambient:
+                Light.type = .ambient
+            
+            case .Directional:
+                Light.type = .directional
+            
+            case .Spot:
+                Light.type = .spot
         }
         
         var LightModel = SCNMaterial.LightingModel.phong
-        if let RawModel = Settings.GetString(ForKey: .LightingModel)
+        let Model = Settings.GetEnum(ForKey: .LightingModel, EnumType: MaterialLightingTypes.self,
+                                     Default: .Lambert)
+        switch Model
         {
-            switch RawModel
-            {
-                case "Blinn":
-                    LightModel = .blinn
-                
-                case "Constant":
-                    LightModel = .constant
-                
-                case "Lambert":
-                    LightModel = .lambert
-                
-                case "Phong":
-                    LightModel = .phong
-                
-                case "PhysicallyBased":
-                    LightModel = .physicallyBased
-                
-                default:
-                    LightModel = .phong
-                    Settings.SetString("Phong", ForKey: .LightingModel)
-            }
-        }
-        else
-        {
-            LightModel = .phong
-            Settings.SetString("Phong", ForKey: .LightingModel)
+            case .Blinn:
+                LightModel = .blinn
+            
+            case .Constant:
+                LightModel = .constant
+            
+            case .Lambert:
+                LightModel = .lambert
+            
+            case .Phong:
+                LightModel = .phong
+            
+            case .PhysicallyBased:
+                LightModel = .physicallyBased
         }
         
         SampleView.scene?.rootNode.enumerateChildNodes
@@ -352,10 +369,55 @@ class Menu_LightSettings: UITableViewController, UIPickerViewDelegate, UIPickerV
         LightNode.position = SCNVector3(-4.0, 3.0, 10.0)
         SampleView.scene?.rootNode.addChildNode(LightNode)
         
+        var Rough: Double = 0.0
+        var Metal: Double = 0.0
+        if LightModel == .physicallyBased
+        {
+            switch Settings.GetEnum(ForKey: .Metalness, EnumType: Metalnesses.self, Default: .Medium)
+            {
+                case .Least:
+                    Metal = 0.0
+                
+                case .NotMuch:
+                    Metal = 0.25
+                
+                case .Medium:
+                    Metal = 0.5
+                
+                case .ALot:
+                    Metal = 0.75
+                
+                case .Most:
+                    Metal = 1.0
+            }
+            switch Settings.GetEnum(ForKey: .MaterialRoughness, EnumType: MaterialRoughnesses.self, Default: .Medium)
+            {
+                case .Roughest:
+                    Rough = 0.0
+                
+                case .Rough:
+                    Rough = 0.25
+                
+                case .Medium:
+                    Rough = 0.5
+                
+                case .Smooth:
+                    Rough = 0.75
+                
+                case .Smoothest:
+                    Rough = 1.0
+            }
+        }
+        
         let Shape1 = SCNCylinder(radius: 1.0, height: 5.0)
         Shape1.firstMaterial?.lightingModel = LightModel
         Shape1.firstMaterial?.diffuse.contents = UIColor.systemOrange
         Shape1.firstMaterial?.specular.contents = UIColor.white
+        if LightModel == .physicallyBased
+        {
+            Shape1.firstMaterial?.roughness.contents = NSNumber(value: Rough)
+            Shape1.firstMaterial?.metalness.contents = NSNumber(value: Metal)
+        }
         let Node1 = SCNNode(geometry: Shape1)
         Node1.castsShadow = Settings.GetBoolean(ForKey: .EnableShadows)
         Node1.name = "DisplayNode"
@@ -363,6 +425,11 @@ class Menu_LightSettings: UITableViewController, UIPickerViewDelegate, UIPickerV
         Shape2.firstMaterial?.lightingModel = LightModel
         Shape2.firstMaterial?.diffuse.contents = UIColor.systemYellow
         Shape2.firstMaterial?.specular.contents = UIColor.white
+        if LightModel == .physicallyBased
+        {
+            Shape2.firstMaterial?.roughness.contents = NSNumber(value: Rough)
+            Shape2.firstMaterial?.metalness.contents = NSNumber(value: Metal)
+        }
         let Node2 = SCNNode(geometry: Shape2)
         Node2.castsShadow = Settings.GetBoolean(ForKey: .EnableShadows)
         Node2.name = "DisplayNode"
@@ -370,6 +437,11 @@ class Menu_LightSettings: UITableViewController, UIPickerViewDelegate, UIPickerV
         Shape3.firstMaterial?.lightingModel = LightModel
         Shape3.firstMaterial?.diffuse.contents = UIColor.systemGreen
         Shape3.firstMaterial?.specular.contents = UIColor.white
+        if LightModel == .physicallyBased
+        {
+            Shape3.firstMaterial?.roughness.contents = NSNumber(value: Rough)
+            Shape3.firstMaterial?.metalness.contents = NSNumber(value: Metal)
+        }
         let Node3 = SCNNode(geometry: Shape3)
         Node3.castsShadow = Settings.GetBoolean(ForKey: .EnableShadows)
         Node3.name = "DisplayNode"
@@ -388,11 +460,30 @@ class Menu_LightSettings: UITableViewController, UIPickerViewDelegate, UIPickerV
         AllNodes.runAction(Forever)
     }
     
-    @IBSegueAction func InstantiateAdvancedLighting(_ coder: NSCoder) -> Menu_AdvancedLightSettings?
+    @IBAction func HandleModelChanged(_ sender: Any)
     {
-        let Advanced = Menu_AdvancedLightSettings(coder: coder)
-        Advanced?.Delegate = self
-        return Advanced
+        switch ModelSegment.selectedSegmentIndex
+        {
+            case 0:
+                Settings.SetEnum(.Blinn, EnumType: MaterialLightingTypes.self, ForKey: .LightingModel)
+            
+            case 1:
+                Settings.SetEnum(.Constant, EnumType: MaterialLightingTypes.self, ForKey: .LightingModel)
+            
+            case 2:
+                Settings.SetEnum(.Lambert, EnumType: MaterialLightingTypes.self, ForKey: .LightingModel)
+            
+            case 3:
+                Settings.SetEnum(.Phong, EnumType: MaterialLightingTypes.self, ForKey: .LightingModel)
+            
+            case 4:
+                Settings.SetEnum(.PhysicallyBased, EnumType: MaterialLightingTypes.self, ForKey: .LightingModel)
+            
+            default:
+                Settings.SetEnum(.Lambert, EnumType: MaterialLightingTypes.self, ForKey: .LightingModel)
+        }
+        Menu_ChangeManager.AddChanged(.LightingModel)
+        UpdateSample()
     }
     
     func SomethingChanged()
@@ -402,6 +493,7 @@ class Menu_LightSettings: UITableViewController, UIPickerViewDelegate, UIPickerV
     
     var UpdateInitialized = false
     
+    @IBOutlet weak var ModelSegment: UISegmentedControl!
     @IBOutlet weak var SampleView: SCNView!
     @IBOutlet weak var ColorListUI: UIPickerView!
     @IBOutlet weak var LightTypeDescription: UILabel!
