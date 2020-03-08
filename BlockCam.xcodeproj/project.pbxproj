@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		1700D85F23E1C92700381A30 /* Gyroscope.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1700D85E23E1C92700381A30 /* Gyroscope.swift */; };
+		1702037D2414843A00C0AFEA /* Solids.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 1702037C2414843A00C0AFEA /* Solids.scnassets */; };
+		1702037F2414A86600C0AFEA /* Menu_EmbeddedBoxesSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1702037E2414A86600C0AFEA /* Menu_EmbeddedBoxesSettings.swift */; };
+		170203812414AD4800C0AFEA /* Menu_SphereWithRingSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 170203802414AD4800C0AFEA /* Menu_SphereWithRingSettings.swift */; };
 		1702D58323E2850100BCD4DF /* GridLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1702D58223E2850100BCD4DF /* GridLayer.swift */; };
 		1706744B23D599AD00381C42 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1706744A23D599AD00381C42 /* Colors.swift */; };
 		170A091C23E2BC6B0066F1EF /* ProgramSettings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 170A091E23E2BC6B0066F1EF /* ProgramSettings.storyboard */; };
@@ -45,13 +48,6 @@
 		171B98D523C5D7AD00118BFB /* Menu_DynamicColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171B98D423C5D7AD00118BFB /* Menu_DynamicColors.swift */; };
 		171C8AC423864FEF005C4825 /* CameraSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171C8AC323864FEF005C4825 /* CameraSettings.swift */; };
 		171DA63B241389C400C8058B /* SCNPlatonicSolid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171DA63A241389C400C8058B /* SCNPlatonicSolid.swift */; };
-		171DA63D24138F1100C8058B /* PlatonicSolidData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171DA63C24138F1100C8058B /* PlatonicSolidData.swift */; };
-		171DA64024139B0600C8058B /* Tetrahedron.dae in Resources */ = {isa = PBXBuildFile; fileRef = 171DA63F24139B0600C8058B /* Tetrahedron.dae */; };
-		171DA64624139B1C00C8058B /* Octatoad.dae in Resources */ = {isa = PBXBuildFile; fileRef = 171DA64124139B1C00C8058B /* Octatoad.dae */; };
-		171DA64724139B1C00C8058B /* Octahedron.dae in Resources */ = {isa = PBXBuildFile; fileRef = 171DA64224139B1C00C8058B /* Octahedron.dae */; };
-		171DA64824139B1C00C8058B /* Icosahedron.dae in Resources */ = {isa = PBXBuildFile; fileRef = 171DA64324139B1C00C8058B /* Icosahedron.dae */; };
-		171DA64924139B1C00C8058B /* Cube.dae in Resources */ = {isa = PBXBuildFile; fileRef = 171DA64424139B1C00C8058B /* Cube.dae */; };
-		171DA64A24139B1C00C8058B /* Dodecahedron.dae in Resources */ = {isa = PBXBuildFile; fileRef = 171DA64524139B1C00C8058B /* Dodecahedron.dae */; };
 		1723941C238B641800D62C93 /* FileIO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1723941B238B641800D62C93 /* FileIO.swift */; };
 		17239421238BF3F600D62C93 /* ProcessViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17239420238BF3F600D62C93 /* ProcessViewer.swift */; };
 		1723D09323879DC2001F05E1 /* PieChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1723D09223879DC2001F05E1 /* PieChart.swift */; };
@@ -184,6 +180,9 @@
 
 /* Begin PBXFileReference section */
 		1700D85E23E1C92700381A30 /* Gyroscope.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gyroscope.swift; sourceTree = "<group>"; };
+		1702037C2414843A00C0AFEA /* Solids.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = Solids.scnassets; sourceTree = "<group>"; };
+		1702037E2414A86600C0AFEA /* Menu_EmbeddedBoxesSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Menu_EmbeddedBoxesSettings.swift; sourceTree = "<group>"; };
+		170203802414AD4800C0AFEA /* Menu_SphereWithRingSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Menu_SphereWithRingSettings.swift; sourceTree = "<group>"; };
 		1702D58223E2850100BCD4DF /* GridLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridLayer.swift; sourceTree = "<group>"; };
 		1706744A23D599AD00381C42 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		170A091D23E2BC6B0066F1EF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/ProgramSettings.storyboard; sourceTree = "<group>"; };
@@ -224,13 +223,6 @@
 		171B98D423C5D7AD00118BFB /* Menu_DynamicColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Menu_DynamicColors.swift; sourceTree = "<group>"; };
 		171C8AC323864FEF005C4825 /* CameraSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraSettings.swift; sourceTree = "<group>"; };
 		171DA63A241389C400C8058B /* SCNPlatonicSolid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SCNPlatonicSolid.swift; sourceTree = "<group>"; };
-		171DA63C24138F1100C8058B /* PlatonicSolidData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlatonicSolidData.swift; sourceTree = "<group>"; };
-		171DA63F24139B0600C8058B /* Tetrahedron.dae */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml.dae; path = Tetrahedron.dae; sourceTree = "<group>"; };
-		171DA64124139B1C00C8058B /* Octatoad.dae */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml.dae; path = Octatoad.dae; sourceTree = "<group>"; };
-		171DA64224139B1C00C8058B /* Octahedron.dae */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml.dae; path = Octahedron.dae; sourceTree = "<group>"; };
-		171DA64324139B1C00C8058B /* Icosahedron.dae */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml.dae; path = Icosahedron.dae; sourceTree = "<group>"; };
-		171DA64424139B1C00C8058B /* Cube.dae */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml.dae; path = Cube.dae; sourceTree = "<group>"; };
-		171DA64524139B1C00C8058B /* Dodecahedron.dae */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml.dae; path = Dodecahedron.dae; sourceTree = "<group>"; };
 		1723941B238B641800D62C93 /* FileIO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileIO.swift; sourceTree = "<group>"; };
 		17239420238BF3F600D62C93 /* ProcessViewer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessViewer.swift; sourceTree = "<group>"; };
 		1723D09223879DC2001F05E1 /* PieChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PieChart.swift; sourceTree = "<group>"; };
@@ -458,19 +450,6 @@
 			path = ColorMenu;
 			sourceTree = "<group>";
 		};
-		171DA63E24139AD600C8058B /* SolidModels */ = {
-			isa = PBXGroup;
-			children = (
-				171DA64424139B1C00C8058B /* Cube.dae */,
-				171DA64524139B1C00C8058B /* Dodecahedron.dae */,
-				171DA64324139B1C00C8058B /* Icosahedron.dae */,
-				171DA64224139B1C00C8058B /* Octahedron.dae */,
-				171DA64124139B1C00C8058B /* Octatoad.dae */,
-				171DA63F24139B0600C8058B /* Tetrahedron.dae */,
-			);
-			path = SolidModels;
-			sourceTree = "<group>";
-		};
 		1723941F238BF3E500D62C93 /* ProcessView */ = {
 			isa = PBXGroup;
 			children = (
@@ -514,8 +493,10 @@
 				17EA27D5240F542600BA0CC7 /* Menu_ShapePlusSettings.swift */,
 				17EA27D7240F853200BA0CC7 /* Menu_RandomShapeSettings.swift */,
 				17FA554B23B9F1CC00915B83 /* Menu_LetterSettings.swift */,
+				1702037E2414A86600C0AFEA /* Menu_EmbeddedBoxesSettings.swift */,
 				1797C4A923BA1AB400F32222 /* Menu_MeshSettings.swift */,
 				17616120240E46D800889ABA /* Menu_SphereSettings.swift */,
+				170203802414AD4800C0AFEA /* Menu_SphereWithRingSettings.swift */,
 				17F6A3BF2413716A00970F26 /* Menu_RegularSolidSettings.swift */,
 			);
 			path = ShapeOptions;
@@ -761,6 +742,7 @@
 				17B9E0C623D40435004DD106 /* Internationalization */,
 				176F595023DD4781006514E6 /* Menus */,
 				17BE8E7423767BE600262F81 /* Assets.xcassets */,
+				1702037C2414843A00C0AFEA /* Solids.scnassets */,
 				17BE8E7F23767BF200262F81 /* BlockCam.entitlements */,
 				17BE8E7623767BE600262F81 /* LaunchScreen.storyboard */,
 				17BE8E6B23767BE400262F81 /* AppDelegate.swift */,
@@ -823,11 +805,9 @@
 		17F6A3C12413755600970F26 /* PlatonicSolids */ = {
 			isa = PBXGroup;
 			children = (
-				171DA63E24139AD600C8058B /* SolidModels */,
 				1767C743237D08AC0084F9E9 /* SCNTetrahedron.swift */,
 				17F6A3BD2413649500970F26 /* SCNIcosahedron.swift */,
 				171DA63A241389C400C8058B /* SCNPlatonicSolid.swift */,
-				171DA63C24138F1100C8058B /* PlatonicSolidData.swift */,
 			);
 			path = PlatonicSolids;
 			sourceTree = "<group>";
@@ -903,21 +883,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				17B9E0CC23D40757004DD106 /* Localizable.strings in Resources */,
-				171DA64924139B1C00C8058B /* Cube.dae in Resources */,
 				17CE60C923D1EC8000058BFC /* NotoEmoji-Regular.ttf in Resources */,
 				170B3FF023B4A34A009106EB /* NotoSansCJKsc-Black.otf in Resources */,
-				171DA64024139B0600C8058B /* Tetrahedron.dae in Resources */,
+				1702037D2414843A00C0AFEA /* Solids.scnassets in Resources */,
 				177F66A623D04F3500DFA840 /* NotoSansSymbols2-Regular.ttf in Resources */,
 				170B3FF323B4A356009106EB /* NotoSerifCJKkr-Black.otf in Resources */,
-				171DA64724139B1C00C8058B /* Octahedron.dae in Resources */,
 				177F66A723D04F3900DFA840 /* NotoSansSymbols-Regular.ttf in Resources */,
-				171DA64824139B1C00C8058B /* Icosahedron.dae in Resources */,
 				174522C823D330BE00057E63 /* NotoSans-Bold.ttf in Resources */,
 				170F263223D489B6008AEEEE /* AboutStoryboard.storyboard in Resources */,
-				171DA64A24139B1C00C8058B /* Dodecahedron.dae in Resources */,
 				17BE8E7823767BE600262F81 /* LaunchScreen.storyboard in Resources */,
 				170BE50623A75884003A5A72 /* AppLog.db in Resources */,
-				171DA64624139B1C00C8058B /* Octatoad.dae in Resources */,
 				170B3FEF23B4A347009106EB /* NotoSansCJKkr-Black.otf in Resources */,
 				170A091C23E2BC6B0066F1EF /* ProgramSettings.storyboard in Resources */,
 				176F595223DD4AD7006514E6 /* Menus.storyboard in Resources */,
@@ -1056,6 +1031,7 @@
 				1771A9D523BC38F900B3294F /* Menu_LightSettings.swift in Sources */,
 				1700D85F23E1C92700381A30 /* Gyroscope.swift in Sources */,
 				1723D09323879DC2001F05E1 /* PieChart.swift in Sources */,
+				170203812414AD4800C0AFEA /* Menu_SphereWithRingSettings.swift in Sources */,
 				17AFA87523C9A14F00846087 /* MiscellaneousSettings.swift in Sources */,
 				176BCD0223791F7900BFF80C /* ColorCell.swift in Sources */,
 				17FA554A23B9F0FE00915B83 /* Menu_StarSettings.swift in Sources */,
@@ -1094,6 +1070,7 @@
 				17499B7323CD762B00A5396A /* SCNArrowHead.swift in Sources */,
 				177F66A323D00F2500DFA840 /* SCNShapeRange.swift in Sources */,
 				173279D6237A968E00BD19C3 /* Export.swift in Sources */,
+				1702037F2414A86600C0AFEA /* Menu_EmbeddedBoxesSettings.swift in Sources */,
 				177F66A523D036F000DFA840 /* Menu_CharacterSeries.swift in Sources */,
 				178B493E23BDC88B00C9FE1B /* Menu_ConeSettings.swift in Sources */,
 				17B2517123AF39030012665E /* StatusLayerView2.swift in Sources */,
@@ -1103,7 +1080,6 @@
 				17FB638523CC965E00C72A4A /* SCNEllipse.swift in Sources */,
 				17F3C90C23CEBC16009DCA7B /* MetalPixellation.metal in Sources */,
 				173C296223C86AAA004CE7E9 /* ColumnEdgeDetector.metal in Sources */,
-				171DA63D24138F1100C8058B /* PlatonicSolidData.swift in Sources */,
 				175E3F8023B847FA005E04FF /* SCNLine2.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
