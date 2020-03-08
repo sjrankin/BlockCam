@@ -107,6 +107,9 @@ class Settings
         UserDefaults.standard.set(DynamicColorTypes.None.rawValue, forKey: SettingKeys.DynamicColorType.rawValue)
         UserDefaults.standard.set(DynamicColorActions.Grayscale.rawValue, forKey: SettingKeys.DynamicColorAction.rawValue)
         UserDefaults.standard.set(DynamicColorConditions.LessThan50.rawValue, forKey: SettingKeys.DynamicColorCondition.rawValue)
+        UserDefaults.standard.set(RelativeColors.Darker.rawValue, forKey: SettingKeys.EmbeddedBoxColor.rawValue)
+        UserDefaults.standard.set(RelativeColors.Darker.rawValue, forKey: SettingKeys.SphereRingColor.rawValue)
+        UserDefaults.standard.set(RingOrientations.Flat.rawValue, forKey: SettingKeys.SphereRingOrientation.rawValue) 
         #if DEBUG
         //When compiling in debug mode, always enable logging.
         UserDefaults.standard.set(true, forKey: SettingKeys.LoggingEnabled.rawValue)
@@ -203,6 +206,8 @@ class Settings
         UserDefaults.standard.set(RandomIntensities.Moderate.rawValue, forKey: SettingKeys.RandomIntensity.rawValue)
         UserDefaults.standard.set(RandomRadiuses.Medium.rawValue, forKey: SettingKeys.RandomRadius.rawValue)
         UserDefaults.standard.set(true, forKey: SettingKeys.RandomShapeShowsBase.rawValue)
+        UserDefaults.standard.set(MaterialRoughnesses.Medium.rawValue, forKey: SettingKeys.MaterialRoughness.rawValue)
+        UserDefaults.standard.set(Metalnesses.Medium.rawValue, forKey: SettingKeys.Metalness.rawValue)
     }
     
     /// Call all subscribers in the notification list to let them know a setting will be changed.
@@ -755,6 +760,11 @@ class Settings
             SettingKeys.RandomRadius,
             SettingKeys.RandomIntensity,
             SettingKeys.RegularSolidBehavior,
+            SettingKeys.EmbeddedBoxColor,
+            SettingKeys.SphereRingColor,
+            SettingKeys.SphereRingOrientation,
+            SettingKeys.MaterialRoughness,
+            SettingKeys.Metalness,
     ]
     
     /// Contains a list of all double-type fields.
@@ -897,6 +907,18 @@ enum SettingKeys: String, CaseIterable, Comparable, Hashable
     case RandomShapeShowsBase = "RandomShapeShowsBase"
     /// String/Enum: Defines how color affects regular solids.
     case RegularSolidBehavior = "RegularSolidBehavior"
+    /// String/Enum: Defines how to calculate the embedded box color.
+    case EmbeddedBoxColor = "EmbeddedBoxColor"
+    /// String/Enum: Defines how to calculate the ring color.
+    case SphereRingColor = "SphereRingColor"
+    /// String/Enum: Defines the orientation of the ring.
+    case SphereRingOrientation = "SphereRingOrientation"
+    
+    //Global color settings.
+    /// String/Enum: The material roughness value. Only set/used if the lighting model is physically-based.
+    case MaterialRoughness = "MaterialRoughness"
+    /// String/Enum: The "metalness" of the material. Only set/used if the lighting model is physically-based.
+    case Metalness = "Metalness"
     
     //Dynamic color settings.
     /// String: The type of dynamic color enabled (if any).
