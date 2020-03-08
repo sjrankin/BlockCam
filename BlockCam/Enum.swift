@@ -526,3 +526,55 @@ enum VerticalExaggerations: String, CaseIterable
     /// High/large exaggeration.
     case High = "High"
 }
+
+/// Relative colors.
+enum RelativeColors: String, CaseIterable
+{
+    /// Same color as other color.
+    case Same = "Same"
+    /// Darker than other color.
+    case Darker = "Darker"
+    /// Lighter than other color.
+    case Lighter = "Lighter"
+    /// Less saturation than other color.
+    case Desaturated = "Less Saturation"
+    /// More saturation than other color.
+    case Saturated = "More Saturation"
+}
+
+/// Determines how the ring in a sphere + ring shape is oriented.
+enum RingOrientations: String, CaseIterable
+{
+    /// Rotated such that the ring is flat on the plane.
+    case Flat = "Flat"
+    /// Rotated on the X axis according to the color's hue value.
+    case Hue = "Hue"
+    /// Rotated on the X axis according to the color's brightness value.
+    case Brightness = "Brightness"
+    /// Rotated on the X axis according to the color's saturation value.
+    case Saturation = "Saturation"
+    /// Rotated 90° on the X axis.
+    case Extruded = "Extruded"
+    /// Hue on the X axis, brightness on the Y axis.
+    case HueBrightness = "Hue and Brightness"
+    /// Hue on the X axis, saturation on the Y axis.
+    case HueSaturation = "Hue and Saturation"
+}
+
+enum MaterialRoughnesses: String, CaseIterable
+{
+    case Roughest = "Roughest"
+    case Rough = "Rough"
+    case Medium = "Medium"
+    case Smooth = "Smooth"
+    case Smoothest = "Smoothest"
+}
+
+enum Metalnesses: String, CaseIterable
+{
+    case Least = "Least"
+    case NotMuch = "Not Much"
+    case Medium = "Medium"
+    case ALot = "A Lot"
+    case Most = "Most"
+}
