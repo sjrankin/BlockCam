@@ -10,24 +10,28 @@ import Foundation
 import SceneKit
 import UIKit
 
-/// Implements a tetrahedron-shaped SCNNode.
-/// - Notes: See [Custom Geometry in SceneKit](https://medium.com/@zxlee618/custom-geometry-in-scenekit-f91464297fd1)
+/// This class encapsulates the reading of `.dae` files that contain Platonic solid shapes. See `PlatonicSolids`
+/// for all supported shapes.
+/// - Note:
+///    - There are no sizing functions for Platonic solids - the caller must use `SCNNode.scale` to resize
+///      each node as appropriate.
+///    - Each Platonic solid is cached after it is successfully read to reduce performance issues. The caching
+///      occurs in the static portion of the class.
+///    - The shape of instance values is immutable.
 class SCNPlatonicSolid: SCNNode
 {
     /// Initializer.
     override init()
     {
         super.init()
-        self.BaseLength = 1.0
         CommonInitialization(Solid: .Cube)
     }
     
     /// Initializer.
-    /// - Parameter BaseLength: Length of the base of the tetrahedron.
-    init(Solid: PlatonicSolids, BaseLength: CGFloat)
+    /// - Parameter Solid: The Platonic solid shape to create and return. This value is immutable.
+    init(Solid: PlatonicSolids)
     {
         super.init()
-        self.BaseLength = BaseLength
         CommonInitialization(Solid: Solid)
     }
     
@@ -43,19 +47,17 @@ class SCNPlatonicSolid: SCNNode
     func CommonInitialization(Solid: PlatonicSolids)
     {
         _Solid = Solid
-        self.geometry = SCNPlatonicSolid.Geometry(Solid: Solid, BaseLength: _BaseLength)
+        self.geometry = SCNPlatonicSolid.Geometry(Solid: Solid)
     }
     
     /// Updates the shape with new dimensions.
-    /// - Parameter BaseLength: Length of the base of the tetrahedron.
-    /// - Parameter Height: Height of the apex of the tetrahedron.
-    /// - Parameter Sierpinski: Reserved for future use.
-    private func UpdateDimensions(NewBase: CGFloat)
+    private func UpdateDimensions()
     {
         CommonInitialization(Solid: Solid)
     }
     
     private var _Solid: PlatonicSolids = .Cube
+    /// Returns the Platonic solid shape.
     public var Solid: PlatonicSolids
     {
         get
@@ -64,73 +66,76 @@ class SCNPlatonicSolid: SCNNode
         }
     }
     
-    /// Holds the length of each base of the tetrahedron.
-    private var _BaseLength: CGFloat = 1.0
-    {
-        didSet
-        {
-            UpdateDimensions(NewBase: _BaseLength)
-        }
-    }
-    /// Get or set the base length of the tetrahedron. Defaults to 1.0
-    public var BaseLength: CGFloat
-    {
-        get
-        {
-            return _BaseLength
-        }
-        set
-        {
-            _BaseLength = newValue
-        }
-    }
-    
-    /// Holds the vertices of the shape.
-    private static var Vertices = [SCNVector3]()
-    
-    /// Holds the source geometry.
-    private static var GeoSource: SCNGeometrySource!
-    /// Holds the geometric element.
-    private static var GeoElement: SCNGeometryElement!
-    
     /// Returns geometry that defines the specified Platonic solid.
-    /// - Note: see [Custom SCNGeometry Not Displaying Diffuse Contents as Texture](https://stackoverflow.com/questions/48728060/custom-scngeometry-not-displaying-diffuse-contents-as-texture?rq=1)
     /// - Parameter Solid: The Platonic solid whose geometry will be returned.
-    /// - Parameter BaseLength: Length of the base of the solid.
-    /// - Returns: SCNGeometry object with the specified Platonic solid.
-    public static func Geometry(Solid: PlatonicSolids, BaseLength: CGFloat) -> SCNGeometry
+    /// - Returns: SCNGeometry object with the specified Platonic solid. Nil is returned on error.
+    public static func Geometry(Solid: PlatonicSolids) -> SCNGeometry?
     {
-        
-        let SolidVertices = PlatonicSolid.GetVertices(For: Solid)
-        Vertices.removeAll()
-        for Vertex in SolidVertices
+        if let Node = GetPlatonicSolidNode(Solid: Solid)
         {
-            let NewVertex = SCNVector3(Vertex.x * Float(BaseLength),
-                                       Vertex.y * Float(BaseLength),
-                                       Vertex.z * Float(BaseLength))
-            Vertices.append(NewVertex)
+            return Node.geometry
         }
-        GeoSource = SCNGeometrySource(vertices: Vertices)
-        GeoElement = SCNGeometryElement(indices: PlatonicSolid.GetIndices(For: Solid),
-                                        primitiveType: .triangles)
-        let TextureCoordinates =
-            [
-                CGPoint(x: 0, y: 0),
-                CGPoint(x: 1, y: 0),
-                CGPoint(x: 0, y: 1),
-                CGPoint(x: 1, y: 1)
-        ]
-        let UVPoints = SCNGeometrySource(textureCoordinates: TextureCoordinates)
-        let Geo = SCNGeometry(sources: [GeoSource, UVPoints], elements: [GeoElement])
-        return Geo
+        return nil
     }
     
-    public static func Geometry2(Solid: PlatonicSolids, BaseLength: CGFloat) -> SCNGeometry
+    /// Loads a Platonic solid node from an embedded .dae file created with an external program (Wings3D).
+    /// - Note: The final Platonic shape `SCNNode` is cached to avoid performance hits when several
+    ///         thousand nodes are needed for a scene.
+    /// - Parameter Solid: The solid node to load.
+    /// - Returns: `SCNNode` of the specified Platonic solid on success, nil if not found or on error.
+    public static func GetPlatonicSolidNode(Solid: PlatonicSolids) -> SCNNode?
     {
-        let Object = SCNScene(named: "Assets.xcassets/Cube.dae")
-        let Node = Object?.rootNode.childNode(withName: "Cube", recursively: true)
-        return Node!.geometry!
+        if let Cached = ShapeCache[Solid]
+        {
+            return Cached
+        }
+        var SolidFileName = "Cube"
+        var NodeName = "Cube"
+        switch Solid
+        {
+            case .Cube:
+                SolidFileName = "Cube"
+                NodeName = "Cube"
+            
+            case .Dodecahedron:
+                SolidFileName = "Dodecahedron"
+                NodeName = "Dodecahedron"
+            
+            case .Icosahedron:
+                SolidFileName = "Icosahedron"
+                NodeName = "Icosahedron"
+            
+            case .Octahedron:
+                SolidFileName = "Octahedron"
+                NodeName = "Octahedron"
+            
+            case .Tetrahedron:
+                SolidFileName = "Tetrahedron"
+                NodeName = "Tetrahedron"
+        }
+        
+        if let Path = Bundle.main.path(forResource: SolidFileName, ofType: "dae", inDirectory: "Solids.scnassets")
+        {
+            var SolidScene = SCNScene()
+            do
+            {
+                SolidScene = try SCNScene(url: URL(fileURLWithPath: Path), options: [:])
+            }
+            catch
+            {
+                return nil
+            }
+            if let Node = SolidScene.rootNode.childNode(withName: NodeName, recursively: true)
+            {
+                let FinalNode = Node.clone() as SCNNode
+                ShapeCache[Solid] = FinalNode
+                return FinalNode
+            }
+        }
+        return nil
     }
+    
+    private static var ShapeCache = [PlatonicSolids: SCNNode]()
 }
 
 /// Set of all Platonic solids.
