@@ -81,11 +81,6 @@ class ViewController: UIViewController,
         StartOrientationUpdates()
         
         AddLiveViewTaps()
-        
-        if let n = SCNPlatonicSolid.GetPlatonicSolidNode(Solid: .Icosahedron)
-        {
-            print("Platonic solid name: \((n.name)!)")
-        }
     }
     
     func AddLiveViewTaps()
