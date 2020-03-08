@@ -521,6 +521,80 @@ extension UIColor
         Brightness = Brightness * Multiplier
         return UIColor(hue: Hue, saturation: Saturation, brightness: Brightness, alpha: Alpha)
     }
+    
+    /// Returns a more saturated version of the instance color.
+    /// - Paraemter By: The percent value to multiply the instance color's saturation component by.
+    ///                 If this is not a normal value (0.0 - 1.0), the original color is returned
+    ///                 unchanged.
+    /// - Returns: Increased saturation color.
+    func Saturate(By Percent: CGFloat) -> UIColor
+    {
+        if Percent >= 1.0
+        {
+            return self
+        }
+        if Percent < 0.0
+        {
+            return self
+        }
+        var Hue: CGFloat = 0.0
+        var Saturation: CGFloat = 0.0
+        var Brightness: CGFloat = 0.0
+        var Alpha: CGFloat = 0.0
+        self.getHue(&Hue, saturation: &Saturation, brightness: &Brightness, alpha: &Alpha)
+        let Multiplier = 1.0 + Percent
+        Saturation = Saturation * Multiplier
+        return UIColor(hue: Hue, saturation: Saturation, brightness: Brightness, alpha: Alpha)
+    }
+    
+    /// Returns a desaturated version of the instance color.
+    /// - Paraemter By: The percent value to multiply the instance color's saturation component by.
+    ///                 If this is not a normal value (0.0 - 1.0), the original color is returned
+    ///                 unchanged.
+    /// - Returns: Desaturated color.
+    func Desaturate(By Percent: CGFloat) -> UIColor
+    {
+        if Percent >= 1.0
+        {
+            return self
+        }
+        if Percent < 0.0
+        {
+            return self
+        }
+        var Hue: CGFloat = 0.0
+        var Saturation: CGFloat = 0.0
+        var Brightness: CGFloat = 0.0
+        var Alpha: CGFloat = 0.0
+        self.getHue(&Hue, saturation: &Saturation, brightness: &Brightness, alpha: &Alpha)
+        let Multiplier = Percent
+        Saturation = Saturation * Multiplier
+        return UIColor(hue: Hue, saturation: Saturation, brightness: Brightness, alpha: Alpha)
+    }
+    
+    /// Return a relative color to the instance color.
+    /// - Parameter Relative: Defines how to create the relative color.
+    /// - Returns: A color related to the instance color but changed as per `Relative`.
+    func RelativeColor(_ Relative: RelativeColors) -> UIColor
+    {
+        switch Relative
+        {
+            case .Same:
+            return self
+            
+            case .Darker:
+            return self.Darken(By: 0.2)
+            
+            case .Lighter:
+            return self.Brighten(By: 0.2)
+            
+            case .Desaturated:
+            return self.Desaturate(By: 0.35)
+            
+            case .Saturated:
+            return self.Saturate(By: 0.25)
+        }
+    }
 }
 
 /// Extensions for Character.
