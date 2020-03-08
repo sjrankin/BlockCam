@@ -81,6 +81,11 @@ class ViewController: UIViewController,
         StartOrientationUpdates()
         
         AddLiveViewTaps()
+        
+        if let n = SCNPlatonicSolid.GetPlatonicSolidNode(Solid: .Icosahedron)
+        {
+            print("Platonic solid name: \((n.name)!)")
+        }
     }
     
     func AddLiveViewTaps()
@@ -643,6 +648,7 @@ class ViewController: UIViewController,
     ///    - Due to the sub-second delay, it is possible for the user to move the rendered scene before
     ///      the image is actually taken. It may end up being desirable to disable camera motion when
     ///      this image executes and restore it afterwards.
+    ///    - If output view is *not* showing statistics, there is no delay.
     ///    - Rather than using `SCNView.snapshot`, this function uses an extension method defined on
     ///      `UIView`: `ToImage`. This is because `SCNView.snapshot` does not render shadows correctly
     ///      while `ToImage` does.
@@ -657,6 +663,8 @@ class ViewController: UIViewController,
             Sounds.PlaySound(.Tock)
         }
         let IsShowing = OutputView.showsStatistics
+        if IsShowing
+        {
         OutputView.showsStatistics = false
         var Image: UIImage = UIImage()
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5)
@@ -664,6 +672,12 @@ class ViewController: UIViewController,
             Image = self.OutputView.ToImage()
             self.DoSaveImage(Image)
             self.OutputView.showsStatistics = IsShowing
+        }
+            }
+        else
+        {
+            let Image = self.OutputView.ToImage()
+            self.DoSaveImage(Image)
         }
     }
     
@@ -956,24 +970,7 @@ class ViewController: UIViewController,
             
             let FullRedrawAndNewLightOptions = [SettingKeys.EnableShadows]
             let FullRedrawOptions = [SettingKeys.BlockSize]
-            let SemiRedrawOptions = [SettingKeys.ShapeType, SettingKeys.HeightSource, SettingKeys.VerticalExaggeration,
-                                     SettingKeys.FullyExtrudeLetters, SettingKeys.LetterLocation, SettingKeys.LetterSmoothness,
-                                     SettingKeys.LetterFont, SettingKeys.RandomCharacterSource, SettingKeys.StarApexCount,
-                                     SettingKeys.IncreaseStarApexesWithProminence, SettingKeys.CappedLineBallLocation,
-                                     SettingKeys.FontSize, SettingKeys.MeshDotSize, SettingKeys.MeshLineThickness,
-                                     SettingKeys.BlockChamferSize, SettingKeys.RadiatingLineCount, SettingKeys.InvertHeight,
-                                     SettingKeys.HeightSource, SettingKeys.InvertDynamicColorProcess, SettingKeys.FlowerPetalCount,
-                                     SettingKeys.DynamicColorAction, SettingKeys.DynamicColorType, SettingKeys.CappedLineCapShape,
-                                     SettingKeys.DynamicColorCondition, SettingKeys.SourceAsBackground, SettingKeys.EllipseShape,
-                                     SettingKeys.IncreasePetalCountWithProminence, SettingKeys.CharacterUsesRandomFont,
-                                     SettingKeys.CharacterRandomRange, SettingKeys.CharacterFontName, SettingKeys.CharacterRandomFontSize,
-                                     SettingKeys.CharacterSeries, SettingKeys.StackedShapesSet, SettingKeys.CappedLineLineColor,
-                                     SettingKeys.PolygonSideCountVaries, SettingKeys.PolygonSideCount, SettingKeys.SphereBehavior,
-                                     SettingKeys.Polygon2DAxis, SettingKeys.Rectangle2DAxis, SettingKeys.Circle2DAxis,
-                                     SettingKeys.Oval2DAxis, SettingKeys.Star2DAxis, SettingKeys.Diamond2DAxis,
-                                     SettingKeys.SpherePlusShape, SettingKeys.BoxPlusShape, SettingKeys.RandomShapeShowsBase,
-                                     SettingKeys.RandomIntensity, SettingKeys.RandomBaseShape, SettingKeys.RandomRadius,
-                                     SettingKeys.RegularSolidBehavior]
+
             let SceneOptions = [SettingKeys.SceneBackgroundColor]
             
             if Utilities.ArrayContains(AnyOf: SceneOptions, In: Working)
@@ -991,7 +988,8 @@ class ViewController: UIViewController,
                 ProcessImageInBackground(ImageToProcess!)
                 return
             }
-            if Utilities.ArrayContains(AnyOf: SemiRedrawOptions, In: Working)
+//            if Utilities.ArrayContains(AnyOf: ShapeManager.GetSemiRedrawOptions(), In: Working)
+                if ShapeManager.InSemiRedraw(Working)
             {
                 let PrePixellated = FileIO.GetPixelData(From: "Pixels.dat")
                 var CanReusePixels = true
