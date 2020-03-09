@@ -620,3 +620,27 @@ enum LightIntensities: String, CaseIterable
     /// Brightest light.
     case Brightest = "Brightest"
 }
+
+
+/// Set of all Platonic solids.
+enum PlatonicSolids: String, CaseIterable
+{
+    /// Tetrahedron. 4 faced-solid.
+    case Tetrahedron = "Tetrahedron"
+    /// Cube. 6 faced-solid.
+    case Cube = "Cube"
+    /// Octahedron. 8 faced-solid.
+    case Octahedron = "Octahedron"
+    /// Dodecahedron. 12 faced-solid.
+    case Dodecahedron = "Dodecahedron"
+    /// Icosahedron. 20 faced-solid.
+    case Icosahedron = "Icosahedron"
+}
+
+enum OtherSolids: String, CaseIterable
+{
+    case Octatoad = "Octatoad"
+    case Spiral = "Spiral"
+    case Spring = "Spring"
+    case TorusKnot = "Torus Knot"
+}
