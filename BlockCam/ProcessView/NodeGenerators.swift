@@ -360,14 +360,8 @@ extension Generator
             case .Square:
                 Shape = SCNBox(width: Side * 1.5, height: 0.05, length: Side * 1.5, chamferRadius: 0.0)
         }
-        
-        #if true
+
         SetMaterials(To: Shape, With: Diffuse)
-        #else
-        Shape.firstMaterial?.diffuse.contents = Diffuse
-        Shape.firstMaterial?.specular.contents = UIColor.white
-        Shape.firstMaterial?.lightingModel = GetLightModel()
-        #endif
         
         return Shape
     }
@@ -463,13 +457,7 @@ extension Generator
             }
         }
         ZLocation = Prominence * 2.0
-        #if true
         SetMaterials(To: Node.geometry!, With: Color)
-        #else
-        Node.geometry?.firstMaterial?.diffuse.contents = Color
-        Node.geometry?.firstMaterial?.specular.contents = UIColor.white
-        Node.geometry?.firstMaterial?.lightingModel = GetLightModel()
-        #endif
         return Node
     }
     
@@ -577,13 +565,7 @@ extension Generator
             default:
                 Node = SCNNode(geometry: SCNBox(width: Side, height: Side, length: Side, chamferRadius: Side * 0.05))
         }
-        #if true
         SetMaterials(To: Node!.geometry!, With: Color)
-        #else
-        Node?.geometry?.firstMaterial?.diffuse.contents = Color
-        Node?.geometry?.firstMaterial?.specular.contents = UIColor.white
-        Node?.geometry?.firstMaterial?.lightingModel = GetLightModel()
-        #endif
         return Node!
     }
     
@@ -670,13 +652,7 @@ extension Generator
                 let SphereHeight = Prominence * 2.0
                 let Chamfer = GetBaseChamfer()
                 let Sphere = SCNSphere(radius: Side / 2.0)
-                #if true
                 SetMaterials(To: Sphere, With: Color)
-                #else
-                Sphere.firstMaterial?.diffuse.contents = Color
-                Sphere.firstMaterial?.specular.contents = UIColor.white
-                Sphere.firstMaterial?.lightingModel = GetLightModel()
-                #endif
                 let SphereNode = SCNNode(geometry: Sphere)
                 AncillaryNode = SCNNode2()
                 AncillaryNode?.addChildNode(SphereNode)
@@ -710,13 +686,7 @@ extension Generator
                     default:
                         Geo = SCNSphere(radius: Side * 0.25)
                 }
-                #if true
                 SetMaterials(To: Geo, With: Color)
-                #else
-                Geo.firstMaterial?.diffuse.contents = Color
-                Geo.firstMaterial?.specular.contents = UIColor.white
-                Geo.firstMaterial?.lightingModel = GetLightModel()
-                #endif
                 let OtherNode = SCNNode(geometry: Geo)
                 if RotateOnX
                 {
@@ -731,13 +701,7 @@ extension Generator
                 let BoxHeight = Prominence * 2.0
                 let Chamfer = GetBaseChamfer()
                 let Box = SCNBox(width: Side, height: Side, length: BoxHeight, chamferRadius: Chamfer)
-                #if true
                 SetMaterials(To: Box, With: Color)
-                #else
-                Box.firstMaterial?.diffuse.contents = Color
-                Box.firstMaterial?.specular.contents = UIColor.white
-                Box.firstMaterial?.lightingModel = GetLightModel()
-                #endif
                 let BoxNode = SCNNode(geometry: Box)
                 BoxNode.position = SCNVector3(0.0, 0.0, 0.0)
                 AncillaryNode = SCNNode2()
@@ -784,13 +748,7 @@ extension Generator
                         ExZ = BoxHeight / 2.0
                         Geo = SCNSphere(radius: Side * 0.15)
                 }
-                #if true
                 SetMaterials(To: Geo, With: Color)
-                #else
-                Geo.firstMaterial?.diffuse.contents = Color
-                Geo.firstMaterial?.specular.contents = UIColor.white
-                Geo.firstMaterial?.lightingModel = GetLightModel()
-                #endif
                 let OtherNode = SCNNode(geometry: Geo)
                 if RotateOnX
                 {
@@ -893,13 +851,7 @@ extension Generator
                 default:
                     fatalError("Unexpected shape (\(RandomShape.rawValue)) found in MakeRandomShape")
             }
-            #if true
             SetMaterials(To: Geo, With: Color)
-            #else
-            Geo.firstMaterial?.diffuse.contents = Color
-            Geo.firstMaterial?.specular.contents = UIColor.white
-            Geo.firstMaterial?.lightingModel = GetLightModel()
-            #endif
             let Center = SCNNode(geometry: Geo)
             if RandomShape == .Circle2D
             {
@@ -929,13 +881,7 @@ extension Generator
                 default:
                     fatalError("Unexpected shape (\(RandomShape.rawValue)) found in MakeRandomShape")
             }
-            #if true
             SetMaterials(To: Geo, With: Color)
-            #else
-            Geo.firstMaterial?.diffuse.contents = Color
-            Geo.firstMaterial?.specular.contents = UIColor.white
-            Geo.firstMaterial?.lightingModel = GetLightModel()
-            #endif
             let Child = SCNNode(geometry: Geo)
             if RandomShape == .Circle2D
             {
@@ -946,6 +892,16 @@ extension Generator
         }
         return Parent
     }
+    
+    /// Map from the general-purpose shape enum to the platonic solid enum.
+    static private let SolidMap: [NodeShapes: PlatonicSolids] =
+    [
+    .Tetrahedrons: .Tetrahedron,
+    .Cubes: .Cube,
+    .Octahedrons: .Octahedron,
+    .Dodecahedrons: .Dodecahedron,
+    .Icosahedrons: .Icosahedron
+    ]
     
     /// Create a regular geometric solid.
     /// - Parameter ForShape: Determines the solid to create.
@@ -958,24 +914,9 @@ extension Generator
                                             Side: CGFloat, ZLocation: inout CGFloat) -> SCNNode2?
     {
         ZLocation = 0.0
-        var FinalShape = SCNGeometry()
         var ShapeScale = SCNVector3(1.0, 1.0, 1.0)
-        switch ForShape
-        {
-            case .Tetrahedrons:
-                FinalShape = SCNTetrahedron.Geometry(BaseLength: Side, Height: Side) 
-            
-            case .Icosahedrons:
-                FinalShape = SCNIcosahedron.Geometry(BaseLength: Side)
-            
-            default:
-                Log.AbortMessage("Invalid shape: \(ForShape.rawValue)", FileName: #file, FunctionName: #function,
-                                 LineNumber: #line)
-                {
-                    Message in
-                    fatalError(Message)
-            }
-        }
+        let FinalShape = SCNPlatonicSolid.Geometry(Solid: SolidMap[ForShape]!)!
+        FinalShape.firstMaterial = SCNMaterial()
         
         switch Settings.GetEnum(ForKey: .RegularSolidBehavior, EnumType: RegularSolidBehaviors.self,
                                 Default: .Size)
@@ -986,15 +927,10 @@ extension Generator
             case .Size:
                 ShapeScale = SCNVector3(Prominence, Prominence, Prominence)
         }
-        
-        #if true
+
         SetMaterials(To: FinalShape, With: Color)
-        #else
-        FinalShape.firstMaterial?.diffuse.contents = Color
-        FinalShape.firstMaterial?.specular.contents = UIColor.white
-        FinalShape.firstMaterial?.lightingModel = GetLightModel()
-        #endif
         let Node = SCNNode2(geometry: FinalShape)
+        Node.eulerAngles = SCNVector3(90.0 * CGFloat.pi / 180.0, 0.0, 0.0)
         Node.scale = ShapeScale
         return Node
     }
@@ -1021,26 +957,14 @@ extension Generator
                 let Chamfer = GetBaseChamfer()
                 let SideValue = Side + Prominence
                 let Box1Geo = SCNBox(width: SideValue, height: SideValue, length: SideValue, chamferRadius: Chamfer)
-                #if true
                 SetMaterials(To: Box1Geo, With: Color)
-                #else
-                Box1Geo.firstMaterial?.diffuse.contents = Color
-                Box1Geo.firstMaterial?.specular.contents = UIColor.white
-                Box1Geo.firstMaterial?.lightingModel = GetLightModel()
-                #endif
                 let Box1 = SCNNode(geometry: Box1Geo)
                 Box1.position = SCNVector3(0.0, 0.0, 0.0)
                 let Box2Geo = SCNBox(width: SideValue, height: SideValue, length: SideValue, chamferRadius: Chamfer)
                 let Box2RelativeColor = Settings.GetEnum(ForKey: .EmbeddedBoxColor, EnumType: RelativeColors.self,
                                                          Default: .Darker)
                let Box2Color = Color.RelativeColor(Box2RelativeColor)
-                #if true
-                SetMaterials(To: Box2Geo, With: Color)
-                #else
-                Box2Geo.firstMaterial?.diffuse.contents = Box2Color
-                Box2Geo.firstMaterial?.specular.contents = UIColor.white
-                Box2Geo.firstMaterial?.lightingModel = GetLightModel()
-                #endif
+                SetMaterials(To: Box2Geo, With: Box2Color)
                 let Box2 = SCNNode(geometry: Box2Geo)
                 Box2.position = SCNVector3(0.0, 0.0, 0.0)
                 Box2.eulerAngles = SCNVector3(45.0 * CGFloat.pi / 180.0, 45.0 * CGFloat.pi / 180.0, 0.0)
@@ -1052,26 +976,14 @@ extension Generator
                 AncillaryNode = SCNNode2()
                 let Radius = (Side / 2.0) + (Prominence / 3.0)
                 let Sphere = SCNSphere(radius: Radius)
-                #if true
                 SetMaterials(To: Sphere, With: Color)
-                #else
-                Sphere.firstMaterial?.diffuse.contents = Color
-                Sphere.firstMaterial?.specular.contents = UIColor.white
-                Sphere.firstMaterial?.lightingModel = GetLightModel()
-                #endif
                 let SphereNode = SCNNode(geometry: Sphere)
                 SphereNode.position = SCNVector3(0.0, 0.0, 0.0)
                 let Torus = SCNTorus(ringRadius: Radius * 1.2, pipeRadius: Radius * 0.5)
                 let TorusRelativeColor = Settings.GetEnum(ForKey: .SphereRingColor, EnumType: RelativeColors.self,
                                                           Default: .Darker)
-                let TorusColor = Color.RelativeColor(TorusRelativeColor)
-                #if true
-                SetMaterials(To: Torus, With: Color)
-                #else
-                Torus.firstMaterial?.diffuse.contents = TorusColor
-                Torus.firstMaterial?.specular.contents = UIColor.white
-                Torus.firstMaterial?.lightingModel = GetLightModel()
-                #endif
+                let TorusColor = Color.RelativeColor(TorusRelativeColor) 
+                SetMaterials(To: Torus, With: TorusColor)
                 let TorusNode = SCNNode(geometry: Torus)
                 TorusNode.position = SCNVector3(0.0, 0.0, 0.0)
                 let RingRotation = Settings.GetEnum(ForKey: .SphereRingOrientation, EnumType: RingOrientations.self,
@@ -1122,6 +1034,7 @@ extension Generator
             case .Random:
                 return MakeRandomShape(Prominence: Prominence, Color: Color, Side: Side,
                                        ZLocation: &ZLocation)
+            
             case .SpherePlus, .BoxPlus:
                 return MakePlusShape(ForShape: ForShape, Prominence: Prominence, Color: Color,
                                      Side: Side, ZLocation: &ZLocation, DoXRotate: &DoXRotate)
@@ -1135,25 +1048,13 @@ extension Generator
                 AncillaryNode = SCNNode2()
                 AncillaryNode?.geometry = SCNEllipse.Geometry(MajorAxis: Side * Major, MinorAxis: Side * Minor, Height: Prominence * 2)
                 AncillaryNode?.scale = SCNEllipse.ReciprocalScale()
-                #if true
                 SetMaterials(To: AncillaryNode!.geometry!, With: Color)
-                #else
-                AncillaryNode?.geometry?.firstMaterial?.diffuse.contents = Color
-                AncillaryNode?.geometry?.firstMaterial?.specular.contents = UIColor.white
-                AncillaryNode?.geometry?.firstMaterial?.lightingModel = GetLightModel()
-                #endif
             
             case .HueTriangles:
                 AncillaryNode = SCNNode2()
                 let TriangleGeo = SCNArrowHead.Geometry(Height: Side * 2.5, Base: Side * 1.0, Inset: Side * 0.35, Extrusion: Prominence * 2)
-                #if true
+                AncillaryNode?.geometry = TriangleGeo
                 SetMaterials(To: AncillaryNode!.geometry!, With: Color)
-                #else
-                AncillaryNode?.geometry?.firstMaterial?.diffuse.contents = Color
-                AncillaryNode?.geometry?.firstMaterial?.specular.contents = UIColor.white
-                AncillaryNode?.geometry?.firstMaterial?.lightingModel = GetLightModel()
-                #endif
-                                AncillaryNode?.geometry = TriangleGeo
                 var Hue: CGFloat = 0.0
                 var Saturation: CGFloat = 0.0
                 var Brightness: CGFloat = 0.0
@@ -1165,23 +1066,11 @@ extension Generator
             case .PerpendicularSquares:
                 AncillaryNode = SCNNode2()
                 let Shape1 = SCNBox(width: 0.25 * 2, height: 0.05, length: 0.25 * 2, chamferRadius: 0.0)
-                #if true
                 SetMaterials(To: Shape1, With: Color)
-                #else
-                Shape1.firstMaterial?.diffuse.contents = Color
-                Shape1.firstMaterial?.specular.contents = UIColor.white
-                Shape1.firstMaterial?.lightingModel = GetLightModel()
-                #endif
                 let Node1 = SCNNode2(geometry: Shape1)
                 Node1.position = SCNVector3(0.0, 0.0, 0.0)
                 let Shape2 = SCNBox(width: 0.25 * 2, height: 0.25 * 2.0, length: 0.05, chamferRadius: 0.0)
-                #if true
                 SetMaterials(To: Shape2, With: Color)
-                #else
-                Shape2.firstMaterial?.diffuse.contents = Color
-                Shape2.firstMaterial?.specular.contents = UIColor.white
-                Shape2.firstMaterial?.lightingModel = GetLightModel()
-                #endif
                 let Node2 = SCNNode2(geometry: Shape2)
                 Node2.position = SCNVector3(0.0, 0.0, 0.0)
                 AncillaryNode?.addChildNode(Node1)
@@ -1191,23 +1080,11 @@ extension Generator
             case .PerpendicularCircles:
                 AncillaryNode = SCNNode2()
                 let Shape1 = SCNCylinder(radius: 0.25, height: 0.05)
-                #if true
                 SetMaterials(To: Shape1, With: Color)
-                #else
-                Shape1.firstMaterial?.diffuse.contents = Color
-                Shape1.firstMaterial?.specular.contents = UIColor.white
-                Shape1.firstMaterial?.lightingModel = GetLightModel()
-                #endif
                 let Node1 = SCNNode2(geometry: Shape1)
                 Node1.position = SCNVector3(0.0, 0.0, 0.0)
                 let Shape2 = SCNCylinder(radius: 0.25, height: 0.05)
-                #if true
                 SetMaterials(To: Shape2, With: Color)
-                #else
-                Shape2.firstMaterial?.diffuse.contents = Color
-                Shape2.firstMaterial?.specular.contents = UIColor.white
-                Shape2.firstMaterial?.lightingModel = GetLightModel()
-                #endif
                 let Node2 = SCNNode2(geometry: Shape2)
                 Node2.position = SCNVector3(0.0, 0.0, 0.0)
                 Node2.eulerAngles = SCNVector3(90.0 * CGFloat.pi / 180.0, 0.0, 0.0)
@@ -1237,13 +1114,7 @@ extension Generator
                 AncillaryNode = SCNNode2()
                 let Shape1 = SCNCylinder(radius: 0.1, height: Prominence * 2)
                 let LineColor = GetCappedLineColor(BasedOn: Color)
-                #if true
                 SetMaterials(To: Shape1, With: LineColor)
-                #else
-                Shape1.firstMaterial?.diffuse.contents = LineColor
-                Shape1.firstMaterial?.specular.contents = UIColor.white
-                Shape1.firstMaterial?.lightingModel = GetLightModel()
-                #endif
                 let Node1 = SCNNode2(geometry: Shape1)
                 Node1.position = SCNVector3(0.0, 0.0, 0.0)
                 let Shape2 = GetCappedLineShape(Side: 0.25, Diffuse: Color)
@@ -1283,49 +1154,25 @@ extension Generator
                 }
                 AncillaryNode = SCNNode2()
                 let UpLineGeo = SCNBox(width: RLineThickness, height: RLineThickness, length: 1.0, chamferRadius: 0.0)
-                #if true
                 SetMaterials(To: UpLineGeo, With: Color)
-                #else
-                UpLineGeo.firstMaterial?.diffuse.contents = Color
-                UpLineGeo.firstMaterial?.specular.contents = UIColor.white
-                UpLineGeo.firstMaterial?.lightingModel = GetLightModel()
-                #endif
                 let UpLine = SCNNode(geometry: UpLineGeo)
                 UpLine.eulerAngles = SCNVector3(90.0 * Double.pi / 180.0, 0.0, 0.0)
                 AncillaryNode?.addChildNode(UpLine)
                 
                 let DownLineGeo = SCNBox(width: RLineThickness, height: RLineThickness, length: 1.0, chamferRadius: 0.0)
-                #if true
                 SetMaterials(To: DownLineGeo, With: Color)
-                #else
-                DownLineGeo.firstMaterial?.diffuse.contents = Color
-                DownLineGeo.firstMaterial?.specular.contents = UIColor.white
-                DownLineGeo.firstMaterial?.lightingModel = GetLightModel()
-                #endif
                 let DownLine = SCNNode(geometry: DownLineGeo)
                 DownLine.eulerAngles = SCNVector3(-90.0 * Double.pi / 180.0, 0.0, 0.0)
                 AncillaryNode?.addChildNode(DownLine)
                 
                 let LeftLineGeo = SCNBox(width: RLineThickness, height: RLineThickness, length: 1.0, chamferRadius: 0.0)
-                #if true
                 SetMaterials(To: LeftLineGeo, With: Color)
-                #else
-                LeftLineGeo.firstMaterial?.diffuse.contents = Color
-                LeftLineGeo.firstMaterial?.specular.contents = UIColor.white
-                LeftLineGeo.firstMaterial?.lightingModel = GetLightModel()
-                #endif
                 let LeftLine = SCNNode(geometry: LeftLineGeo)
                 LeftLine.eulerAngles = SCNVector3(90.0 * Double.pi / 180.0, 0.0, 90.0 * Double.pi / 180.0)
                 AncillaryNode?.addChildNode(LeftLine)
                 
                 let RightLineGeo = SCNBox(width: RLineThickness, height: RLineThickness, length: 1.0, chamferRadius: 0.0)
-                #if true
                 SetMaterials(To: RightLineGeo, With: Color)
-                #else
-                RightLineGeo.firstMaterial?.diffuse.contents = Color
-                RightLineGeo.firstMaterial?.specular.contents = UIColor.white
-                RightLineGeo.firstMaterial?.lightingModel = GetLightModel()
-                #endif
                 let RightLine = SCNNode(geometry: RightLineGeo)
                 RightLine.eulerAngles = SCNVector3(-90.0 * Double.pi / 180.0, 0.0, -90.0 * Double.pi / 180.0)
                 AncillaryNode?.addChildNode(RightLine)
@@ -1333,49 +1180,25 @@ extension Generator
                 if Settings.GetInteger(ForKey: .RadiatingLineCount) > 4
                 {
                     let ULGeo = SCNBox(width: RLineThickness, height: RLineThickness, length: 1.0, chamferRadius: 0.0)
-                    #if true
                     SetMaterials(To: ULGeo, With: Color)
-                    #else
-                    ULGeo.firstMaterial?.diffuse.contents = Color
-                    ULGeo.firstMaterial?.specular.contents = UIColor.white
-                    ULGeo.firstMaterial?.lightingModel = GetLightModel()
-                    #endif
                     let ULLine = SCNNode(geometry: ULGeo)
                     ULLine.eulerAngles = SCNVector3(90.0 * Double.pi / 180.0, 0.0, 45.0 * Double.pi / 180.0)
                     AncillaryNode?.addChildNode(ULLine)
                     
                     let LLGeo = SCNBox(width: RLineThickness, height: RLineThickness, length: 1.0, chamferRadius: 0.0)
-                    #if true
                     SetMaterials(To: LLGeo, With: Color)
-                    #else
-                    LLGeo.firstMaterial?.diffuse.contents = Color
-                    LLGeo.firstMaterial?.specular.contents = UIColor.white
-                    LLGeo.firstMaterial?.lightingModel = GetLightModel()
-                    #endif
                     let LLLine = SCNNode(geometry: LLGeo)
                     LLLine.eulerAngles = SCNVector3(90.0 * Double.pi / 180.0, 0.0, 135.0 * Double.pi / 180.0)
                     AncillaryNode?.addChildNode(LLLine)
                     
                     let URGeo = SCNBox(width: RLineThickness, height: RLineThickness, length: 1.0, chamferRadius: 0.0)
-                    #if true
                     SetMaterials(To: URGeo, With: Color)
-                    #else
-                    URGeo.firstMaterial?.diffuse.contents = Color
-                    URGeo.firstMaterial?.specular.contents = UIColor.white
-                    URGeo.firstMaterial?.lightingModel = GetLightModel()
-                    #endif
                     let URLine = SCNNode(geometry: URGeo)
                     URLine.eulerAngles = SCNVector3(90.0 * Double.pi / 180.0, 0.0, -45.0 * Double.pi / 180.0)
                     AncillaryNode?.addChildNode(URLine)
                     
                     let LRGeo = SCNBox(width: RLineThickness, height: RLineThickness, length: 1.0, chamferRadius: 0.0)
-                    #if true
                     SetMaterials(To: LRGeo, With: Color)
-                    #else
-                    LRGeo.firstMaterial?.diffuse.contents = Color
-                    LRGeo.firstMaterial?.specular.contents = UIColor.white
-                    LRGeo.firstMaterial?.lightingModel = GetLightModel()
-                    #endif
                     let LRLine = SCNNode(geometry: LRGeo)
                     LRLine.eulerAngles = SCNVector3(90.0 * Double.pi / 180.0, 0.0, -135.0 * Double.pi / 180.0)
                     AncillaryNode?.addChildNode(LRLine)
@@ -1384,49 +1207,25 @@ extension Generator
                 if Settings.GetInteger(ForKey: .RadiatingLineCount) > 8
                 {
                     let UpLineGeo = SCNBox(width: RLineThickness, height: RLineThickness, length: 1.0, chamferRadius: 0.0)
-                    #if true
                     SetMaterials(To: UpLineGeo, With: Color)
-                    #else
-                    UpLineGeo.firstMaterial?.diffuse.contents = Color
-                    UpLineGeo.firstMaterial?.specular.contents = UIColor.white
-                    UpLineGeo.firstMaterial?.lightingModel = GetLightModel()
-                    #endif
                     let UpLine = SCNNode(geometry: UpLineGeo)
                     UpLine.eulerAngles = SCNVector3(-90.0 * Double.pi / 180.0, 90.0 * Double.pi / 180.0, 90.0 * Double.pi / 180.0)
                     AncillaryNode?.addChildNode(UpLine)
                     
                     let DownLineGeo = SCNBox(width: RLineThickness, height: RLineThickness, length: 1.0, chamferRadius: 0.0)
-                    #if true
                     SetMaterials(To: DownLineGeo, With: Color)
-                    #else
-                    DownLineGeo.firstMaterial?.diffuse.contents = Color
-                    DownLineGeo.firstMaterial?.specular.contents = UIColor.white
-                    DownLineGeo.firstMaterial?.lightingModel = GetLightModel()
-                    #endif
                     let DownLine = SCNNode(geometry: DownLineGeo)
                     DownLine.eulerAngles = SCNVector3(90.0 * Double.pi / 180.0, 90.0 * Double.pi / 180.0, 90.0 * Double.pi / 180.0)
                     AncillaryNode?.addChildNode(DownLine)
                     
                     let LeftLineGeo = SCNBox(width: RLineThickness, height: RLineThickness, length: 1.0, chamferRadius: 0.0)
-                    #if true
                     SetMaterials(To: LeftLineGeo, With: Color)
-                    #else
-                    LeftLineGeo.firstMaterial?.diffuse.contents = Color
-                    LeftLineGeo.firstMaterial?.specular.contents = UIColor.white
-                    LeftLineGeo.firstMaterial?.lightingModel = GetLightModel()
-                    #endif
                     let LeftLine = SCNNode(geometry: LeftLineGeo)
                     LeftLine.eulerAngles = SCNVector3(90.0 * Double.pi / 180.0, 0.0, 90.0 * Double.pi / 180.0)
                     AncillaryNode?.addChildNode(LeftLine)
                     
                     let RightLineGeo = SCNBox(width: RLineThickness, height: RLineThickness, length: 1.0, chamferRadius: 0.0)
-                    #if true
                     SetMaterials(To: RightLineGeo, With: Color)
-                    #else
-                    RightLineGeo.firstMaterial?.diffuse.contents = Color
-                    RightLineGeo.firstMaterial?.specular.contents = UIColor.white
-                    RightLineGeo.firstMaterial?.lightingModel = GetLightModel()
-                    #endif
                     let RightLine = SCNNode(geometry: RightLineGeo)
                     RightLine.eulerAngles = SCNVector3(90.0 * Double.pi / 180.0, 0.0, -90.0 * Double.pi / 180.0)
                     AncillaryNode?.addChildNode(RightLine)
@@ -1482,13 +1281,7 @@ extension Generator
         if !NoDots
         {
             let Shape1 = SCNSphere(radius: DotRadius)
-            #if true
             SetMaterials(To: Shape1, With: Color)
-            #else
-            Shape1.firstMaterial?.diffuse.contents = Color
-            Shape1.firstMaterial?.specular.contents = UIColor.white
-            Shape1.firstMaterial?.lightingModel = GetLightModel()
-            #endif
             let Node1 = SCNNode2(geometry: Shape1)
             AncillaryNode.addChildNode(Node1)
         }
@@ -1511,13 +1304,7 @@ extension Generator
                     DotRadius = 0.2
             }
             let Shape1 = SCNSphere(radius: DotRadius)
-            #if true
             SetMaterials(To: Shape1, With: Color)
-            #else
-            Shape1.firstMaterial?.diffuse.contents = Color
-            Shape1.firstMaterial?.specular.contents = UIColor.white
-            Shape1.firstMaterial?.lightingModel = GetLightModel()
-            #endif
             let Node1 = SCNNode2(geometry: Shape1)
             AncillaryNode.addChildNode(Node1)
         }
@@ -1689,29 +1476,11 @@ extension Generator
                 var AlphaP: CGFloat = 0.0
                 Color.getRed(&RedP, green: &GreenP, blue: &BlueP, alpha: &AlphaP)
                 Combined.append(SCNTorus(ringRadius: RedP, pipeRadius: RedP / 2.0))
-                #if true
                 SetMaterials(To: Combined[0], With: UIColor(red: RedP, green: 0.0, blue: 0.0, alpha: 1.0))
-                #else
-                Combined[0].firstMaterial?.diffuse.contents = UIColor(red: RedP, green: 0.0, blue: 0.0, alpha: 1.0)
-                Combined[0].firstMaterial?.specular.contents = UIColor.white
-                Combined[0].firstMaterial?.lightingModel = GetLightModel()
-                #endif
                 Combined.append(SCNSphere(radius: GreenP))
-                #if true
                 SetMaterials(To: Combined[1], With: UIColor(red: 0.0, green: GreenP, blue: 0.0, alpha: 1.0))
-                #else
-                Combined[1].firstMaterial?.diffuse.contents = UIColor(red: 0.0, green: GreenP, blue: 0.0, alpha: 1.0)
-                Combined[1].firstMaterial?.specular.contents = UIColor.white
-                Combined[1].firstMaterial?.lightingModel = GetLightModel()
-                #endif
                 Combined.append(SCNTorus(ringRadius: BlueP, pipeRadius: BlueP / 2.0))
-                #if true
                 SetMaterials(To: Combined[2], With: UIColor(red: 0.0, green: 0.0, blue: BlueP, alpha: 1.0))
-                #else
-                Combined[2].firstMaterial?.diffuse.contents = UIColor(red: 0.0, green: 0.0, blue: BlueP, alpha: 1.0)
-                Combined[2].firstMaterial?.specular.contents = UIColor.white
-                Combined[2].firstMaterial?.lightingModel = GetLightModel()
-                #endif
             
             case .CombinedForHSB:
                 var Gray: CGFloat = 0.0
@@ -1728,29 +1497,11 @@ extension Generator
                 Color.getWhite(&Gray, alpha: &NotUsed)
                 Combined.append(SCNBox(width: SaturationP, height: SaturationP, length: SaturationP, chamferRadius: 0.0))
                 let Channel0Color = UIColor(red: RedP * 0.75, green: GreenP * 0.75, blue: BlueP * 0.75, alpha: 1.0)
-                #if true
                 SetMaterials(To: Combined[0], With: Channel0Color)
-                #else
-                Combined[0].firstMaterial?.diffuse.contents = Channel0Color
-                Combined[0].firstMaterial?.specular.contents = UIColor.white
-                Combined[0].firstMaterial?.lightingModel = GetLightModel()
-                #endif
                 Combined.append(SCNSphere(radius: HueP))
-                #if true
                 SetMaterials(To: Combined[1], With: Color)
-                #else
-                Combined[1].firstMaterial?.diffuse.contents = Color
-                Combined[1].firstMaterial?.specular.contents = UIColor.white
-                Combined[1].firstMaterial?.lightingModel = GetLightModel()
-                #endif
                 Combined.append(SCNTorus(ringRadius: BrightnessP, pipeRadius: BrightnessP / 2.0))
-                #if true
                 SetMaterials(To: Combined[2], With: UIColor(red: Gray, green: Gray, blue: Gray, alpha: 1.0))
-                #else
-                Combined[2].firstMaterial?.diffuse.contents = UIColor(red: Gray, green: Gray, blue: Gray, alpha: 1.0)
-                Combined[2].firstMaterial?.specular.contents = UIColor.white
-                Combined[2].firstMaterial?.lightingModel = GetLightModel()
-                #endif
             
             default:
                 return nil
