@@ -46,7 +46,8 @@ class ShapeManager
                           NodeShapes.Capsules.rawValue, NodeShapes.Cones.rawValue,
                           NodeShapes.Pyramids.rawValue]),
             ("Polygonal", [NodeShapes.Stars.rawValue, NodeShapes.Polygons.rawValue]),
-            ("Regular Solids", [NodeShapes.Tetrahedrons.rawValue, NodeShapes.Icosahedrons.rawValue]),
+            ("Solids", [NodeShapes.Tetrahedrons.rawValue, NodeShapes.Cubes.rawValue, NodeShapes.Octahedrons.rawValue,
+                        NodeShapes.Dodecahedrons.rawValue, NodeShapes.Icosahedrons.rawValue]),
             ("Combined", [NodeShapes.Lines.rawValue, NodeShapes.CappedLines.rawValue, NodeShapes.StackedShapes.rawValue,
                           NodeShapes.RadiatingLines.rawValue, NodeShapes.PerpendicularSquares.rawValue,
                           NodeShapes.PerpendicularCircles.rawValue,
@@ -165,7 +166,7 @@ class ShapeManager
                                             NodeShapes.Circle2D, NodeShapes.Oval2D, NodeShapes.Diamond2D, NodeShapes.Star2D,
                                             NodeShapes.Spheres, NodeShapes.SpherePlus, NodeShapes.BoxPlus, NodeShapes.Random,
                                             NodeShapes.Tetrahedrons, NodeShapes.Icosahedrons, NodeShapes.EmbeddedBlocks,
-                                            NodeShapes.SphereWithTorus]
+                                            NodeShapes.SphereWithTorus, NodeShapes.Cubes, NodeShapes.Octahedrons, NodeShapes.Dodecahedrons]
     /// Returns a table of node shapes that take options.
     public static var OptionsAvailable: [NodeShapes]
     {
@@ -397,10 +398,16 @@ enum NodeShapes: String, CaseIterable
     case Capsules = "Capsules"
     /// Cones from SCNCone.
     case Cones = "Cones"
-    /// Tetrahedrons from SCNTetrahedron.
+    /// Tetrahedrons from SCNPlatonicSolid.
     case Tetrahedrons = "Tetrahedrons"
-    /// Icosahedron from SCNIcosahedron.
+    /// Icosahedron from SCNPlatonicSolid.
     case Icosahedrons = "Icosahedron"
+    /// Cubes from SCNPlatonicSolid.
+        case Cubes = "Cubes"
+    /// Dodecahedrons from SCNPlatonicSolid.
+    case Dodecahedrons = "Dodecahedrons"
+    /// Octahedrons from SCNPlatonicSolid.
+    case Octahedrons = "Octahedrons"
     /// Star shapes from SCNStar.Geometry.
     case Stars = "Stars"
     /// Each node uses three shapes, one for red, one for green, and one for blue.
