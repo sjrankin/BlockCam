@@ -91,11 +91,13 @@ class SCNPlatonicSolid: SCNNode
         }
         var SolidFileName = "Cube"
         var NodeName = "Cube"
+        var FileType = "dae"
         switch Solid
         {
             case .Cube:
-                SolidFileName = "Cube"
-                NodeName = "Cube"
+                SolidFileName = "Cube2"
+                NodeName = "Cube2"
+            FileType = "scn"
             
             case .Dodecahedron:
                 SolidFileName = "Dodecahedron"
@@ -114,7 +116,7 @@ class SCNPlatonicSolid: SCNNode
                 NodeName = "Tetrahedron"
         }
         
-        if let Path = Bundle.main.path(forResource: SolidFileName, ofType: "dae", inDirectory: "Solids.scnassets")
+        if let Path = Bundle.main.path(forResource: SolidFileName, ofType: FileType, inDirectory: "Solids.scnassets")
         {
             var SolidScene = SCNScene()
             do
@@ -136,19 +138,4 @@ class SCNPlatonicSolid: SCNNode
     }
     
     private static var ShapeCache = [PlatonicSolids: SCNNode]()
-}
-
-/// Set of all Platonic solids.
-enum PlatonicSolids: String, CaseIterable
-{
-    /// Tetrahedron. 4 faced-solid.
-    case Tetrahedron = "Tetrahedron"
-    /// Cube. 6 faced-solid.
-    case Cube = "Cube"
-    /// Octahedron. 8 faced-solid.
-    case Octahedron = "Octahedron"
-    /// Dodecahedron. 12 faced-solid.
-    case Dodecahedron = "Dodecahedron"
-    /// Icosahedron. 20 faced-solid.
-    case Icosahedron = "Icosahedron"
 }
