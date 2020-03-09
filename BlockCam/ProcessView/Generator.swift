@@ -96,7 +96,7 @@ class Generator
     ///    - This function is not terribly efficient but is fast enough to get the job done without
     ///      slowing the user a great deal.
     ///    - The loop that runs through the image data has its inner loop in an autoreleasepool
-    ///      closure to reduce memory usage.
+    ///      closure to reduce accumulated memory usage.
     ///    - If the user selected a large image size and small block size, this function will be
     ///      correspondingly slower.
     /// - Parameter Image: The pixellated image to parse. Only one pixel from each block/pixel is sampled.
@@ -347,7 +347,7 @@ class Generator
         
         var VerticalExaggeration: CGFloat = 0.5
         switch Settings.GetEnum(ForKey: .VerticalExaggeration, EnumType: VerticalExaggerations.self,
-                         Default: VerticalExaggerations.Medium)
+                                Default: VerticalExaggerations.Medium)
         {
             case .Low:
                 VerticalExaggeration = 1.0
@@ -359,7 +359,7 @@ class Generator
                 VerticalExaggeration = 4.0
             
             default:
-            break
+                break
         }
         
         let HeightSource = HeightSources(rawValue: RawSource!)!
@@ -416,29 +416,8 @@ class Generator
         Delegate?.SubStatus(0.0, UIColor.systemOrange)
         let Total: Double = Double(VBlocks * HBlocks)
         var Count = 0
-        #if true
         let WorkingShape = Settings.GetEnum(ForKey: .ShapeType, EnumType: NodeShapes.self,
                                             Default: NodeShapes.Blocks)
-        #else
-        var WorkingShape = NodeShapes.Blocks
-        if let ShapeValue = Settings.GetString(ForKey: .ShapeType)
-        {
-            if let TheShape = NodeShapes(rawValue: ShapeValue)
-            {
-                WorkingShape = TheShape
-            }
-            else
-            {
-                WorkingShape = .Blocks
-                Settings.SetString(NodeShapes.Blocks.rawValue, ForKey: .ShapeType)
-            }
-        }
-        else
-        {
-            WorkingShape = .Blocks
-            Settings.SetString(NodeShapes.Blocks.rawValue, ForKey: .ShapeType)
-        }
-        #endif
         
         for Y in 0 ... VBlocks - 1
         {
@@ -549,13 +528,13 @@ class Generator
                                                                   DoXRotate: &DoXRotate, WithColor: Color,
                                                                   ZLocation: &ZLocation) 
                             
-                            //Regular solids. Cubes are handled elsewhere.
-                            case .Tetrahedrons, .Icosahedrons:
-                            AncillaryNode = GenerateRegularSolid(ForShape: ShapeSelector, Prominence: Prominence, Color: Color, Side: Side,
-                                                                 ZLocation: &ZLocation)
-                            if AncillaryNode == nil
-                            {
-                                fatalError("Unexpected received nil node.")
+                            //Regular solids.
+                            case .Tetrahedrons, .Icosahedrons, .Cubes, .Octahedrons, .Dodecahedrons:
+                                AncillaryNode = GenerateRegularSolid(ForShape: ShapeSelector, Prominence: Prominence, Color: Color,
+                                                                     Side: Side, ZLocation: &ZLocation)
+                                if AncillaryNode == nil
+                                {
+                                    fatalError("Unexpected received nil node.")
                             }
                             
                             //Pseudo-2D shapes.
@@ -570,6 +549,7 @@ class Generator
                             case .Characters:
                                 FinalShape = GenerateCharacters(Prominence: Prominence, FinalScale: &FinalScale)
                             
+                            //Characters from a subset.
                             case .CharacterSets:
                                 FinalShape = GenerateCharacterFromSet(Prominence: Prominence, FinalScale: &FinalScale)
                             
@@ -630,13 +610,7 @@ class Generator
                                 Node.LogicalX = X
                                 Node.LogicalY = Y
                                 Node.position = Position
-                                #if true
                                 SetMaterials(To: FinalShape, With: Color)
-                                #else
-                                FinalShape.firstMaterial?.diffuse.contents = Color
-                                FinalShape.firstMaterial?.specular.contents = UIColor.white
-                                FinalShape.firstMaterial?.lightingModel = GetLightModel()
-                                #endif
                             }
                         }
                         else
@@ -660,12 +634,7 @@ class Generator
                             let RotateNodeBy: CGFloat = CGFloat(Angle) * (CGFloat.pi / 180.0)
                             
                             Node.eulerAngles = SCNVector3(0.0, 0.0, RotateNodeBy)
-                            #if true
                             SetMaterials(To: Node.geometry!, With: Color)
-                            #else
-                            Node.geometry?.firstMaterial?.diffuse.contents = Color//UIColor.red
-                            Node.geometry?.firstMaterial?.lightingModel = GetLightModel()
-                            #endif
                         }
                         Node.name = "PixelNode"
                         Node.castsShadow = EnableShadows
@@ -678,6 +647,9 @@ class Generator
         return WorkingNode
     }
     
+    /// Get the current, global material roughness value.
+    /// - Note: This value is ignored if the light model is not physically based.
+    /// - Returns: Value to use in the roughness property for materials.
     public static func GetRoughness() -> Double
     {
         switch Settings.GetEnum(ForKey: .MaterialRoughness, EnumType: MaterialRoughnesses.self,
@@ -700,6 +672,9 @@ class Generator
         }
     }
     
+    /// Get the current, global metalness level.
+    /// - Note: This value is ignored if the light model is not physically based.
+    /// - Returns: Value to use in the metalness property for materials.
     public static func GetMetalness() -> Double
     {
         switch Settings.GetEnum(ForKey: .Metalness, EnumType: Metalnesses.self, Default: .Medium)
@@ -745,59 +720,21 @@ class Generator
     
     /// Map from internally defined material lighting models to SceneKit-defined material lighting models.
     private static let ModelMap =
-    [
-        MaterialLightingTypes.Blinn: SCNMaterial.LightingModel.blinn,
-        MaterialLightingTypes.Constant: SCNMaterial.LightingModel.constant,
-        MaterialLightingTypes.Lambert: SCNMaterial.LightingModel.lambert,
-        MaterialLightingTypes.Phong: SCNMaterial.LightingModel.phong,
-        MaterialLightingTypes.PhysicallyBased: SCNMaterial.LightingModel.physicallyBased
+        [
+            MaterialLightingTypes.Blinn: SCNMaterial.LightingModel.blinn,
+            MaterialLightingTypes.Constant: SCNMaterial.LightingModel.constant,
+            MaterialLightingTypes.Lambert: SCNMaterial.LightingModel.lambert,
+            MaterialLightingTypes.Phong: SCNMaterial.LightingModel.phong,
+            MaterialLightingTypes.PhysicallyBased: SCNMaterial.LightingModel.physicallyBased
     ]
     
     /// Return the lighting model based on the contents of user settings.
     /// - Returns: Lighting model to use.
     public static func GetLightModel() -> SCNMaterial.LightingModel
     {
-        #if true
         let Model = Settings.GetEnum(ForKey: .LightingModel, EnumType: MaterialLightingTypes.self,
                                      Default: .Lambert)
         return ModelMap[Model]!
-        #else
-        var LightModel = SCNMaterial.LightingModel.phong
-        if let LightModelRaw = Settings.GetString(ForKey: SettingKeys.LightingModel)
-        {
-            if let Model = MaterialLightingTypes(rawValue: LightModelRaw)
-            {
-                switch Model
-                {
-                    case .Blinn:
-                        LightModel = .blinn
-                    
-                    case .Constant:
-                        LightModel = .constant
-                    
-                    case .Lambert:
-                        LightModel = .lambert
-                    
-                    case .Phong:
-                        LightModel = .phong
-                    
-                    case .PhysicallyBased:
-                        LightModel = .physicallyBased
-                }
-                return LightModel
-            }
-            else
-            {
-                Settings.SetString(MaterialLightingTypes.Phong.rawValue, ForKey: SettingKeys.LightingModel)
-                return .phong
-            }
-        }
-        else
-        {
-            Settings.SetString(MaterialLightingTypes.Phong.rawValue, ForKey: SettingKeys.LightingModel)
-            return .phong
-        }
-        #endif
     }
     
     /// Resizes a UIImage to the passed target size.
@@ -942,30 +879,30 @@ class Generator
                 
                 let TheShape = Settings.GetEnum(ForKey: .ShapeType, EnumType: NodeShapes.self,
                                                 Default: NodeShapes.Blocks)
-
-                    for ChildNode in MainNode!.childNodes
+                
+                for ChildNode in MainNode!.childNodes
+                {
+                    switch TheShape
                     {
-                        switch TheShape
-                        {
-                            case .Blocks:
-                                if let Geo = ChildNode.geometry as? SCNBox
-                                {
-                                    Geo.chamferRadius = Chamfer
-                                    ChildNode.geometry = Geo
-                            }
-                            
-                            case .Stars:
-                                if !Settings.GetBoolean(ForKey: .IncreaseStarApexesWithProminence)
-                                {
-                                    if let StarNode = ChildNode as? SCNStar
-                                    {
-                                        StarNode.VertexCount = Settings.GetInteger(ForKey: .StarApexCount)
-                                    }
-                            }
-                            
-                            default:
-                                break
+                        case .Blocks:
+                            if let Geo = ChildNode.geometry as? SCNBox
+                            {
+                                Geo.chamferRadius = Chamfer
+                                ChildNode.geometry = Geo
                         }
+                        
+                        case .Stars:
+                            if !Settings.GetBoolean(ForKey: .IncreaseStarApexesWithProminence)
+                            {
+                                if let StarNode = ChildNode as? SCNStar
+                                {
+                                    StarNode.VertexCount = Settings.GetInteger(ForKey: .StarApexCount)
+                                }
+                        }
+                        
+                        default:
+                            break
+                    }
                 }
         }
     }
