@@ -103,6 +103,7 @@
 		177F66A623D04F3500DFA840 /* NotoSansSymbols2-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 17499B7D23CDEAA200A5396A /* NotoSansSymbols2-Regular.ttf */; };
 		177F66A723D04F3900DFA840 /* NotoSansSymbols-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 17499B7C23CDEAA200A5396A /* NotoSansSymbols-Regular.ttf */; };
 		1780B72E23974CFD00E6018A /* MainProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1780B72D23974CFD00E6018A /* MainProtocol.swift */; };
+		1785C4B62417334500A389F8 /* Menu_Materials.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1785C4B52417334500A389F8 /* Menu_Materials.swift */; };
 		17897B7523E6905C00AFDA6A /* LiveViewFeedback.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17897B7423E6905C00AFDA6A /* LiveViewFeedback.swift */; };
 		1789950323B5CF3200238D89 /* Indefinite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1789950223B5CF3200238D89 /* Indefinite.swift */; };
 		178A4F2623C6FB9A00892F88 /* ImageEdgeFinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 178A4F2523C6FB9A00892F88 /* ImageEdgeFinder.swift */; };
@@ -280,6 +281,7 @@
 		177F66A223D00F2500DFA840 /* SCNShapeRange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SCNShapeRange.swift; sourceTree = "<group>"; };
 		177F66A423D036F000DFA840 /* Menu_CharacterSeries.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Menu_CharacterSeries.swift; sourceTree = "<group>"; };
 		1780B72D23974CFD00E6018A /* MainProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainProtocol.swift; sourceTree = "<group>"; };
+		1785C4B52417334500A389F8 /* Menu_Materials.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Menu_Materials.swift; sourceTree = "<group>"; };
 		17897B7423E6905C00AFDA6A /* LiveViewFeedback.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveViewFeedback.swift; sourceTree = "<group>"; };
 		1789950223B5CF3200238D89 /* Indefinite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Indefinite.swift; sourceTree = "<group>"; };
 		178A4F2523C6FB9A00892F88 /* ImageEdgeFinder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageEdgeFinder.swift; sourceTree = "<group>"; };
@@ -646,6 +648,7 @@
 				1771A9D423BC38F900B3294F /* Menu_LightSettings.swift */,
 				1771A9D623BC392E00B3294F /* Menu_AdvancedLightSettings.swift */,
 				1772F751240CCE520071C1D2 /* ShadowsSettingController.swift */,
+				1785C4B52417334500A389F8 /* Menu_Materials.swift */,
 			);
 			path = LightMenu;
 			sourceTree = "<group>";
@@ -1070,6 +1073,7 @@
 				17499B7323CD762B00A5396A /* SCNArrowHead.swift in Sources */,
 				177F66A323D00F2500DFA840 /* SCNShapeRange.swift in Sources */,
 				173279D6237A968E00BD19C3 /* Export.swift in Sources */,
+				1785C4B62417334500A389F8 /* Menu_Materials.swift in Sources */,
 				1702037F2414A86600C0AFEA /* Menu_EmbeddedBoxesSettings.swift in Sources */,
 				177F66A523D036F000DFA840 /* Menu_CharacterSeries.swift in Sources */,
 				178B493E23BDC88B00C9FE1B /* Menu_ConeSettings.swift in Sources */,
