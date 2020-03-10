@@ -708,7 +708,7 @@ class Generator
                                     SpecularColor: UIColor = UIColor.white)
     {
         let Model = GetLightModel()
-        if Model == .physicallyBased
+        if Model == .physicallyBased && Settings.GetBoolean(ForKey: .EnableMaterials)
         {
             Geometry.firstMaterial?.roughness.contents = NSNumber(value: GetRoughness())
             Geometry.firstMaterial?.metalness.contents = NSNumber(value: GetMetalness())
