@@ -208,6 +208,7 @@ class Settings
         UserDefaults.standard.set(true, forKey: SettingKeys.RandomShapeShowsBase.rawValue)
         UserDefaults.standard.set(MaterialRoughnesses.Medium.rawValue, forKey: SettingKeys.MaterialRoughness.rawValue)
         UserDefaults.standard.set(Metalnesses.Medium.rawValue, forKey: SettingKeys.Metalness.rawValue)
+        UserDefaults.standard.set(false, forKey: SettingKeys.EnableMaterials.rawValue)
     }
     
     /// Call all subscribers in the notification list to let them know a setting will be changed.
@@ -673,6 +674,7 @@ class Settings
             SettingKeys.EnableShadows,
             SettingKeys.PolygonSideCountVaries,
             SettingKeys.RandomShapeShowsBase,
+            SettingKeys.EnableMaterials,
     ]
     
     /// Contains a list of all integer-type fields.
@@ -915,6 +917,8 @@ enum SettingKeys: String, CaseIterable, Comparable, Hashable
     case SphereRingOrientation = "SphereRingOrientation"
     
     //Global color settings.
+    /// Boolean. Determines if material settings should be used.
+    case EnableMaterials = "EnableMaterials"
     /// String/Enum: The material roughness value. Only set/used if the lighting model is physically-based.
     case MaterialRoughness = "MaterialRoughness"
     /// String/Enum: The "metalness" of the material. Only set/used if the lighting model is physically-based.
