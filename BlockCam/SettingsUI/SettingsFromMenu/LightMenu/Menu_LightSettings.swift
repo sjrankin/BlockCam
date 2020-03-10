@@ -371,7 +371,7 @@ class Menu_LightSettings: UITableViewController, UIPickerViewDelegate, UIPickerV
         
         var Rough: Double = 0.0
         var Metal: Double = 0.0
-        if LightModel == .physicallyBased
+        if LightModel == .physicallyBased && Settings.GetBoolean(ForKey: .EnableMaterials)
         {
             switch Settings.GetEnum(ForKey: .Metalness, EnumType: Metalnesses.self, Default: .Medium)
             {
@@ -413,7 +413,7 @@ class Menu_LightSettings: UITableViewController, UIPickerViewDelegate, UIPickerV
         Shape1.firstMaterial?.lightingModel = LightModel
         Shape1.firstMaterial?.diffuse.contents = UIColor.systemOrange
         Shape1.firstMaterial?.specular.contents = UIColor.white
-        if LightModel == .physicallyBased
+        if LightModel == .physicallyBased && Settings.GetBoolean(ForKey: .EnableMaterials)
         {
             Shape1.firstMaterial?.roughness.contents = NSNumber(value: Rough)
             Shape1.firstMaterial?.metalness.contents = NSNumber(value: Metal)
@@ -425,7 +425,7 @@ class Menu_LightSettings: UITableViewController, UIPickerViewDelegate, UIPickerV
         Shape2.firstMaterial?.lightingModel = LightModel
         Shape2.firstMaterial?.diffuse.contents = UIColor.systemYellow
         Shape2.firstMaterial?.specular.contents = UIColor.white
-        if LightModel == .physicallyBased
+        if LightModel == .physicallyBased && Settings.GetBoolean(ForKey: .EnableMaterials)
         {
             Shape2.firstMaterial?.roughness.contents = NSNumber(value: Rough)
             Shape2.firstMaterial?.metalness.contents = NSNumber(value: Metal)
@@ -437,7 +437,7 @@ class Menu_LightSettings: UITableViewController, UIPickerViewDelegate, UIPickerV
         Shape3.firstMaterial?.lightingModel = LightModel
         Shape3.firstMaterial?.diffuse.contents = UIColor.systemGreen
         Shape3.firstMaterial?.specular.contents = UIColor.white
-        if LightModel == .physicallyBased
+        if LightModel == .physicallyBased && Settings.GetBoolean(ForKey: .EnableMaterials)
         {
             Shape3.firstMaterial?.roughness.contents = NSNumber(value: Rough)
             Shape3.firstMaterial?.metalness.contents = NSNumber(value: Metal)
@@ -489,6 +489,13 @@ class Menu_LightSettings: UITableViewController, UIPickerViewDelegate, UIPickerV
     func SomethingChanged()
     {
         UpdateSample()
+    }
+    
+    @IBSegueAction func InstantiateMaterials(_ coder: NSCoder) -> Menu_Materials?
+    {
+        let Controller = Menu_Materials(coder: coder)
+        Controller?.Delegate = self 
+        return Controller
     }
     
     var UpdateInitialized = false
