@@ -12,6 +12,7 @@ import SceneKit
 
 class Menu_AdvancedLightSettings: UITableViewController
 {
+    #if false
     weak var Delegate: SomethingChangedProtocol? = nil
     
     override func viewDidLoad()
@@ -294,4 +295,5 @@ class Menu_AdvancedLightSettings: UITableViewController
     
         @IBOutlet weak var SampleView: SCNView!
         @IBOutlet weak var ColorModel: UISegmentedControl!
+#endif
 }
