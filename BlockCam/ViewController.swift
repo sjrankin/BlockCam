@@ -34,6 +34,7 @@ class ViewController: UIViewController,
     var CaptureDevice: AVCaptureDevice? = nil
     // Thread for running the processing of images in the background.
     let BackgroundThread = DispatchQueue(label: "ProcessingThread", qos: .background)
+    var CameraHasDepth = false
     
     /// Initialize the UI and program.
     /// - Note: Assumes several other classes have been initialized by the time control reaches here. These are initialized
@@ -45,9 +46,25 @@ class ViewController: UIViewController,
         InitializeStatusLayer()
         Generator.Delegate = self
         definesPresentationContext = true
-        //InitializeModeUIs()
         SetupNotifications()
         Sounds.Initialize()
+        
+        #if false
+        let BI = BoxIndicator()
+        BI.TextLocation = .Left
+        BI.BoxSize = CGSize(width: 50, height: 20)
+        BI.Text = "Test 5"
+        BI.Percent = 0.39
+        BI.DrawBox()
+        let CI0 = ColorIndicator(frame: CGRect(origin: CGPoint.zero, size: CGSize(width: 50, height: 50)))
+        CI0.Draw(UIColor.yellow)
+        let CI1 = ColorIndicator(frame: CGRect(origin: CGPoint.zero, size: CGSize(width: 100, height: 100)))
+        CI1.Draw(UIColor.purple)
+        let CI2 = ColorIndicator(frame: CGRect(origin: CGPoint.zero, size: CGSize(width: 100, height: 100)))
+        CI2.Draw(UIColor(hue: 0.01, saturation: 0.4, brightness: 0.8, alpha: 1.0))
+        let CI3 = ColorIndicator(frame: CGRect(origin: CGPoint.zero, size: CGSize(width: 100, height: 100)))
+        CI3.Draw(UIColor(hue: 0.5, saturation: 0.61, brightness: 0.83, alpha: 1.0))
+        #endif
         
         #if false
         //Used to dump the fonts on the system, including those embedded with this application. The names are used to ensure
@@ -67,6 +84,7 @@ class ViewController: UIViewController,
         
         OutputView.alpha = 0.0
         
+        InitializeHUD()
         ShowStatusLayer()
         ShowSplashScreen()
         GetPermissions()
@@ -287,6 +305,9 @@ class ViewController: UIViewController,
                     self.HideHistogramView()
             }
             
+            case .EnableHUD:
+            UpdateHUDViews()
+            
             case .AntialiasingMode:
                 let Mode = UInt(Settings.GetInteger(ForKey: .AntialiasingMode))
                 let AntialiasMode = SCNAntialiasingMode(rawValue: Mode)!
@@ -356,6 +377,7 @@ class ViewController: UIViewController,
     override func viewDidAppear(_ animated: Bool)
     {
         super.viewDidAppear(animated)
+        UpdateHUDViews()
         #if targetEnvironment(simulator)
         DeviceHasCamera = false
         Log.Message("Simulator does not support camera input.")
@@ -1077,6 +1099,7 @@ class ViewController: UIViewController,
     @IBOutlet weak var CameraButton: UIButton!
     // "weak" is removed from OutputView because we recreate the class in code and weak leads to strange compiler warnings...
     @IBOutlet var OutputView: ProcessViewer!
+    @IBOutlet weak var HUDView: UIView!
     
     // MARK: - Interface builder variables for image processing.
     @IBOutlet weak var CompositeStatus: SmallStatusDisplay!
@@ -1085,4 +1108,10 @@ class ViewController: UIViewController,
     
     // MARK: - Histogram view.
     @IBOutlet weak var HistogramView: HistogramDisplay!
+    
+    // MARK: - HUD variables and interface builder outlets
+    var HUDViewMap = [HUDViews: UIView]()
+    @IBOutlet weak var HUDVersionLabel: UILabel!
+    @IBOutlet weak var HUDCompassLabel: UILabel!
+    @IBOutlet weak var HUDAltitudeLabel: UILabel!
 }
