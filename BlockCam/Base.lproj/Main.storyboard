@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16095" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina5_5" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16084.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -237,6 +237,38 @@
                                     <constraint firstItem="OBg-Dx-Pww" firstAttribute="centerX" secondItem="7Po-t2-kQF" secondAttribute="centerX" id="uyc-3d-g2C"/>
                                 </constraints>
                             </view>
+                            <view clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TsA-Jq-hIG">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="666"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="BlockCam v0.9 Build xyz" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vIv-67-Cl7">
+                                        <rect key="frame" x="5" y="635" width="250" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Altitude: 9999m" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gEU-Dg-ylV">
+                                        <rect key="frame" x="284.33333333333331" y="635" width="124.66666666666669" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Heading: 360°" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NFZ-yJ-hTK">
+                                        <rect key="frame" x="297.66666666666669" y="615" width="111.33333333333331" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="gEU-Dg-ylV" secondAttribute="trailing" constant="5" id="2bD-av-rLc"/>
+                                    <constraint firstAttribute="trailing" secondItem="NFZ-yJ-hTK" secondAttribute="trailing" constant="5" id="74b-k6-r8x"/>
+                                    <constraint firstAttribute="bottom" secondItem="NFZ-yJ-hTK" secondAttribute="bottom" constant="30" id="IR6-ap-VOQ"/>
+                                    <constraint firstAttribute="bottom" secondItem="vIv-67-Cl7" secondAttribute="bottom" constant="10" id="VgX-VA-2D0"/>
+                                    <constraint firstItem="vIv-67-Cl7" firstAttribute="leading" secondItem="TsA-Jq-hIG" secondAttribute="leading" constant="5" id="dlD-ep-LrY"/>
+                                    <constraint firstAttribute="bottom" secondItem="gEU-Dg-ylV" secondAttribute="bottom" constant="10" id="qzF-nJ-xad"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -244,7 +276,10 @@
                             <constraint firstItem="7Po-t2-kQF" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" symbolic="YES" id="3PD-6r-rLF"/>
                             <constraint firstItem="7Po-t2-kQF" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="7Om-3k-ApB"/>
                             <constraint firstItem="J2Y-fa-EqT" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="LFB-bG-uWC"/>
+                            <constraint firstItem="TsA-Jq-hIG" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="LeX-e8-qvW"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="J2Y-fa-EqT" secondAttribute="bottom" constant="70" id="TPo-tW-xnQ"/>
+                            <constraint firstItem="TsA-Jq-hIG" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="TPw-YF-bqQ"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="TsA-Jq-hIG" secondAttribute="bottom" constant="70" id="Tnf-jN-8DY"/>
                             <constraint firstItem="QbL-Ai-P2j" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="dln-8B-ypJ"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="FVb-mH-eBn" secondAttribute="bottom" constant="70" id="gZI-we-hgP"/>
                             <constraint firstItem="QbL-Ai-P2j" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" constant="-70" id="gbq-Px-yD3"/>
@@ -255,6 +290,7 @@
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="7Po-t2-kQF" secondAttribute="bottom" constant="70" id="m59-a9-Tcc"/>
                             <constraint firstItem="QbL-Ai-P2j" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="nej-yV-lEE"/>
                             <constraint firstAttribute="trailing" secondItem="J2Y-fa-EqT" secondAttribute="trailing" id="pAM-XV-Y9X"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="TsA-Jq-hIG" secondAttribute="trailing" id="ryv-vG-ke8"/>
                             <constraint firstAttribute="trailing" secondItem="QbL-Ai-P2j" secondAttribute="trailing" id="sDq-84-li8"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -265,6 +301,10 @@
                         <outlet property="CompositeStatus" destination="2o1-W4-GEH" id="fwf-Ui-FkP"/>
                         <outlet property="DoneButton" destination="AoZ-tZ-jN3" id="2SE-WC-D24"/>
                         <outlet property="GridView" destination="QbL-Ai-P2j" id="0mk-np-OgD"/>
+                        <outlet property="HUDAltitudeLabel" destination="gEU-Dg-ylV" id="fez-qS-6zw"/>
+                        <outlet property="HUDCompassLabel" destination="NFZ-yJ-hTK" id="OTo-R7-4Iv"/>
+                        <outlet property="HUDVersionLabel" destination="vIv-67-Cl7" id="Bur-cz-a1C"/>
+                        <outlet property="HUDView" destination="TsA-Jq-hIG" id="ukK-pS-nY9"/>
                         <outlet property="HistogramView" destination="o3K-s3-jQX" id="ecj-wF-nGO"/>
                         <outlet property="ImageBottomBar" destination="tWN-6r-WSX" id="Ehi-Jn-RkL"/>
                         <outlet property="LiveView" destination="FVb-mH-eBn" id="G9l-IF-oUd"/>
@@ -290,12 +330,12 @@
         </scene>
     </scenes>
     <resources>
-        <image name="camera" catalog="system" width="64" height="48"/>
-        <image name="camera.rotate" catalog="system" width="64" height="48"/>
-        <image name="circle" catalog="system" width="64" height="60"/>
-        <image name="folder" catalog="system" width="64" height="46"/>
-        <image name="gear" catalog="system" width="64" height="58"/>
-        <image name="viewfinder" catalog="system" width="64" height="56"/>
-        <image name="xmark.circle.fill" catalog="system" width="64" height="60"/>
+        <image name="camera" catalog="system" width="128" height="96"/>
+        <image name="camera.rotate" catalog="system" width="128" height="96"/>
+        <image name="circle" catalog="system" width="128" height="121"/>
+        <image name="folder" catalog="system" width="128" height="95"/>
+        <image name="gear" catalog="system" width="128" height="119"/>
+        <image name="viewfinder" catalog="system" width="128" height="114"/>
+        <image name="xmark.circle.fill" catalog="system" width="128" height="121"/>
     </resources>
 </document>
