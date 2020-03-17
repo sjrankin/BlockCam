@@ -47,6 +47,7 @@ class AboutBlockCam: UITableViewController
         TitleLight.shadowRadius = 10.0
         TitleLight.shadowColor = UIColor.black.withAlphaComponent(0.8)
         TitleLight.shadowMode = .forward
+        TitleLight.intensity = 4000
         let LightNode = SCNNode()
         LightNode.light = TitleLight
         LightNode.position = SCNVector3(-10.0, 5.0, 10.0)
@@ -59,7 +60,9 @@ class AboutBlockCam: UITableViewController
         TextNode.font = UIFont.boldSystemFont(ofSize: 40.0)
         TextNode.firstMaterial?.specular.contents = UIColor.white
         TextNode.firstMaterial?.diffuse.contents = UIColor.systemYellow
-        TextNode.firstMaterial?.lightingModel = .blinn
+        TextNode.firstMaterial?.lightingModel = .physicallyBased
+        TextNode.firstMaterial?.metalness.contents = NSNumber(value: 1.0)
+        TextNode.firstMaterial?.roughness.contents = NSNumber(value: 0.5)
         let TitleNode = SCNNode(geometry: TextNode)
         TitleNode.castsShadow = true
         let (MinTextBox, MaxTextBox) = TitleNode.boundingBox
