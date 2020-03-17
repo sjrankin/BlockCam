@@ -73,6 +73,7 @@ class ViewSettings: UITableViewController, UIPickerViewDelegate, UIPickerViewDat
             Settings.SetString(GridTypes.None.rawValue, ForKey: .LiveViewGridType)
             GridPicker.selectRow(0, inComponent: 0, animated: true)
         }
+        CombineHistogramColorsSwitch.isOn = Settings.GetBoolean(ForKey: .CombinedHistogram)
     }
     
     let ModeMap =
@@ -274,6 +275,15 @@ class ViewSettings: UITableViewController, UIPickerViewDelegate, UIPickerViewDat
         }
     }
     
+    @IBAction func HandleCombineChannelsChanged(_ sender: Any)
+    {
+        if let Switch = sender as? UISwitch
+        {
+            Settings.SetBoolean(Switch.isOn, ForKey: .CombinedHistogram)
+        }
+    }
+    
+    @IBOutlet weak var CombineHistogramColorsSwitch: UISwitch!
     @IBOutlet weak var GridPicker: UIPickerView!
     @IBOutlet weak var ShowCurrentOrientationSwitch: UISwitch!
     @IBOutlet weak var HistogramSpeedSegment: UISegmentedControl!
