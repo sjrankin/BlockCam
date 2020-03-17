@@ -11,6 +11,7 @@ import UIKit
 import AVFoundation
 import AVKit
 import Accelerate
+import CoreImage
 
 extension ViewController
 {
@@ -67,7 +68,36 @@ extension ViewController
                 return
             }
             DisplayHistogram(For: Image!)
+            #if false
+            let MeanColor = GetImageMean(CIImg)
+            #else
+            if Settings.GetBoolean(ForKey: .ShowVersionOnHUD)
+            {
+         //   let MeanColor = GetImageMean(CIImg)
+         //       print("Mean color is \(MeanColor.Hex)")
+            }
+            #endif
         }
+    }
+    
+    //https://www.hackingwithswift.com/example-code/media/how-to-read-the-average-color-of-a-uiimage-using-ciareaaverage
+    func GetImageMean(_ Image: CIImage) -> UIColor
+    {
+        let Extent = Image.extent
+        let FullImage = CIVector(x: Extent.origin.x, y: Extent.origin.y,
+                                 z: Extent.size.width, w: Extent.size.height)
+        let Filter = CIFilter(name: "CIAreaAverage", parameters: [kCIInputImageKey: Image, kCIInputExtentKey: FullImage])
+        let Output = Filter?.outputImage!
+        var Bitmap = [UInt8](repeating: 0, count: 4)
+        let Context = CIContext(options: [.workingColorSpace: kCFNull as Any])
+        Context.render(Output!, toBitmap: &Bitmap,
+                       rowBytes: 4,
+                       bounds: CGRect(x: 0, y: 0, width: 1, height: 1),
+                       format: .RGBA8, colorSpace: nil)
+        return UIColor(red: CGFloat(Bitmap[0] / 255),
+                       green: CGFloat(Bitmap[1] / 255),
+                       blue: CGFloat(Bitmap[2] / 255),
+                       alpha: CGFloat(Bitmap[3] / 255))
     }
     
     /// Called when AVFoundation has an image for use (most likely due to the user pressing the camera button).
@@ -159,6 +189,8 @@ extension ViewController
     func InitializeLiveView(UseBackCamera: Bool = true)
     {
         CaptureSession = AVCaptureSession()
+        CameraHasDepth = SupportsDepthData()
+        print("Camera supports depth data: \(CameraHasDepth)")
         CaptureSession.sessionPreset = .photo
         let PreferredPosition: AVCaptureDevice.Position!
         PreferredPosition = UseBackCamera ? .back : .front
