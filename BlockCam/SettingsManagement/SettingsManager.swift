@@ -209,6 +209,16 @@ class Settings
         UserDefaults.standard.set(MaterialRoughnesses.Medium.rawValue, forKey: SettingKeys.MaterialRoughness.rawValue)
         UserDefaults.standard.set(Metalnesses.Medium.rawValue, forKey: SettingKeys.Metalness.rawValue)
         UserDefaults.standard.set(false, forKey: SettingKeys.EnableMaterials.rawValue)
+        UserDefaults.standard.set(false, forKey: SettingKeys.EnableHUD.rawValue)
+        UserDefaults.standard.set(false, forKey: SettingKeys.ShowLightMeter.rawValue)
+        UserDefaults.standard.set(false, forKey: SettingKeys.ShowHue.rawValue)
+        UserDefaults.standard.set(false, forKey: SettingKeys.ShowSaturation.rawValue)
+        UserDefaults.standard.set(false, forKey: SettingKeys.ShowCompass.rawValue)
+        UserDefaults.standard.set(false, forKey: SettingKeys.ShowAltitude.rawValue)
+        UserDefaults.standard.set(false, forKey: SettingKeys.ShowVersionOnHUD.rawValue)
+        UserDefaults.standard.set(false, forKey: SettingKeys.ShowMeanColor.rawValue)
+        UserDefaults.standard.set(false, forKey: SettingKeys.ShowHUDHistogram.rawValue)
+        UserDefaults.standard.set(false, forKey: SettingKeys.CombinedHistogram.rawValue)
     }
     
     /// Call all subscribers in the notification list to let them know a setting will be changed.
@@ -675,6 +685,16 @@ class Settings
             SettingKeys.PolygonSideCountVaries,
             SettingKeys.RandomShapeShowsBase,
             SettingKeys.EnableMaterials,
+            SettingKeys.EnableHUD,
+            SettingKeys.ShowLightMeter,
+            SettingKeys.ShowCompass,
+            SettingKeys.ShowAltitude,
+            SettingKeys.ShowSaturation,
+            SettingKeys.ShowHue,
+            SettingKeys.ShowMeanColor,
+            SettingKeys.ShowVersionOnHUD,
+            SettingKeys.ShowHUDHistogram,
+            SettingKeys.CombinedHistogram,
     ]
     
     /// Contains a list of all integer-type fields.
@@ -991,6 +1011,8 @@ enum SettingKeys: String, CaseIterable, Comparable, Hashable
     case ShowProcessedHistogram = "ShowProcessedHistogram"
     /// String: How often to create a histogram.
     case HistogramCreationSpeed = "HistogramCreationSpeed"
+    /// Boolean: Show a combined histogram.
+    case CombinedHistogram = "CombinedHistogram"
     
     //General purpose
     /// Integer: Next available sequential integer.
@@ -1068,6 +1090,26 @@ enum SettingKeys: String, CaseIterable, Comparable, Hashable
     //UI rotation settings
     /// String: How to rotate the UI when the device is rotated.
     case UIRotationStyle = "UIRotationStyle"
+    
+    //HUD settings
+    /// Boolean: Enables or disables all HUD functionality.
+    case EnableHUD = "EnableHUD"
+    /// Boolean: Shows or hides the light meter.
+    case ShowLightMeter = "ShowLightMeter"
+    /// Boolean: Shows or hides the compass.
+    case ShowCompass = "ShowCompass"
+    /// Boolean: Shows or hides the altimeter.
+    case ShowAltitude = "ShowAltitude"
+    /// Boolean: Show or hide the overall saturation value.
+    case ShowSaturation = "ShowSaturation"
+    /// Boolean: Show or hide the overall hue value.
+    case ShowHue = "ShowHue"
+    /// Boolean: Show or hide the overall mean color.
+    case ShowMeanColor = "ShowMeanColor"
+    /// Boolean: Show or hide the version on the HUD. Intended for debug use.
+    case ShowVersionOnHUD = "ShowVersionOnHUD"
+    /// Boolean: Show or hide the HUD histogram.
+    case ShowHUDHistogram = "ShowHistogramOnHUD"
     
     //Favorite settings
     case FavoriteShapeList = "FavoriteShapeList"
