@@ -98,12 +98,7 @@ class ViewController: UIViewController,
         StartOrientationUpdates()
         
         AddLiveViewTaps()
-    }
-    
-    override func viewWillAppear(_ animated: Bool)
-    {
-        super.viewWillAppear(animated)
-        InitializeHUD()
+        InitializeLocation()
     }
     
     func AddLiveViewTaps()
@@ -300,6 +295,7 @@ class ViewController: UIViewController,
         ChangedSettings.append(ChangedSetting)
         switch ChangedSetting
         {
+            #if false
             case .ShowHistogram:
                 if Settings.GetBoolean(ForKey: .ShowHistogram)
                 {
@@ -309,6 +305,7 @@ class ViewController: UIViewController,
                 {
                     self.HideHistogramView()
             }
+            #endif
             
             case .EnableHUD, .ShowHue, .ShowSaturation, .ShowLightMeter, .ShowVersionOnHUD,
                  .ShowMeanColor, .ShowCompass, .ShowAltitude, .ShowHUDHistogram:
@@ -384,6 +381,7 @@ class ViewController: UIViewController,
     {
         super.viewDidAppear(animated)
         UpdateHUDViews()
+        print("frame=\(self.view.frame)")
         #if targetEnvironment(simulator)
         DeviceHasCamera = false
         Log.Message("Simulator does not support camera input.")
@@ -399,7 +397,7 @@ class ViewController: UIViewController,
         {
             SwitchModeButton.isHidden = true
         }
-        
+        #if false
         InitializeHistogramView()
         if Settings.GetBoolean(ForKey: .ShowHistogram)
         {
@@ -409,6 +407,7 @@ class ViewController: UIViewController,
             }
             ShowHistogramView()
         }
+        #endif
         #endif
     }
     
@@ -590,6 +589,7 @@ class ViewController: UIViewController,
         HideTitle(After: 0.0, HideDuration: 0.5, HideHow: .FadeOut)
         UsingBackCamera = !UsingBackCamera
         InitializeLiveView(UseBackCamera: UsingBackCamera)
+        InitializeProcessedLiveView()
     }
     
     var UsingBackCamera: Bool = true
@@ -1052,7 +1052,7 @@ class ViewController: UIViewController,
             HistogramCreationSpeeds.Slow: 20,
             HistogramCreationSpeeds.Slowest: 30
     ]
-    var HistogramIsVisible: Bool = false
+    //var HistogramIsVisible: Bool = false
     
     // MARK: - Activity viewer required variables.
     var ImageToExport: UIImage? = nil
@@ -1125,4 +1125,9 @@ class ViewController: UIViewController,
     @IBOutlet weak var HUDHSBStack: UIStackView!
     @IBOutlet weak var MeanColorIndicator: SimpleColorIndicator!
     @IBOutlet weak var HistogramWidthConstraint: NSLayoutConstraint!
+    
+    // MARK: - Location management variables.
+    var LocationManager: CLLocationManager? = nil
+    var PreviousAltitude: Double = -10000.0
+        var LocationTimer: Timer!
 }
