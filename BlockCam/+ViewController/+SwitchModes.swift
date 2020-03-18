@@ -175,6 +175,7 @@ extension ViewController
         let Insets = self.view.safeAreaInsets
         let FrameHeight = UIScreen.main.bounds.height - (Insets.bottom + Insets.top + 70)
         let Frame = CGRect(x: 0, y: Insets.top, width: self.view.frame.width, height: FrameHeight)
+        #if false
         if Settings.GetBoolean(ForKey: .ShowHistogram)
         {
             ShowHistogramView()
@@ -183,6 +184,12 @@ extension ViewController
         {
             HideHistogramView()
         }
+        #else
+        if Settings.GetBoolean(ForKey: .EnableHUD)
+        {
+        UpdateHUDViews()
+        }
+        #endif
         InProcessView = false
         let ScreenHeight = self.view.bounds.height
         let ScreenWidth = self.view.bounds.width
@@ -238,7 +245,11 @@ extension ViewController
         let Insets = self.view.safeAreaInsets
         let FrameHeight = UIScreen.main.bounds.height - (Insets.bottom + Insets.top + 70)
         let Frame = CGRect(x: 0, y: Insets.top, width: self.view.frame.width, height: FrameHeight)
+        #if true
+        HUDView.isHidden = true
+        #else
         HideHistogramView()
+        #endif
         InProcessView = true
         let ScreenHeight = self.view.bounds.height
         let ScreenWidth = self.view.bounds.width
@@ -380,7 +391,11 @@ extension ViewController
     func SwitchToPhotoPickerMode()
     {
         GridView.HideGrid()
+        #if true
+        HUDView.isHidden = true
+        #else
         HideHistogramView()
+        #endif
         UIView.animate(withDuration: 0.15,
                        animations:
             {
