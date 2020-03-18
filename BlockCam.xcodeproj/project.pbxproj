@@ -162,6 +162,7 @@
 		17CE347E23C44CDE00E96E3F /* Queue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17CE347D23C44CDE00E96E3F /* Queue.swift */; };
 		17CE60C923D1EC8000058BFC /* NotoEmoji-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 17CE60C823D1EC7F00058BFC /* NotoEmoji-Regular.ttf */; };
 		17D1F8B923CC28CC00D3CE63 /* SCNFlower1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17D1F8B823CC28CC00D3CE63 /* SCNFlower1.swift */; };
+		17DCF5CA2422168200F2350B /* Locations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17DCF5C92422168200F2350B /* Locations.swift */; };
 		17EA27D6240F542600BA0CC7 /* Menu_ShapePlusSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17EA27D5240F542600BA0CC7 /* Menu_ShapePlusSettings.swift */; };
 		17EA27D8240F853200BA0CC7 /* Menu_RandomShapeSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17EA27D7240F853200BA0CC7 /* Menu_RandomShapeSettings.swift */; };
 		17EA27DA240F974000BA0CC7 /* ShapeSettings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 17EA27D9240F974000BA0CC7 /* ShapeSettings.storyboard */; };
@@ -360,6 +361,7 @@
 		17CE347D23C44CDE00E96E3F /* Queue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Queue.swift; sourceTree = "<group>"; };
 		17CE60C823D1EC7F00058BFC /* NotoEmoji-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoEmoji-Regular.ttf"; sourceTree = "<group>"; };
 		17D1F8B823CC28CC00D3CE63 /* SCNFlower1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SCNFlower1.swift; sourceTree = "<group>"; };
+		17DCF5C92422168200F2350B /* Locations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Locations.swift; sourceTree = "<group>"; };
 		17EA27D5240F542600BA0CC7 /* Menu_ShapePlusSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Menu_ShapePlusSettings.swift; sourceTree = "<group>"; };
 		17EA27D7240F853200BA0CC7 /* Menu_RandomShapeSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Menu_RandomShapeSettings.swift; sourceTree = "<group>"; };
 		17EA27D9240F974000BA0CC7 /* ShapeSettings.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ShapeSettings.storyboard; sourceTree = "<group>"; };
@@ -454,6 +456,7 @@
 				17897B7423E6905C00AFDA6A /* LiveViewFeedback.swift */,
 				17B2517023AF39030012665E /* StatusLayerView2.swift */,
 				1707F5B7241DCE30009BEE9D /* Depth.swift */,
+				17DCF5C92422168200F2350B /* Locations.swift */,
 			);
 			path = "+ViewController";
 			sourceTree = "<group>";
@@ -1064,6 +1067,7 @@
 				17616121240E46D800889ABA /* Menu_SphereSettings.swift in Sources */,
 				17AABB4C2382C90E006DA546 /* UnicodeBlocks.swift in Sources */,
 				17FC3CAF23782E1400D5D122 /* SettingsNavigationController.swift in Sources */,
+				17DCF5CA2422168200F2350B /* Locations.swift in Sources */,
 				1796DBE923B748E50031FEA5 /* VideoGenerator.swift in Sources */,
 				1707F5B8241DCE30009BEE9D /* Depth.swift in Sources */,
 				1767C744237D08AC0084F9E9 /* SCNTetrahedron.swift in Sources */,
