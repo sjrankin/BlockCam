@@ -63,7 +63,7 @@ extension ViewController
         OutputView.frame = Frame
         HistogramView.frame = CGRect(x: HistogramView.frame.minX,
                                      y: Insets.top,
-                                     width: ViewFrame.width,
+                                     width: HistogramView.frame.size.width,//ViewFrame.width,
                                      height: 100.0)
         
         MainBottomBar.frame = CGRect(x: 0,
