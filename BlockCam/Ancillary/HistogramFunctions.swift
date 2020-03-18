@@ -11,6 +11,7 @@ import UIKit
 
 extension ViewController
 {
+    #if false
     ///Initialize the histogram view then hide it.
     /// - Note: sett [Round specific corners of view.](https://www.hackingwithswift.com/example-code/calayer/how-to-round-only-specific-corners-using-maskedcorners)
     func InitializeHistogramView()
@@ -64,4 +65,5 @@ extension ViewController
                 self.HistogramIsVisible = false
         })
     }
+    #endif
 }
