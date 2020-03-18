@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class BoxIndicator: UIView
+/*@IBDesignable*/ class BoxIndicator: UIView
 {
     override init(frame: CGRect)
     {
@@ -30,10 +30,25 @@ class BoxIndicator: UIView
     required init?(coder: NSCoder)
     {
         super.init(coder: coder)
+        isOpaque = false
+        backgroundColor = UIColor.clear
+        self.Text = "Label"
+        self.TextLocation = .Left
+    }
+    
+    override func prepareForInterfaceBuilder()
+    {
+        super.prepareForInterfaceBuilder()
+        _BoxSize = CGSize(width: 50, height: 20)
+        _Text = "Label"
+        _Percent = 0.5
+        DrawBox()
     }
     
     public func DrawBox()
     {
+        self.backgroundColor = Background
+        
         TextLabel.removeFromSuperview()
         TextLabel = UILabel()
         TextLabel.text = _Text
@@ -44,7 +59,8 @@ class BoxIndicator: UIView
         BoxView.removeFromSuperview()
         BoxView.isOpaque = false
         BoxView.backgroundColor = UIColor.clear
-        BoxView = UIView(frame: CGRect(origin: CGPoint.zero, size: _BoxSize))
+        let FinalBoxSize = CGSize(width: _BoxSize.width, height: self.frame.size.height)
+        BoxView = UIView(frame: CGRect(origin: CGPoint.zero, size: FinalBoxSize))
         DrawBoxWithPercent(InView: BoxView)
         
         var SelfFrame = CGRect()
@@ -128,7 +144,7 @@ class BoxIndicator: UIView
             DrawBox()
         }
     }
-    public var Text: String
+    @IBInspectable public var Text: String
     {
         get
         {
@@ -147,7 +163,7 @@ class BoxIndicator: UIView
             DrawBox()
         }
     }
-    public var TextFont: UIFont
+    @IBInspectable public var TextFont: UIFont
     {
         get
         {
@@ -166,7 +182,7 @@ class BoxIndicator: UIView
             DrawBox()
         }
     }
-    public var Percent: Double
+    @IBInspectable public var Percent: Double
     {
         get
         {
@@ -194,7 +210,7 @@ class BoxIndicator: UIView
             DrawBox()
         }
     }
-    public var BoxSize: CGSize
+    @IBInspectable public var BoxSize: CGSize
     {
         get
         {
@@ -213,7 +229,7 @@ class BoxIndicator: UIView
             DrawBox()
         }
     }
-    public var TextLocation: TextLocations
+   public var TextLocation: TextLocations
     {
         get
         {
@@ -225,6 +241,52 @@ class BoxIndicator: UIView
         }
     }
     
+    private var _TextPosition: String = "LEFT"
+    {
+        didSet
+        {
+            var Final = ""
+            if _TextPosition.isEmpty
+            {
+                Final = "LEFT"
+            }
+            else
+            {
+            let Scratch = _TextPosition.trimmingCharacters(in: .whitespacesAndNewlines)
+                Final = Scratch.uppercased()
+            }
+            switch Final
+            {
+                case "LEFT":
+                    TextLocation = .Left
+                
+                case "RIGHT":
+                    TextLocation = .Right
+                
+                case "TOP", "ABOVE":
+                    TextLocation = .Top
+                
+                case "BOTTOM", "BELOW":
+                    TextLocation = .Bottom
+                
+                default:
+                    TextLocation = .Left
+            }
+            _TextPosition = Final
+        }
+    }
+    @IBInspectable public var TextPostion: String
+    {
+        get
+        {
+            return _TextPosition
+        }
+        set
+        {
+            _TextPosition = newValue
+        }
+    }
+    
     private var _TextColor: UIColor = UIColor.systemGreen
     {
         didSet
@@ -232,7 +294,7 @@ class BoxIndicator: UIView
             DrawBox()
         }
     }
-    public var TextColor: UIColor
+    @IBInspectable public var TextColor: UIColor
     {
         get
         {
@@ -251,7 +313,7 @@ class BoxIndicator: UIView
             DrawBox()
         }
     }
-    public var BoxColor: UIColor
+    @IBInspectable public var BoxColor: UIColor
     {
         get
         {
@@ -260,6 +322,25 @@ class BoxIndicator: UIView
         set
         {
             _BoxColor = newValue
+        }
+    }
+    
+    private var _Background: UIColor = UIColor.clear
+    {
+        didSet
+        {
+            DrawBox()
+        }
+    }
+    @IBInspectable public var Background: UIColor
+        {
+        get
+        {
+            return _Background
+        }
+        set
+        {
+            _Background = newValue
         }
     }
 }
@@ -271,3 +352,5 @@ enum TextLocations: String, CaseIterable
     case Top = "Top"
     case Bottom = "Bottom"
 }
+
+
