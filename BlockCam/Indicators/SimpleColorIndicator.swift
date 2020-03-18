@@ -48,9 +48,9 @@ class SimpleColorIndicator: UIView
         TextLabel.sizeToFit()
         
         ColorView.removeFromSuperview()
+        ColorView = UIView(frame: CGRect(origin: CGPoint.zero, size: _BoxSize))
         ColorView.isOpaque = false
         ColorView.backgroundColor = _Color
-        ColorView = UIView(frame: CGRect(origin: CGPoint.zero, size: _BoxSize))
         ColorView.layer.borderColor = _BoxColor.cgColor
         ColorView.layer.borderWidth = 1.0
         ColorView.layer.cornerRadius = 3.0
