@@ -167,10 +167,12 @@ extension ViewController: MainProtocol
     /// - Parameter For: The image whose histogram will be calculated and displayed.
     func DisplayHistogram(For Image: UIImage)
     {
+        #if false
         if !HistogramIsVisible
         {
             return
         }
+        #endif
         let CImage: CGImage = Image.cgImage!
         let ImageFormat = vImage_CGImageFormat(bitsPerComponent: 8,
                                                bitsPerPixel: 32,
