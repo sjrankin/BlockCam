@@ -30,10 +30,16 @@ class SimpleColorIndicator: UIView
     required init?(coder: NSCoder)
     {
         super.init(coder: coder)
+        isOpaque = false
+        backgroundColor = UIColor.clear
+        self.Text = "Color"
+        self.TextLocation = .Left
     }
     
     public func DrawBox()
     {
+        self.backgroundColor = Background
+        
         TextLabel.removeFromSuperview()
         TextLabel = UILabel()
         TextLabel.text = _Text
@@ -45,7 +51,7 @@ class SimpleColorIndicator: UIView
         ColorView.isOpaque = false
         ColorView.backgroundColor = _Color
         ColorView = UIView(frame: CGRect(origin: CGPoint.zero, size: _BoxSize))
-        ColorView.layer.borderColor = UIColor.black.cgColor
+        ColorView.layer.borderColor = _BoxColor.cgColor
         ColorView.layer.borderWidth = 1.0
         ColorView.layer.cornerRadius = 3.0
         
@@ -108,8 +114,8 @@ class SimpleColorIndicator: UIView
             DrawBox()
         }
     }
-    public var Text: String
-    {
+    @IBInspectable public var Text: String
+        {
         get
         {
             return _Text
@@ -127,8 +133,8 @@ class SimpleColorIndicator: UIView
             DrawBox()
         }
     }
-    public var Color: UIColor
-    {
+    @IBInspectable public var Color: UIColor
+        {
         get
         {
             return _Color
@@ -146,8 +152,8 @@ class SimpleColorIndicator: UIView
             DrawBox()
         }
     }
-    public var TextFont: UIFont
-    {
+    @IBInspectable public var TextFont: UIFont
+        {
         get
         {
             return _TextFont
@@ -165,8 +171,8 @@ class SimpleColorIndicator: UIView
             DrawBox()
         }
     }
-    public var Percent: Double
-    {
+    @IBInspectable public var Percent: Double
+        {
         get
         {
             return _Percent
@@ -193,8 +199,8 @@ class SimpleColorIndicator: UIView
             DrawBox()
         }
     }
-    public var BoxSize: CGSize
-    {
+    @IBInspectable public var BoxSize: CGSize
+        {
         get
         {
             return _BoxSize
@@ -224,6 +230,52 @@ class SimpleColorIndicator: UIView
         }
     }
     
+    private var _TextPosition: String = "LEFT"
+    {
+        didSet
+        {
+            var Final = ""
+            if _TextPosition.isEmpty
+            {
+                Final = "LEFT"
+            }
+            else
+            {
+                let Scratch = _TextPosition.trimmingCharacters(in: .whitespacesAndNewlines)
+                Final = Scratch.uppercased()
+            }
+            switch Final
+            {
+                case "LEFT":
+                    TextLocation = .Left
+                
+                case "RIGHT":
+                    TextLocation = .Right
+                
+                case "TOP", "ABOVE":
+                    TextLocation = .Top
+                
+                case "BOTTOM", "BELOW":
+                    TextLocation = .Bottom
+                
+                default:
+                    TextLocation = .Left
+            }
+            _TextPosition = Final
+        }
+    }
+    @IBInspectable public var TextPostion: String
+        {
+        get
+        {
+            return _TextPosition
+        }
+        set
+        {
+            _TextPosition = newValue
+        }
+    }
+    
     private var _TextColor: UIColor = UIColor.systemGreen
     {
         didSet
@@ -231,8 +283,8 @@ class SimpleColorIndicator: UIView
             DrawBox()
         }
     }
-    public var TextColor: UIColor
-    {
+    @IBInspectable public var TextColor: UIColor
+        {
         get
         {
             return _TextColor
@@ -240,6 +292,44 @@ class SimpleColorIndicator: UIView
         set
         {
             _TextColor = newValue
+        }
+    }
+    
+    private var _Background: UIColor = UIColor.clear
+    {
+        didSet
+        {
+            DrawBox()
+        }
+    }
+    @IBInspectable public var Background: UIColor
+        {
+        get
+        {
+            return _Background
+        }
+        set
+        {
+            _Background = newValue
+        }
+    }
+    
+    private var _BoxColor: UIColor = UIColor.black
+    {
+        didSet
+        {
+            DrawBox()
+        }
+    }
+    @IBInspectable public var BoxColor: UIColor
+        {
+        get
+        {
+            return _BoxColor
+        }
+        set
+        {
+            _BoxColor = newValue
         }
     }
 }
