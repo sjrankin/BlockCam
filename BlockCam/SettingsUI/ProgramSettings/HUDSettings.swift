@@ -22,6 +22,7 @@ class HUDSettings: UITableViewController
         ShowCompassSwitch.isOn = Settings.GetBoolean(ForKey: .ShowCompass)
         ShowVersionSwitch.isOn = Settings.GetBoolean(ForKey: .ShowVersionOnHUD)
         ShowMeanColorSwitch.isOn = Settings.GetBoolean(ForKey: .ShowMeanColor)
+        ShowHistogramSwitch.isOn = Settings.GetBoolean(ForKey: .ShowHUDHistogram)
     }
     
     @IBAction func HandleEnableHUDChanged(_ sender: Any)
@@ -88,6 +89,14 @@ class HUDSettings: UITableViewController
         }
     }
     
+    @IBAction func HandleShowHistogramChanged(_ sender: Any)
+    {
+        if let Switch = sender as? UISwitch
+        {
+            Settings.SetBoolean(Switch.isOn, ForKey: .ShowHUDHistogram)
+        }
+    }
+    
     @IBOutlet weak var EnableHUDSwitch: UISwitch!
     @IBOutlet weak var ShowSaturationSwitch: UISwitch!
     @IBOutlet weak var ShowBrightnessSwitch: UISwitch!
@@ -96,4 +105,5 @@ class HUDSettings: UITableViewController
     @IBOutlet weak var ShowAltitudeSwitch: UISwitch!
     @IBOutlet weak var ShowVersionSwitch: UISwitch!
     @IBOutlet weak var ShowMeanColorSwitch: UISwitch!
+    @IBOutlet weak var ShowHistogramSwitch: UISwitch!
 }
