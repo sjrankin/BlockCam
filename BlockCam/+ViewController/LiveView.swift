@@ -26,13 +26,16 @@ extension ViewController
     /// - Parameter output: Not used.
     /// - Parameter didOutput: The frame from the live view.
     /// - Parameter from: Not used.
-    func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection)
+    func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer,
+                       from connection: AVCaptureConnection)
     {
         FrameCount = FrameCount + 1
         if !DeviceHasCamera
         {
+            print("Device has no camera")
             return
         }
+        #if false
         if !HistogramIsVisible
         {
             return
@@ -41,8 +44,14 @@ extension ViewController
         {
             return
         }
+        #endif
+        if !Settings.GetBoolean(ForKey: .ShowHUDHistogram)
+        {
+            return
+        }
         if CurrentViewMode != .LiveView
         {
+            print("CurrentViewMode is not live view")
             return
         }
         if let RawSpeed = Settings.GetString(ForKey: .HistogramCreationSpeed)
@@ -53,6 +62,7 @@ extension ViewController
                 {
                     if !FrameCount.isMultiple(of: FrameMultiplier)
                     {
+                        print("Invalid frame multiplier")
                         return
                     }
                 }
@@ -68,20 +78,42 @@ extension ViewController
                 return
             }
             DisplayHistogram(For: Image!)
-            #if false
-            let MeanColor = GetImageMean(CIImg)
-            #else
-            if Settings.GetBoolean(ForKey: .ShowVersionOnHUD)
+            if Settings.GetBoolean(ForKey: .ShowMeanColor)
             {
-         //   let MeanColor = GetImageMean(CIImg)
-         //       print("Mean color is \(MeanColor.Hex)")
+            let (Red, Green, Blue, Alpha) = GetImageMean(CIImg)
+                let FinalMean = UIColor(red: CGFloat(Red) / 255.0,
+                                        green: CGFloat(Green) / 255.0,
+                                        blue: CGFloat(Blue) / 255.0,
+                                        alpha: CGFloat(Alpha) / 255.0)
+                UpdateHUDView(.MeanColor, With: FinalMean as Any)
+                var Hue: CGFloat = 0.0
+                var Saturation: CGFloat = 0.0
+                var Brightness: CGFloat = 0.0
+                var HSBAlpha: CGFloat = 0.0
+                FinalMean.getHue(&Hue, saturation: &Saturation, brightness: &Brightness, alpha: &HSBAlpha)
+                if Settings.GetBoolean(ForKey: .ShowHue)
+                {
+                    UpdateHUDView(.Hue, With: Hue)
+                }
+                if Settings.GetBoolean(ForKey: .ShowSaturation)
+                {
+                    UpdateHUDView(.Saturation, With: Saturation)
+                }
+                if Settings.GetBoolean(ForKey: .ShowLightMeter)
+                {
+                    UpdateHUDView(.Brightness, With: Brightness)
+                }
             }
-            #endif
         }
     }
-    
-    //https://www.hackingwithswift.com/example-code/media/how-to-read-the-average-color-of-a-uiimage-using-ciareaaverage
-    func GetImageMean(_ Image: CIImage) -> UIColor
+
+    /// Returns the mean color of the passed image.
+    /// - Note:
+    ///   - Uses CIAreaAverage to get the mean color.
+    ///   - See [How to read the average color of a UIImage](https://www.hackingwithswift.com/example-code/media/how-to-read-the-average-color-of-a-uiimage-using-ciareaaverage)
+    /// - Parameter Image: The image whose mean color will be returned.
+    /// - Returns: Tupel with unnormalized channel data in red, green, blue, alpha order.
+    func GetImageMean(_ Image: CIImage) -> (UInt8, UInt8, UInt8, UInt8)
     {
         let Extent = Image.extent
         let FullImage = CIVector(x: Extent.origin.x, y: Extent.origin.y,
@@ -94,10 +126,7 @@ extension ViewController
                        rowBytes: 4,
                        bounds: CGRect(x: 0, y: 0, width: 1, height: 1),
                        format: .RGBA8, colorSpace: nil)
-        return UIColor(red: CGFloat(Bitmap[0] / 255),
-                       green: CGFloat(Bitmap[1] / 255),
-                       blue: CGFloat(Bitmap[2] / 255),
-                       alpha: CGFloat(Bitmap[3] / 255))
+        return (Bitmap[0], Bitmap[1], Bitmap[2], Bitmap[3])
     }
     
     /// Called when AVFoundation has an image for use (most likely due to the user pressing the camera button).
