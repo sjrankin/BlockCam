@@ -14,46 +14,39 @@ extension ViewController
     func InitializeHUD()
     {
         HUDView.backgroundColor = UIColor.clear
-        CreateHUDMap()
-    }
-    
-    func CreateHUDMap()
-    {
-        HUDViewMap = [HUDViews: UIView]()
-        var BoxFrame = CGRect(origin: CGPoint.zero, size: CGSize(width: 50, height: 20))
-        for ViewType in HUDViews.allCases
+        HUDHSBIndicator1.TextLocation = .Right
+        HUDHSBIndicator2.TextLocation = .Right
+        HUDHSBIndicator3.TextLocation = .Right
+        HUDVersionLabel.text = Versioning.ApplicationName + " " +
+            Versioning.VerySimpleVersionString() + " " +
+        "Build \(Versioning.Build)"
+        HUDVersionLabel.backgroundColor = UIColor.black.withAlphaComponent(0.45)
+        HUDAltitudeLabel.backgroundColor = UIColor.white.withAlphaComponent(0.45)
+        HUDCompassLabel.backgroundColor = UIColor.white.withAlphaComponent(0.45)
+        let HUDWidth = HUDView.frame.size.width
+        //HistogramWidthConstraint.isActive = false
+        if UIDevice.current.userInterfaceIdiom == .pad
         {
-            switch ViewType
-            {
-                case .Histogram:
-                    HUDViewMap[ViewType] = HistogramDisplay()
-                
-                case .Brightness:
-                    HUDViewMap[ViewType] = BoxIndicator(frame: BoxFrame, Text: "Brightness", Location: .Right)
-                
-                case .Hue:
-                    HUDViewMap[ViewType] = BoxIndicator(frame: BoxFrame, Text: "Hue", Location: .Right)
-                
-                case .Saturation:
-                    HUDViewMap[ViewType] = BoxIndicator(frame: BoxFrame, Text: "Saturation", Location: .Right)
-                
-                case .MeanColor:
-                    HUDViewMap[ViewType] = SimpleColorIndicator(frame: BoxFrame, Text: "Mean", Location: .Left)
-                
-                case .Version:
-                    HUDVersionLabel.text = Versioning.ApplicationName + " " +
-                        Versioning.VerySimpleVersionString() + " " +
-                    "Build \(Versioning.Build)"
-                
-                case .Altitude:
-                    HUDAltitudeLabel.text = "8m"
-                
-                case .Compass:
-                    HUDCompassLabel.text = "180°"
-            }
-            //HUDViewMap[ViewType]!.isHidden = true
-            //HUDView.addSubview(HUDViewMap[ViewType]!)
+            let NewRect = CGRect(x: 0,
+                                 y: 0,
+                                 width: HUDWidth / 2.0,
+                                 height: HistogramView.frame.size.height)
+            HistogramView.frame = NewRect
+            HistogramView.bounds = NewRect
+            //print("NewRect=\(NewRect), HistogramView.frame=\(HistogramView.frame)")
         }
+        else
+        {
+            HistogramView.frame = CGRect(x: 0, y: 0, width: HUDWidth, height: HistogramView.frame.size.height)
+            HistogramView.bounds = CGRect(x: 0, y: 0, width: HUDWidth, height: HistogramView.frame.size.height)
+        }
+        HistogramView.layer.borderColor = UIColor.black.withAlphaComponent(0.5).cgColor
+        HistogramView.layer.borderWidth = 1.0
+        HistogramView.layer.cornerRadius = 5.0
+        HistogramView.backgroundColor = UIColor.black.withAlphaComponent(0.2)
+        HistogramView.isUserInteractionEnabled = false
+        HistogramView.layer.maskedCorners = [.layerMaxXMaxYCorner]
+        HistogramView.clipsToBounds = true
     }
     
     /// Updates all views in terms of displaying them or hiding them. Individual settings in various
@@ -63,26 +56,22 @@ extension ViewController
         let HideAll = !Settings.GetBoolean(ForKey: .EnableHUD)
         if HideAll
         {
-            for (_, View) in HUDViewMap
-            {
-                View.isHidden = true
-            }
+            HUDView.isHidden = true
             return
         }
+        else
+        {
+            HUDView.isHidden = false
+        }
         
+        HUDHSBIndicator1.isHidden = !Settings.GetBoolean(ForKey: .ShowHue)
+        HUDHSBIndicator2.isHidden = !Settings.GetBoolean(ForKey: .ShowSaturation)
+        HUDHSBIndicator3.isHidden = !Settings.GetBoolean(ForKey: .ShowLightMeter)
         HUDVersionLabel.isHidden = !Settings.GetBoolean(ForKey: .ShowVersionOnHUD)
-        let LightMeter = HUDViewMap[.Brightness] as! BoxIndicator
-        LightMeter.isHidden = !Settings.GetBoolean(ForKey: .ShowLightMeter)
-        let HueView = HUDViewMap[.Hue] as! BoxIndicator
-        HueView.isHidden = !Settings.GetBoolean(ForKey: .ShowHue)
-        let SatView = HUDViewMap[.Saturation] as! BoxIndicator
-        SatView.isHidden = !Settings.GetBoolean(ForKey: .ShowSaturation)
-        let MeanView = HUDViewMap[.MeanColor] as! SimpleColorIndicator
-        MeanView.isHidden = !Settings.GetBoolean(ForKey: .ShowMeanColor)
+        MeanColorIndicator.isHidden = !Settings.GetBoolean(ForKey: .ShowMeanColor)
         HUDCompassLabel.isHidden = !Settings.GetBoolean(ForKey: .ShowCompass)
         HUDAltitudeLabel.isHidden = !Settings.GetBoolean(ForKey: .ShowAltitude)
-        let HistView = HUDViewMap[.Histogram]!
-        HistView.isHidden = !Settings.GetBoolean(ForKey: .ShowHUDHistogram)
+        HistogramView.isHidden = !Settings.GetBoolean(ForKey: .ShowHUDHistogram)
     }
     
     /// Update a HUD view with the supplied data.
@@ -101,66 +90,45 @@ extension ViewController
         switch View
         {
             case .Hue:
-                if let V = HUDViewMap[View] as? BoxIndicator
+                if let FinalValue = Value as? CGFloat
                 {
-                    if let FinalValue = Value as? CGFloat
-                    {
-                        V.Percent = Double(FinalValue)
-                    }
+                    HUDHSBIndicator1.Percent = Double(FinalValue)
             }
             
             case .Saturation:
-                if let V = HUDViewMap[View] as? BoxIndicator
+                if let FinalValue = Value as? CGFloat
                 {
-                    if let FinalValue = Value as? CGFloat
-                    {
-                        V.Percent = Double(FinalValue)
-                    }
+                    HUDHSBIndicator2.Percent = Double(FinalValue)
             }
             
             case .Brightness:
-                if let V = HUDViewMap[View] as? BoxIndicator
+                if let FinalValue = Value as? CGFloat
                 {
-                    if let FinalValue = Value as? CGFloat
-                    {
-                        V.Percent = Double(FinalValue)
-                    }
+                    HUDHSBIndicator3.Percent = Double(FinalValue)
             }
             
             case .MeanColor:
-                if let V = HUDViewMap[View] as? SimpleColorIndicator
+                if let FinalValue = Value as? UIColor
                 {
-                    if let FinalValue = Value as? UIColor
-                    {
-                        V.Color = FinalValue
-                    }
+                    MeanColorIndicator.Color = FinalValue
             }
             
             case .Version:
-                if let V = HUDViewMap[View] as? UILabel
+                if let FinalValue = Value as? String
                 {
-                    if let FinalValue = Value as? String
-                    {
-                        V.text = FinalValue
-                    }
+                    HUDVersionLabel.text = FinalValue
             }
             
             case .Compass:
-                if let V = HUDViewMap[View] as? UILabel
+                if let FinalValue = Value as? String
                 {
-                    if let FinalValue = Value as? String
-                    {
-                        V.text = FinalValue
-                    }
+                    HUDCompassLabel.text = FinalValue
             }
             
             case .Altitude:
-                if let V = HUDViewMap[View] as? UILabel
+                if let FinalValue = Value as? String
                 {
-                    if let FinalValue = Value as? String
-                    {
-                        V.text = FinalValue
-                    }
+                    HUDAltitudeLabel.text = FinalValue
             }
             
             case .Histogram:
