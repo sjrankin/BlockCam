@@ -83,8 +83,7 @@ class ViewController: UIViewController,
         InitializeOutput()
         
         OutputView.alpha = 0.0
-        
-        InitializeHUD()
+
         ShowStatusLayer()
         ShowSplashScreen()
         GetPermissions()
@@ -99,6 +98,12 @@ class ViewController: UIViewController,
         StartOrientationUpdates()
         
         AddLiveViewTaps()
+    }
+    
+    override func viewWillAppear(_ animated: Bool)
+    {
+        super.viewWillAppear(animated)
+        InitializeHUD()
     }
     
     func AddLiveViewTaps()
@@ -305,7 +310,8 @@ class ViewController: UIViewController,
                     self.HideHistogramView()
             }
             
-            case .EnableHUD:
+            case .EnableHUD, .ShowHue, .ShowSaturation, .ShowLightMeter, .ShowVersionOnHUD,
+                 .ShowMeanColor, .ShowCompass, .ShowAltitude, .ShowHUDHistogram:
             UpdateHUDViews()
             
             case .AntialiasingMode:
@@ -1110,8 +1116,13 @@ class ViewController: UIViewController,
     @IBOutlet weak var HistogramView: HistogramDisplay!
     
     // MARK: - HUD variables and interface builder outlets
-    var HUDViewMap = [HUDViews: UIView]()
     @IBOutlet weak var HUDVersionLabel: UILabel!
     @IBOutlet weak var HUDCompassLabel: UILabel!
     @IBOutlet weak var HUDAltitudeLabel: UILabel!
+    @IBOutlet weak var HUDHSBIndicator1: BoxIndicator!
+    @IBOutlet weak var HUDHSBIndicator2: BoxIndicator!
+    @IBOutlet weak var HUDHSBIndicator3: BoxIndicator!
+    @IBOutlet weak var HUDHSBStack: UIStackView!
+    @IBOutlet weak var MeanColorIndicator: SimpleColorIndicator!
+    @IBOutlet weak var HistogramWidthConstraint: NSLayoutConstraint!
 }
