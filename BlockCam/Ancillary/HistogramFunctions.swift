@@ -15,6 +15,7 @@ extension ViewController
     /// - Note: sett [Round specific corners of view.](https://www.hackingwithswift.com/example-code/calayer/how-to-round-only-specific-corners-using-maskedcorners)
     func InitializeHistogramView()
     {
+        #if false
         HistogramIsVisible = false
         HistogramView.alpha = 0.0
         HistogramView.layer.zPosition = -1000
@@ -23,12 +24,15 @@ extension ViewController
         HistogramView.layer.cornerRadius = 5.0
         HistogramView.backgroundColor = UIColor.black.withAlphaComponent(0.2)
         HistogramView.isUserInteractionEnabled = false
+                HistogramView.layer.maskedCorners = [.layerMaxXMaxYCorner]
+        #if false
         let FinalWidth: CGFloat = view.frame.width / 2.0
-        HistogramView.layer.maskedCorners = [.layerMaxXMaxYCorner]
         HistogramView.frame = CGRect(x: HistogramView.frame.minX,
                                      y: HistogramView.frame.minY,
                                      width: FinalWidth,
                                      height: HistogramView.frame.height)
+        #endif
+        #endif
     }
     
     /// How the histogram view.
