@@ -2,6 +2,10 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>BlockCam would like to use your location for geo-tagging your images and for the compass display when enabled.</string>
+	<key>NSLocationUsageDescription</key>
+	<string>BlockCam would like to know your location for geo-tagging your pictures and for the compass display when activated.</string>
 	<key>NSMotionUsageDescription</key>
 	<string>BlockCam would like to use your device&apos;s gyroscope to detect the orientation to update the user interface to make it easier to use.</string>
 	<key>CFBundleDevelopmentRegion</key>
