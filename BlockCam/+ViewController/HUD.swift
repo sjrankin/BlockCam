@@ -17,9 +17,7 @@ extension ViewController
         HUDHSBIndicator1.TextLocation = .Right
         HUDHSBIndicator2.TextLocation = .Right
         HUDHSBIndicator3.TextLocation = .Right
-        HUDVersionLabel.text = Versioning.ApplicationName + " " +
-            Versioning.VerySimpleVersionString() + " " +
-        "Build \(Versioning.Build)"
+
         HUDVersionLabel.backgroundColor = UIColor.black.withAlphaComponent(0.45)
         HUDAltitudeLabel.backgroundColor = UIColor.white.withAlphaComponent(0.45)
         HUDCompassLabel.backgroundColor = UIColor.white.withAlphaComponent(0.45)
@@ -33,7 +31,6 @@ extension ViewController
                                  height: HistogramView.frame.size.height)
             HistogramView.frame = NewRect
             HistogramView.bounds = NewRect
-            //print("NewRect=\(NewRect), HistogramView.frame=\(HistogramView.frame)")
         }
         else
         {
@@ -46,6 +43,7 @@ extension ViewController
         HistogramView.backgroundColor = UIColor.black.withAlphaComponent(0.2)
         HistogramView.isUserInteractionEnabled = false
         HistogramView.layer.maskedCorners = [.layerMaxXMaxYCorner]
+        HistogramView.layer.zPosition = 1000
         HistogramView.clipsToBounds = true
     }
     
@@ -57,11 +55,17 @@ extension ViewController
         if HideAll
         {
             HUDView.isHidden = true
+            HUDView.layer.zPosition = -1000
             return
         }
         else
         {
             HUDView.isHidden = false
+            HUDView.layer.zPosition = 1000
+            HUDVersionLabel.text = Versioning.ApplicationName + " " +
+                Versioning.VerySimpleVersionString() + " " +
+            "Build \(Versioning.Build)"
+            HUDVersionLabel.backgroundColor = UIColor.black.withAlphaComponent(0.45)
         }
         
         HUDHSBIndicator1.isHidden = !Settings.GetBoolean(ForKey: .ShowHue)
@@ -87,52 +91,64 @@ extension ViewController
         {
             return
         }
-        switch View
-        {
-            case .Hue:
-                if let FinalValue = Value as? CGFloat
+        OperationQueue.main.addOperation
+            {
+                switch View
                 {
-                    HUDHSBIndicator1.Percent = Double(FinalValue)
-            }
-            
-            case .Saturation:
-                if let FinalValue = Value as? CGFloat
-                {
-                    HUDHSBIndicator2.Percent = Double(FinalValue)
-            }
-            
-            case .Brightness:
-                if let FinalValue = Value as? CGFloat
-                {
-                    HUDHSBIndicator3.Percent = Double(FinalValue)
-            }
-            
-            case .MeanColor:
-                if let FinalValue = Value as? UIColor
-                {
-                    MeanColorIndicator.Color = FinalValue
-            }
-            
-            case .Version:
-                if let FinalValue = Value as? String
-                {
-                    HUDVersionLabel.text = FinalValue
-            }
-            
-            case .Compass:
-                if let FinalValue = Value as? String
-                {
-                    HUDCompassLabel.text = FinalValue
-            }
-            
-            case .Altitude:
-                if let FinalValue = Value as? String
-                {
-                    HUDAltitudeLabel.text = FinalValue
-            }
-            
-            case .Histogram:
-                break
+                    case .Hue:
+                        if let FinalValue = Value as? CGFloat
+                        {
+                            self.HUDHSBIndicator1.Percent = Double(FinalValue)
+                    }
+                    
+                    case .Saturation:
+                        if let FinalValue = Value as? CGFloat
+                        {
+                            self.HUDHSBIndicator2.Percent = Double(FinalValue)
+                    }
+                    
+                    case .Brightness:
+                        if let FinalValue = Value as? CGFloat
+                        {
+                            self.HUDHSBIndicator3.Percent = Double(FinalValue)
+                    }
+                    
+                    case .MeanColor:
+                        if let FinalValue = Value as? UIColor
+                        {
+                            self.MeanColorIndicator.Color = FinalValue
+                    }
+                    
+                    case .Version:
+                        if let FinalValue = Value as? String
+                        {
+                            self.HUDVersionLabel.text = FinalValue
+                            self.HUDVersionLabel.backgroundColor = UIColor.black.withAlphaComponent(0.45)
+                    }
+                    
+                    case .Compass:
+                        if let FinalValue = Value as? Double
+                        {
+                            var Working = FinalValue * 100.0
+                            Working = Double(Int(Working) / 100)
+                            let Final = "\(Working)°"
+                            self.HUDCompassLabel.text = Final
+                            self.HUDCompassLabel.backgroundColor = UIColor.black.withAlphaComponent(0.45)
+                    }
+                    
+                    case .Altitude:
+                        if let FinalValue = Value as? Double
+                        {
+                            var Working = FinalValue * 10.0
+                            Working = Double(Int(Working) / 10)
+                            let Final = "\(Working) m"
+                            self.HUDAltitudeLabel.text = Final
+                            self.HUDAltitudeLabel.backgroundColor = UIColor.black.withAlphaComponent(0.45)
+                    }
+                    
+                    case .Histogram:
+                        break
+                }
         }
     }
 }
