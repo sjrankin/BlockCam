@@ -189,67 +189,67 @@ class HistogramDisplay: UIView
                 }
                 else
                 {
-                if ChannelOrder == .Gray
-                {
-                    var Gray = [UInt]()
-                    var MaxGray: UInt = 0
-                    for Bin in 0 ..< 255
+                    if ChannelOrder == .Gray
                     {
-                        let MeanChannel: UInt = (FinalRed[Bin] + FinalGreen[Bin] + FinalBlue[Bin]) / 3
-                        if MeanChannel > MaxGray
+                        var Gray = [UInt]()
+                        var MaxGray: UInt = 0
+                        for Bin in 0 ..< 255
                         {
-                            MaxGray = MeanChannel
+                            let MeanChannel: UInt = (FinalRed[Bin] + FinalGreen[Bin] + FinalBlue[Bin]) / 3
+                            if MeanChannel > MaxGray
+                            {
+                                MaxGray = MeanChannel
+                            }
+                            Gray.append(MeanChannel)
                         }
-                        Gray.append(MeanChannel)
+                        GrayChannel = self.DrawChannel(InColor: UIColor.gray, WithData: Gray, Bounds: self.bounds,
+                                                       Frame: self.frame, MaxValue: MaxGray)
                     }
-                    GrayChannel = self.DrawChannel(InColor: UIColor.gray, WithData: Gray, Bounds: self.bounds,
-                                                   Frame: self.frame, MaxValue: MaxGray)
-                }
-                else
-                {
-                    RedChannel = self.DrawChannel(InColor: UIColor.red, WithData: FinalRed, Bounds: self.bounds,
-                                                  Frame: self.frame, MaxValue: MaxValue)
-                    GreenChannel = self.DrawChannel(InColor: UIColor.green, WithData: FinalGreen, Bounds: self.bounds,
-                                                    Frame: self.frame, MaxValue: MaxValue)
-                    BlueChannel = self.DrawChannel(InColor: UIColor.blue, WithData: FinalBlue, Bounds: self.bounds,
-                                                   Frame: self.frame, MaxValue: MaxValue)
-                }
-                
-                switch ChannelOrder
-                {
-                    case .RGB:
-                        RedChannel.zPosition = 100
-                        GreenChannel.zPosition = 90
-                        BlueChannel.zPosition = 80
+                    else
+                    {
+                        RedChannel = self.DrawChannel(InColor: UIColor.red, WithData: FinalRed, Bounds: self.bounds,
+                                                      Frame: self.frame, MaxValue: MaxValue)
+                        GreenChannel = self.DrawChannel(InColor: UIColor.green, WithData: FinalGreen, Bounds: self.bounds,
+                                                        Frame: self.frame, MaxValue: MaxValue)
+                        BlueChannel = self.DrawChannel(InColor: UIColor.blue, WithData: FinalBlue, Bounds: self.bounds,
+                                                       Frame: self.frame, MaxValue: MaxValue)
+                    }
                     
-                    case .RBG:
-                        RedChannel.zPosition = 100
-                        GreenChannel.zPosition = 80
-                        BlueChannel.zPosition = 90
-                    
-                    case .GRB:
-                        RedChannel.zPosition = 90
-                        GreenChannel.zPosition = 100
-                        BlueChannel.zPosition = 80
-                    
-                    case .GBR:
-                        RedChannel.zPosition = 80
-                        GreenChannel.zPosition = 100
-                        BlueChannel.zPosition = 90
-                    
-                    case .BRG:
-                        RedChannel.zPosition = 90
-                        GreenChannel.zPosition = 80
-                        BlueChannel.zPosition = 100
-                    
-                    case .BGR:
-                        RedChannel.zPosition = 80
-                        GreenChannel.zPosition = 90
-                        BlueChannel.zPosition = 100
-                    
-                    default:
-                        break
-                }
+                    switch ChannelOrder
+                    {
+                        case .RGB:
+                            RedChannel.zPosition = 100
+                            GreenChannel.zPosition = 90
+                            BlueChannel.zPosition = 80
+                        
+                        case .RBG:
+                            RedChannel.zPosition = 100
+                            GreenChannel.zPosition = 80
+                            BlueChannel.zPosition = 90
+                        
+                        case .GRB:
+                            RedChannel.zPosition = 90
+                            GreenChannel.zPosition = 100
+                            BlueChannel.zPosition = 80
+                        
+                        case .GBR:
+                            RedChannel.zPosition = 80
+                            GreenChannel.zPosition = 100
+                            BlueChannel.zPosition = 90
+                        
+                        case .BRG:
+                            RedChannel.zPosition = 90
+                            GreenChannel.zPosition = 80
+                            BlueChannel.zPosition = 100
+                        
+                        case .BGR:
+                            RedChannel.zPosition = 80
+                            GreenChannel.zPosition = 90
+                            BlueChannel.zPosition = 100
+                        
+                        default:
+                            break
+                    }
                 }
                 
                 let FinalLayer = CAShapeLayer()
@@ -263,17 +263,17 @@ class HistogramDisplay: UIView
                 }
                 else
                 {
-                if ChannelOrder == .Gray
-                {
-                    GrayChannel.zPosition = 100
-                    FinalLayer.addSublayer(GrayChannel)
-                }
-                else
-                {
-                    FinalLayer.addSublayer(RedChannel)
-                    FinalLayer.addSublayer(GreenChannel)
-                    FinalLayer.addSublayer(BlueChannel)
-                }
+                    if ChannelOrder == .Gray
+                    {
+                        GrayChannel.zPosition = 100
+                        FinalLayer.addSublayer(GrayChannel)
+                    }
+                    else
+                    {
+                        FinalLayer.addSublayer(RedChannel)
+                        FinalLayer.addSublayer(GreenChannel)
+                        FinalLayer.addSublayer(BlueChannel)
+                    }
                 }
                 self.layer.addSublayer(FinalLayer)
         }
