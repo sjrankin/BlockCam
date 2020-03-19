@@ -64,6 +64,7 @@ class Settings
         UserDefaults.standard.set(Versioning.VersionAsNumber(), forKey: "SettingsVersion")
         UserDefaults.standard.set("Initialized", forKey: "Initialized")
         UserDefaults.standard.set(32, forKey: SettingKeys.BlockSize.rawValue)
+        UserDefaults.standard.set(true, forKey: SettingKeys.AutomaticallyDetermineBlockSize.rawValue)
         UserDefaults.standard.set(NodeShapes.Blocks.rawValue, forKey: SettingKeys.ShapeType.rawValue)
         UserDefaults.standard.set(false, forKey: SettingKeys.InvertHeight.rawValue)
         UserDefaults.standard.set(HeightSources.Brightness.rawValue, forKey: SettingKeys.HeightSource.rawValue)
@@ -219,6 +220,8 @@ class Settings
         UserDefaults.standard.set(false, forKey: SettingKeys.ShowMeanColor.rawValue)
         UserDefaults.standard.set(false, forKey: SettingKeys.ShowHUDHistogram.rawValue)
         UserDefaults.standard.set(false, forKey: SettingKeys.CombinedHistogram.rawValue)
+        UserDefaults.standard.set(1.5, forKey: SettingKeys.LocationUpdateFrequency.rawValue)
+        UserDefaults.standard.set(0.35, forKey: SettingKeys.UIButtonHighlightFadeDuration.rawValue)
     }
     
     /// Call all subscribers in the notification list to let them know a setting will be changed.
@@ -353,9 +356,10 @@ class Settings
         Completed(ForKey)
     }
     
-    /// Returns the value of a Double setting.
-    /// - Note: If `ForKey` is not a Double setting, a fatal error will be generated.
+    /// Returns the value of a `Double` setting.
+    /// - Warning: If `ForKey` is not a Double setting, a fatal error will be generated.
     /// - Parameter ForKey: The setting whose value will be returned.
+    /// - Returns: Double value found in user settings.
     public static func GetDouble(ForKey: SettingKeys) -> Double
     {
         if DoubleFields.contains(ForKey)
@@ -365,6 +369,29 @@ class Settings
         else
         {
             fatalError("The key \(ForKey.rawValue) does not point to a double setting.")
+        }
+    }
+    
+    /// Returns the value of a `Double` setting.
+        /// - Warning: If `ForKey` is not a Double setting, a fatal error will be generated.
+    /// - Parameter ForKey: The setting whose value will be returned.
+    /// - Parameter IfZero: If the value in the setting is 0.0, set this value and return it.
+    /// - Returns: Double value found in user settings or `IfZero` if the value stored is 0.0
+    public static func GetDouble(ForKey: SettingKeys, IfZero: Double = 0.0) -> Double
+    {
+        if DoubleFields.contains(ForKey)
+        {
+            let Value = UserDefaults.standard.double(forKey: ForKey.rawValue)
+            if Value == 0.0
+            {
+                UserDefaults.standard.set(IfZero, forKey: ForKey.rawValue)
+                return IfZero
+            }
+            return Value
+        }
+        else
+        {
+             fatalError("The key \(ForKey.rawValue) does not point to a double setting.")
         }
     }
     
@@ -695,6 +722,7 @@ class Settings
             SettingKeys.ShowVersionOnHUD,
             SettingKeys.ShowHUDHistogram,
             SettingKeys.CombinedHistogram,
+            SettingKeys.AutomaticallyDetermineBlockSize,
     ]
     
     /// Contains a list of all integer-type fields.
@@ -793,6 +821,8 @@ class Settings
     public static let DoubleFields: [SettingKeys] =
         [
             SettingKeys.BestFitOffset,
+            SettingKeys.LocationUpdateFrequency,
+            SettingKeys.UIButtonHighlightFadeDuration,
     ]
 }
 
@@ -821,6 +851,8 @@ enum SettingKeys: String, CaseIterable, Comparable, Hashable
     //Block and pixellation settings.
     /// Integer: Holds the size of a pixellated block.
     case BlockSize = "BlockSize"
+    /// Boolean: If true, the block size is determined at runtime based on the system.
+    case AutomaticallyDetermineBlockSize = "AutoBlockSize"
     /// String: Size of the chamfer radius for block shapes.
     case BlockChamferSize = "BlockChamferSize"
     /// String: The shape each pixel will be rendered as.
@@ -1110,6 +1142,12 @@ enum SettingKeys: String, CaseIterable, Comparable, Hashable
     case ShowVersionOnHUD = "ShowVersionOnHUD"
     /// Boolean: Show or hide the HUD histogram.
     case ShowHUDHistogram = "ShowHistogramOnHUD"
+    /// Double: How often to get the location.
+    case LocationUpdateFrequency = "LocationUpdateFrequency"
+    
+    //General-pupose UI settings.
+    /// Double: Fade duration for highlighting UI buttons.
+    case UIButtonHighlightFadeDuration = "UIButtonHighlightFadeDuration"
     
     //Favorite settings
     case FavoriteShapeList = "FavoriteShapeList"
