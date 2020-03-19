@@ -110,6 +110,10 @@
 		177F66A723D04F3900DFA840 /* NotoSansSymbols-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 17499B7C23CDEAA200A5396A /* NotoSansSymbols-Regular.ttf */; };
 		1780B72E23974CFD00E6018A /* MainProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1780B72D23974CFD00E6018A /* MainProtocol.swift */; };
 		1785C4B62417334500A389F8 /* Menu_Materials.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1785C4B52417334500A389F8 /* Menu_Materials.swift */; };
+		17893DCD24230EA000243C9B /* HistogramSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17893DCC24230EA000243C9B /* HistogramSettings.swift */; };
+		17893DCF24231EFE00243C9B /* Menu_ShapeSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17893DCE24231EFE00243C9B /* Menu_ShapeSize.swift */; };
+		17893DD12423249300243C9B /* AutoBlockSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17893DD02423249300243C9B /* AutoBlockSize.swift */; };
+		17893DD3242332F500243C9B /* Menu_Hardware.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17893DD2242332F500243C9B /* Menu_Hardware.swift */; };
 		17897B7523E6905C00AFDA6A /* LiveViewFeedback.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17897B7423E6905C00AFDA6A /* LiveViewFeedback.swift */; };
 		1789950323B5CF3200238D89 /* Indefinite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1789950223B5CF3200238D89 /* Indefinite.swift */; };
 		178A4F2623C6FB9A00892F88 /* ImageEdgeFinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 178A4F2523C6FB9A00892F88 /* ImageEdgeFinder.swift */; };
@@ -295,6 +299,10 @@
 		177F66A423D036F000DFA840 /* Menu_CharacterSeries.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Menu_CharacterSeries.swift; sourceTree = "<group>"; };
 		1780B72D23974CFD00E6018A /* MainProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainProtocol.swift; sourceTree = "<group>"; };
 		1785C4B52417334500A389F8 /* Menu_Materials.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Menu_Materials.swift; sourceTree = "<group>"; };
+		17893DCC24230EA000243C9B /* HistogramSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistogramSettings.swift; sourceTree = "<group>"; };
+		17893DCE24231EFE00243C9B /* Menu_ShapeSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Menu_ShapeSize.swift; sourceTree = "<group>"; };
+		17893DD02423249300243C9B /* AutoBlockSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoBlockSize.swift; sourceTree = "<group>"; };
+		17893DD2242332F500243C9B /* Menu_Hardware.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Menu_Hardware.swift; sourceTree = "<group>"; };
 		17897B7423E6905C00AFDA6A /* LiveViewFeedback.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveViewFeedback.swift; sourceTree = "<group>"; };
 		1789950223B5CF3200238D89 /* Indefinite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Indefinite.swift; sourceTree = "<group>"; };
 		178A4F2523C6FB9A00892F88 /* ImageEdgeFinder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageEdgeFinder.swift; sourceTree = "<group>"; };
@@ -479,6 +487,7 @@
 				17AC305B23DC23BE00E90A70 /* ShapeGenerator.swift */,
 				1796DBE623B71F520031FEA5 /* VideoMaker.swift */,
 				1796DBE823B748E50031FEA5 /* VideoGenerator.swift */,
+				17893DD02423249300243C9B /* AutoBlockSize.swift */,
 			);
 			path = ProcessView;
 			sourceTree = "<group>";
@@ -581,6 +590,7 @@
 				1771A9D823BC455B00B3294F /* ImageSizeSettings.swift */,
 				171B98CF23C5AD5400118BFB /* AboutBlockCam.swift */,
 				17379DA524208566004BDAF8 /* HUDSettings.swift */,
+				17893DCC24230EA000243C9B /* HistogramSettings.swift */,
 			);
 			path = ProgramSettings;
 			sourceTree = "<group>";
@@ -649,6 +659,8 @@
 			isa = PBXGroup;
 			children = (
 				175E3F8423B89E23005E04FF /* Menu_HeightSettings.swift */,
+				17893DCE24231EFE00243C9B /* Menu_ShapeSize.swift */,
+				17893DD2242332F500243C9B /* Menu_Hardware.swift */,
 			);
 			path = HeightMenu;
 			sourceTree = "<group>";
@@ -962,6 +974,7 @@
 				17AABB4423826775006DA546 /* Histogram.swift in Sources */,
 				17D1F8B923CC28CC00D3CE63 /* SCNFlower1.swift in Sources */,
 				171B98D223C5C5CA00118BFB /* Menu_SomethingChanged.swift in Sources */,
+				17893DD12423249300243C9B /* AutoBlockSize.swift in Sources */,
 				1780B72E23974CFD00E6018A /* MainProtocol.swift in Sources */,
 				17CE347923C42E5600E96E3F /* LinearPercent.swift in Sources */,
 				1771A9DB23BC4C2000B3294F /* PrivacySettings.swift in Sources */,
@@ -1015,6 +1028,7 @@
 				17BE8E6C23767BE400262F81 /* AppDelegate.swift in Sources */,
 				17616123240E4B5000889ABA /* Menu_2DSettings.swift in Sources */,
 				178C9C2723B440590049139B /* Enum.swift in Sources */,
+				17893DCD24230EA000243C9B /* HistogramSettings.swift in Sources */,
 				17B9E0D123D42936004DD106 /* StringMapping.swift in Sources */,
 				17FA554823B9EF0700915B83 /* Menu_CappedLineSettings.swift in Sources */,
 				1723D0952387D196001F05E1 /* ViewSettings.swift in Sources */,
@@ -1053,6 +1067,7 @@
 				1723941C238B641800D62C93 /* FileIO.swift in Sources */,
 				171DA63B241389C400C8058B /* SCNPlatonicSolid.swift in Sources */,
 				17AABB4623826F61006DA546 /* HistogramFunctions.swift in Sources */,
+				17893DCF24231EFE00243C9B /* Menu_ShapeSize.swift in Sources */,
 				17CE347723C427E400E96E3F /* SmallStatusDisplay.swift in Sources */,
 				1771A9D523BC38F900B3294F /* Menu_LightSettings.swift in Sources */,
 				1700D85F23E1C92700381A30 /* Gyroscope.swift in Sources */,
@@ -1082,6 +1097,7 @@
 				178C9C2523B43EFC0049139B /* AsynchronousEventHandling.swift in Sources */,
 				17C1225123DABA120011E9EC /* Menu_StackedShapeSettings.swift in Sources */,
 				17C04CAC23A4D4B400D870EE /* SettingsManager.swift in Sources */,
+				17893DD3242332F500243C9B /* Menu_Hardware.swift in Sources */,
 				1772F754240CE3450071C1D2 /* Menu_PolygonSettings.swift in Sources */,
 				1716414D23BADC1F0093E2CD /* CurrentSettingsDescription.swift in Sources */,
 				1738D67923CD6B4000FBB56E /* Menu_EllipseSettings.swift in Sources */,
