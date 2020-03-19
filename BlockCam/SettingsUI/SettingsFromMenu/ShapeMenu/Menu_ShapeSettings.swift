@@ -9,7 +9,8 @@
 import Foundation
 import UIKit
 
-class Menu_ShapeSettings: UITableViewController, UIPickerViewDelegate, UIPickerViewDataSource
+class Menu_ShapeSettings: UITableViewController, UIPickerViewDelegate, UIPickerViewDataSource,
+    SomethingChangedProtocol
 {
     weak var Delegate: MainProtocol? = nil
     
@@ -17,22 +18,12 @@ class Menu_ShapeSettings: UITableViewController, UIPickerViewDelegate, UIPickerV
     {
         super.viewDidLoad()
         Menu_ChangeManager.Clear()
+        AutoSizeSwitch.isOn = Settings.GetBoolean(ForKey: .AutomaticallyDetermineBlockSize)
+        let AutoSize = AutoBlockSize.GetBlockSize(true)
+        CurrentAutoSize.text = "\(AutoSize)"
         OptionsButton.isEnabled = false
-        var Size = Settings.GetInteger(ForKey: .BlockSize)
-        if Size == 0
-        {
-            Size = 48
-            Settings.SetInteger(48, ForKey: .BlockSize)
-        }
-        if let Index = SizeMap[Size]
-        {
-            SizeSelector.selectedSegmentIndex = Index
-        }
-        else
-        {
-            Settings.SetInteger(48, ForKey: .BlockSize)
-            SizeSelector.selectedSegmentIndex = 2
-        }
+        let CurrentSize = Settings.GetInteger(ForKey: .BlockSize)
+        CurrentSelectedSize.text = "\(CurrentSize)"
         ShapePicker.layer.borderColor = UIColor.black.cgColor
         ShapePicker.reloadAllComponents()
         if let ShapeName = Settings.GetString(ForKey: .ShapeType)
@@ -162,7 +153,8 @@ class Menu_ShapeSettings: UITableViewController, UIPickerViewDelegate, UIPickerV
             .SphereBehavior, .Polygon2DAxis, .Rectangle2DAxis, .Circle2DAxis, .Oval2DAxis, .Star2DAxis,
             .Diamond2DAxis, .PolygonSideCount, .PolygonSideCountVaries, .SpherePlusShape, .BoxPlusShape,
             .RandomRadius, .RandomBaseShape, .RandomIntensity, .RandomShapeShowsBase, .RegularSolidBehavior,
-            .EmbeddedBoxColor, .SphereRingOrientation, .SphereRingColor, .Metalness, .MaterialRoughness
+            .EmbeddedBoxColor, .SphereRingOrientation, .SphereRingColor, .Metalness, .MaterialRoughness,
+            .AutomaticallyDetermineBlockSize
     ]
     
     @IBAction func HandleDonePressed(_ sender: Any)
@@ -349,24 +341,34 @@ class Menu_ShapeSettings: UITableViewController, UIPickerViewDelegate, UIPickerV
         return Controller
     }
     
-    @IBAction func HandleSizeSelectorChanged(_ sender: Any)
+    @IBAction func HandleAutoSizeChanged(_ sender: Any)
     {
-        if let Segment = sender as? UISegmentedControl
+        if let Switch = sender as? UISwitch
         {
-            Menu_ChangeManager.AddChanged(.BlockSize)
-            let Index = Segment.selectedSegmentIndex
-            for (Size, SizeIndex) in SizeMap
-            {
-                if SizeIndex == Index
-                {
-                    Settings.SetInteger(Size, ForKey: .BlockSize)
-                    break
-                }
-            }
+            Settings.SetBoolean(Switch.isOn, ForKey: .AutomaticallyDetermineBlockSize)
+            Menu_ChangeManager.AddChanged(.AutomaticallyDetermineBlockSize)
         }
     }
     
-    @IBOutlet weak var SizeSelector: UISegmentedControl!
+    func SomethingChanged()
+    {
+        if Menu_ChangeManager.Contains([.BlockSize])
+        {
+            let CurrentSize = Settings.GetInteger(ForKey: .BlockSize)
+            CurrentSelectedSize.text = "\(CurrentSize)"
+        }
+    }
+    
+    @IBSegueAction func InstantiateShapeSizeDialog(_ coder: NSCoder) -> Menu_ShapeSize?
+    {
+        let Controller = Menu_ShapeSize(coder: coder)
+        Controller?.Delegate = self
+        return Controller
+    }
+    
+    @IBOutlet weak var CurrentSelectedSize: UILabel!
+    @IBOutlet weak var CurrentAutoSize: UILabel!
+    @IBOutlet weak var AutoSizeSwitch: UISwitch!
     @IBOutlet weak var ShapePicker: UIPickerView!
     @IBOutlet weak var OptionsButton: UIButton!
 }
