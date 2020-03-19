@@ -690,6 +690,38 @@ class Utilities
         }
         return Result
     }
+    
+    /// Returns a comma-separated string based on the passed number.
+    /// - Parameter Value: The number to convert to a comma-separated string.
+    /// - Returns: Comma-separated string based on the passed value.
+    public static func PrettyBigNumber(_ Value: Int64) -> String
+    {
+        var Final = ""
+        var SVal = String("\(Value)".reversed())
+        //Make sure the number of characters in SVal is a multiple of 3.
+        if !SVal.count.isMultiple(of: 3)
+        {
+            let Extra = 3 - SVal.count % 3
+            for _ in 0 ..< Extra
+            {
+                SVal = SVal + " "
+            }
+        }
+        for Index in stride(from: 0, through: SVal.count - 1, by: 3)
+        {
+            let Start = SVal.index(SVal.startIndex, offsetBy: Index)
+            let End = SVal.index(SVal.startIndex, offsetBy: Index + 3)
+            let Range = Start ..< End
+            var Segment = String(SVal[Range])//String(String(SVal[Range]).reversed())
+            Segment = Segment.trimmingCharacters(in: .whitespacesAndNewlines)
+            Final = Final + "," + Segment
+        }
+        if Final.first == ","
+        {
+            Final = String(Final.dropFirst())
+        }
+        return String(Final.reversed())
+    }
 }
 
 enum ImageBorders: String, CaseIterable
