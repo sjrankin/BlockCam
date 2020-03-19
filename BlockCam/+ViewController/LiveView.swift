@@ -51,7 +51,6 @@ extension ViewController
         }
         if CurrentViewMode != .LiveView
         {
-            print("CurrentViewMode is not live view")
             return
         }
         if let RawSpeed = Settings.GetString(ForKey: .HistogramCreationSpeed)
