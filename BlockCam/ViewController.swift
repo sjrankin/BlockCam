@@ -98,7 +98,10 @@ class ViewController: UIViewController,
         StartOrientationUpdates()
         
         AddLiveViewTaps()
+        if Settings.GetBoolean(ForKey: .ShowCompass) || Settings.GetBoolean(ForKey: .ShowAltitude)
+        {
         InitializeLocation()
+        }
     }
     
     func AddLiveViewTaps()
@@ -184,8 +187,8 @@ class ViewController: UIViewController,
     /// Ask for the necessary permissions from the user.
     /// - Note:
     ///   - There are two sets of permissions required to use BlockCam:
-    ///         1 Camera access.
-    ///         2 Photo roll access.
+    ///        - Camera access.
+    ///        - Photo roll access.
     func GetPermissions()
     {
         if Settings.GetBoolean(ForKey: .AllPermissionsGranted)
@@ -295,21 +298,39 @@ class ViewController: UIViewController,
         ChangedSettings.append(ChangedSetting)
         switch ChangedSetting
         {
-            #if false
-            case .ShowHistogram:
-                if Settings.GetBoolean(ForKey: .ShowHistogram)
+            case .EnableHUD, .ShowHue, .ShowSaturation, .ShowLightMeter, .ShowVersionOnHUD,
+                 .ShowMeanColor, .ShowHUDHistogram:
+                UpdateHUDViews()
+                if Settings.GetBoolean(ForKey: .EnableHUD)
                 {
-                    self.ShowHistogramView()
+                    if Settings.GetBoolean(ForKey: .ShowCompass) || Settings.GetBoolean(ForKey: .ShowAltitude)
+                    {
+                        LocationManager?.startUpdatingHeading()
+                        LocationManager?.startUpdatingLocation()
+                    }
                 }
                 else
                 {
-                    self.HideHistogramView()
+                    LocationManager?.stopUpdatingHeading()
+                    LocationManager?.stopUpdatingLocation()
             }
-            #endif
             
-            case .EnableHUD, .ShowHue, .ShowSaturation, .ShowLightMeter, .ShowVersionOnHUD,
-                 .ShowMeanColor, .ShowCompass, .ShowAltitude, .ShowHUDHistogram:
-            UpdateHUDViews()
+            case .ShowCompass, .ShowAltitude:
+                if LocationManager == nil
+                {
+                    InitializeLocation()
+                    UpdateHUDViews()
+                }
+                if Settings.GetBoolean(ForKey: .ShowCompass) || Settings.GetBoolean(ForKey: .ShowAltitude)
+                {
+                    LocationManager?.startUpdatingHeading()
+                    LocationManager?.startUpdatingLocation()
+                }
+                else
+                {
+                    LocationManager?.stopUpdatingHeading()
+                    LocationManager?.stopUpdatingLocation()
+            }
             
             case .AntialiasingMode:
                 let Mode = UInt(Settings.GetInteger(ForKey: .AntialiasingMode))
@@ -327,6 +348,7 @@ class ViewController: UIViewController,
         }
     }
     
+    /// Holds a list of changed settings.
     var ChangedSettings = [SettingKeys]()
     
     /// Initialize the output view.
@@ -381,7 +403,6 @@ class ViewController: UIViewController,
     {
         super.viewDidAppear(animated)
         UpdateHUDViews()
-        print("frame=\(self.view.frame)")
         #if targetEnvironment(simulator)
         DeviceHasCamera = false
         Log.Message("Simulator does not support camera input.")
@@ -437,6 +458,21 @@ class ViewController: UIViewController,
         return Controller
     }
     
+    /// Highlight a button bar. Intended to be called when the user presses a button.
+    /// - Note: Highlighting consists of changing the color of the button's tint to `HighlightColor`
+    ///         then changing the color back to UIColor.black over a period of time.
+    /// - Parameter Button: The button the user pressed.
+    /// - Parameter HighlightColor: The color to use for the highlight.
+    func HighlightButtonPress(_ Button: UIButton, HighlightColor: UIColor = UIColor.white)
+    {
+        Button.tintColor = HighlightColor
+        let AnimationDuration = Settings.GetDouble(ForKey: .UIButtonHighlightFadeDuration, IfZero: 0.35)
+        UIView.animate(withDuration: AnimationDuration, animations:
+            {
+                Button.tintColor = UIColor.black
+        })
+    }
+    
     /// Handle the camera button pressed event.
     /// - Note:
     ///    - Depending on the current mode, either a snapshot of the current live view will be processed or the image
@@ -449,6 +485,7 @@ class ViewController: UIViewController,
         switch CurrentViewMode
         {
             case .LiveView:
+                        HighlightButtonPress(sender as! UIButton)
                 if Settings.GetBoolean(ForKey: .EnableShutterSound)
                 {
                     Sounds.PlaySound(.Shutter)
@@ -465,6 +502,7 @@ class ViewController: UIViewController,
                 SwitchToImageMode()
             
             case .MakeVideo:
+                        HighlightButtonPress(sender as! UIButton)
                 if MakingVideo
                 {
                     if Settings.GetBoolean(ForKey: .EnableVideoRecordingSound)
@@ -502,6 +540,7 @@ class ViewController: UIViewController,
             
             case .PhotoLibrary,
                  .ProcessedView:
+                HighlightButtonPress(sender as! UIButton, HighlightColor: UIColor.yellow)
                 if Settings.GetBoolean(ForKey: .EnableButtonPressSounds)
                 {
                     Sounds.PlaySound(.Tock)
@@ -553,6 +592,7 @@ class ViewController: UIViewController,
         switch CurrentViewMode
         {
             case .LiveView:
+                                HighlightButtonPress(sender as! UIButton)
                 CameraButton.setImage(UIImage(systemName: "camera"), for: UIControl.State.normal)
                 SwitchCameraButton.isHidden = false
                 SwitchCameraButton.isUserInteractionEnabled = true
@@ -560,6 +600,7 @@ class ViewController: UIViewController,
                 SwitchToLiveViewMode()
             
             case .MakeVideo:
+                                HighlightButtonPress(sender as! UIButton)
                 CameraButton.setImage(UIImage(systemName: "tv.fill"), for: UIControl.State.normal)
                 SwitchCameraButton.isHidden = false
                 SwitchCameraButton.isUserInteractionEnabled = true
@@ -567,6 +608,7 @@ class ViewController: UIViewController,
                 SwitchToLiveViewMode()
             
             case .PhotoLibrary:
+                HighlightButtonPress(sender as! UIButton, HighlightColor: UIColor.yellow)
                 CameraButton.setImage(UIImage(systemName: "photo.on.rectangle"), for: UIControl.State.normal)
                 SwitchCameraButton.isHidden = true
                 SwitchCameraButton.isUserInteractionEnabled = false
@@ -582,6 +624,7 @@ class ViewController: UIViewController,
     /// - Parameter sender: Not used.
     @IBAction func HandleSwitchCameras(_ sender: Any)
     {
+                HighlightButtonPress(sender as! UIButton)
         if Settings.GetBoolean(ForKey: .EnableButtonPressSounds)
         {
             Sounds.PlaySound(.Tock)
@@ -597,6 +640,7 @@ class ViewController: UIViewController,
     /// Show the quick help text for the record scene toolbar.
     @IBAction func HandleVideoInfoButtonPressed(_ sender: Any)
     {
+                HighlightButtonPress(sender as! UIButton)
         if Settings.GetBoolean(ForKey: .EnableButtonPressSounds)
         {
             Sounds.PlaySound(.Tock)
@@ -620,13 +664,16 @@ class ViewController: UIViewController,
         switch CurrentViewMode
         {
             case .LiveView:
+                HighlightButtonPress(sender as! UIButton)
                 ShowLiveViewMenu()
             
             case .PhotoLibrary,
                  .ProcessedView:
+                HighlightButtonPress(sender as! UIButton, HighlightColor: UIColor.yellow)
                 ShowProcessedViewMenu(From: SettingsButton)
             
             case .MakeVideo:
+                HighlightButtonPress(sender as! UIButton)
                 ShowLiveViewMenu()
         }
     }
