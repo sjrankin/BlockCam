@@ -13,6 +13,8 @@ import Metal
 import AVFoundation
 
 /// Functions to get information about the platform upon which we are running.
+/// - Note:
+///   - See: [The iPhone Wiki](https://www.theiphonewiki.com/wiki/Models)
 class Platform
 {
     /// Break a number (presumably the string sent is a number) into groups of three digits separated by a
@@ -176,7 +178,7 @@ class Platform
     }
     
     /// Return the amount of RAM (used and unused) on the system.
-    /// - Note: [Determining the Available Amount of RAM on an iOS Device](https://stackoverflow.com/questions/5012886/determining-the-available-amount-of-ram-on-an-ios-device)
+    /// - Note: See [Determining the Available Amount of RAM on an iOS Device](https://stackoverflow.com/questions/5012886/determining-the-available-amount-of-ram-on-an-ios-device)
     /// - Returns: Tuple with the values (Used memory, free memory).
     public static func RAMSize() -> (Int64, Int64)
     {
@@ -202,9 +204,14 @@ class Platform
     }
     
     /// Return the battery level percent.
+    /// - Parameter ForceEnable: If true, battery monitoring is forced on. Defaults to `true`.
     /// - Returns: Percent full the battery is. If monitoring not enabled, nil is returned.
-    public static func BatteryLevel() -> Float?
+    public static func BatteryLevel(ForceEnable: Bool = true) -> Float?
     {
+        if ForceEnable
+        {
+            UIDevice.current.isBatteryMonitoringEnabled = true
+        }
         if UIDevice.current.isBatteryMonitoringEnabled
         {
             return UIDevice.current.batteryLevel
@@ -227,7 +234,7 @@ class Platform
     /// - Returns: String describing the current device.
     public static func NiceModelName() -> String
     {
-        let ModelType = UIDevice.current.SystemType
+        let ModelType = UIDevice.current.SystemType(From: ModelMap)
         let ModelTypeString = ModelType.rawValue
         return ModelTypeString
     }
@@ -236,7 +243,7 @@ class Platform
     /// - Returns: Tuple of the name of the processor and nominal operating frequency (in string format).
     public static func GetProcessorInfo() -> (String, String)
     {
-        let (CPUName, CPUFrequency) = Processor[UIDevice.current.SystemType]!
+        let (CPUName, CPUFrequency) = Processor[UIDevice.current.SystemType(From: ModelMap)]!
         return (CPUName, CPUFrequency)
     }
     
@@ -386,7 +393,104 @@ class Platform
             .iPhone11ProMax   : ("A13 Bionic", "2.9GHz"),
             .unrecognized     : ("?unrecognized?", "")
     ]
+    
+    public static func GetDeviceModel() -> Model
+    {
+        return UIDevice.current.SystemType(From: ModelMap)
+    }
+    
+    public static func GetDeviceModelIdentifier() -> String?
+    {
+        let SysType = GetDeviceModel()
+        for (Name, ID) in ModelMap
+        {
+            if ID == SysType
+            {
+                return Name
+            }
+        }
+        return nil
+    }
 }
+
+let ModelMap : [String : Model] =
+    [
+        "i386"       : .simulator,
+        "x86_64"     : .simulator,
+        "iPad2,1"    : .iPad2,
+        "iPad2,2"    : .iPad2,
+        "iPad2,3"    : .iPad2,
+        "iPad2,4"    : .iPad2,
+        "iPad2,5"    : .iPadMini1,
+        "iPad2,6"    : .iPadMini1,
+        "iPad2,7"    : .iPadMini1,
+        "iPhone3,1"  : .iPhone4,
+        "iPhone3,2"  : .iPhone4,
+        "iPhone3,3"  : .iPhone4,
+        "iPhone4,1"  : .iPhone4S,
+        "iPhone5,1"  : .iPhone5,
+        "iPhone5,2"  : .iPhone5,
+        "iPhone5,3"  : .iPhone5C,
+        "iPhone5,4"  : .iPhone5C,
+        "iPad3,1"    : .iPad3,
+        "iPad3,2"    : .iPad3,
+        "iPad3,3"    : .iPad3,
+        "iPad3,4"    : .iPad4,
+        "iPad3,5"    : .iPad4,
+        "iPad3,6"    : .iPad4,
+        "iPhone6,1"  : .iPhone5S,
+        "iPhone6,2"  : .iPhone5S,
+        "iPad4,1"    : .iPadAir1,
+        "iPad4,2"    : .iPadAir2,
+        "iPad4,4"    : .iPadMini2,
+        "iPad4,5"    : .iPadMini2,
+        "iPad4,6"    : .iPadMini2,
+        "iPad4,7"    : .iPadMini3,
+        "iPad4,8"    : .iPadMini3,
+        "iPad4,9"    : .iPadMini3,
+        "iPad5,1"    : .iPadMini4,
+        "iPad5,2"    : .iPadMini4,
+        "iPad6,3"    : .iPadPro9_7,
+        "iPad6,11"   : .iPadPro9_7,
+        "iPad6,4"    : .iPadPro9_7_cell,
+        "iPad6,12"   : .iPadPro9_7_cell,
+        "iPad6,7"    : .iPadPro12_9,
+        "iPad6,8"    : .iPadPro12_9_cell,
+        "iPad7,3"    : .iPadPro10_5,
+        "iPad7,4"    : .iPadPro10_5_cell,
+        "iPad8,1"    : .iPadPro11,
+        "iPad8,2"    : .iPadPro11,
+        "iPad8,3"    : .iPadPro11_cell,
+        "iPad8,4"    : .iPadPro11_cell,
+        "iPad8,5"    : .iPadPro12_9_3g,
+        "iPad8,6"    : .iPadPro12_9_3g,
+        "iPad8,7"    : .iPadPro12_9_3g_cell,
+        "iPad8,8"    : .iPadPro12_9_3g_cell,
+        "iPhone7,1"  : .iPhone6plus,
+        "iPhone7,2"  : .iPhone6,
+        "iPhone8,1"  : .iPhone6S,
+        "iPhone8,2"  : .iPhone6Splus,
+        "iPhone8,4"  : .iPhoneSE,
+        "iPhone9,1"  : .iPhone7,
+        "iPhone9,2"  : .iPhone7plus,
+        "iPhone9,3"  : .iPhone7,
+        "iPhone9,4"  : .iPhone7plus,
+        "iPhone10,1" : .iPhone8,
+        "iPhone10,2" : .iPhone8plus,
+        "iPhone10,3" : .iPhoneX,
+        "iPhone10,6" : .iPhoneX,
+        "iPhone11,2" : .iPhoneXS,
+        "iPhone11,4" : .iPhoneXSmax,
+        "iPhone11,6" : .iPhoneXSmax,
+        "iPhone11,8" : .iPhoneXR,
+        "iPad11,1"   : .iPadMini5,
+        "iPad11,2"   : .iPadMini5_cell,
+        "iPhone12,1" : .iPhone11,
+        "iPhone12,3" : .iPhone11Pro,
+        "iPhone12,5" : .iPhone11ProMax,
+        "iPad7,11"   : .iPad10_2,
+        "iPad7,12"   : .iPad10_2_cell,
+]
 
 /// Enum of iPads and iPhones supported by this application. Each enum has as its value a human-readable
 /// device name.
@@ -446,7 +550,7 @@ public enum Model : String
 public extension UIDevice
 {
     /// Returns an enum indicating which system we're running on.
-    var SystemType: Model
+    func SystemType(From ModelMap: [String: Model]) -> Model
     {
         var systemInfo = utsname()
         uname(&systemInfo)
@@ -457,86 +561,7 @@ public extension UIDevice
                 ptr in String.init(validatingUTF8: ptr)
             }
         }
-        let modelMap : [String : Model] =
-            [
-                "i386"       : .simulator,
-                "x86_64"     : .simulator,
-                "iPad2,1"    : .iPad2,
-                "iPad2,2"    : .iPad2,
-                "iPad2,3"    : .iPad2,
-                "iPad2,4"    : .iPad2,
-                "iPad2,5"    : .iPadMini1,
-                "iPad2,6"    : .iPadMini1,
-                "iPad2,7"    : .iPadMini1,
-                "iPhone3,1"  : .iPhone4,
-                "iPhone3,2"  : .iPhone4,
-                "iPhone3,3"  : .iPhone4,
-                "iPhone4,1"  : .iPhone4S,
-                "iPhone5,1"  : .iPhone5,
-                "iPhone5,2"  : .iPhone5,
-                "iPhone5,3"  : .iPhone5C,
-                "iPhone5,4"  : .iPhone5C,
-                "iPad3,1"    : .iPad3,
-                "iPad3,2"    : .iPad3,
-                "iPad3,3"    : .iPad3,
-                "iPad3,4"    : .iPad4,
-                "iPad3,5"    : .iPad4,
-                "iPad3,6"    : .iPad4,
-                "iPhone6,1"  : .iPhone5S,
-                "iPhone6,2"  : .iPhone5S,
-                "iPad4,1"    : .iPadAir1,
-                "iPad4,2"    : .iPadAir2,
-                "iPad4,4"    : .iPadMini2,
-                "iPad4,5"    : .iPadMini2,
-                "iPad4,6"    : .iPadMini2,
-                "iPad4,7"    : .iPadMini3,
-                "iPad4,8"    : .iPadMini3,
-                "iPad4,9"    : .iPadMini3,
-                "iPad5,1"    : .iPadMini4,
-                "iPad5,2"    : .iPadMini4,
-                "iPad6,3"    : .iPadPro9_7,
-                "iPad6,11"   : .iPadPro9_7,
-                "iPad6,4"    : .iPadPro9_7_cell,
-                "iPad6,12"   : .iPadPro9_7_cell,
-                "iPad6,7"    : .iPadPro12_9,
-                "iPad6,8"    : .iPadPro12_9_cell,
-                "iPad7,3"    : .iPadPro10_5,
-                "iPad7,4"    : .iPadPro10_5_cell,
-                "iPad8,1"    : .iPadPro11,
-                "iPad8,2"    : .iPadPro11,
-                "iPad8,3"    : .iPadPro11_cell,
-                "iPad8,4"    : .iPadPro11_cell,
-                "iPad8,5"    : .iPadPro12_9_3g,
-                "iPad8,6"    : .iPadPro12_9_3g,
-                "iPad8,7"    : .iPadPro12_9_3g_cell,
-                "iPad8,8"    : .iPadPro12_9_3g_cell,
-                "iPhone7,1"  : .iPhone6plus,
-                "iPhone7,2"  : .iPhone6,
-                "iPhone8,1"  : .iPhone6S,
-                "iPhone8,2"  : .iPhone6Splus,
-                "iPhone8,4"  : .iPhoneSE,
-                "iPhone9,1"  : .iPhone7,
-                "iPhone9,2"  : .iPhone7plus,
-                "iPhone9,3"  : .iPhone7,
-                "iPhone9,4"  : .iPhone7plus,
-                "iPhone10,1" : .iPhone8,
-                "iPhone10,2" : .iPhone8plus,
-                "iPhone10,3" : .iPhoneX,
-                "iPhone10,6" : .iPhoneX,
-                "iPhone11,2" : .iPhoneXS,
-                "iPhone11,4" : .iPhoneXSmax,
-                "iPhone11,6" : .iPhoneXSmax,
-                "iPhone11,8" : .iPhoneXR,
-                "iPad11,1"   : .iPadMini5,
-                "iPad11,2"   : .iPadMini5_cell,
-                "iPhone12,1" : .iPhone11,
-                "iPhone12,3" : .iPhone11Pro,
-                "iPhone12,5" : .iPhone11ProMax,
-                "iPad7,11"   : .iPad10_2,
-                "iPad7,12"   : .iPad10_2_cell,
-        ]
-        
-        if let model = modelMap[String.init(validatingUTF8: modelCode!)!]
+        if let model = ModelMap[String.init(validatingUTF8: modelCode!)!]
         {
             return model
         }
