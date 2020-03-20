@@ -14,6 +14,17 @@ class ViewSettings: UITableViewController, UIPickerViewDelegate, UIPickerViewDat
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        GridTypeList = [String]()
+        for GridType in GridTypes.allCases
+        {
+            GridTypeList.append(GridType.rawValue)
+        }
+        GridPicker.reloadAllComponents()
+        let SomeGrid = Settings.GetEnum(ForKey: .LiveViewGridType, EnumType: GridTypes.self, Default: .Simple)
+        if let Index = GridTypeList.firstIndex(of: SomeGrid.rawValue)
+        {
+            GridPicker.selectRow(Index, inComponent: 0, animated: true)
+        }
         BestFitSwitch.isOn = Settings.GetBoolean(ForKey: .InitialBestFit)
         let Offset = Settings.GetDouble(ForKey: .BestFitOffset)
         if let Index = BestFitMap[Offset]
@@ -35,24 +46,6 @@ class ViewSettings: UITableViewController, UIPickerViewDelegate, UIPickerViewDat
             ModeSegements.selectedSegmentIndex = 0
         }
         ShowCurrentOrientationSwitch.isOn = Settings.GetBoolean(ForKey: .ShowActualOrientation)
-        if let RawGridType = Settings.GetString(ForKey: .LiveViewGridType)
-        {
-            if let ActualType = GridTypes(rawValue: RawGridType)
-            {
-                let Index = GridMap[ActualType]!
-                GridPicker.selectRow(Index, inComponent: 0, animated: true)
-            }
-            else
-            {
-                Settings.SetString(GridTypes.None.rawValue, ForKey: .LiveViewGridType)
-                GridPicker.selectRow(0, inComponent: 0, animated: true)
-            }
-        }
-        else
-        {
-            Settings.SetString(GridTypes.None.rawValue, ForKey: .LiveViewGridType)
-            GridPicker.selectRow(0, inComponent: 0, animated: true)
-        }
     }
     
     let ModeMap =
@@ -111,7 +104,7 @@ class ViewSettings: UITableViewController, UIPickerViewDelegate, UIPickerViewDat
             8.0: 4
     ]
     
-    let GridTypeList = ["None", "Simple", "Cross Hairs", "Rule of Three", "Exotic", "Tight"]
+    var GridTypeList = [String]()
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int
     {
@@ -130,24 +123,12 @@ class ViewSettings: UITableViewController, UIPickerViewDelegate, UIPickerViewDat
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int)
     {
-        for (GridType, GridIndex) in GridMap
+        let Raw = GridTypeList[row]
+        if let GridType = GridTypes(rawValue: Raw)
         {
-            if GridIndex == row
-            {
-                Settings.SetString(GridType.rawValue, ForKey: .LiveViewGridType)
-            }
+            Settings.SetEnum(GridType, EnumType: GridTypes.self, ForKey: .LiveViewGridType)
         }
     }
-    
-    let GridMap =
-        [
-            GridTypes.None: 0,
-            GridTypes.Simple: 1,
-            GridTypes.CrossHairs: 2,
-            GridTypes.RuleOfThree: 3,
-            GridTypes.Exotic: 4,
-            GridTypes.Tight: 5,
-    ]
     
     @IBAction func HandleCurrentOrientationChanged(_ sender: Any)
     {
