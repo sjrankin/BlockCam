@@ -64,7 +64,7 @@ extension ViewController
         HistogramView.frame = CGRect(x: HistogramView.frame.minX,
                                      y: Insets.top,
                                      width: HistogramView.frame.size.width,//ViewFrame.width,
-                                     height: 100.0)
+            height: 100.0)
         
         MainBottomBar.frame = CGRect(x: 0,
                                      y: Frame.maxY,
@@ -187,7 +187,7 @@ extension ViewController
         #else
         if Settings.GetBoolean(ForKey: .EnableHUD)
         {
-        UpdateHUDViews()
+            UpdateHUDViews()
         }
         #endif
         InProcessView = false
@@ -411,7 +411,10 @@ extension ViewController
     /// - Parameter Button: The button to rotate.
     func RotateButtonTo(_ Angle: Double, Button: UIButton)
     {
-        Button.transform = CGAffineTransform(rotationAngle: CGFloat(Angle) * CGFloat.pi / 180.0)
+        UIView.animate(withDuration: 0.35)
+        {
+            Button.transform = CGAffineTransform(rotationAngle: CGFloat(Angle) * CGFloat.pi / 180.0)
+        }
     }
     
     /// Update the rotational angle of all UI buttons.
