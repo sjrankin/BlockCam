@@ -30,8 +30,6 @@ class Menu_Hardware: UITableViewController
         ModelIdentifierLabel.text = Platform.GetDeviceModelIdentifier()
     }
     
-
-    
     @IBOutlet weak var RAMUsage: PieChart!
     @IBOutlet weak var AvailableRAMLabel: UILabel!
     @IBOutlet weak var UsedRAMLabel: UILabel!
