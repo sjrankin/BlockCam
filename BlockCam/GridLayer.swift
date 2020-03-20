@@ -419,6 +419,169 @@ class GridLayer: UIView
         }
     }
     
+    func DistanceFrom(_ Point1: CGPoint, To: CGPoint) -> CGFloat
+    {
+        var XDelta = Point1.x - To.x
+        XDelta = XDelta * XDelta
+        var YDelta = Point1.y - To.y
+        YDelta = YDelta * YDelta
+        return CGFloat(sqrt(XDelta + YDelta))
+    }
+    
+    /// Draw a specialized rule-of-thirds grid.
+    /// - Parameter WithActualAngle: The angle of the orientation of the device.
+    /// - Parameter AtCardinalAngle: Flag the says the device is at a cardinal angle.
+    func MakeRuleOfThirdsGrid2(_ WithActualAngle: CGFloat = 0.0, AtCardinalAngle: Bool)
+    {
+        if _ShowIdealOrientation
+        {
+            IdealLayer = CAShapeLayer()
+            IdealLayer?.name = "IdealLayer"
+            IdealLayer?.bounds = self.bounds
+            IdealLayer?.frame = self.bounds
+            IdealLayer?.backgroundColor = UIColor.clear.cgColor
+            let Width3 = self.bounds.size.width / 3.0
+            let Height3 = self.bounds.size.height / 3.0
+            let CircleSize = ((self.bounds.size.width + self.bounds.size.height) / 2.0) * 0.12
+            let CircleRadius = CircleSize / 2.0
+            let CircleOffset = CircleSize * 1.5
+            
+            let LinePath = UIBezierPath()
+            LinePath.move(to: CGPoint(x: Width3 - CircleOffset,
+                                      y: Height3))
+            LinePath.addLine(to: CGPoint(x: self.bounds.size.width - Width3 + CircleOffset,
+                                         y: Height3))
+            
+            LinePath.move(to: CGPoint(x: Width3 - CircleOffset,
+                                      y: self.bounds.size.height - Height3))
+            LinePath.addLine(to: CGPoint(x: self.bounds.size.width - Width3 + CircleOffset,
+                                         y: self.bounds.size.height - Height3))
+            
+            LinePath.move(to: CGPoint(x: Width3,
+                                      y: Height3 - CircleOffset))
+            LinePath.addLine(to: CGPoint(x: Width3,
+                                         y: self.bounds.size.height - Height3 + CircleOffset))
+            
+            LinePath.move(to: CGPoint(x: self.bounds.size.width - Width3,
+                                      y: Height3 - CircleOffset))
+            LinePath.addLine(to: CGPoint(x: self.bounds.size.width - Width3,
+                                         y: self.bounds.size.height - Height3 + CircleOffset))
+            LinePath.close()
+            
+            let C0 = UIBezierPath(ovalIn: CGRect(x: Width3 - CircleRadius, y: Height3 - CircleRadius,
+                                                 width: CircleSize, height: CircleSize))
+            let C1 = UIBezierPath(ovalIn: CGRect(x: self.bounds.size.width - Width3 - CircleRadius,
+                                                 y: Height3 - CircleRadius,
+                                                 width: CircleSize, height: CircleSize))
+            let C2 = UIBezierPath(ovalIn: CGRect(x: self.bounds.size.width - Width3 - CircleRadius,
+                                                 y: self.bounds.size.height - Height3 - CircleRadius,
+                                                 width: CircleSize, height: CircleSize))
+            let C3 = UIBezierPath(ovalIn: CGRect(x: Width3 - CircleRadius,
+                                                 y: self.bounds.size.height - Height3 - CircleRadius,
+                                                 width: CircleSize, height: CircleSize))
+            
+            LinePath.append(C0)
+            LinePath.append(C1)
+            LinePath.append(C2)
+            LinePath.append(C3)
+            
+            IdealLayer?.lineWidth = 1.0
+            if AtCardinalAngle
+            {
+                IdealLayer?.strokeColor = _AlignedColor.cgColor
+            }
+            else
+            {
+                IdealLayer?.strokeColor = _IdealLineColor.cgColor
+            }
+            IdealLayer?.fillColor = UIColor.clear.cgColor
+            IdealLayer?.path = LinePath.cgPath
+            IdealLayer?.zPosition = 100
+            self.layer.addSublayer(IdealLayer!)
+        }
+        if !AtCardinalAngle
+        {
+            if _ShowActualOrientation
+            {
+                ActualLayer = CAShapeLayer()
+                ActualLayer?.name = "ActualLayer"
+                ActualLayer?.bounds = self.bounds
+                ActualLayer?.frame = self.bounds
+                ActualLayer?.fillColor = UIColor.clear.cgColor
+
+                let Width3 = self.bounds.size.width / 3.0
+                let Height3 = self.bounds.size.height / 3.0
+                let CircleSize = ((self.bounds.size.width + self.bounds.size.height) / 2.0) * 0.12
+                let CircleRadius = CircleSize / 2.0
+                let CircleOffset = CircleSize * 1.5
+                
+                let LinePath = UIBezierPath()
+                LinePath.move(to: CGPoint(x: Width3 - CircleOffset,
+                                          y: Height3))
+                LinePath.addLine(to: CGPoint(x: self.bounds.size.width - Width3 + CircleOffset,
+                                             y: Height3))
+                
+                LinePath.move(to: CGPoint(x: Width3 - CircleOffset,
+                                          y: self.bounds.size.height - Height3))
+                LinePath.addLine(to: CGPoint(x: self.bounds.size.width - Width3 + CircleOffset,
+                                             y: self.bounds.size.height - Height3))
+                
+                LinePath.move(to: CGPoint(x: Width3,
+                                          y: Height3 - CircleOffset))
+                LinePath.addLine(to: CGPoint(x: Width3,
+                                             y: self.bounds.size.height - Height3 + CircleOffset))
+                
+                LinePath.move(to: CGPoint(x: self.bounds.size.width - Width3,
+                                          y: Height3 - CircleOffset))
+                LinePath.addLine(to: CGPoint(x: self.bounds.size.width - Width3,
+                                             y: self.bounds.size.height - Height3 + CircleOffset))
+                LinePath.close()
+                
+                let C0 = UIBezierPath(ovalIn: CGRect(x: Width3 - CircleRadius, y: Height3 - CircleRadius,
+                                                     width: CircleSize, height: CircleSize))
+                let C1 = UIBezierPath(ovalIn: CGRect(x: self.bounds.size.width - Width3 - CircleRadius,
+                                                     y: Height3 - CircleRadius,
+                                                     width: CircleSize, height: CircleSize))
+                let C2 = UIBezierPath(ovalIn: CGRect(x: self.bounds.size.width - Width3 - CircleRadius,
+                                                     y: self.bounds.size.height - Height3 - CircleRadius,
+                                                     width: CircleSize, height: CircleSize))
+                let C3 = UIBezierPath(ovalIn: CGRect(x: Width3 - CircleRadius,
+                                                     y: self.bounds.size.height - Height3 - CircleRadius,
+                                                     width: CircleSize, height: CircleSize))
+                
+                LinePath.append(C0)
+                LinePath.append(C1)
+                LinePath.append(C2)
+                LinePath.append(C3)
+                
+                if _ShowActualDegreeValue
+                {
+                    let DegreeLayer = CATextLayer()
+                    DegreeLayer.bounds = CGRect(x: 0, y: 0, width: 50, height: 20)
+                    DegreeLayer.frame = CGRect(x: self.bounds.width / 2.0 - 25,
+                                               y: Height3 - 24,
+                                               width: 50,
+                                               height: 20)
+                    DegreeLayer.backgroundColor = UIColor.black.withAlphaComponent(0.75).cgColor
+                    DegreeLayer.string = "\(360.0 - WithActualAngle)°"
+                    DegreeLayer.foregroundColor = UIColor.systemYellow.cgColor
+                    DegreeLayer.font = UIFont.systemFont(ofSize: 14.0)
+                    DegreeLayer.fontSize = 14.0
+                    DegreeLayer.alignmentMode = .center
+                    ActualLayer?.addSublayer(DegreeLayer)
+                }
+                let FinalAngle = WithActualAngle * CGFloat.pi / 180.0
+                ActualLayer?.backgroundColor = UIColor.clear.cgColor
+                ActualLayer?.lineWidth = 1.0
+                ActualLayer?.strokeColor = _ActualLineColor.cgColor
+                ActualLayer?.zPosition = 200
+                ActualLayer?.path = LinePath.cgPath
+                ActualLayer?.transform = CATransform3DRotate(ActualLayer!.transform, FinalAngle, 0.0, 0.0, 1.0)
+                self.layer.addSublayer(ActualLayer!)
+            }
+        }
+    }
+    
     /// Draw a rule of three grid. The actual angle grid is a cross-hair because the proportions
     /// of the rule of three do not rotate well...
     /// - Parameter WithActualAngle: The angle of the orientation of the device.
@@ -637,6 +800,9 @@ class GridLayer: UIView
             case .RuleOfThree:
                 MakeRuleOfThreeGrid(WithActualAngle, AtCardinalAngle: AtCardinalAngle)
             
+            case .RuleOfThree2:
+            MakeRuleOfThirdsGrid2(WithActualAngle, AtCardinalAngle: AtCardinalAngle)
+            
             case .Exotic:
                 MakeExoticGrid(WithActualAngle, AtCardinalAngle: AtCardinalAngle)
             
@@ -849,6 +1015,8 @@ enum GridTypes: String, CaseIterable
     case CrossHairs = "Crosshairs"
     /// Rule of three grid.
     case RuleOfThree = "Rule of 3"
+    /// Strange rule of three grid.
+    case RuleOfThree2 = "Exotic Rule of 3"
     /// Exotic grid.
     case Exotic = "Exotic"
     /// Tight grid.
