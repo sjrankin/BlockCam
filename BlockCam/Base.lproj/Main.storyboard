@@ -201,29 +201,6 @@
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
-                            <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Po-t2-kQF">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="666"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" tag="100" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OBg-Dx-Pww">
-                                        <rect key="frame" x="76" y="130" width="263" height="57"/>
-                                        <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <attributedString key="attributedText">
-                                            <fragment content="Please Wait">
-                                                <attributes>
-                                                    <font key="NSFont" metaFont="system" size="48"/>
-                                                    <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                                </attributes>
-                                            </fragment>
-                                        </attributedString>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
-                                <color key="backgroundColor" red="0.0" green="0.98106676339999999" blue="0.57369142770000003" alpha="0.10000000000000001" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstItem="OBg-Dx-Pww" firstAttribute="top" secondItem="7Po-t2-kQF" secondAttribute="top" constant="130" id="f3y-Ce-BUl"/>
-                                    <constraint firstItem="OBg-Dx-Pww" firstAttribute="centerX" secondItem="7Po-t2-kQF" secondAttribute="centerX" id="uyc-3d-g2C"/>
-                                </constraints>
-                            </view>
                             <view clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TsA-Jq-hIG">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="666"/>
                                 <subviews>
@@ -394,10 +371,29 @@
                                             </label>
                                         </subviews>
                                     </stackView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lat-gy-W0D">
+                                        <rect key="frame" x="82" y="144" width="250" height="60"/>
+                                        <color key="backgroundColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="60" id="3ZN-No-mUt"/>
+                                            <constraint firstAttribute="width" constant="250" id="ey8-6x-HmX"/>
+                                        </constraints>
+                                        <attributedString key="attributedText">
+                                            <fragment content="Please Wait">
+                                                <attributes>
+                                                    <font key="NSFont" size="36" name="SFProDisplay-Heavy"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                </attributes>
+                                            </fragment>
+                                        </attributedString>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="jFJ-a3-Y5L" secondAttribute="bottom" constant="40" id="2s7-9o-uWY"/>
+                                    <constraint firstItem="8Hy-rY-hVw" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="vIv-67-Cl7" secondAttribute="trailing" constant="8" symbolic="YES" id="Jwi-ug-52r"/>
+                                    <constraint firstItem="Lat-gy-W0D" firstAttribute="top" secondItem="o3K-s3-jQX" secondAttribute="bottom" constant="44" id="MDj-aR-Hgt"/>
                                     <constraint firstItem="o3K-s3-jQX" firstAttribute="leading" secondItem="TsA-Jq-hIG" secondAttribute="leading" id="Ovl-ZT-76k"/>
                                     <constraint firstAttribute="trailing" secondItem="8Hy-rY-hVw" secondAttribute="trailing" constant="5" id="S6E-id-7nA"/>
                                     <constraint firstItem="o3K-s3-jQX" firstAttribute="top" secondItem="TsA-Jq-hIG" secondAttribute="top" id="Uil-8F-h9b"/>
@@ -405,14 +401,13 @@
                                     <constraint firstAttribute="bottom" secondItem="8Hy-rY-hVw" secondAttribute="bottom" constant="10" id="aML-mv-ilU"/>
                                     <constraint firstItem="jFJ-a3-Y5L" firstAttribute="leading" secondItem="TsA-Jq-hIG" secondAttribute="leading" constant="5" id="aOV-Rj-m6G"/>
                                     <constraint firstItem="vIv-67-Cl7" firstAttribute="leading" secondItem="TsA-Jq-hIG" secondAttribute="leading" constant="5" id="dlD-ep-LrY"/>
+                                    <constraint firstItem="Lat-gy-W0D" firstAttribute="centerX" secondItem="TsA-Jq-hIG" secondAttribute="centerX" id="xfw-xL-Rqd"/>
                                 </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="J2Y-fa-EqT" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" symbolic="YES" id="305-Rc-xyh"/>
-                            <constraint firstItem="7Po-t2-kQF" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" symbolic="YES" id="3PD-6r-rLF"/>
-                            <constraint firstItem="7Po-t2-kQF" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="7Om-3k-ApB"/>
                             <constraint firstItem="J2Y-fa-EqT" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="LFB-bG-uWC"/>
                             <constraint firstItem="TsA-Jq-hIG" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="LeX-e8-qvW"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="J2Y-fa-EqT" secondAttribute="bottom" constant="70" id="TPo-tW-xnQ"/>
@@ -424,8 +419,6 @@
                             <constraint firstItem="FVb-mH-eBn" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" symbolic="YES" id="gkH-mg-S4A"/>
                             <constraint firstItem="FVb-mH-eBn" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="goe-85-Oky"/>
                             <constraint firstAttribute="trailing" secondItem="FVb-mH-eBn" secondAttribute="trailing" id="guA-qf-33r"/>
-                            <constraint firstAttribute="trailing" secondItem="7Po-t2-kQF" secondAttribute="trailing" id="hs9-Jp-UZQ"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="7Po-t2-kQF" secondAttribute="bottom" constant="70" id="m59-a9-Tcc"/>
                             <constraint firstItem="QbL-Ai-P2j" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="nej-yV-lEE"/>
                             <constraint firstAttribute="trailing" secondItem="J2Y-fa-EqT" secondAttribute="trailing" id="pAM-XV-Y9X"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="TsA-Jq-hIG" secondAttribute="trailing" id="ryv-vG-ke8"/>
@@ -445,6 +438,7 @@
                         <outlet property="HUDHSBIndicator2" destination="R9N-A9-Hoe" id="JWQ-OH-RmP"/>
                         <outlet property="HUDHSBIndicator3" destination="1UM-fH-BXT" id="HoI-C4-Kt7"/>
                         <outlet property="HUDHSBStack" destination="jFJ-a3-Y5L" id="Acq-V2-m7S"/>
+                        <outlet property="HUDPleaseWait" destination="Lat-gy-W0D" id="Qhq-2I-eMY"/>
                         <outlet property="HUDVersionLabel" destination="vIv-67-Cl7" id="Bur-cz-a1C"/>
                         <outlet property="HUDView" destination="TsA-Jq-hIG" id="ukK-pS-nY9"/>
                         <outlet property="HistogramView" destination="o3K-s3-jQX" id="ecj-wF-nGO"/>
@@ -459,8 +453,6 @@
                         <outlet property="SceneRecordInfoButton" destination="7na-ed-8gQ" id="RHy-M7-IEk"/>
                         <outlet property="SceneRecorderButton" destination="6C1-o2-kbl" id="MCp-Xg-1XL"/>
                         <outlet property="SettingsButton" destination="5zp-3c-1wH" id="UJB-6Y-VgV"/>
-                        <outlet property="StatusLayer" destination="7Po-t2-kQF" id="irg-x5-2Y4"/>
-                        <outlet property="StatusMainLabel" destination="OBg-Dx-Pww" id="YiG-v1-JES"/>
                         <outlet property="SwitchCameraButton" destination="oZy-o8-jf8" id="saV-jR-Vm3"/>
                         <outlet property="SwitchModeButton" destination="Jj9-Ch-32Y" id="1K3-UY-kDM"/>
                         <segue destination="M5L-aA-zV9" kind="show" identifier="ToContextShapeSettings" id="vFy-Bk-sfc"/>
