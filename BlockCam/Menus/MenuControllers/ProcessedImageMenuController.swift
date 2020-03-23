@@ -36,14 +36,16 @@ class ProcessedImageMenuController: UIViewController
         CurrentSettingBox.backgroundColor = UIColor.clear
         SceneBox.layer.borderColor = UIColor.black.cgColor
         SceneBox.backgroundColor = UIColor.clear
-        ShareBox.layer.borderColor = UIColor.black.cgColor
-        ShareBox.backgroundColor = UIColor.clear
+        HelpBox.layer.borderColor = UIColor.black.cgColor
+        HelpBox.backgroundColor = UIColor.clear
         FavoriteShapesBox.layer.borderColor = UIColor.black.cgColor
         FavoriteShapesBox.backgroundColor = UIColor.clear
-        self.preferredContentSize = CGSize(width: 280.0, height: 500.0)//450.0)
-//        OriginalImage.layer.borderColor = UIColor.systemGray6.cgColor
+        self.preferredContentSize = CGSize(width: 280.0, height: 540.0)//450.0)
+        //        OriginalImage.layer.borderColor = UIColor.systemGray6.cgColor
         OriginalImage.backgroundColor = UIColor.clear
         OriginalImage.alpha = 0.0
+        TitleText.textColor = UIColor.white
+        TitleBar.layer.addSublayer(Colors.GetLiveViewTitleBoxGradient(Container: TitleBar.bounds))
         SetOriginalImage(MainDelegate?.GetSourceImage())
     }
     
@@ -51,7 +53,7 @@ class ProcessedImageMenuController: UIViewController
     {
         if Image != nil
         {
-            self.preferredContentSize = CGSize(width: 280.0, height: 630.0)//580.0)
+            self.preferredContentSize = CGSize(width: 280.0, height: 669.0)//580.0)
             OriginalImage.alpha = 1.0
             OriginalImage.contentMode = .scaleAspectFit
             OriginalImage.image = Image
@@ -168,6 +170,16 @@ class ProcessedImageMenuController: UIViewController
         }
     }
     
+    @IBAction func HandleHelpPressed(_ sender: Any)
+    {
+        MakeSound()
+        WasCancelled = false
+        self.dismiss(animated: true)
+        {
+            self.Delegate?.HandleContextMenu(Command: .ShowHelp)
+        }
+    }
+    
     override func viewWillDisappear(_ animated: Bool)
     {
         if WasCancelled
@@ -182,7 +194,7 @@ class ProcessedImageMenuController: UIViewController
     @IBOutlet weak var ImageSettingBox: UIView!
     @IBOutlet weak var CurrentSettingBox: UIView!
     @IBOutlet weak var SceneBox: UIView!
-    @IBOutlet weak var ShareBox: UIView!
     @IBOutlet weak var OriginalImage: UIImageView!
     @IBOutlet weak var TitleText: UILabel!
+    @IBOutlet weak var HelpBox: UIView!
 }
