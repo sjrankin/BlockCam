@@ -916,6 +916,16 @@ class ViewController: UIViewController,
         DoExportImage(Image)
     }
     
+    /// Run the help viewer.
+    func RunHelpViewer()
+    {
+        let Storyboard = UIStoryboard(name: "Help", bundle: nil)
+        if let Controller = Storyboard.instantiateViewController(identifier: "HelpRoot") as? UINavigationController
+        {
+            self.present(Controller, animated: true)
+        }
+    }
+    
     /// Handle some segues to assign the the appropriate delegate property. This is needed for context menu-created dialogs.
     /// - Note: Specifically, the following classes will have their `Delegate` property set:
     ///    - `Menu_ShapeSettings`
