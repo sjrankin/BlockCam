@@ -18,7 +18,6 @@ extension ViewController: MainProtocol
     /// - Parameter Message: Text for the action message.
     func Status(_ Percent: Double, _ Color: UIColor, _ Message: String)
     {
-        ShowStatusLayer()
         DispatchQueue.main.async
             {
                 self.CompositeStatus.AddText(Message)
@@ -68,7 +67,6 @@ extension ViewController: MainProtocol
                 {
                     print("Mean random character generation duration: \(RandomDuration), Cache count: \(Utilities.CharSetCache.count)")
                 }
-                self.HideStatusLayer()
                 self.CompositeStatus.AnimatePercent(To: 0.0, Duration: 1.0)
                 self.CompositeStatus.TaskPercentValue = 0.0
                 #if false
