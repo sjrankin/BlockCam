@@ -130,6 +130,8 @@
 		1796DBE923B748E50031FEA5 /* VideoGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1796DBE823B748E50031FEA5 /* VideoGenerator.swift */; };
 		1797C4AA23BA1AB400F32222 /* Menu_MeshSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1797C4A923BA1AB400F32222 /* Menu_MeshSettings.swift */; };
 		179F20AC23DF067200D3614B /* GeneralShapesMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179F20AB23DF067200D3614B /* GeneralShapesMenuController.swift */; };
+		179FED852428801100FF0E7E /* ShapeViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179FED842428801100FF0E7E /* ShapeViewer.swift */; };
+		179FED872428827600FF0E7E /* ShapeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179FED862428827600FF0E7E /* ShapeCell.swift */; };
 		17A0024024287789007AB15A /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17A0023F24287789007AB15A /* WebKit.framework */; };
 		17A78EBB24249E580052D0C9 /* Help.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 17A78EBA24249E580052D0C9 /* Help.storyboard */; };
 		17AABB4423826775006DA546 /* Histogram.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17AABB4323826775006DA546 /* Histogram.swift */; };
@@ -326,6 +328,8 @@
 		1796DBE823B748E50031FEA5 /* VideoGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoGenerator.swift; sourceTree = "<group>"; };
 		1797C4A923BA1AB400F32222 /* Menu_MeshSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Menu_MeshSettings.swift; sourceTree = "<group>"; };
 		179F20AB23DF067200D3614B /* GeneralShapesMenuController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralShapesMenuController.swift; sourceTree = "<group>"; };
+		179FED842428801100FF0E7E /* ShapeViewer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShapeViewer.swift; sourceTree = "<group>"; };
+		179FED862428827600FF0E7E /* ShapeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShapeCell.swift; sourceTree = "<group>"; };
 		17A0023F24287789007AB15A /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		17A78EBA24249E580052D0C9 /* Help.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Help.storyboard; sourceTree = "<group>"; };
 		17AABB4323826775006DA546 /* Histogram.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Histogram.swift; sourceTree = "<group>"; };
@@ -731,6 +735,8 @@
 				17AC76DC242873110080E6D8 /* UIGuide.swift */,
 				17928B7824275AD700D643A6 /* HelpViewController2.swift */,
 				17928B6A2426EE8C00D643A6 /* SettingsSearcherUI.swift */,
+				179FED842428801100FF0E7E /* ShapeViewer.swift */,
+				179FED862428827600FF0E7E /* ShapeCell.swift */,
 			);
 			path = LocalHelp;
 			sourceTree = "<group>";
@@ -1157,6 +1163,7 @@
 				170B3FE223B4644E009106EB /* SoundSettings.swift in Sources */,
 				170BE4FD23A73B43003A5A72 /* LogManager.swift in Sources */,
 				17499B7323CD762B00A5396A /* SCNArrowHead.swift in Sources */,
+				179FED852428801100FF0E7E /* ShapeViewer.swift in Sources */,
 				17379DA624208566004BDAF8 /* HUDSettings.swift in Sources */,
 				177F66A323D00F2500DFA840 /* SCNShapeRange.swift in Sources */,
 				173279D6237A968E00BD19C3 /* Export.swift in Sources */,
@@ -1172,6 +1179,7 @@
 				17FB638523CC965E00C72A4A /* SCNEllipse.swift in Sources */,
 				17F3C90C23CEBC16009DCA7B /* MetalPixellation.metal in Sources */,
 				173C296223C86AAA004CE7E9 /* ColumnEdgeDetector.metal in Sources */,
+				179FED872428827600FF0E7E /* ShapeCell.swift in Sources */,
 				175E3F8023B847FA005E04FF /* SCNLine2.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
