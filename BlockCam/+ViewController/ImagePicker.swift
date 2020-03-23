@@ -36,7 +36,6 @@ extension ViewController
                                didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any])
     {
         SwitchToImageMode()
-        ShowStatusLayer()
         self.dismiss(animated: true, completion: nil)
         let MediaType = info[UIImagePickerController.InfoKey.mediaType] as! CFString
         switch MediaType
@@ -54,9 +53,7 @@ extension ViewController
             case kUTTypeImage:
                 if let SelectedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage
                 {
-                    ShowStatusLayer()
                     CurrentViewMode = .ProcessedView
-                    ShowMessage("Please Wait", TextColor: UIColor.black, StrokeColor: UIColor.systemYellow)
                     ImageToProcess = SelectedImage
                     OutputView.Clear()
                     BackgroundThread.async
