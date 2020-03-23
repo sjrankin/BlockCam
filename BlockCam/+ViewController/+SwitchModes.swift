@@ -407,11 +407,14 @@ extension ViewController
     }
     
     /// Rotate a button to the specified angle.
+    /// - Note: If the rotation style is continuous, no rotational animation takes place.
     /// - Parameter Angle: The angle (in degrees) to rotate the button.
     /// - Parameter Button: The button to rotate.
     func RotateButtonTo(_ Angle: Double, Button: UIButton)
     {
-        UIView.animate(withDuration: 0.35)
+        let RotationStyle = Settings.GetEnum(ForKey: .UIRotationStyle, EnumType: UIRotationTypes.self, Default: .CardinalDirections)
+        let Duration = RotationStyle == .CardinalDirections ? 0.35 : 0.0
+        UIView.animate(withDuration: Duration)
         {
             Button.transform = CGAffineTransform(rotationAngle: CGFloat(Angle) * CGFloat.pi / 180.0)
         }
