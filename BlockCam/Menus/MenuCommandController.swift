@@ -51,7 +51,7 @@ extension ViewController: ContextMenuProtocol
                 RunExportProcessedImageFromMenu()
             
             case .ShowHelp:
-                break
+                RunHelpViewer()
             
             case .SelectedNewShape:
                 break
