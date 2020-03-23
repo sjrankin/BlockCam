@@ -329,8 +329,11 @@ class Generator
     /// - Parameter From: Array of colors created by `ParseImage`.
     /// - Parameter HBlocks: Number of horizontal pixel blocks.
     /// - Parameter VBlocks: Number of vertical pixel blocks.
+    /// - Parameter ShapeOverride: If not nil, the shape to use (instead of the shape in user settings) for the node set.
+    /// - Parameter SideOverride: If not nil, the size of the side.
     /// - Returns: `SCNNode` containing all of the 3D nodes required to create the scene.
-    private static func CreateSceneNodeSet(From Colors: [[UIColor]], HBlocks: Int, VBlocks: Int) -> SCNNode
+    public static func CreateSceneNodeSet(From Colors: [[UIColor]], HBlocks: Int, VBlocks: Int,
+                                          ShapeOverride: NodeShapes? = nil, SideOverride: CGFloat? = nil) -> SCNNode
     {
         let SceneStart = CACurrentMediaTime()
         Delegate?.HideIndefiniteIndicator()
@@ -363,7 +366,11 @@ class Generator
         }
         
         let HeightSource = HeightSources(rawValue: RawSource!)!
-        let Side: CGFloat = 0.5
+        var Side: CGFloat = 0.5
+        if SideOverride != nil
+        {
+            Side = SideOverride!
+        }
         
         let WorkingNode = SCNNode()
         WorkingNode.name = "ParentNode"
@@ -416,8 +423,12 @@ class Generator
         Delegate?.SubStatus(0.0, UIColor.systemOrange)
         let Total: Double = Double(VBlocks * HBlocks)
         var Count = 0
-        let WorkingShape = Settings.GetEnum(ForKey: .ShapeType, EnumType: NodeShapes.self,
-                                            Default: NodeShapes.Blocks)
+        var WorkingShape: NodeShapes = Settings.GetEnum(ForKey: .ShapeType, EnumType: NodeShapes.self,
+                                                        Default: NodeShapes.Blocks)
+        if ShapeOverride != nil
+        {
+            WorkingShape = ShapeOverride!
+        }
         
         for Y in 0 ... VBlocks - 1
         {
