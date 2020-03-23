@@ -18,6 +18,8 @@ class GeneralShapesMenuController: UIViewController, UITableViewDataSource, UITa
         super.viewDidLoad()
         ShapeTable.layer.borderColor = UIColor.black.cgColor
         self.view.backgroundColor = UIColor(red: 0.8, green: 0.8, blue: 0.8, alpha: 1.0)
+                TitleBox.layer.addSublayer(Colors.GetLiveViewTitleBoxGradient(Container: TitleBox.bounds))
+        MenuTitle.textColor = UIColor.white
         ShapeTable.reloadData()
     }
 
