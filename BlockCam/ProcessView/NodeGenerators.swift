@@ -13,6 +13,39 @@ import SceneKit
 /// Extension to the scene generator. This file/extension contains functions for the creation of individual shapes.
 extension Generator
 {
+    /// Returns a sample image of the passed shape.
+    /// - Parameter ForShape: The shape whose sample image will be returned.
+    /// - Parameter WithColor: Color to use for the node.
+    /// - Returns: Image of the passed shape.
+    public static func ShapeImage(_ ForShape: NodeShapes, WithColor: UIColor = UIColor.yellow) -> UIImage
+    {
+        let SView = SCNView(frame: CGRect(x: 0, y: 0, width: 10, height: 10))
+        SView.scene = SCNScene()
+        SView.scene?.background.contents = UIColor.black
+        let Light = SCNLight()
+        Light.color = UIColor.white
+        Light.type = .omni
+        let LightNode = SCNNode()
+        LightNode.light = Light
+        LightNode.position = SCNVector3(-5.0, 3.0, 10.0)
+        SView.scene?.rootNode.addChildNode(LightNode)
+        let Camera = SCNCamera()
+        Camera.fieldOfView = 90.0
+        let CameraNode = SCNNode()
+        CameraNode.camera = Camera
+        CameraNode.position = SCNVector3(0.0, 0.0, 2.0)
+        SView.scene?.rootNode.addChildNode(CameraNode)
+        
+        let Colors = [[WithColor]]
+        let Node = CreateSceneNodeSet(From: Colors, HBlocks: 1, VBlocks: 1,
+                                      ShapeOverride: ForShape, SideOverride: 2.0)
+        Node.position = SCNVector3(0.0, 0.0, 0.0)
+        Node.eulerAngles = SCNVector3(0.0, 45.0 * CGFloat.pi / 180.0, 35.0 * CGFloat.pi / 180.0)
+        SView.scene?.rootNode.addChildNode(Node)
+
+        return SView.snapshot()
+    }
+    
     /// Get the dimensions of a cone given the pixel's color and side.
     /// - Parameter From: The pixel color.
     /// - Parameter Side: The calculated side value.
