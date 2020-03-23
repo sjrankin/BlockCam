@@ -43,7 +43,6 @@ class ViewController: UIViewController,
     {
         super.viewDidLoad()
         Settings.AddSubscriber(self, "MainView")
-        InitializeStatusLayer()
         Generator.Delegate = self
         definesPresentationContext = true
         SetupNotifications()
@@ -83,8 +82,7 @@ class ViewController: UIViewController,
         InitializeOutput()
         
         OutputView.alpha = 0.0
-
-        ShowStatusLayer()
+    
         ShowSplashScreen()
         GetPermissions()
         
@@ -100,7 +98,7 @@ class ViewController: UIViewController,
         AddLiveViewTaps()
         if Settings.GetBoolean(ForKey: .ShowCompass) || Settings.GetBoolean(ForKey: .ShowAltitude)
         {
-        InitializeLocation()
+            InitializeLocation()
         }
     }
     
@@ -178,8 +176,9 @@ class ViewController: UIViewController,
                     let VBG = UIColor.systemGreen
                     #endif
                     let VersionString = Versioning.MakeVersionString() + " Build \(Versioning.Build)"
-                    self.ShowMainTitle("BlockCam", Version: VersionString, VersionBackground: VBG, AnimateTime: 3.0,
-                                       ShowDuration: 5.0)
+                    self.ShowMainTitle(Version: VersionString, VersionBackground: VBG, ShowDuration: 3.0)
+                    //                    self.ShowMainTitle("BlockCam", Version: VersionString, VersionBackground: VBG, AnimateTime: 3.0,
+                    //                                       ShowDuration: 5.0)
                 }
         }
     }
@@ -485,7 +484,7 @@ class ViewController: UIViewController,
         switch CurrentViewMode
         {
             case .LiveView:
-                        HighlightButtonPress(sender as! UIButton)
+                HighlightButtonPress(sender as! UIButton)
                 if Settings.GetBoolean(ForKey: .EnableShutterSound)
                 {
                     Sounds.PlaySound(.Shutter)
@@ -502,7 +501,7 @@ class ViewController: UIViewController,
                 SwitchToImageMode()
             
             case .MakeVideo:
-                        HighlightButtonPress(sender as! UIButton)
+                HighlightButtonPress(sender as! UIButton)
                 if MakingVideo
                 {
                     if Settings.GetBoolean(ForKey: .EnableVideoRecordingSound)
@@ -592,7 +591,7 @@ class ViewController: UIViewController,
         switch CurrentViewMode
         {
             case .LiveView:
-                                HighlightButtonPress(sender as! UIButton)
+                HighlightButtonPress(sender as! UIButton)
                 CameraButton.setImage(UIImage(systemName: "camera"), for: UIControl.State.normal)
                 SwitchCameraButton.isHidden = false
                 SwitchCameraButton.isUserInteractionEnabled = true
@@ -600,7 +599,7 @@ class ViewController: UIViewController,
                 SwitchToLiveViewMode()
             
             case .MakeVideo:
-                                HighlightButtonPress(sender as! UIButton)
+                HighlightButtonPress(sender as! UIButton)
                 CameraButton.setImage(UIImage(systemName: "tv.fill"), for: UIControl.State.normal)
                 SwitchCameraButton.isHidden = false
                 SwitchCameraButton.isUserInteractionEnabled = true
@@ -624,7 +623,7 @@ class ViewController: UIViewController,
     /// - Parameter sender: Not used.
     @IBAction func HandleSwitchCameras(_ sender: Any)
     {
-                HighlightButtonPress(sender as! UIButton)
+        HighlightButtonPress(sender as! UIButton)
         if Settings.GetBoolean(ForKey: .EnableButtonPressSounds)
         {
             Sounds.PlaySound(.Tock)
@@ -640,7 +639,7 @@ class ViewController: UIViewController,
     /// Show the quick help text for the record scene toolbar.
     @IBAction func HandleVideoInfoButtonPressed(_ sender: Any)
     {
-                HighlightButtonPress(sender as! UIButton)
+        HighlightButtonPress(sender as! UIButton)
         if Settings.GetBoolean(ForKey: .EnableButtonPressSounds)
         {
             Sounds.PlaySound(.Tock)
@@ -735,15 +734,15 @@ class ViewController: UIViewController,
         let IsShowing = OutputView.showsStatistics
         if IsShowing
         {
-        OutputView.showsStatistics = false
-        var Image: UIImage = UIImage()
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5)
-        {
-            Image = self.OutputView.ToImage()
-            self.DoSaveImage(Image)
-            self.OutputView.showsStatistics = IsShowing
-        }
+            OutputView.showsStatistics = false
+            var Image: UIImage = UIImage()
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5)
+            {
+                Image = self.OutputView.ToImage()
+                self.DoSaveImage(Image)
+                self.OutputView.showsStatistics = IsShowing
             }
+        }
         else
         {
             let Image = self.OutputView.ToImage()
@@ -1050,7 +1049,7 @@ class ViewController: UIViewController,
             
             let FullRedrawAndNewLightOptions = [SettingKeys.EnableShadows]
             let FullRedrawOptions = [SettingKeys.BlockSize]
-
+            
             let SceneOptions = [SettingKeys.SceneBackgroundColor]
             
             if Utilities.ArrayContains(AnyOf: SceneOptions, In: Working)
@@ -1068,8 +1067,8 @@ class ViewController: UIViewController,
                 ProcessImageInBackground(ImageToProcess!)
                 return
             }
-//            if Utilities.ArrayContains(AnyOf: ShapeManager.GetSemiRedrawOptions(), In: Working)
-                if ShapeManager.InSemiRedraw(Working)
+            //            if Utilities.ArrayContains(AnyOf: ShapeManager.GetSemiRedrawOptions(), In: Working)
+            if ShapeManager.InSemiRedraw(Working)
             {
                 let PrePixellated = FileIO.GetPixelData(From: "Pixels.dat")
                 var CanReusePixels = true
@@ -1116,7 +1115,11 @@ class ViewController: UIViewController,
     
     // MARK: - Title related variables.
     var TitleClosure: ((Bool) -> ())? = nil
-    
+    var MainTitleView: UIView!
+    var TitleImage: UIImageView!
+    var TitleVersionBox: UIView!
+    var TitleVersionLabel: UILabel!
+ 
     // MARK: - Asynchronous event handling variables.
     let ThermalMap =
         [
@@ -1129,13 +1132,13 @@ class ViewController: UIViewController,
     // MARK: - Status layer required variables.
     var HideTitleDuration: Double = 1.0
     var TitleTimer: Timer!
-    var TitleIsVisible = false
-    var TitleNode: SCNNode? = nil
-    var TitleBox: SCNView!
-    var ParentWidth: CGFloat = 0.0
-    var ParentHeight: CGFloat = 0.0
-    var TitleCenter: CGPoint = .zero
-    var Wrapper: UIView!
+    //var TitleIsVisible = false
+    //var TitleNode: SCNNode? = nil
+    //var TitleBox: SCNView!
+    //var ParentWidth: CGFloat = 0.0
+    //var ParentHeight: CGFloat = 0.0
+    //var TitleCenter: CGPoint = .zero
+    //var Wrapper: UIView!
     var ShowingTitle = true
     
     // MARK: - Process view variables.
@@ -1146,8 +1149,6 @@ class ViewController: UIViewController,
     var PreviousRotation: Double = -1000.0
     
     // MARK: - Interface builder variables.
-    @IBOutlet weak var StatusLayer: UIView!
-    @IBOutlet weak var StatusMainLabel: UILabel!
     @IBOutlet weak var SettingsButton: UIButton!
     @IBOutlet weak var SceneRecordInfoButton: UIButton!
     @IBOutlet weak var SceneRecorderButton: UIButton!
@@ -1182,9 +1183,10 @@ class ViewController: UIViewController,
     @IBOutlet weak var HUDHSBStack: UIStackView!
     @IBOutlet weak var MeanColorIndicator: SimpleColorIndicator!
     @IBOutlet weak var HistogramWidthConstraint: NSLayoutConstraint!
+    @IBOutlet weak var HUDPleaseWait: UILabel!
     
     // MARK: - Location management variables.
     var LocationManager: CLLocationManager? = nil
     var PreviousAltitude: Double = -10000.0
-        var LocationTimer: Timer!
+    var LocationTimer: Timer!
 }
