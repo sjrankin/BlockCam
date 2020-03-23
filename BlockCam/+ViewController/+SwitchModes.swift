@@ -59,7 +59,6 @@ extension ViewController
         let FrameHeight = UIScreen.main.bounds.height - (Insets.bottom + Insets.top + 70)
         let Frame = CGRect(x: 0, y: Insets.top, width: ViewFrame.width, height: FrameHeight)
         LiveView.frame = Frame
-        StatusLayer.frame = Frame
         OutputView.frame = Frame
         HistogramView.frame = CGRect(x: HistogramView.frame.minX,
                                      y: Insets.top,
