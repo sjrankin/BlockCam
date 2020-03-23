@@ -26,6 +26,7 @@ class LiveViewMenuController: UIViewController
         FavoriteBox.layer.borderColor = UIColor.black.cgColor
         FavoriteBox.backgroundColor = UIColor.clear
         TitleText.text = "BlockCam " + Versioning.VerySimpleVersionString()
+        TitleText.textColor = UIColor.white
         TitleBox.layer.borderColor = UIColor.black.cgColor
         TitleBox.layer.borderWidth = 1.0
         TitleBox.layer.addSublayer(Colors.GetLiveViewTitleBoxGradient(Container: TitleBox.bounds))
