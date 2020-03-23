@@ -93,8 +93,8 @@ class Colors
         Layer.name = "GradientBackground"
         Layer.zPosition = -1000
         Layer.frame = Frame
-        let Color1 = UIColor(red: 1.0, green: 0.84314, blue: 0.0, alpha: 1.0)
-        let Color2 = UIColor.yellow
+        let Color1 = UIColor(red: 0.4, green: 0.4, blue: 0.4, alpha: 1.0)
+        let Color2 = UIColor.black
         Layer.colors = [Color1.cgColor, Color2.cgColor]
         Layer.locations = [NSNumber(value: 0.2), NSNumber(value: 1.0)]
         return Layer
