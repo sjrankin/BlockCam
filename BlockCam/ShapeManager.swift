@@ -72,6 +72,26 @@ class ShapeManager
         }
     }
     
+    /// Holds a dictionary of category descriptions.
+    private static let _CategoryDescriptions: [String: String] =
+    [
+        "Standard": "Standard, simple shapes.",
+        "Polygonal": "Shapes from extruded polygons.",
+        "Solids": "Platonic and other solid shapes.",
+        "Combined": "Shapes created from combining other shapes.",
+        "Complex": "Complex shapes that are slow",
+        "Varying": "Shapes that vary with the base color.",
+        "Flat Shapes": "2D shapes that float over the scene."
+    ]
+    
+    /// Given a category name, return a short description.
+    /// - Parameter For: The name of the category.
+    /// - Returns: Short description of the category. Nil if not found.
+    public static func CategoryDescription(For CategoryName: String) -> String?
+    {
+        return _CategoryDescriptions[CategoryName]
+    }
+    
     /// Returns a flat list of all shapes.
     /// - Parameter ExceptFor: List of shapes to exclude from the returned list.
     /// - Returns: List of all shapes.
@@ -167,6 +187,7 @@ class ShapeManager
                                             NodeShapes.Spheres, NodeShapes.SpherePlus, NodeShapes.BoxPlus, NodeShapes.Random,
                                             NodeShapes.Tetrahedrons, NodeShapes.Icosahedrons, NodeShapes.EmbeddedBlocks,
                                             NodeShapes.SphereWithTorus, NodeShapes.Cubes, NodeShapes.Octahedrons, NodeShapes.Dodecahedrons]
+
     /// Returns a table of node shapes that take options.
     public static var OptionsAvailable: [NodeShapes]
     {
