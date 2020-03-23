@@ -156,8 +156,6 @@ extension ViewController
         }
         ImageToProcess = SavedImage
         OutputView.Clear()
-        ShowStatusLayer()
-        ShowMessage("Please Wait", TextColor: UIColor.systemYellow, StrokeColor: UIColor.white)
         BackgroundThread.async
             {
                 self.OutputView.ProcessImage(SavedImage!, CalledFrom: "photoOutput")
