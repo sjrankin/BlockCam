@@ -104,7 +104,7 @@ class GridLayer: UIView
                 let Center = CGPoint(x: self.bounds.size.width / 2.0, y: self.bounds.size.height / 2.0)
         let Smallest = Shortest * 0.1
         let BigRadius = (Shortest / 2.0) * 0.65
-        let EvenSmaller = Smallest * 0.3
+        let EvenSmaller = Smallest * 0.6
         let SmallRadius = BigRadius * 0.15
         let CenterCircleRect = CGRect(origin: CGPoint(x: Center.x - SmallRadius, y: Center.y - SmallRadius),
                                       size: CGSize(width: SmallRadius * 2.0,
