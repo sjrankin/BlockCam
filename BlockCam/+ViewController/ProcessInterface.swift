@@ -22,8 +22,6 @@ extension ViewController
         //        CompositeStatus.ShowIndefiniteIndicator = true
         //CompositeStatus.ShowTaskPercentage = false
         CompositeStatus.AddText("Please Wait")
-        ShowStatusLayer()
-        ShowMessage("Please Wait", TextColor: UIColor.systemYellow, StrokeColor: UIColor.white)
         DispatchQueue.global().async
             {
             [weak self] in
@@ -52,8 +50,6 @@ extension ViewController
         OutputView.Clear()
         #if true
         CompositeStatus.AddText("Please Wait")
-        ShowStatusLayer()
-        ShowMessage("Please Wait", TextColor: UIColor.systemYellow, StrokeColor: UIColor.white)
         DispatchQueue.global().async
             {
                 [weak self] in
