@@ -11,7 +11,7 @@ import UIKit
 
 /// Implements a small view with three types of status display: 1) A text display, 2) a task percentage complete display, and
 /// 3) an overall percent complete display.
-class SmallStatusDisplay: UIView
+class SmallStatusDisplay: UIView, CAAnimationDelegate
 {
     weak var MainDelegate: MainProtocol? = nil
     
@@ -65,8 +65,8 @@ class SmallStatusDisplay: UIView
         SettingsButton = UIButton(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
         SettingsButton.addTarget(self, action: #selector(ShowContextMenu), for: UIControl.Event.touchUpInside)
         SettingsButton.setImage(UIImage(systemName: "gear",
-                                    withConfiguration: UIImage.SymbolConfiguration(pointSize: 30.0, weight: .bold)),
-                            for: .normal)
+                                        withConfiguration: UIImage.SymbolConfiguration(pointSize: 30.0, weight: .bold)),
+                                for: .normal)
         SettingsButton.tintColor = UIColor.white
         SettingsButton.isUserInteractionEnabled = false
         SettingsButton.alpha = 0.0
@@ -79,6 +79,7 @@ class SmallStatusDisplay: UIView
     
     @objc func ShowContextMenu(_ sender: Any)
     {
+        //MainDelegate?.HighlightButtonPress(sender as! UIButton, HighlightColor: UIColor.purple)
         if Settings.GetBoolean(ForKey: .EnableButtonPressSounds)
         {
             Sounds.PlaySound(.Tock)
@@ -105,8 +106,8 @@ class SmallStatusDisplay: UIView
         TextBox.layer.borderColor = UIColor.black.cgColor
         
         SettingsButton.frame = CGRect(x: (Margin * 2.0) + TextWidth,
-                                  y: Margin,
-                                  width: PercentWidth, height: PercentWidth)
+                                      y: Margin,
+                                      width: PercentWidth, height: PercentWidth)
         
         if ShowTaskPercentage
         {
@@ -125,9 +126,9 @@ class SmallStatusDisplay: UIView
         if ShowIndefiniteIndicator
         {
             WaitingIndicator.frame = CGRect(x: (Margin * 2.0) + TextWidth,
-            y: Margin,
-            width: PercentWidth,
-            height: PercentWidth)
+                                            y: Margin,
+                                            width: PercentWidth,
+                                            height: PercentWidth)
             WaitingIndicator.startAnimating()
         }
         else
@@ -199,11 +200,20 @@ class SmallStatusDisplay: UIView
         SettingsButton.isUserInteractionEnabled = true
         SettingsButton.alpha = 1.0
         SettingsButton.layer.zPosition = 1000
+        let Rotation = CABasicAnimation(keyPath: "transform.rotation.z")
+        Rotation.delegate = self
+        Rotation.fromValue = NSNumber(floatLiteral: 0.0)
+        Rotation.toValue = NSNumber(floatLiteral: Double(CGFloat.pi * 2.0))
+        Rotation.duration = 12.0
+        Rotation.repeatCount = Float.greatestFiniteMagnitude
+        Rotation.isAdditive = true
+        SettingsButton.layer.add(Rotation, forKey: "RotateMe")
     }
     
     /// Hide the settings button.
     public func HideSettingsButton()
     {
+        SettingsButton.layer.removeAllAnimations()
         SettingsButton.isUserInteractionEnabled = false
         SettingsButton.alpha = 0.0
         SettingsButton.layer.zPosition = -1000
@@ -265,7 +275,7 @@ class SmallStatusDisplay: UIView
     }
     /// Get or set the show indefinite indicator flag.
     @IBInspectable public var ShowIndefiniteIndicator: Bool
-    {
+        {
         get
         {
             return _ShowIndefiniteIndicator
@@ -286,7 +296,7 @@ class SmallStatusDisplay: UIView
     }
     /// Get or set the color of the task indicator.
     @IBInspectable public var TaskPercentColor: UIColor
-    {
+        {
         get
         {
             return _TaskPercentColor
