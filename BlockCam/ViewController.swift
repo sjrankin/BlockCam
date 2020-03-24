@@ -686,6 +686,7 @@ class ViewController: UIViewController,
     ///         and light) nodes, the amount of GPU processing is reduced significantly.
     @IBAction func HandleDoneWithImageProcessingButton(_ sender: Any)
     {
+        HighlightButtonPress(sender as! UIButton)
         if Settings.GetBoolean(ForKey: .EnableButtonPressSounds)
         {
             Sounds.PlaySound(.Tock)
@@ -727,6 +728,7 @@ class ViewController: UIViewController,
     /// - Parameter sender: Not used.
     @IBAction func HandleSaveProcessedImageButton(_ sender: Any)
     {
+        HighlightButtonPress(sender as! UIButton)
         if Settings.GetBoolean(ForKey: .EnableButtonPressSounds)
         {
             Sounds.PlaySound(.Tock)
@@ -1123,7 +1125,7 @@ class ViewController: UIViewController,
     var TitleImage: UIImageView!
     var TitleVersionBox: UIView!
     var TitleVersionLabel: UILabel!
- 
+    
     // MARK: - Asynchronous event handling variables.
     let ThermalMap =
         [
@@ -1134,12 +1136,11 @@ class ViewController: UIViewController,
     ]
     
     // MARK: - Text layer required variables.
-//    var HideTitleDuration: Double = 1.0
-//    var TitleTimer: Timer!
     var ShowingTitle = true
     @IBOutlet weak var TextPleaseWait: UILabel!
     @IBOutlet weak var TextLayerView: UIView!
     @IBOutlet weak var TextTooLong: UILabel!
+    var PleaseWaitFrame: CGRect = CGRect.zero
     
     // MARK: - Process view variables.
     var InProcessView = false
