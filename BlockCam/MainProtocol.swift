@@ -87,4 +87,9 @@ protocol MainProtocol: class
     
     /// Displays the histogram for the passed image. If the histogram is not visible, no action is taken.
     func DisplayHistogram(For Image: UIImage)
+    
+    /// Highlight a button. Should be called after a button press.
+    /// - Parameter Button: The button the user pressed.
+    /// - Parameter HighlightColor: The color to use for highlighting the button.
+    func HighlightButtonPress(_ Button: UIButton, HighlightColor: UIColor)
 }
