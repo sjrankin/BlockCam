@@ -402,7 +402,6 @@ class ProcessViewer: SCNView, SCNSceneRendererDelegate
     /// - Parameter SomeImage: The image to process.
     public func ProcessImage(_ SomeImage: UIImage, CalledFrom: String)
     {
-        print("ProcessImage called from \(CalledFrom)")
         Clear()
         SaveVideoFrames = false
         Generator.MakeImage(self, SomeImage)
@@ -412,7 +411,7 @@ class ProcessViewer: SCNView, SCNSceneRendererDelegate
     /// - Parameter Colors: Pre-processed image as pixel data.
     public func ProcessImage(_ Colors: [[UIColor]], CalledFrom: String)
     {
-        print("ProcessImage (with colors) called from \(CalledFrom)")
+
         Clear()
         SaveVideoFrames = false
         Generator.MakeImage(self, With: Colors)
