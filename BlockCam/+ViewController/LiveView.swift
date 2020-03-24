@@ -156,10 +156,14 @@ extension ViewController
         }
         ImageToProcess = SavedImage
         OutputView.Clear()
+        #if true
+        ProcessImageWrapper(SavedImage!)
+        #else
         BackgroundThread.async
             {
                 self.OutputView.ProcessImage(SavedImage!, CalledFrom: "photoOutput")
         }
+        #endif
     }
     
     /// Delegate handler for saving an image. Called by the PhotoKit API.
