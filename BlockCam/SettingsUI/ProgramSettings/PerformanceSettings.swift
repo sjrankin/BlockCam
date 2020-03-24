@@ -32,6 +32,25 @@ class PerformanceSettings: UITableViewController
             ResizeSelector.selectedSegmentIndex = 0
             Settings.SetInteger(512, ForKey: .MaxImageDimension)
         }
+        WatchPerformanceSwitch.isOn = Settings.GetBoolean(ForKey: .ShowPerformanceStatus)
+        let TooLong = Settings.GetDouble(ForKey: .TooLongDuration, IfZero: 10.0)
+        switch Int(TooLong)
+        {
+            case 5:
+                TooLongDurationSegment.selectedSegmentIndex = 0
+            
+            case 10:
+                TooLongDurationSegment.selectedSegmentIndex = 1
+            
+            case 15:
+                TooLongDurationSegment.selectedSegmentIndex = 2
+            
+            case 20:
+                TooLongDurationSegment.selectedSegmentIndex = 3
+            
+            default:
+                TooLongDurationSegment.selectedSegmentIndex = 1
+        }
     }
     
     let SizeMap =
@@ -93,6 +112,35 @@ class PerformanceSettings: UITableViewController
         Settings.SetInteger(QualitySegment.selectedSegmentIndex, ForKey: .AntialiasingMode)
     }
     
+    @IBAction func HandleWatchPerformanceChanged(_ sender: Any)
+    {
+        Settings.SetBoolean(WatchPerformanceSwitch.isOn, ForKey: .ShowPerformanceStatus)
+    }
+    
+    @IBAction func HandleTooLongDurationChanged(_ sender: Any)
+    {
+        let Index = TooLongDurationSegment.selectedSegmentIndex
+        switch Index
+        {
+            case 0:
+                Settings.SetDouble(5.0, ForKey: .TooLongDuration)
+            
+            case 1:
+                Settings.SetDouble(10.0, ForKey: .TooLongDuration)
+            
+            case 2:
+                Settings.SetDouble(15.0, ForKey: .TooLongDuration)
+            
+            case 3:
+                Settings.SetDouble(20.0, ForKey: .TooLongDuration)
+            
+            default:
+                Settings.SetDouble(10.0, ForKey: .TooLongDuration)
+        }
+    }
+    
+    @IBOutlet weak var TooLongDurationSegment: UISegmentedControl!
+    @IBOutlet weak var WatchPerformanceSwitch: UISwitch!
     @IBOutlet weak var QualitySegment: UISegmentedControl!
     @IBOutlet weak var ResizeSelector: UISegmentedControl!
     @IBOutlet weak var ResizeDescription: UILabel!
