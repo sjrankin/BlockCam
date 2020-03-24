@@ -56,10 +56,15 @@ extension ViewController
                     CurrentViewMode = .ProcessedView
                     ImageToProcess = SelectedImage
                     OutputView.Clear()
+                    ShowTextLayerMessage(.PleaseWait)
+                    #if true
+                    ProcessImageWrapper(ImageToProcess!)
+                    #else
                     BackgroundThread.async
                         {
                             self.OutputView.ProcessImage(self.ImageToProcess!, CalledFrom: "imagePickerController")
                     }
+                    #endif
             }
             
             default:
