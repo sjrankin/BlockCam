@@ -105,7 +105,11 @@ extension ViewController
                 }, completion:
                     {
                         _ in
-                        self.MainTitleView.removeFromSuperview()
+                        if self.MainTitleView != nil
+                        {
+                            self.MainTitleView.removeFromSuperview()
+                            self.MainTitleView = nil
+                        }
                         self.TitleClosure?(true)
                 })
             
@@ -124,11 +128,14 @@ extension ViewController
                                completion:
                     {
                         _ in
-                        self.MainTitleView.removeFromSuperview()
-                        self.MainTitleView = nil
+                        if self.MainTitleView != nil
+                        {
+                            self.MainTitleView.removeFromSuperview()
+                            self.MainTitleView = nil
+                        }
                         self.TitleClosure?(true)
                 })
-
+            
             
             case .ZoomLeft:
                 UIView.animate(withDuration: HideDuration, delay: After,
@@ -145,8 +152,11 @@ extension ViewController
                                completion:
                     {
                         _ in
-                        self.MainTitleView.removeFromSuperview()
-                        self.MainTitleView = nil
+                        if self.MainTitleView != nil
+                        {
+                            self.MainTitleView.removeFromSuperview()
+                            self.MainTitleView = nil
+                        }
                         self.TitleClosure?(true)
                 })
             
