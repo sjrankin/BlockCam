@@ -90,6 +90,10 @@ extension ViewController
         {
             return
         }
+        if MainTitleView == nil
+        {
+            return
+        }
         let ParentWidth = UIScreen.main.bounds.width
         switch HideHow
         {
@@ -106,26 +110,6 @@ extension ViewController
                 })
             
             case .ZoomRight:
-                /*
-                UIView.animate(withDuration: HideDuration, delay: After,
-                               options: [.allowUserInteraction],
-                               animations:
-                    {
-                        self.MainTitleView.frame = CGRect(x: ParentWidth + 40.0,
-                                                          y: self.MainTitleView.frame.minY,
-                                                          width: self.MainTitleView.frame.width,
-                                                          height: self.MainTitleView.frame.height)
-                        //self.MainTitleView.alpha = 0.0
-                },
-                               completion:
-                    {
-                        _ in
-                        self.MainTitleView.removeFromSuperview()
-                        self.MainTitleView = nil
-                        self.TitleClosure?(true)
-                })
- */
-                
                 UIView.animate(withDuration: HideDuration, delay: After,
                                usingSpringWithDamping: 0.5, initialSpringVelocity: 5,
                                options: [.allowUserInteraction, .curveEaseIn],
