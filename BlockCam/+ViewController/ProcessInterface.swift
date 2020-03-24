@@ -19,14 +19,16 @@ extension ViewController
         CompositeStatus.AddText("Please wait - clearing scene.")
         OutputView.Clear()
         #if true
-        //        CompositeStatus.ShowIndefiniteIndicator = true
-        //CompositeStatus.ShowTaskPercentage = false
         CompositeStatus.AddText("Please Wait")
+                ProcessImageWrapper(Image)
+        /*
+        ShowTextLayerMessage(.PleaseWait)
         DispatchQueue.global().async
             {
             [weak self] in
                 self!.OutputView.ProcessImage(Image, CalledFrom: "ProcessImageInBackground(UIImage)")
         }
+ */
         #else
         if ShowWait
         {
@@ -50,11 +52,15 @@ extension ViewController
         OutputView.Clear()
         #if true
         CompositeStatus.AddText("Please Wait")
+        //ShowTextLayerMessage(.PleaseWait)
+        ProcessImageWrapper(Colors)
+        /*
         DispatchQueue.global().async
             {
                 [weak self] in
                 self!.OutputView.ProcessImage(Colors, CalledFrom: "ProcessImageInBackground([[UIColor]])")
         }
+ */
         #else
         if ShowWait
         {
