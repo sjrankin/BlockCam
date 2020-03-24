@@ -56,12 +56,24 @@ extension ViewController: MainProtocol
         }
     }
     
+    /// Show the taking too long message.
+    func ShowTooLongMessage()
+    {
+        DispatchQueue.main.async
+            {
+                self.ShowTextLayerMessage(.TooLong)
+        }
+    }
+    
     /// Handle completed events.
     /// - Parameter Success: The event successfully completed flag.
     func Completed(_ Success: Bool)
     {
         DispatchQueue.main.async
             {
+                self.TooLongTimer.invalidate()
+                self.HideTextLayerMessage(.PleaseWait)
+                self.HideTextLayerMessage(.TooLong)
                 let RandomDuration = Utilities.GetMeanRandomCharacterDurations()
                 if RandomDuration > 0
                 {
