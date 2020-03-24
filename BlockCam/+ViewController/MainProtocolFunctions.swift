@@ -71,7 +71,10 @@ extension ViewController: MainProtocol
     {
         DispatchQueue.main.async
             {
-                self.TooLongTimer.invalidate()
+                if self.TooLongTimer != nil
+                {
+                    self.TooLongTimer.invalidate()
+                }
                 self.HideTextLayerMessage(.PleaseWait)
                 self.HideTextLayerMessage(.TooLong)
                 let RandomDuration = Utilities.GetMeanRandomCharacterDurations()
