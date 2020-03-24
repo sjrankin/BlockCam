@@ -222,6 +222,8 @@ class Settings
         UserDefaults.standard.set(false, forKey: SettingKeys.CombinedHistogram.rawValue)
         UserDefaults.standard.set(1.5, forKey: SettingKeys.LocationUpdateFrequency.rawValue)
         UserDefaults.standard.set(0.35, forKey: SettingKeys.UIButtonHighlightFadeDuration.rawValue)
+        UserDefaults.standard.set(10.0, forKey: SettingKeys.TooLongDuration.rawValue)
+        UserDefaults.standard.set(true, forKey: SettingKeys.ShowPerformanceStatus.rawValue)
     }
     
     /// Call all subscribers in the notification list to let them know a setting will be changed.
@@ -723,6 +725,7 @@ class Settings
             SettingKeys.ShowHUDHistogram,
             SettingKeys.CombinedHistogram,
             SettingKeys.AutomaticallyDetermineBlockSize,
+            SettingKeys.ShowPerformanceStatus,
     ]
     
     /// Contains a list of all integer-type fields.
@@ -823,6 +826,7 @@ class Settings
             SettingKeys.BestFitOffset,
             SettingKeys.LocationUpdateFrequency,
             SettingKeys.UIButtonHighlightFadeDuration,
+            SettingKeys.TooLongDuration,
     ]
 }
 
@@ -1151,5 +1155,11 @@ enum SettingKeys: String, CaseIterable, Comparable, Hashable
     
     //Favorite settings
     case FavoriteShapeList = "FavoriteShapeList"
+    
+    //Performance timing settings
+    /// Double: Number of seconds before processing an image is taking too long.
+    case TooLongDuration = "TooLongDuration"
+    /// Boolean: If true, certain performance information will be shown.
+    case ShowPerformanceStatus = "ShowPerformanceStatus"
 }
 
