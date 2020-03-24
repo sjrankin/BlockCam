@@ -46,6 +46,9 @@ protocol MainProtocol: class
     /// Hides the indefinite indicator.
     func HideIndefiniteIndicator()
     
+    /// Show the taking too long message.
+    func ShowTooLongMessage()
+    
     /// Returns the source image.
     /// - Returns: Source image being processed. Nil if it does not exist.
     func GetSourceImage() -> UIImage?
