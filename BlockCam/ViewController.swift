@@ -82,7 +82,7 @@ class ViewController: UIViewController,
         InitializeOutput()
         
         OutputView.alpha = 0.0
-    
+        InitializeTextLayer()
         ShowSplashScreen()
         GetPermissions()
         
@@ -1079,7 +1079,11 @@ class ViewController: UIViewController,
                 }
                 if CanReusePixels
                 {
+                    #if true
+                    ProcessImageWrapper(PrePixellated!)
+                    #else
                     OutputView.ProcessImage(PrePixellated!, CalledFrom: "Redraw3D")
+                    #endif
                 }
             }
         }
@@ -1129,17 +1133,13 @@ class ViewController: UIViewController,
             ProcessInfo.ThermalState.serious: "Serious"
     ]
     
-    // MARK: - Status layer required variables.
-    var HideTitleDuration: Double = 1.0
-    var TitleTimer: Timer!
-    //var TitleIsVisible = false
-    //var TitleNode: SCNNode? = nil
-    //var TitleBox: SCNView!
-    //var ParentWidth: CGFloat = 0.0
-    //var ParentHeight: CGFloat = 0.0
-    //var TitleCenter: CGPoint = .zero
-    //var Wrapper: UIView!
+    // MARK: - Text layer required variables.
+//    var HideTitleDuration: Double = 1.0
+//    var TitleTimer: Timer!
     var ShowingTitle = true
+    @IBOutlet weak var TextPleaseWait: UILabel!
+    @IBOutlet weak var TextLayerView: UIView!
+    @IBOutlet weak var TextTooLong: UILabel!
     
     // MARK: - Process view variables.
     var InProcessView = false
@@ -1183,10 +1183,12 @@ class ViewController: UIViewController,
     @IBOutlet weak var HUDHSBStack: UIStackView!
     @IBOutlet weak var MeanColorIndicator: SimpleColorIndicator!
     @IBOutlet weak var HistogramWidthConstraint: NSLayoutConstraint!
-    @IBOutlet weak var HUDPleaseWait: UILabel!
     
     // MARK: - Location management variables.
     var LocationManager: CLLocationManager? = nil
     var PreviousAltitude: Double = -10000.0
     var LocationTimer: Timer!
+    
+    // MARK: - Processing image wrapper variables.
+    var TooLongTimer: Timer!
 }
