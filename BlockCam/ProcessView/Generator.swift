@@ -20,7 +20,7 @@ import CoreVideo
 import AVFoundation
 import Photos
 
-class Generator
+class Generator: NSObject
 {
     /// Delegate to the main class.
     public static var Delegate: MainProtocol? = nil
