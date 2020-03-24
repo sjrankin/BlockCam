@@ -1245,8 +1245,6 @@ class Generator: NSObject
                                     {
                                         Utility3D.BestFit(InView: InView)
                                     }
-                                    let NodeCount = Utility3D.NodeCount(InScene: InView.scene!)
-                                    Log.Message("Final node count \(NodeCount)")
                                     if Settings.GetBoolean(ForKey: .EnableImageProcessingSound) && !ForVideo
                                     {
                                         Sounds.PlaySound(.Confirm)
