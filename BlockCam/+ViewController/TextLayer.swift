@@ -9,8 +9,11 @@
 import Foundation
 import UIKit
 
+/// Functions related to display and controlling text in the text layer.
 extension ViewController
 {
+    /// Initialize the text layer. Should be called prior to using the text layer as this function
+    /// sets the visual attributes of individual text nodes.
     func InitializeTextLayer()
     {
         TextPleaseWait.isHidden = true
@@ -23,8 +26,17 @@ extension ViewController
         TextTooLong.layer.borderColor = UIColor.red.cgColor
         TextTooLong.layer.cornerRadius = 5.0
         TextTooLong.isHidden = true
+        let ScreenWidth = UIScreen.main.bounds.width
+        PleaseWaitFrame = CGRect(x: (ScreenWidth / 2.0) - (TextPleaseWait.frame.width / 2.0),
+                                 y: TextPleaseWait.frame.origin.y,
+                                 width: TextPleaseWait.frame.size.width,
+                                 height: TextPleaseWait.frame.size.height)
     }
     
+    /// Show the specified text layer.
+    /// - Parameter Message: Determines which text message is shown.
+    /// - Parameter FillColor: The interior color of text. Defaults to systemYellow.
+    /// - Parameter StrokeColor: The outline color of text. Defaults to systemRed.
     func ShowTextLayerMessage(_ Message: TextLayerMessages,
                               FillColor: UIColor = UIColor.systemYellow,
                               StrokeColor: UIColor = UIColor.systemRed)
@@ -38,6 +50,7 @@ extension ViewController
                                               StrokeColor: UIColor.systemBlue,
                                               StrokeWidth: -2,
                                               FontSize: 52.0)
+                TextPleaseWait.frame = PleaseWaitFrame
                 TextPleaseWait.attributedText = Text
                 TextPleaseWait.isHidden = false
                 TextPleaseWait.layer.zPosition = 1000
@@ -61,6 +74,8 @@ extension ViewController
         }
     }
     
+    /// Hides the specified text message.
+    /// - Parameter Message: The message to hide.
     func HideTextLayerMessage(_ Message: TextLayerMessages)
     {
        switch Message
@@ -70,10 +85,14 @@ extension ViewController
             {
                 return
             }
-            UIView.animate(withDuration: 0.2,
+            let FinalY = -(self.TextPleaseWait.frame.size.height + 20) * 2
+            UIView.animate(withDuration: 0.35,
                            animations:
                 {
-                    self.TextPleaseWait.alpha = 0.0
+                    self.TextPleaseWait.frame = CGRect(x: self.TextPleaseWait.frame.origin.x,
+                                                       y: FinalY,
+                                                       width: self.TextPleaseWait.frame.width,
+                                                       height: self.TextPleaseWait.frame.height)
             },
                            completion:
                 {
@@ -123,8 +142,11 @@ extension ViewController
     }
 }
 
+/// Text messages controlled by the Text Layer.
 enum TextLayerMessages: String, CaseIterable
 {
+    /// The please wait message.
     case PleaseWait = "PleaseWait"
+    /// The "this is taking too long" message.
     case TooLong = "TooLong"
 }
