@@ -14,8 +14,6 @@ extension ViewController
     func InitializeHUD()
     {
         HUDView.backgroundColor = UIColor.clear
-        HUDPleaseWait.isHidden = true
-        HUDPleaseWait.backgroundColor = UIColor.clear
         HUDHSBIndicator1.TextLocation = .Right
         HUDHSBIndicator2.TextLocation = .Right
         HUDHSBIndicator3.TextLocation = .Right
@@ -150,9 +148,6 @@ extension ViewController
                     
                     case .Histogram:
                         break
-                    
-                    case .PleaseWait:
-                    break
                 }
         }
     }
@@ -177,6 +172,4 @@ enum HUDViews: String, CaseIterable
     case Altitude = "Altitude"
     /// Current compass view.
     case Compass = "Compass"
-    /// Please wait text.
-    case PleaseWait = "PleaseWait"
 }
