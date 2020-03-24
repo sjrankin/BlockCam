@@ -80,6 +80,8 @@
 		175E3F8023B847FA005E04FF /* SCNLine2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 175E3F7F23B847FA005E04FF /* SCNLine2.swift */; };
 		175E3F8323B885EF005E04FF /* Menu_ShapeSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 175E3F8223B885EF005E04FF /* Menu_ShapeSettings.swift */; };
 		175E3F8523B89E23005E04FF /* Menu_HeightSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 175E3F8423B89E23005E04FF /* Menu_HeightSettings.swift */; };
+		175E51AD2429B1E500F1D3A9 /* TextLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 175E51AC2429B1E500F1D3A9 /* TextLayer.swift */; };
+		175E51AF2429D25100F1D3A9 /* ProcessWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 175E51AE2429D25100F1D3A9 /* ProcessWrapper.swift */; };
 		17609B8023BA21440014C327 /* Menu_ChangeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17609B7F23BA21440014C327 /* Menu_ChangeManager.swift */; };
 		17616121240E46D800889ABA /* Menu_SphereSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17616120240E46D800889ABA /* Menu_SphereSettings.swift */; };
 		17616123240E4B5000889ABA /* Menu_2DSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17616122240E4B5000889ABA /* Menu_2DSettings.swift */; };
@@ -144,7 +146,6 @@
 		17AC76DD242873110080E6D8 /* UIGuide.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17AC76DC242873110080E6D8 /* UIGuide.swift */; };
 		17AFA87523C9A14F00846087 /* MiscellaneousSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17AFA87423C9A14F00846087 /* MiscellaneousSettings.swift */; };
 		17AFA87723C9A8B400846087 /* Menu_BackgroundSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17AFA87623C9A8B400846087 /* Menu_BackgroundSettings.swift */; };
-		17B2517123AF39030012665E /* StatusLayerView2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17B2517023AF39030012665E /* StatusLayerView2.swift */; };
 		17B9E0A823B0A9DC00E35706 /* LogSessionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17B9E0A723B0A9DC00E35706 /* LogSessionCell.swift */; };
 		17B9E0CC23D40757004DD106 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 17B9E0CE23D40757004DD106 /* Localizable.strings */; };
 		17B9E0D123D42936004DD106 /* StringMapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17B9E0D023D42935004DD106 /* StringMapping.swift */; };
@@ -280,6 +281,8 @@
 		175E3F7F23B847FA005E04FF /* SCNLine2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SCNLine2.swift; sourceTree = "<group>"; };
 		175E3F8223B885EF005E04FF /* Menu_ShapeSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Menu_ShapeSettings.swift; sourceTree = "<group>"; };
 		175E3F8423B89E23005E04FF /* Menu_HeightSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Menu_HeightSettings.swift; sourceTree = "<group>"; };
+		175E51AC2429B1E500F1D3A9 /* TextLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextLayer.swift; sourceTree = "<group>"; };
+		175E51AE2429D25100F1D3A9 /* ProcessWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessWrapper.swift; sourceTree = "<group>"; };
 		17609B7F23BA21440014C327 /* Menu_ChangeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Menu_ChangeManager.swift; sourceTree = "<group>"; };
 		17616120240E46D800889ABA /* Menu_SphereSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Menu_SphereSettings.swift; sourceTree = "<group>"; };
 		17616122240E4B5000889ABA /* Menu_2DSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Menu_2DSettings.swift; sourceTree = "<group>"; };
@@ -348,7 +351,6 @@
 		17B1D43823BE021B00050FA6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		17B1D43A23BE021B00050FA6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		17B1D43B23BE021B00050FA6 /* DesktopBlockCam.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DesktopBlockCam.entitlements; sourceTree = "<group>"; };
-		17B2517023AF39030012665E /* StatusLayerView2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusLayerView2.swift; sourceTree = "<group>"; };
 		17B9E0A723B0A9DC00E35706 /* LogSessionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogSessionCell.swift; sourceTree = "<group>"; };
 		17B9E0CD23D40757004DD106 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		17B9E0D023D42935004DD106 /* StringMapping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringMapping.swift; sourceTree = "<group>"; };
@@ -475,13 +477,14 @@
 				171726A623963D630078D76E /* ImagePicker.swift */,
 				171726A823963DFB0078D76E /* LiveView.swift */,
 				171726AA23963EF60078D76E /* ProcessInterface.swift */,
+				175E51AE2429D25100F1D3A9 /* ProcessWrapper.swift */,
 				17C04CA123A49A3900D870EE /* MainProtocolFunctions.swift */,
 				178C9C2423B43EFC0049139B /* AsynchronousEventHandling.swift */,
 				176ED92E23BF1AEC000877B6 /* MainTitle.swift */,
 				17379DA324208110004BDAF8 /* HUD.swift */,
+				175E51AC2429B1E500F1D3A9 /* TextLayer.swift */,
 				17C7680F23E01F6A0068EC34 /* HistogramDisplay.swift */,
 				17897B7423E6905C00AFDA6A /* LiveViewFeedback.swift */,
-				17B2517023AF39030012665E /* StatusLayerView2.swift */,
 				1707F5B7241DCE30009BEE9D /* Depth.swift */,
 				17DCF5C92422168200F2350B /* Locations.swift */,
 			);
@@ -1022,6 +1025,7 @@
 				17893DD12423249300243C9B /* AutoBlockSize.swift in Sources */,
 				1780B72E23974CFD00E6018A /* MainProtocol.swift in Sources */,
 				17CE347923C42E5600E96E3F /* LinearPercent.swift in Sources */,
+				175E51AD2429B1E500F1D3A9 /* TextLayer.swift in Sources */,
 				17AC76DB242843C50080E6D8 /* HelpText.swift in Sources */,
 				1771A9DB23BC4C2000B3294F /* PrivacySettings.swift in Sources */,
 				175E3F7E23B840AE005E04FF /* SCNLine1.swift in Sources */,
@@ -1068,6 +1072,7 @@
 				17C04CA623A4C9AD00D870EE /* ImageSettings.swift in Sources */,
 				17379DAC2420B0EE004BDAF8 /* SimpleColorIndicator.swift in Sources */,
 				170BE51323A7BAB6003A5A72 /* SCNStar.swift in Sources */,
+				175E51AF2429D25100F1D3A9 /* ProcessWrapper.swift in Sources */,
 				171726AB23963EF60078D76E /* ProcessInterface.swift in Sources */,
 				17EA27D8240F853200BA0CC7 /* Menu_RandomShapeSettings.swift in Sources */,
 				17499B7923CD913E00A5396A /* SCNFlower2.swift in Sources */,
@@ -1172,7 +1177,6 @@
 				1702037F2414A86600C0AFEA /* Menu_EmbeddedBoxesSettings.swift in Sources */,
 				177F66A523D036F000DFA840 /* Menu_CharacterSeries.swift in Sources */,
 				178B493E23BDC88B00C9FE1B /* Menu_ConeSettings.swift in Sources */,
-				17B2517123AF39030012665E /* StatusLayerView2.swift in Sources */,
 				175E3F8523B89E23005E04FF /* Menu_HeightSettings.swift in Sources */,
 				174522C623D2EB2A00057E63 /* Indefinite2.swift in Sources */,
 				173C296023C86835004CE7E9 /* ScanLineEdgeDetector.metal in Sources */,
