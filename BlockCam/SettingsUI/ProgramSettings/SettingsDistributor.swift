@@ -15,6 +15,7 @@ class SettingsDistributor: UITableViewController
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        AnimateUISwitch.isOn = !Settings.GetBoolean(ForKey: .StaticUI)
         EnableLoggingSwitch.isOn = Settings.GetBoolean(ForKey: .LoggingEnabled)
     }
     
@@ -31,6 +32,15 @@ class SettingsDistributor: UITableViewController
         }
     }
     
+    @IBAction func HandleAnimateUIChanged(_ sender: Any)
+    {
+        if let Switch = sender as? UISwitch
+        {
+            Settings.SetBoolean(!Switch.isOn, ForKey: .StaticUI)
+        }
+    }
+    
+    @IBOutlet weak var AnimateUISwitch: UISwitch!
     @IBOutlet weak var EnableLoggingSwitch: UISwitch!
 }
 
