@@ -224,6 +224,7 @@ class Settings
         UserDefaults.standard.set(0.35, forKey: SettingKeys.UIButtonHighlightFadeDuration.rawValue)
         UserDefaults.standard.set(10.0, forKey: SettingKeys.TooLongDuration.rawValue)
         UserDefaults.standard.set(true, forKey: SettingKeys.ShowPerformanceStatus.rawValue)
+        UserDefaults.standard.set(false, forKey: SettingKeys.StaticUI.rawValue)
     }
     
     /// Call all subscribers in the notification list to let them know a setting will be changed.
@@ -726,6 +727,7 @@ class Settings
             SettingKeys.CombinedHistogram,
             SettingKeys.AutomaticallyDetermineBlockSize,
             SettingKeys.ShowPerformanceStatus,
+            SettingKeys.StaticUI,
     ]
     
     /// Contains a list of all integer-type fields.
@@ -1152,6 +1154,9 @@ enum SettingKeys: String, CaseIterable, Comparable, Hashable
     //General-pupose UI settings.
     /// Double: Fade duration for highlighting UI buttons.
     case UIButtonHighlightFadeDuration = "UIButtonHighlightFadeDuration"
+    /// Boolean: If true, the UI doesn't perform an unnecessary animations (whether motion
+    /// or color).
+    case StaticUI = "StaticUI"
     
     //Favorite settings
     case FavoriteShapeList = "FavoriteShapeList"
