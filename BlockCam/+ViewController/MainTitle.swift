@@ -95,10 +95,12 @@ extension ViewController
             return
         }
         let ParentWidth = UIScreen.main.bounds.width
-        switch HideHow
+        let FinalDelay: Double = Settings.GetBoolean(ForKey: .StaticUI) ? 0.1 : HideDuration
+        let FinalHideHow: HideMethods = Settings.GetBoolean(ForKey: .StaticUI) ? .FadeOut : HideHow
+        switch FinalHideHow
         {
             case .FadeOut:
-                UIView.animate(withDuration: HideDuration, delay: After,
+                UIView.animate(withDuration: HideDuration, delay: FinalDelay,
                                options: [.allowUserInteraction, .curveEaseIn], animations:
                     {
                         self.MainTitleView.alpha = 0.0
