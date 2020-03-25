@@ -200,14 +200,21 @@ class SmallStatusDisplay: UIView, CAAnimationDelegate
         SettingsButton.isUserInteractionEnabled = true
         SettingsButton.alpha = 1.0
         SettingsButton.layer.zPosition = 1000
-        let Rotation = CABasicAnimation(keyPath: "transform.rotation.z")
-        Rotation.delegate = self
-        Rotation.fromValue = NSNumber(floatLiteral: 0.0)
-        Rotation.toValue = NSNumber(floatLiteral: Double(CGFloat.pi * 2.0))
-        Rotation.duration = 12.0
-        Rotation.repeatCount = Float.greatestFiniteMagnitude
-        Rotation.isAdditive = true
-        SettingsButton.layer.add(Rotation, forKey: "RotateMe")
+        if !Settings.GetBoolean(ForKey: .StaticUI)
+        {
+            let Rotation = CABasicAnimation(keyPath: "transform.rotation.z")
+            Rotation.delegate = self
+            Rotation.fromValue = NSNumber(floatLiteral: 0.0)
+            Rotation.toValue = NSNumber(floatLiteral: Double(CGFloat.pi * 2.0))
+            Rotation.duration = 12.0
+            Rotation.repeatCount = Float.greatestFiniteMagnitude
+            Rotation.isAdditive = true
+            SettingsButton.layer.add(Rotation, forKey: "RotateMe")
+        }
+        else
+        {
+            SettingsButton.layer.removeAllAnimations()
+        }
     }
     
     /// Hide the settings button.
