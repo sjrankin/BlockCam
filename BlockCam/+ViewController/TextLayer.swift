@@ -85,6 +85,20 @@ extension ViewController
             {
                 return
             }
+            if Settings.GetBoolean(ForKey: .StaticUI)
+            {
+                UIView.animate(withDuration: 0.1,
+                               animations:
+                    {
+                        self.TextPleaseWait.alpha = 0.0
+                },
+                               completion:
+                    {
+                        _ in
+                        self.TextPleaseWait.isHidden = true
+                })
+                return
+            }
             let FinalY = -(self.TextPleaseWait.frame.size.height + 20) * 2
             UIView.animate(withDuration: 0.35,
                            animations:
