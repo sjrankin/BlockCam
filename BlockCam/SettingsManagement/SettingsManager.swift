@@ -225,6 +225,7 @@ class Settings
         UserDefaults.standard.set(10.0, forKey: SettingKeys.TooLongDuration.rawValue)
         UserDefaults.standard.set(true, forKey: SettingKeys.ShowPerformanceStatus.rawValue)
         UserDefaults.standard.set(false, forKey: SettingKeys.StaticUI.rawValue)
+        UserDefaults.standard.set(true, forKey: SettingKeys.EditImageAfterPhoto.rawValue)
     }
     
     /// Call all subscribers in the notification list to let them know a setting will be changed.
@@ -728,6 +729,7 @@ class Settings
             SettingKeys.AutomaticallyDetermineBlockSize,
             SettingKeys.ShowPerformanceStatus,
             SettingKeys.StaticUI,
+            SettingKeys.EditImageAfterPhoto,
     ]
     
     /// Contains a list of all integer-type fields.
@@ -1011,6 +1013,8 @@ enum SettingKeys: String, CaseIterable, Comparable, Hashable
     case FieldOfView = "FieldOfView"
     /// String: Model for lighting.
     case LightingModel = "LightingModel"
+    /// Boolean: Run the image editor after taking a photo.
+    case EditImageAfterPhoto = "EditImageAfterPhoto"
     
     //Image processing
     /// Boolean: Holds the fit all nodes to the frustrum flag.
