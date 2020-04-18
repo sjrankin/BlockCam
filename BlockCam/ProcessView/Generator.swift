@@ -41,13 +41,19 @@ class Generator: NSObject
     {
         let ResizeStart = CACurrentMediaTime()
         OriginalImageSize = Image.size
+        let RotateStart = CACurrentMediaTime()
         var ImageToProcess: UIImage = Image.Rotate(Radians: CGFloat.pi * 2)
+        let RotateEnd = CACurrentMediaTime() - RotateStart
+        print("Image rotation duration: \(RotateEnd)")
         var DidResize = false
         let MaxImageDimension = Int(max(Image.size.height, Image.size.width))
         if MaxImageDimension > Settings.GetInteger(ForKey: .MaxImageDimension)
         {
             Log.Message("Maximum image dimension \(MaxImageDimension) is greater than \(Settings.GetInteger(ForKey: .MaxImageDimension))")
+            let ResizeStart = CACurrentMediaTime()
             ImageToProcess = ResizeImage(Image: Image, Longest: CGFloat(Settings.GetInteger(ForKey: .MaxImageDimension)))
+            let ResizeEnd = CACurrentMediaTime() - ResizeStart
+            print("Image resize duration: \(ResizeEnd)")
             ReducedImageSize = ImageToProcess.size
             DidResize = true
         }
@@ -1221,7 +1227,10 @@ class Generator: NSObject
                         var HBlocks: Int = 0
                         var VBlocks: Int = 0
                         let Colors = ParseImage(Pixellated, BlockSize: BlockSize, HBlocks: &HBlocks, VBlocks: &VBlocks)
+                        let WriteStart = CACurrentMediaTime()
                         WritePixelsToFileSystem(Colors)
+                        let WriteEnd = CACurrentMediaTime() - WriteStart
+                        print("WritePixel duration: \(WriteEnd)")
                         Delegate?.Status(0.6, UIColor.systemYellow, NSLocalizedString("GeneratorMaking3D", comment: ""))
                         let FinalNode = CreateSceneNodeSet(From: Colors, HBlocks: HBlocks, VBlocks: VBlocks)
                         MasterNode = FinalNode
@@ -1291,6 +1300,7 @@ class Generator: NSObject
                                  Completed: (() -> ())? = nil)
     {
         let BlockSize: CGFloat = CGFloat(Settings.GetInteger(ForKey: .BlockSize))
+        /*
         #if false
         var ConstraintS = Settings.GetString(ForKey: .ImageSizeConstraints)
         if ConstraintS == nil
@@ -1324,6 +1334,7 @@ class Generator: NSObject
             }
         }
         #endif
+ */
         MakeImage(InView, SomeImage, BlockSize: BlockSize)
     }
     
