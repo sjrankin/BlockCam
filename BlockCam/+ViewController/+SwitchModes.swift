@@ -80,6 +80,11 @@ extension ViewController
                                                width: self.view.frame.width,
                                                height: 70.0)
         
+        PhotoEditorBar.frame = CGRect(x: 0,
+                                      y: Frame.maxY,
+                                      width: self.view.frame.width,
+                                      height: 70.0)
+        
     }
     
     /// Initialize the UI mode. Initial mode is for live view. Initializes button locations for all bottom tool bars.
@@ -144,7 +149,7 @@ extension ViewController
         CompositeStatus.ShowTaskPercentage = true
         CompositeStatus.MainDelegate = self
         
-        //Initialize the scene moview view.
+        //Initialize the scene movie view.
         SceneMotionRecorderView.frame = CGRect(x: 0, y: ScreenHeight, width: ScreenWidth, height: SceneMotionRecorderView.frame.height)
         SceneMotionRecorderView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
         SceneMotionRecorderView.layer.cornerRadius = 5.0
@@ -161,6 +166,31 @@ extension ViewController
             SceneRecordInfoButton.frame = NewRect
         }
         SceneMotionRecorderView.layer.addSublayer(Colors.GetSceneRecordGradient(Container: SceneMotionRecorderView.bounds))
+        
+        //Initialize the photo editor view.
+        PhotoEditorBar.frame = CGRect(x: 0, y: ScreenHeight, width: ScreenWidth, height: PhotoEditorBar.frame.height)
+        PhotoEditorBar.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+        PhotoEditorBar.layer.cornerRadius = 5.0
+        if let NewRect = MoveButton(AcceptEditsButton, To: 0.1)
+        {
+            AcceptEditsButton.frame = NewRect
+        }
+        if let NewRect = MoveButton(BackToCameraButton, To: 0.7)
+        {
+            BackToCameraButton.frame = NewRect
+        }
+        if let NewRect = MoveButton(SkipEditingButton, To: 1.0)
+        {
+            SkipEditingButton.frame = NewRect
+        }
+        if let NewRect = MoveButton(AdjustContrastButton, To: 0.25)
+        {
+            AdjustContrastButton.frame = NewRect
+        }
+        if let NewRect = MoveButton(CropRotateButton, To: 0.5)
+        {
+            CropRotateButton.frame = NewRect
+        }
     }
     
     // MARK: - Code for switching between live view and edit view.
@@ -174,21 +204,10 @@ extension ViewController
         let Insets = self.view.safeAreaInsets
         let FrameHeight = UIScreen.main.bounds.height - (Insets.bottom + Insets.top + 70)
         let Frame = CGRect(x: 0, y: Insets.top, width: self.view.frame.width, height: FrameHeight)
-        #if false
-        if Settings.GetBoolean(ForKey: .ShowHistogram)
-        {
-            ShowHistogramView()
-        }
-        else
-        {
-            HideHistogramView()
-        }
-        #else
         if Settings.GetBoolean(ForKey: .EnableHUD)
         {
             UpdateHUDViews()
         }
-        #endif
         InProcessView = false
         let ScreenHeight = self.view.bounds.height
         let ScreenWidth = self.view.bounds.width
@@ -237,6 +256,54 @@ extension ViewController
         self.view.bringSubviewToFront(LiveView)
     }
     
+    func SwitchToEditMode()
+    {
+        GridView.HideGrid()
+        let Insets = self.view.safeAreaInsets
+        let FrameHeight = UIScreen.main.bounds.height - (Insets.bottom + Insets.top + 70)
+        let Frame = CGRect(x: 0, y: Insets.top, width: self.view.frame.width, height: FrameHeight)
+        HUDView.isHidden = true
+        InProcessView = true
+        let ScreenHeight = self.view.bounds.height
+        let ScreenWidth = self.view.bounds.width
+        UIView.animate(withDuration: 0.35,
+                       animations:
+            {
+                if Insets.bottom > 0
+                {
+                    //Show the image bar.
+                    self.PhotoEditorBar.frame = CGRect(x: 0,
+                                                       y: Frame.maxY,
+                                                       width: ScreenWidth,
+                                                       height: self.PhotoEditorBar.frame.height)
+                    self.PhotoEditorBar.alpha = 1.0
+                    //Hide the main bar.
+                    self.MainBottomBar.frame = CGRect(x: ScreenWidth,
+                                                      y: self.MainBottomBar.frame.minY,
+                                                      width: ScreenWidth,
+                                                      height: self.MainBottomBar.frame.height)
+                    self.MainBottomBar.alpha = 0.0
+                }
+                else
+                {
+                    //Show the image bar.
+                    self.PhotoEditorBar.frame = CGRect(x: 0,
+                                                       y: Frame.maxY,
+                                                       width: ScreenWidth,
+                                                       height: self.PhotoEditorBar.frame.height)
+                    self.PhotoEditorBar.alpha = 1.0
+                    //Hide the main bar.
+                    self.MainBottomBar.frame = CGRect(x: 0,
+                                                      y: ScreenHeight,
+                                                      width: ScreenWidth,
+                                                      height: self.MainBottomBar.frame.height)
+                    self.MainBottomBar.alpha = 0.0
+                }
+        }
+        )
+        self.view.bringSubviewToFront(EditView)
+    }
+    
     /// Switch to the 3D scene mode.
     func SwitchToImageMode()
     {
@@ -244,11 +311,7 @@ extension ViewController
         let Insets = self.view.safeAreaInsets
         let FrameHeight = UIScreen.main.bounds.height - (Insets.bottom + Insets.top + 70)
         let Frame = CGRect(x: 0, y: Insets.top, width: self.view.frame.width, height: FrameHeight)
-        #if true
         HUDView.isHidden = true
-        #else
-        HideHistogramView()
-        #endif
         InProcessView = true
         let ScreenHeight = self.view.bounds.height
         let ScreenWidth = self.view.bounds.width
@@ -257,6 +320,7 @@ extension ViewController
             {
                 self.OutputView.alpha = 1.0
                 self.LiveView.alpha = 0.0
+                self.EditView.alpha = 0.0
         }
         )
         UIView.animate(withDuration: 0.35,
@@ -343,6 +407,48 @@ extension ViewController
         )
     }
     
+    func HidePhotoEditorBar(BackToMain: Bool)
+    {
+        let Insets = self.view.safeAreaInsets
+        let FrameHeight = UIScreen.main.bounds.height - (Insets.bottom + Insets.top + 70)
+        let Frame = CGRect(x: 0, y: Insets.top, width: self.view.frame.width, height: FrameHeight)
+        let ScreenHeight = self.view.bounds.height
+        let ScreenWidth = self.view.bounds.width
+        SceneMotionRecorderView.layer.zPosition = 0
+        ImageBottomBar.layer.zPosition = 1000
+        UIView.animate(withDuration: 0.35,
+                       animations:
+            {
+                if Insets.bottom > 0
+                {
+                    //Hide the photo editor bar.
+                    self.PhotoEditorBar.frame = CGRect(x: ScreenWidth,
+                                                       y: self.PhotoEditorBar.frame.minY,
+                                                       width: ScreenWidth,
+                                                       height: self.PhotoEditorBar.frame.height)
+                    //Show the image bar.
+                    self.MainBottomBar.frame = CGRect(x: 0,
+                                                      y: Frame.maxY,
+                                                      width: ScreenWidth,
+                                                      height: self.MainBottomBar.frame.height)
+                }
+                else
+                {
+                    //Hide the recorder bar.
+                    self.PhotoEditorBar.frame = CGRect(x: 0,
+                                                       y: ScreenHeight,
+                                                       width: ScreenWidth,
+                                                       height: self.PhotoEditorBar.frame.height)
+                    //Show the image bar.
+                    self.MainBottomBar.frame = CGRect(x: 0,
+                                                      y: Frame.maxY,
+                                                      width: ScreenWidth,
+                                                      height: self.MainBottomBar.frame.height)
+                }
+        }
+        )
+    }
+    
     /// Hide the record scene menu bar. Restore the normal image bottom tool bar.
     func HideRecordSceneBar()
     {
@@ -390,11 +496,7 @@ extension ViewController
     func SwitchToPhotoPickerMode()
     {
         GridView.HideGrid()
-        #if true
         HUDView.isHidden = true
-        #else
-        HideHistogramView()
-        #endif
         UIView.animate(withDuration: 0.15,
                        animations:
             {
