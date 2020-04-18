@@ -53,6 +53,15 @@ extension ViewController
         {
             return
         }
+        #if true
+        if UIDevice.current.userInterfaceIdiom == .phone
+        {
+            if !FrameCount.isMultiple(of: 5)
+            {
+                return
+            }
+        }
+        #else
         if let RawSpeed = Settings.GetString(ForKey: .HistogramCreationSpeed)
         {
             if let Speed = HistogramCreationSpeeds(rawValue: RawSpeed)
@@ -61,12 +70,13 @@ extension ViewController
                 {
                     if !FrameCount.isMultiple(of: FrameMultiplier)
                     {
-                        print("Invalid frame multiplier")
+                        print("Invalid frame multiplier: \(FrameCount)")
                         return
                     }
                 }
             }
         }
+        #endif
         if let Buffer: CVPixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer)
         {
             let CIImg: CIImage = CIImage(cvPixelBuffer: Buffer)
