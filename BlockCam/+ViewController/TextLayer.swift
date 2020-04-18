@@ -97,8 +97,9 @@ extension ViewController
                         _ in
                         self.TextPleaseWait.isHidden = true
                 })
-                return
             }
+            else
+            {
             let FinalY = -(self.TextPleaseWait.frame.size.height + 20) * 2
             UIView.animate(withDuration: 0.35,
                            animations:
@@ -113,10 +114,12 @@ extension ViewController
                     _ in
                     self.TextPleaseWait.isHidden = true
             })
+        }
         
         case .TooLong:
             if TextTooLong.isHidden
             {
+                TextTooLong.alpha = 0.0
                 return
             }
             UIView.animate(withDuration: 0.2,
