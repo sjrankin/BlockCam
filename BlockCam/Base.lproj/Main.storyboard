@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16095" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina5_5" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16084.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -118,8 +118,76 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="666"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
+                            <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TKz-36-Mk9">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="666"/>
+                                <subviews>
+                                    <imageView opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="kQb-vK-rxg">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="666"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="kQb-vK-rxg" firstAttribute="top" secondItem="TKz-36-Mk9" secondAttribute="top" id="1kh-lU-h4y"/>
+                                    <constraint firstItem="kQb-vK-rxg" firstAttribute="leading" secondItem="TKz-36-Mk9" secondAttribute="leading" id="gOQ-3q-DOW"/>
+                                    <constraint firstAttribute="trailing" secondItem="kQb-vK-rxg" secondAttribute="trailing" id="tgR-5F-mL7"/>
+                                    <constraint firstAttribute="bottom" secondItem="kQb-vK-rxg" secondAttribute="bottom" id="yXw-AJ-4LE"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iw4-EP-GeS">
+                                <rect key="frame" x="0.0" y="400" width="414" height="70"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qkt-mv-xbf">
+                                        <rect key="frame" x="8" y="18" width="50" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <color key="tintColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <state key="normal" image="checkmark.circle.fill" catalog="system">
+                                            <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="30" scale="large" weight="black"/>
+                                        </state>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t1u-Wr-0IY">
+                                        <rect key="frame" x="182" y="18" width="50" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" image="crop.rotate" catalog="system">
+                                            <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="30" scale="large" weight="black"/>
+                                        </state>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UWx-Jp-9B1">
+                                        <rect key="frame" x="99" y="18" width="46" height="45"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" image="circle.righthalf.fill" catalog="system">
+                                            <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="30" scale="large" weight="black"/>
+                                        </state>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GOI-xC-P6V">
+                                        <rect key="frame" x="297" y="26" width="41" height="37"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <color key="tintColor" systemColor="systemPinkColor" red="1" green="0.1764705882" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <state key="normal" image="xmark" catalog="system">
+                                            <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="30" scale="large" weight="black"/>
+                                        </state>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ik9-vg-Cmf">
+                                        <rect key="frame" x="354" y="23" width="44" height="34"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <color key="tintColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <state key="normal" image="arrow.right.to.line" catalog="system">
+                                            <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="30" scale="large" weight="black"/>
+                                        </state>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tWN-6r-WSX">
-                                <rect key="frame" x="0.0" y="500" width="414" height="70"/>
+                                <rect key="frame" x="0.0" y="300" width="414" height="70"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AoZ-tZ-jN3">
@@ -435,11 +503,14 @@
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="J2Y-fa-EqT" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" symbolic="YES" id="305-Rc-xyh"/>
+                            <constraint firstItem="TKz-36-Mk9" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="879-uA-Whp"/>
                             <constraint firstItem="4FK-1X-OnA" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="Ksy-dr-muw"/>
                             <constraint firstItem="J2Y-fa-EqT" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="LFB-bG-uWC"/>
                             <constraint firstItem="TsA-Jq-hIG" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="LeX-e8-qvW"/>
+                            <constraint firstItem="TKz-36-Mk9" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="PhU-NN-28D"/>
                             <constraint firstAttribute="trailing" secondItem="4FK-1X-OnA" secondAttribute="trailing" id="QLC-hR-VzX"/>
                             <constraint firstAttribute="bottom" secondItem="4FK-1X-OnA" secondAttribute="bottom" constant="70" id="QVv-z4-Seo"/>
+                            <constraint firstAttribute="trailing" secondItem="TKz-36-Mk9" secondAttribute="trailing" id="TFG-Jg-1EO"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="J2Y-fa-EqT" secondAttribute="bottom" constant="70" id="TPo-tW-xnQ"/>
                             <constraint firstItem="TsA-Jq-hIG" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="TPw-YF-bqQ"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="TsA-Jq-hIG" secondAttribute="bottom" constant="70" id="Tnf-jN-8DY"/>
@@ -449,6 +520,7 @@
                             <constraint firstItem="FVb-mH-eBn" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" symbolic="YES" id="gkH-mg-S4A"/>
                             <constraint firstItem="FVb-mH-eBn" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="goe-85-Oky"/>
                             <constraint firstAttribute="trailing" secondItem="FVb-mH-eBn" secondAttribute="trailing" id="guA-qf-33r"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="TKz-36-Mk9" secondAttribute="bottom" constant="70" id="hdF-Bx-EPR"/>
                             <constraint firstItem="QbL-Ai-P2j" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="nej-yV-lEE"/>
                             <constraint firstAttribute="trailing" secondItem="J2Y-fa-EqT" secondAttribute="trailing" id="pAM-XV-Y9X"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="TsA-Jq-hIG" secondAttribute="trailing" id="ryv-vG-ke8"/>
@@ -458,10 +530,16 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
+                        <outlet property="AcceptEditsButton" destination="Qkt-mv-xbf" id="C60-b7-YV6"/>
+                        <outlet property="AdjustContrastButton" destination="t1u-Wr-0IY" id="ICr-bJ-eBk"/>
+                        <outlet property="BackToCameraButton" destination="GOI-xC-P6V" id="Sbz-Wy-gGm"/>
                         <outlet property="CameraButton" destination="hCa-yb-gx8" id="IOf-Mt-PQQ"/>
                         <outlet property="CloseSceneRecorderViewButton" destination="4qT-58-1L9" id="LXF-VN-Vif"/>
                         <outlet property="CompositeStatus" destination="2o1-W4-GEH" id="fwf-Ui-FkP"/>
+                        <outlet property="CropRotateButton" destination="UWx-Jp-9B1" id="lpX-WI-6Vi"/>
                         <outlet property="DoneButton" destination="AoZ-tZ-jN3" id="2SE-WC-D24"/>
+                        <outlet property="EditImageView" destination="kQb-vK-rxg" id="tBz-tw-XwE"/>
+                        <outlet property="EditView" destination="TKz-36-Mk9" id="9tU-tK-Hz7"/>
                         <outlet property="GridView" destination="QbL-Ai-P2j" id="0mk-np-OgD"/>
                         <outlet property="HUDAltitudeLabel" destination="gEU-Dg-ylV" id="fez-qS-6zw"/>
                         <outlet property="HUDCompassLabel" destination="NFZ-yJ-hTK" id="OTo-R7-4Iv"/>
@@ -478,11 +556,13 @@
                         <outlet property="MainBottomBar" destination="2zr-iI-Emt" id="0VZ-sz-iEH"/>
                         <outlet property="MeanColorIndicator" destination="vAW-Vb-JEx" id="hTt-3Q-yBs"/>
                         <outlet property="OutputView" destination="J2Y-fa-EqT" id="yc6-PF-Lpl"/>
+                        <outlet property="PhotoEditorBar" destination="iw4-EP-GeS" id="2pB-Yi-pdT"/>
                         <outlet property="SaveButton" destination="Cnd-fA-brj" id="noY-SH-L67"/>
                         <outlet property="SceneMotionRecorderView" destination="9nb-T8-JHG" id="8jX-bY-I6B"/>
                         <outlet property="SceneRecordInfoButton" destination="7na-ed-8gQ" id="RHy-M7-IEk"/>
                         <outlet property="SceneRecorderButton" destination="6C1-o2-kbl" id="MCp-Xg-1XL"/>
                         <outlet property="SettingsButton" destination="5zp-3c-1wH" id="UJB-6Y-VgV"/>
+                        <outlet property="SkipEditingButton" destination="Ik9-vg-Cmf" id="6zS-RQ-6MH"/>
                         <outlet property="SwitchCameraButton" destination="oZy-o8-jf8" id="saV-jR-Vm3"/>
                         <outlet property="SwitchModeButton" destination="Jj9-Ch-32Y" id="1K3-UY-kDM"/>
                         <outlet property="TextLayerView" destination="4FK-1X-OnA" id="kKh-58-DRX"/>
@@ -499,12 +579,17 @@
         </scene>
     </scenes>
     <resources>
+        <image name="arrow.right.to.line" catalog="system" width="128" height="101"/>
         <image name="camera" catalog="system" width="128" height="96"/>
         <image name="camera.rotate" catalog="system" width="128" height="96"/>
+        <image name="checkmark.circle.fill" catalog="system" width="128" height="121"/>
         <image name="circle" catalog="system" width="128" height="121"/>
+        <image name="circle.righthalf.fill" catalog="system" width="128" height="121"/>
+        <image name="crop.rotate" catalog="system" width="108" height="128"/>
         <image name="folder" catalog="system" width="128" height="95"/>
         <image name="gear" catalog="system" width="128" height="119"/>
         <image name="viewfinder" catalog="system" width="128" height="114"/>
+        <image name="xmark" catalog="system" width="128" height="113"/>
         <image name="xmark.circle.fill" catalog="system" width="128" height="121"/>
     </resources>
 </document>
