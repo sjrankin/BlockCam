@@ -464,11 +464,12 @@ class ViewController: UIViewController,
     /// - Parameter HighlightColor: The color to use for the highlight.
     func HighlightButtonPress(_ Button: UIButton, HighlightColor: UIColor = UIColor.white)
     {
+        let OriginalColor: UIColor = Button.tintColor
         Button.tintColor = HighlightColor
         let AnimationDuration = Settings.GetDouble(ForKey: .UIButtonHighlightFadeDuration, IfZero: 0.35)
         UIView.animate(withDuration: AnimationDuration, animations:
             {
-                Button.tintColor = UIColor.black
+                Button.tintColor = OriginalColor//UIColor.black
         })
     }
     
@@ -686,7 +687,7 @@ class ViewController: UIViewController,
     ///         and light) nodes, the amount of GPU processing is reduced significantly.
     @IBAction func HandleDoneWithImageProcessingButton(_ sender: Any)
     {
-        HighlightButtonPress(sender as! UIButton)
+        HighlightButtonPress(sender as! UIButton, HighlightColor: UIColor.systemYellow)
         if Settings.GetBoolean(ForKey: .EnableButtonPressSounds)
         {
             Sounds.PlaySound(.Tock)
@@ -728,7 +729,7 @@ class ViewController: UIViewController,
     /// - Parameter sender: Not used.
     @IBAction func HandleSaveProcessedImageButton(_ sender: Any)
     {
-        HighlightButtonPress(sender as! UIButton)
+        HighlightButtonPress(sender as! UIButton, HighlightColor: UIColor.systemPurple)
         if Settings.GetBoolean(ForKey: .EnableButtonPressSounds)
         {
             Sounds.PlaySound(.Tock)
@@ -1156,15 +1157,23 @@ class ViewController: UIViewController,
     @IBOutlet weak var CloseSceneRecorderViewButton: UIButton!
     @IBOutlet weak var SceneMotionRecorderView: UIView!
     @IBOutlet weak var MainBottomBar: UIView!
+    @IBOutlet weak var PhotoEditorBar: UIView!
     @IBOutlet weak var ImageBottomBar: UIView!
     @IBOutlet weak var SwitchCameraButton: UIButton!
     @IBOutlet weak var SwitchModeButton: UIButton!
     @IBOutlet weak var LiveView: UIView!
     @IBOutlet weak var GridView: GridLayer!
     @IBOutlet weak var CameraButton: UIButton!
+    @IBOutlet weak var SkipEditingButton: UIButton!
+    @IBOutlet weak var BackToCameraButton: UIButton!
+    @IBOutlet weak var CropRotateButton: UIButton!
+    @IBOutlet weak var AdjustContrastButton: UIButton!
+    @IBOutlet weak var AcceptEditsButton: UIButton!
     // "weak" is removed from OutputView because we recreate the class in code and weak leads to strange compiler warnings...
     @IBOutlet var OutputView: ProcessViewer!
     @IBOutlet weak var HUDView: UIView!
+    @IBOutlet weak var EditView: UIView!
+    @IBOutlet weak var EditImageView: UIImageView!
     
     // MARK: - Interface builder variables for image processing.
     @IBOutlet weak var CompositeStatus: SmallStatusDisplay!
